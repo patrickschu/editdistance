@@ -39,10 +39,10 @@ with codecs.open("lampeter.txt", "r", "utf-8") as corpus:
  	corpus=re.split("\W", corpus.read().lower())
  	corpus=[i for i in corpus if i]
 
-with codecs.open('/Users/ps22344/Desktop/alllist_0622.txt', "r", "utf-8") as wordlist:
-	wordlist=wordlist.read().split("\n")
+#with codecs.open('/Users/ps22344/Desktop/alllist_0622.txt', "r", "utf-8") as wordlist:
+#	wordlist=wordlist.read().split("\n")
 
-variants=["emprowement","enpproument","enprowment","emproument","emprowment","enprouemente","emprouement","emprovment","emprovement","improwement"," improvment","improwment","improwmente","ymprovement","improouement","improuement","improument","improovement","inprovement","improvement",   "impruivement","impreuvement","impreevement"	]
+#variants=["emprowement","enpproument","enprowment","emproument","emprowment","enprouemente","emprouement","emprovment","emprovement","improwement"," improvment","improwment","improwmente","ymprovement","improouement","improuement","improument","improovement","inprovement","improvement",   "impruivement","impreuvement","impreevement"	]
 
 
 def spellfinder(word, data_set, distance):
@@ -62,7 +62,7 @@ def spellfinder(word, data_set, distance):
 		
 	
 	
-for w in ['improvement']: #wordlist[:100]:
+for w in ['improvement']: 
 	spellfinder(w, corpus, 3)
 	
 	
