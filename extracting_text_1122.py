@@ -31,8 +31,9 @@ meta=[
 ("genre1", '<textType \w+=".*?">(.*?)</textType>'), #<textType typeCode="COMEDY">Drama Comedy</textType>
 ("genre2", 'X'),
 ("notes", '<comment type=".*?">(.*?)</comment>'),
-("extraction_notes", """Items along the lines of <font>Blanuel</font> or <pagebreak id="E2R" /> are left in"""),
-("encoding", 'X'),
+("extraction_notes", """Items along the lines of <font>Blanuel</font> or <pagebreak id="E2R" /> or <comment type="compiler">TWO COMMAS IN SOURCE      
+TEXT</comment> are left in"""),
+("encoding", 'utf-8'),
 ('text', r"<dialogue>(.*?)</dialogue>")
 ]
 
@@ -45,17 +46,16 @@ for m in meta:
 
 
 def finder(input_dir, meta_dict):
-	for fili in [i for i in os.listdir(input_dir) if not i.startswith(".")]:
-		print os.path.join(input_dir, fili)
+	filecount=1
+	for fili in [i for i in os.listdir(input_dir) if not i.startswith(".") and i.endswith(".xml")]:
+		print os.path.join(input_dir, fili), "\n"
 		with codecs.open(os.path.join(input_dir, fili), "r", "latin_1") as inputfili:
 			rawtext=inputfili.read()
-		print "ELENA", len(meta_dict['text'].findall(rawtext)),  meta_dict['text'].findall(rawtext)[0]
-			# for key in meta_dict:
-# 				if not isinstance (meta_dict[key], basestring):
-# 					#if len(meta_dict[key].findall(rawtext)) > 1:
-# 					print key, "\n".join(meta_dict[key].findall(rawtext)), len(meta_dict[key].findall(rawtext))
+		print "text found", len(meta_dict['text'].findall(rawtext))
+		print "notes found", meta_dict['notes'].findall(rawtext), [len(i) for i in meta_dict['notes'].findall(rawtext)]
+		print "author found", meta_dict['author'].findall(rawtext), [len(i) for i in meta_dict['author'].findall(rawtext)]
 		corpusstring=(
-		"<file> <no="+str(1)+"> "
+		"<file> <no="+str(filecount)+"> "
 		"<corpusnumber="+meta_dict['corpusnumber'].findall(rawtext)[0]+"> "
 		"<corpus="+meta_dict['corpus']+"> " 
 		"<title="+meta_dict['title'].findall(rawtext)[0]+"> "
@@ -65,12 +65,15 @@ def finder(input_dir, meta_dict):
 		"<pubdate="+meta_dict['pubdate'].findall(rawtext)[0]+"> "
 		"<genre1="+meta_dict['genre1'].findall(rawtext)[0]+"> "
 		"<genre2="+meta_dict['genre2']+"> "
-		"<notes="+meta_dict['notes'].findall(rawtext)[0]+"> "
-		"extraction_notes="+meta_dict['extraction_notes']+"> "
-		"<text>"+" ".join(meta_dict['text'].findall(rawtext))+"</text> </file>"
+		"<extraction_notes="+meta_dict['extraction_notes']+"> "
+		"<notes="+" ".join(meta_dict['notes'].findall(rawtext))+"> "
+		"<text>"+"\n".join(meta_dict['text'].findall(rawtext))+"</text> </file>"
+
 		)
 		with codecs.open(os.path.join("outputfiles", fili+"_extracted.txt"), "w", "utf-8") as outputfili:
 			outputfili.write(corpusstring)
+		filecount = filecount + 1
+		print "file {} processed succesfully, written to {}.\n".format(os.path.join(input_dir, fili), outputfili)
 			
 			
 		#> <corpusnumber=> <corpus=> <title=> <author=Unknown> <otaauthor=Unknown> <dialect=B> <authorage=> <pubdate=> <genre1=> <genre2=> <notes=> <text>  </text> </file>
