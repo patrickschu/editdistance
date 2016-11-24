@@ -53,26 +53,62 @@ print metadict
 # LAMPETER
 # /Users/ps22344/Desktop/marcos_corpora/Lampeter 
 #what about gender
+# done and in /Users/ps22344/Downloads/editdistance/lampeter_extracted
+# meta=[
+# ("no",'X'), 
+# ("corpusnumber",'<title>(.*?)</TITLE>') , 
+# ("corpus", "lampeter_corpus"), 
+# ("title",   '<(?:TITLEPART|titlePart)>(.*?)(?:TITLEPART|titlePart)>'), 
+# ("author", '<PERSNAME>(.*?)</PERSNAME>'),
+# ("dialect", "bre"),
+# ("authorage", '<BIOGNOTE>(.*?)</BIOGNOTE>'),
+# ("pubdate", '<DATE>(.*?)</DATE>'),
+# ("genre1", '<KEYWORDS SCHEME="lamTop"><TERM>(.*?)</TERM></KEYWORDS>'), 
+# ("genre2", 'X'),
+# ("notes", '<DOCIMPRINT>(.*?)</DOCIMPRINT>'),
+# ("extraction_notes", """Lots of tags in <> still in there, weird formatting e.g. &rehy;"""),
+# ("encoding", 'utf-8'),
+# ('text', r"</HEAD>(.*?)</TEXT>")
+# ]
+# 
+# 
+# for m in meta:
+# 	if m[1] in ['X', 'bre'] or m[0] in ['corpus', "extraction_notes", 'encoding']:
+# 		metadict[m[0]]=m[1]
+# 	else:
+# 		metadict[m[0]]=re.compile(m[1], re.DOTALL)
+
+
+#STEP 3
+# Lancaster Newsbooks
+# /Users/ps22344/Desktop/marcos_corpora/The\ LancasterNewsbooksCorpus
+#/Users/ps22344/Desktop/marcos_corpora/The\ LancasterNewsbooksCorpus/2531/1654_newsbooks
+#and
+#/Users/ps22344/Desktop/marcos_corpora/The\ LancasterNewsbooksCorpus/2531/mercurius_fumigosus
+#these are normalized for spelling. pretty cool. like so: <reg orig="Merchants">
+#note that the very last match on text is sometimes missed. but this seems to be "Finis" exclusively. 
+
+
 meta=[
 ("no",'X'), 
-("corpusnumber",'<title>(.*?)</TITLE>') , 
-("corpus", "lampeter_corpus"), 
-("title",   '<(?:TITLEPART|titlePart)>(.*?)(?:TITLEPART|titlePart)>'), 
+("corpusnumber",'<title>(.*?)</title>') , 
+("corpus", "lancaster_newsbook_corpus"), 
+("title",   '<title>(.*?)</title>'), 
 ("author", '<PERSNAME>(.*?)</PERSNAME>'),
 ("dialect", "bre"),
 ("authorage", '<BIOGNOTE>(.*?)</BIOGNOTE>'),
-("pubdate", '<DATE>(.*?)</DATE>'),
-("genre1", '<KEYWORDS SCHEME="lamTop"><TERM>(.*?)</TERM></KEYWORDS>'), 
+("pubdate", '<head level="2">.+[Pp]rinted.+ (\d{4}).</head>'),
+("genre1", 'newsbook'), 
 ("genre2", 'X'),
-("notes", '<DOCIMPRINT>(.*?)</DOCIMPRINT>'),
-("extraction_notes", """Lots of tags in <> still in there, weird formatting e.g. &rehy;"""),
+("notes", '<notes>(.*?)</notes>'),
+("extraction_notes", """All original tags left in; note the comments on normalized spelling"""),
 ("encoding", 'utf-8'),
-('text', r"</HEAD>(.*?)</TEXT>")
+('text', r"</head>(.*?)<head level=")
 ]
 
 
 for m in meta:
-	if m[1] in ['X', 'bre'] or m[0] in ['corpus', "extraction_notes", 'encoding']:
+	if m[1] in ['X', 'bre'] or m[0] in ['corpus', "extraction_notes", 'encoding', 'genre1']:
 		metadict[m[0]]=m[1]
 	else:
 		metadict[m[0]]=re.compile(m[1], re.DOTALL)
@@ -80,7 +116,7 @@ for m in meta:
 
 def finder(input_dir, meta_dict):
 	filecount=1
-	for fili in [i for i in os.listdir(input_dir) if not i.startswith(".")]:
+	for fili in [i for i in os.listdir(input_dir) if not i.startswith(".") and i.endswith(".xml")]:
 		print '***', os.path.join(input_dir, fili), "\n"
 		with codecs.open(os.path.join(input_dir, fili), "r", "latin") as inputfili:
 			rawtext=inputfili.read()
@@ -90,14 +126,14 @@ def finder(input_dir, meta_dict):
 
 		corpusstring=(
 		"<file> <no="+str(filecount)+"> "
-		"<corpusnumber="+fili.rstrip(".tei")+"> "
+		"<corpusnumber="+fili.rstrip(".xml")+"> "
 		"<corpus="+meta_dict['corpus']+"> " 
 		"<title="+re.sub("<.*?>", "", meta_dict['title'].findall(rawtext)[0])+"> "
-		"<author="+" ".join([i for i in meta_dict['author'].findall(rawtext) if i])+"> "
+		"<author=unknown> "#"+" ".join([i for i in meta_dict['author'].findall(rawtext) if i])+"> "
 		"<dialect="+meta_dict['dialect']+"> "
-		"<authorage="+" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
-		"<pubdate="+meta_dict['pubdate'].findall(rawtext)[0]+"> "
-		"<genre1="+meta_dict['genre1'].findall(rawtext)[0]+"> "
+		"<authorage=unknown> "#"+" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
+		"<pubdate="+" ".join(meta_dict['pubdate'].findall(rawtext))+"> "
+		"<genre1="+meta_dict['genre1']+"> "#.findall(rawtext)[0]+"> "
 		"<genre2="+meta_dict['genre2']+"> "
 		"<extraction_notes="+meta_dict['extraction_notes']+"> "
 		"<notes="+re.sub("<.*?>", ""," ".join(meta_dict['notes'].findall(rawtext)))+"> "
@@ -110,7 +146,7 @@ def finder(input_dir, meta_dict):
 		filecount = filecount + 1
 		print "file {} processed succesfully, written to {}.\n".format(os.path.join(input_dir, fili), outputfili)
 			
-finder("/Users/ps22344/Desktop/marcos_corpora/Lampeter/2400/Texts/", metadict)	
+finder("/Users/ps22344/Desktop/marcos_corpora/The LancasterNewsbooksCorpus/2531/1654_newsbooks", metadict)	
 #> <corpusnumber=> <corpus=> <title=> <author=Unknown> <otaauthor=Unknown> <dialect=B> <authorage=> <pubdate=> <genre1=> <genre2=> <notes=> <text>  </text> </file>
 				
 
