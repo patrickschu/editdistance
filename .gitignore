@@ -1,3 +1,7 @@
+#my things
+*.zip
+
+
 *.DS_Store
 .AppleDouble
 .LSOverride
