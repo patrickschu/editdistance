@@ -1,0 +1,52 @@
+1. SELECTION OF CORPORA
+Selection was guided by consideration of the following criteria
+- time period
+- non-normalized material
+- etc 
+
+2. PRE-PROCESSING OF CORPORA	
+To allow for computational processing of the data, all the corpora listed above were pre-processed as described below. 
+
+Goal:
+Compile machine-readable dataset of all individual corpora, henceforth: the input corpora. Standardize metadata format and character encoding. This will allow us to access all data through one script / tool.
+ 
+Format: 
+The corpora were  consolidated into  one dataset, henceforth: the supercorpus. In this supercorpus, each text file consists of one book, speech, or other text item. 
+Procedure:
+Text and metadata were read out of the files in the input corpus  (using regular expressions) and converted according to the following template:
+
+		<file> 			indicates beginning of the file
+		<no= >			the ID number of the text in the supercorpus
+		<corpusnumber= >ID number of the text in the input corpus
+		<corpus= >  	name of input corpus
+		<title= > 		title of the work
+		<author= > 		author of the work
+		<dialect= >		AmE or BrE 
+		<authorage= > 	Age or birth/death years of the author
+		<pubdate= > 	publication date
+		<genre1= > 		the genre, as given in the input corpus file 
+		<genre2= >		additional genre
+		<extraction_notes=> notes by PS about peculiarities of the corpus 
+		<notes=>		notes by corpus compilers from the input corpus file 
+		<encoding=> 	the character encoding (will be Unicode UTF-8 for all supercorpus)
+		<text>			indicates start of text
+		</text> 		indicates end of text
+		</file>			indicates end of file
+
+Here is an example from the Lampeter corpus:
+
+
+	<file> <no=41> <corpusnumber=msca1643> <corpus=lampeter_corpus> <title=A true and exact RELATION [...]> <author=Henry Foster> <dialect=bre> <authorage=> <pubdate=1643> <genre1=Civil War</TERM><TERM>campaign report> <genre2=X> <extraction_notes=Lots of tags in <> still in there, weird formatting e.g. &rehy;> <notes=London, Printed for Ben. Allen in Popes-head-Alley, Octo. 2. 1643.> <encoding=utf-8> <text> [...] </text> </file>
+
+
+Problems, Notes:
+- most of the tags from the original corpus  were left in the text. Usually in "<>"
+- Lancaster Newsbooks is normalized and has comments with original spellings in "<>"
+- the extracting is nec rough; sometimes fields like the authorage will be populated with erroneous data. Some fields still include formatting tags or "[", "]"
+
+
+Tools
+The Python script is [here](https://github.com/patrickschu/editdistance/blob/master/extracting_text_1122.py). 
+
+
+	
