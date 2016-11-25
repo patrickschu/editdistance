@@ -3,7 +3,10 @@ import re
 import os
 
 ##TEMPLATE
-
+"""
+We construct a specific meta_dict with corpus-specific search algos for metadata and text.
+Then run thru the finder.
+"""
 
 # <file> <no=> <corpusnumber=> <corpus=> <title=> <author=Unknown> <otaauthor=Unknown> <dialect=B> <authorage=> <pubdate=> <genre1=> <genre2=> <notes=> <text>  </text> </file>
 metadict={}
@@ -120,72 +123,101 @@ print metadict
 #avail here /Users/ps22344/Desktop/marcos_corpora/helsinki_corpora
 #all items in one file
 # this would really be a lot better with xml parsing. 
-# we break this up by writing individual texts to single files
+# we break this up by writing individual texts to single files, here /Users/ps22344/Downloads/editdistance/text_to_files_hel_1123.py
+# then appyly finder 
 
+# 
+# meta=[
+# ("no",'X'), 
+# ("corpusnumber",'<TEI n="(.*?)" xml:id="(.*?)">') , 
+# ("corpus", "helsinki_corpus_xml_edition"), 
+# ("title",   '<title key=(?:.*?) ref=(?:.*?) n="(.*?)">(?:.*?)</title>'), 
+# ("author", '<author key="(.*?)" ref='),
+# ("dialect", "<language ident=(?:.*?)>(.*?)<"),
+# ("authorage", 'scheme="#author_age" target="#age_(.*?)"/>'),
+# ("pubdate", '<date type="manuscript" from=".+?" to=".+?">(.*?)</date>'),
+# ("genre1", ' scheme="#texttype" target="#(.*?)"/>'), 
+# ("genre2", 'X'),
+# ("notes", '<sourceDesc>(.*?) </sourceDesc>'),
+# ("extraction_notes", """All formatting tags left in; it has these interesting  supplied resp= X  tags"""),
+# ("encoding", 'utf-8'),
+# ('text', r"<text>(.*?)</text>")
+# ]
 
-
-
-
+##STEP5 
+#Shakespeare 1st folio
+# is here /Users/ps22344/Desktop/marcos_corpora/ShakespeareFirstFolio(MachineReadableTextFormat)/0119 
+# First folio of Shakespeare: machine readable text format
+#   </editorialDecl>
+#       <refsDecl>
+#         <p>&lt;A&gt; authorial attribution code</p>
+#         <p>&lt;C&gt; compositor attribution</p>
+#         <p>&lt;&gt; </p>
+#         <p>&lt;P&gt; signature</p>
+#         <p>&lt;T&gt; play title</p>
+#         <p>&lt;Y&gt; when it appears indicates the probable type of copy: Q = quarto; M = foul papers</p>
+#         <p>&lt;S&gt; speaker -- the name of the speaker appears between {}</p>
+#         <p>&lt;Z&gt; Act/Scene, dramatis personae, etc.</p>
+#         <p>&lt;D&gt; stage direction -- in some texts, stage directions are enclosed in double parentheses ((...)) in preference; this makes the text more easily processed by some software</p>
+#  
+#<T 2H4> title
 
 
 
 meta=[
 ("no",'X'), 
-("corpusnumber",'<TEI n="(.*?)" xml:id="(.*?)">') , 
-("corpus", "helsinki_corpus_xml_edition"), 
-("title",   '<title key=(?:.*?) ref=(?:.*?) n="(.*?)">(?:.*?)</title>'), 
-("author", '<author key="(.*?)" ref='),
-("dialect", "<language ident=(?:.*?)>(.*?)<"),
-("authorage", 'scheme="#author_age" target="#age_(.*?)"/>'),
-("pubdate", '<date type="manuscript" from=".+?" to=".+?">(.*?)</date>'),
-("genre1", ' scheme="#texttype" target="#(.*?)"/>'), 
+("corpusnumber",'<T (.*?)>') , 
+("corpus", "first_folio_of_shakespeare_machine_readable_text_format"), 
+("title",   '<T (.*?)>'), 
+("author", 'shakespeare, william'),
+("dialect", "bre"),
+("authorage", '1564-1616'),
+("pubdate", '1623'),
+("genre1", 'play'), 
 ("genre2", 'X'),
-("notes", '<sourceDesc>(.*?) </sourceDesc>'),
-("extraction_notes", """All formatting tags left in; it has these interesting  supplied resp= X  tags"""),
+("notes", 'This file contains embedded markers for use by Oxford Concordance Program, delimited by the usual characaters '),
+("extraction_notes", """*  indicates a line where it is possible that the spelling has been affected by the compositor's need to fit several words to his measure; {} for italics"""),
 ("encoding", 'utf-8'),
-('text', r"<text>(.*?)</text>")
+('text', r">\n+(.*)<[A-Z] ")
 ]
 
 
-
 for m in meta:
-	if m[1] in ['X', 'bre'] or m[0] in ['corpus', "extraction_notes", 'encoding']:
+	if m[1] in ['X', 'bre'] or m[0] in ['notes', 'genre1', 'pubdate', 'author', 'authorage', 'corpus', "extraction_notes", 'encoding']:
 		metadict[m[0]]=m[1]
 	else:
 		metadict[m[0]]=re.compile(m[1], re.DOTALL)
 
 def finder(input_dir, meta_dict):
 	filecount=1
-	for fili in [i for i in os.listdir(input_dir) if not i.startswith(".") and i.endswith(".txt")]:
-		print '***', os.path.join(input_dir, fili), "\n"
+	for fili in [i for i in os.listdir(input_dir) if not i.startswith(".") and not i.startswith("shakdoc")]:
+		print '\n\n***', os.path.join(input_dir, fili), "\n"
 		with codecs.open(os.path.join(input_dir, fili), "r", "utf-8") as inputfili:
 			rawtext=inputfili.read()
 		for entry in metadict:
 			if isinstance(metadict[entry], re._pattern_type):
 				print entry, len(metadict[entry].findall(rawtext)) ,# metadict[entry].findall(rawtext)
-				for e in metadict[entry].findall(rawtext):
-					print "ee", e
-		corpusstring=(
-		"<file> <no="+str(filecount)+"> "
-		"<corpusnumber="+"_".join(meta_dict['corpusnumber'].findall(rawtext)[0])+"> "
- 		"<corpus="+meta_dict['corpus']+"> " 
- 		"<title="+re.sub("<.*?>", "", meta_dict['title'].findall(rawtext)[0])+"> "
- 		"<author="+" ".join([i for i in meta_dict['author'].findall(rawtext) if i])+"> "
- 		"<dialect="+meta_dict['dialect'].findall(rawtext)[0]+"> "
- 		"<authorage="+" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
- 		"<pubdate="+" ".join(meta_dict['pubdate'].findall(rawtext))+"> "
- 		"<genre1="+meta_dict['genre1'].findall(rawtext)[0]+"> "
- 		"<genre2="+meta_dict['genre2']+"> "
- 		"<extraction_notes="+meta_dict['extraction_notes']+"> "
- 		"<notes="+re.sub("(\s+|<.*?>)", " "," ".join(meta_dict['notes'].findall(rawtext)))+"> "
- 		"<encoding="+meta_dict['encoding']+"> "
- 		"<text>"+"\n".join(meta_dict['text'].findall(rawtext))+" </text> </file>"
 
-		)
-		with codecs.open(os.path.join("outputfiles", str(filecount)+"helsinki_extracted.txt"), "w", "utf-8") as outputfili:
+		corpusstring=(
+ 		"<file> <no="+str(filecount)+"> "
+ 		"<corpusnumber="+fili+"> "
+  		"<corpus="+meta_dict['corpus']+"> " 
+  		"<title="+re.sub("<.*?>", "", meta_dict['title'].findall(rawtext)[0])+"> "
+  		"<author="+meta_dict['author']+"> "#+" ".join([i for i in meta_dict['author'].findall(rawtext) if i])+"> "
+  		"<dialect="+meta_dict['dialect']+"> "#+meta_dict['dialect'].findall(rawtext)[0]+"> "
+  		"<authorage="+meta_dict['authorage']+"> " #" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
+  		"<pubdate="+meta_dict['pubdate']+"> "#" ".join(meta_dict['pubdate'].findall(rawtext))+"> "
+  		"<genre1="+meta_dict['genre1']+"> "#.findall(rawtext)[0]+"> "
+  		"<genre2="+meta_dict['genre2']+"> "
+  		"<extraction_notes="+meta_dict['extraction_notes']+"> "
+  		"<notes="+meta_dict['notes']+"> "#re.sub("(\s+|<.*?>)", " "," ".join(meta_dict['notes'].findall(rawtext)))+"> "
+  		"<encoding="+meta_dict['encoding']+"> "
+  		"<text>"+re.sub("\d+ {,}", " ", meta_dict['text'].findall(rawtext)[0])+" </text> </file>"
+ 		)
+		with codecs.open(os.path.join("outputfiles", str(fili)+"_extracted.txt"), "w", "utf-8") as outputfili:
 			outputfili.write(corpusstring)
 		filecount = filecount + 1
 		print "file {} processed succesfully, written to {}.\n".format(os.path.join(input_dir, fili), outputfili)
 			
 
-finder("/Users/ps22344/Downloads/editdistance/outputfiles/helsinki", metadict)	
+finder("/Users/ps22344/Desktop/marcos_corpora/ShakespeareFirstFolio(MachineReadableTextFormat)/0119", metadict)	
