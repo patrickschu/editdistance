@@ -120,6 +120,7 @@ print metadict
 #avail here /Users/ps22344/Desktop/marcos_corpora/helsinki_corpora
 #all items in one file
 # this would really be a lot better with xml parsing. 
+# we break this up by writing individual texts to single files
 
 
 
@@ -130,17 +131,17 @@ print metadict
 
 meta=[
 ("no",'X'), 
-("corpusnumber","<TEI n=(.*?) xml:id=(.*?)>") , 
+("corpusnumber",'<TEI n="(.*?)" xml:id="(.*?)">') , 
 ("corpus", "helsinki_corpus_xml_edition"), 
-("title",   '<title key=(?:.*?) ref=(?:.*?) n=(.*?)>(?:.*?)</title>'), 
-("author", '<author key=(.*?) ref='),
+("title",   '<title key=(?:.*?) ref=(?:.*?) n="(.*?)">(?:.*?)</title>'), 
+("author", '<author key="(.*?)" ref='),
 ("dialect", "<language ident=(?:.*?)>(.*?)<"),
 ("authorage", 'scheme="#author_age" target="#age_(.*?)"/>'),
 ("pubdate", '<date type="manuscript" from=".+?" to=".+?">(.*?)</date>'),
 ("genre1", ' scheme="#texttype" target="#(.*?)"/>'), 
 ("genre2", 'X'),
 ("notes", '<sourceDesc>(.*?) </sourceDesc>'),
-("extraction_notes", """All formatting tags left in; it has these interesting  <supplied resp= X > tags"""),
+("extraction_notes", """All formatting tags left in; it has these interesting  supplied resp= X  tags"""),
 ("encoding", 'utf-8'),
 ('text', r"<text>(.*?)</text>")
 ]
@@ -155,9 +156,9 @@ for m in meta:
 
 def finder(input_dir, meta_dict):
 	filecount=1
-	for fili in [i for i in os.listdir(input_dir) if not i.startswith(".") and i.endswith(".xml")]:
+	for fili in [i for i in os.listdir(input_dir) if not i.startswith(".") and i.endswith(".txt")]:
 		print '***', os.path.join(input_dir, fili), "\n"
-		with codecs.open(os.path.join(input_dir, fili), "r", "latin") as inputfili:
+		with codecs.open(os.path.join(input_dir, fili), "r", "utf-8") as inputfili:
 			rawtext=inputfili.read()
 		for entry in metadict:
 			if isinstance(metadict[entry], re._pattern_type):
@@ -166,28 +167,25 @@ def finder(input_dir, meta_dict):
 					print "ee", e
 		corpusstring=(
 		"<file> <no="+str(filecount)+"> "
-		"<corpusnumber="+fili.rstrip(".xml")+"> "
-		"<corpus="+meta_dict['corpus']+"> " 
-		"<title="+re.sub("<.*?>", "", meta_dict['title'].findall(rawtext)[0])+"> "
-		"<author=unknown> "#"+" ".join([i for i in meta_dict['author'].findall(rawtext) if i])+"> "
-		"<dialect="+meta_dict['dialect']+"> "
-		"<authorage=unknown> "#"+" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
-		"<pubdate="+" ".join(meta_dict['pubdate'].findall(rawtext))+"> "
-		"<genre1="+meta_dict['genre1']+"> "#.findall(rawtext)[0]+"> "
-		"<genre2="+meta_dict['genre2']+"> "
-		"<extraction_notes="+meta_dict['extraction_notes']+"> "
-		"<notes="+re.sub("<.*?>", ""," ".join(meta_dict['notes'].findall(rawtext)))+"> "
-		"<encoding="+meta_dict['encoding']+"> "
-		"<text>"+"\n".join(meta_dict['text'].findall(rawtext))+" </text> </file>"
+		"<corpusnumber="+"_".join(meta_dict['corpusnumber'].findall(rawtext)[0])+"> "
+ 		"<corpus="+meta_dict['corpus']+"> " 
+ 		"<title="+re.sub("<.*?>", "", meta_dict['title'].findall(rawtext)[0])+"> "
+ 		"<author="+" ".join([i for i in meta_dict['author'].findall(rawtext) if i])+"> "
+ 		"<dialect="+meta_dict['dialect'].findall(rawtext)[0]+"> "
+ 		"<authorage="+" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
+ 		"<pubdate="+" ".join(meta_dict['pubdate'].findall(rawtext))+"> "
+ 		"<genre1="+meta_dict['genre1'].findall(rawtext)[0]+"> "
+ 		"<genre2="+meta_dict['genre2']+"> "
+ 		"<extraction_notes="+meta_dict['extraction_notes']+"> "
+ 		"<notes="+re.sub("(\s+|<.*?>)", " "," ".join(meta_dict['notes'].findall(rawtext)))+"> "
+ 		"<encoding="+meta_dict['encoding']+"> "
+ 		"<text>"+"\n".join(meta_dict['text'].findall(rawtext))+" </text> </file>"
 
 		)
-		with codecs.open(os.path.join("outputfiles", fili+"_extracted.txt"), "w", "utf-8") as outputfili:
+		with codecs.open(os.path.join("outputfiles", str(filecount)+"helsinki_extracted.txt"), "w", "utf-8") as outputfili:
 			outputfili.write(corpusstring)
 		filecount = filecount + 1
 		print "file {} processed succesfully, written to {}.\n".format(os.path.join(input_dir, fili), outputfili)
 			
-finder("/Users/ps22344/Desktop/marcos_corpora/helsinki_corpora", metadict)	
-#> <corpusnumber=> <corpus=> <title=> <author=Unknown> <otaauthor=Unknown> <dialect=B> <authorage=> <pubdate=> <genre1=> <genre2=> <notes=> <text>  </text> </file>
-				
 
- 
+finder("/Users/ps22344/Downloads/editdistance/outputfiles/helsinki", metadict)	
