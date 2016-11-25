@@ -89,30 +89,69 @@ print metadict
 #note that the very last match on text is sometimes missed. but this seems to be "Finis" exclusively. 
 
 
+# meta=[
+# ("no",'X'), 
+# ("corpusnumber",'<title>(.*?)</title>') , 
+# ("corpus", "lancaster_newsbook_corpus"), 
+# ("title",   '<title>(.*?)</title>'), 
+# ("author", '<PERSNAME>(.*?)</PERSNAME>'),
+# ("dialect", "bre"),
+# ("authorage", '<BIOGNOTE>(.*?)</BIOGNOTE>'),
+# ("pubdate", '<head level="2">.+[Pp]rinted.+ (\d{4}).</head>'),
+# ("genre1", 'newsbook'), 
+# ("genre2", 'X'),
+# ("notes", '<notes>(.*?)</notes>'),
+# ("extraction_notes", """All original tags left in; note the comments on normalized spelling"""),
+# ("encoding", 'utf-8'),
+# ('text', r"</head>(.*?)<head level=")
+# ]
+# 
+# 
+# for m in meta:
+# 	if m[1] in ['X', 'bre'] or m[0] in ['corpus', "extraction_notes", 'encoding', 'genre1']:
+# 		metadict[m[0]]=m[1]
+# 	else:
+# 		metadict[m[0]]=re.compile(m[1], re.DOTALL)
+
+
+
+##STEP 4
+# HELSINKI
+#avail here /Users/ps22344/Desktop/marcos_corpora/helsinki_corpora
+#all items in one file
+# this would really be a lot better with xml parsing. 
+
+
+
+
+
+
+
+
 meta=[
 ("no",'X'), 
-("corpusnumber",'<title>(.*?)</title>') , 
-("corpus", "lancaster_newsbook_corpus"), 
-("title",   '<title>(.*?)</title>'), 
-("author", '<PERSNAME>(.*?)</PERSNAME>'),
-("dialect", "bre"),
-("authorage", '<BIOGNOTE>(.*?)</BIOGNOTE>'),
-("pubdate", '<head level="2">.+[Pp]rinted.+ (\d{4}).</head>'),
-("genre1", 'newsbook'), 
+("corpusnumber","<TEI n=(.*?) xml:id=(.*?)>") , 
+("corpus", "helsinki_corpus_xml_edition"), 
+("title",   '<title key=(?:.*?) ref=(?:.*?) n=(.*?)>(?:.*?)</title>'), 
+("author", '<author key=(.*?) ref='),
+("dialect", "<language ident=(?:.*?)>(.*?)<"),
+("authorage", 'scheme="#author_age" target="#age_(.*?)"/>'),
+("pubdate", '<date type="manuscript" from=".+?" to=".+?">(.*?)</date>'),
+("genre1", ' scheme="#texttype" target="#(.*?)"/>'), 
 ("genre2", 'X'),
-("notes", '<notes>(.*?)</notes>'),
-("extraction_notes", """All original tags left in; note the comments on normalized spelling"""),
+("notes", '<sourceDesc>(.*?) </sourceDesc>'),
+("extraction_notes", """All formatting tags left in; it has these interesting  <supplied resp= X > tags"""),
 ("encoding", 'utf-8'),
-('text', r"</head>(.*?)<head level=")
+('text', r"<text>(.*?)</text>")
 ]
 
 
+
 for m in meta:
-	if m[1] in ['X', 'bre'] or m[0] in ['corpus', "extraction_notes", 'encoding', 'genre1']:
+	if m[1] in ['X', 'bre'] or m[0] in ['corpus', "extraction_notes", 'encoding']:
 		metadict[m[0]]=m[1]
 	else:
 		metadict[m[0]]=re.compile(m[1], re.DOTALL)
-
 
 def finder(input_dir, meta_dict):
 	filecount=1
@@ -122,8 +161,9 @@ def finder(input_dir, meta_dict):
 			rawtext=inputfili.read()
 		for entry in metadict:
 			if isinstance(metadict[entry], re._pattern_type):
-				print entry, len(metadict[entry].findall(rawtext)) , metadict[entry].findall(rawtext)
-
+				print entry, len(metadict[entry].findall(rawtext)) ,# metadict[entry].findall(rawtext)
+				for e in metadict[entry].findall(rawtext):
+					print "ee", e
 		corpusstring=(
 		"<file> <no="+str(filecount)+"> "
 		"<corpusnumber="+fili.rstrip(".xml")+"> "
@@ -146,7 +186,7 @@ def finder(input_dir, meta_dict):
 		filecount = filecount + 1
 		print "file {} processed succesfully, written to {}.\n".format(os.path.join(input_dir, fili), outputfili)
 			
-finder("/Users/ps22344/Desktop/marcos_corpora/The LancasterNewsbooksCorpus/2531/1654_newsbooks", metadict)	
+finder("/Users/ps22344/Desktop/marcos_corpora/helsinki_corpora", metadict)	
 #> <corpusnumber=> <corpus=> <title=> <author=Unknown> <otaauthor=Unknown> <dialect=B> <authorage=> <pubdate=> <genre1=> <genre2=> <notes=> <text>  </text> </file>
 				
 
