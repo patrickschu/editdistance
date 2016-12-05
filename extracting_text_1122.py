@@ -196,7 +196,7 @@ meta=[
 ("corpusnumber",'<Quid: numerus currens: (\d*)') , #<Quid: numerus currens: 7
 ("corpus", "innsbruck_letter_corpus"), 
 ("title",   '<Quid: numerus currens: (\d*)'), 
-("author", r"<Author\(s\)\/writer\(s\): (\D+?)(?:\r\n|,.*?|\(.*?\))"), #<Author(s)/writer(s)
+("author", r"<Author\(s\)\/writer\(s\): (\D+?)(?:\r\n|,.*?|\(.*)"), #<Author(s)/writer(s)
 ("dialect", "bre"),
 ("authorage", '<Age of author: (.*?)\r\n'), #<Age of author: 30
 ("pubdate", '<Exact date: (.*?)\r\n'), #<Exact date:
@@ -226,26 +226,26 @@ def finder(input_dir, meta_dict):
 			if isinstance(metadict[entry], re._pattern_type):
 				print entry, metadict[entry].findall(rawtext) ,# metadict[entry].findall(rawtext)
 
-# 		corpusstring=(
-#  		"<file> <no="+str(filecount)+"> "
-#  		"<corpusnumber="+fili+"> "
-#   		"<corpus="+meta_dict['corpus']+"> " 
-#   		"<title="+re.sub("<.*?>", "", meta_dict['title'].findall(rawtext)[0])+"> "
-#   		"<author="+meta_dict['author']+"> "#+" ".join([i for i in meta_dict['author'].findall(rawtext) if i])+"> "
-#   		"<dialect="+meta_dict['dialect']+"> "#+meta_dict['dialect'].findall(rawtext)[0]+"> "
-#   		"<authorage="+meta_dict['authorage']+"> " #" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
-#   		"<pubdate="+meta_dict['pubdate']+"> "#" ".join(meta_dict['pubdate'].findall(rawtext))+"> "
-#   		"<genre1="+meta_dict['genre1']+"> "#.findall(rawtext)[0]+"> "
-#   		"<genre2="+meta_dict['genre2']+"> "
-#   		"<extraction_notes="+meta_dict['extraction_notes']+"> "
-#   		"<notes="+meta_dict['notes']+"> "#re.sub("(\s+|<.*?>)", " "," ".join(meta_dict['notes'].findall(rawtext)))+"> "
-#   		"<encoding="+meta_dict['encoding']+"> "
-#   		"<text>"+re.sub("\d+ {,}", " ", meta_dict['text'].findall(rawtext)[0])+" </text> </file>"
-#  		)
-# 		with codecs.open(os.path.join("outputfiles", str(fili)+"_extracted.txt"), "w", "utf-8") as outputfili:
-# 			outputfili.write(corpusstring)
-# 		filecount = filecount + 1
-# 		print "file {} processed succesfully, written to {}.\n".format(os.path.join(input_dir, fili), outputfili)
+ 		corpusstring=(
+  		"<file> <no="+str(filecount)+"> "
+  		"<corpusnumber="+meta_dict['corpusnumber'].findall(rawtext)[0]+"> "
+   		"<corpus="+meta_dict['corpus']+"> " 
+   		"<title="+re.sub("<.*?>", "", meta_dict['title'].findall(rawtext)[0])+"> "
+   		"<author="+meta_dict['author'].findall(rawtext)[0]+"> "   #+" ".join([i for i in meta_dict['author'].findall(rawtext) if i])+"> "
+   		"<dialect="+meta_dict['dialect']+"> "#+meta_dict['dialect'].findall(rawtext)[0]+"> "
+   		"<authorage="+meta_dict['authorage'].findall(rawtext)[0]+"> " #" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
+   		"<pubdate="+meta_dict['pubdate'].findall(rawtext)[0]+"> "#" ".join(meta_dict['pubdate'].findall(rawtext))+"> "
+   		"<genre1="+meta_dict['genre1']+"> "#.findall(rawtext)[0]+"> "
+   		"<genre2="+meta_dict['genre2']+"> "
+   		"<extraction_notes="+meta_dict['extraction_notes']+"> "
+   		"<notes="+meta_dict['notes']+"> "#re.sub("(\s+|<.*?>)", " "," ".join(meta_dict['notes'].findall(rawtext)))+"> "
+   		"<encoding="+meta_dict['encoding']+"> "
+   		"<text>"+"\n".join(meta_dict['text'].findall(rawtext))+" </text> </file>"
+  		)
+		with codecs.open(os.path.join("outputfiles", str(fili.rstrip(".txt"))+"_extracted.txt"), "w", "utf-8") as outputfili:
+			outputfili.write(corpusstring)
+		filecount = filecount + 1
+		print "file {} processed succesfully, written to {}.\n".format(os.path.join(input_dir, fili), outputfili)
 			
 
-finder("/Users/ps22344/Downloads/editdistance/innsbruck", metadict)	
+finder("/Users/ps22344/Downloads/editdistance/innsbruck_formatting_fixed_1205", metadict)	
