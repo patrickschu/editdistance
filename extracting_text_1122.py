@@ -162,6 +162,14 @@ print metadict
 #  
 #<T 2H4> title
 
+##STEP 6
+##INSBRUCK LETTERS
+# is here
+# /Users/ps22344/Desktop/marcos_corpora/InnsbruckLetterCorpus
+# it is in RTF....
+#
+
+
 
 
 meta=[
@@ -176,7 +184,7 @@ meta=[
 ("genre1", 'play'), 
 ("genre2", 'X'),
 ("notes", 'This file contains embedded markers for use by Oxford Concordance Program, delimited by the usual characaters '),
-("extraction_notes", """*  indicates a line where it is possible that the spelling has been affected by the compositor's need to fit several words to his measure; {} for italics"""),
+("extraction_notes", """this has markup like so: X/*Y (hitherward/*so far) and so LAT_X (LAT_Item)"""),
 ("encoding", 'utf-8'),
 ('text', r">\n+(.*)<[A-Z] ")
 ]
