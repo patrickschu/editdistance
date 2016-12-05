@@ -4,24 +4,40 @@ import re
 import codecs
 import os
 #rtf file was converted to utf 8 text in word. header manually deleted. 
+from pyth.plugins.rtf15.reader import Rtf15Reader
+import rtf.Rtf2Txt
 
 
+textregex=re.compile("-{10,}(.*?)-{10,}", re.DOTALL)
 
-textregex=re.compile("<TEI n=.*?</TEI>", re.DOTALL)
 
-
-with codecs.open("/Users/ps22344/Desktop/marcos_corpora/InnsbruckLetterCorpus/$N Letter Corpus Feb 08.txt", "r", "utf-8") as inputi:
+with codecs.open("/Users/ps22344/Desktop/$N Letter Corpus Feb 08 (1).txt","r", "latin-1") as inputi:
 	rawtext=inputi.read()
 
-for line in rawtext.split("\r--------------------------------------------------\r"):
-	print line
 
-# with codecs.open("testi.txt", "w", "utf-8") as outputi:
-# 	outputi.write(rawtext)
+count=1
+
+for s in rawtext.split("--------------------------------------------------"):
+	with codecs.open(os.path.join("innsbruck", str(count)+"_innsbruck.txt"), "w", "utf-8") as outputi:
+		outputi.write(s)
+	count=count+1
+
+#result=textregex.findall(rawtext)
+
+# for t in result:
+# 	print len(t), "\n+++++++++++++++++++++++++++++\n", t
+# 
+# with codecs.open("testi.txt", "a", "utf-8") as outputi:
+# 	outputi.write("+++++++\n".join(result))
+
+#doc = Rtf15Reader.read(open('/Users/ps22344/Desktop/marcos_corpora/InnsbruckLetterCorpus/$N Letter Corpus Feb 08.rtf', "rb"))
+#
+#print [x.content for x in doc.content]
+
 
 #print rawtext
 
-result=rawtext.split("\n--------------------------------------------------\n")
+
 
 # print len(result)
 # for r in result:
