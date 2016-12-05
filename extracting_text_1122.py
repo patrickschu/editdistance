@@ -161,6 +161,25 @@ print metadict
 #         <p>&lt;D&gt; stage direction -- in some texts, stage directions are enclosed in double parentheses ((...)) in preference; this makes the text more easily processed by some software</p>
 #  
 #<T 2H4> title
+# meta=[
+# ("no",'X'), 
+# ("corpusnumber",'<T (.*?)>') , 
+# ("corpus", "first_folio_of_shakespeare_machine_readable_text_format"), 
+# ("title",   '<T (.*?)>'), 
+# ("author", 'shakespeare, william'),
+# ("dialect", "bre"),
+# ("authorage", '1564-1616'),
+# ("pubdate", '1623'),
+# ("genre1", 'play'), 
+# ("genre2", 'X'),
+# ("notes", 'This file contains embedded markers for use by Oxford Concordance Program, delimited by the usual characaters '),
+# ("extraction_notes", """this has markup like so: X/*Y (hitherward/*so far) and so LAT_X (LAT_Item)"""),
+# ("encoding", 'utf-8'),
+# ('text', r">\n+(.*)<[A-Z] ")
+# ]
+
+
+
 
 ##STEP 6
 ##INSBRUCK LETTERS
@@ -174,27 +193,27 @@ print metadict
 
 meta=[
 ("no",'X'), 
-("corpusnumber",'<T (.*?)>') , 
-("corpus", "first_folio_of_shakespeare_machine_readable_text_format"), 
-("title",   '<T (.*?)>'), 
-("author", 'shakespeare, william'),
+("corpusnumber",'<Quid: numerus currens: (\d*)') , #<Quid: numerus currens: 7
+("corpus", "innsbruck_letter_corpus"), 
+("title",   '<Quid: numerus currens: (\d*)'), 
+("author", r"<Author\(s\)\/writer\(s\): (\D+?)(?:\r\n|,.*?|\(.*?\))"), #<Author(s)/writer(s)
 ("dialect", "bre"),
-("authorage", '1564-1616'),
-("pubdate", '1623'),
-("genre1", 'play'), 
+("authorage", '<Age of author: (.*?)\r\n'), #<Age of author: 30
+("pubdate", '<Exact date: (.*?)\r\n'), #<Exact date:
+("genre1", 'letter'), 
 ("genre2", 'X'),
-("notes", 'This file contains embedded markers for use by Oxford Concordance Program, delimited by the usual characaters '),
+("notes", 'The Innsbruck Corpus of English Letters from 1386 to 1698, (prepared by ICAMET, i.e. THE INNSBRUCK COMPUTER ARCHIVE OF MACHINE-READABLE ENGLISH TEXTS, second edition 2007'),
 ("extraction_notes", """this has markup like so: X/*Y (hitherward/*so far) and so LAT_X (LAT_Item)"""),
 ("encoding", 'utf-8'),
-('text', r">\n+(.*)<[A-Z] ")
+('text', r"^\$N(.*?)\r\n")
 ]
 
 
 for m in meta:
-	if m[1] in ['X', 'bre'] or m[0] in ['notes', 'genre1', 'pubdate', 'author', 'authorage', 'corpus', "extraction_notes", 'encoding']:
+	if m[1] in ['X', 'bre'] or m[0] in ['notes', 'genre1', 'corpus', "extraction_notes", 'encoding']:
 		metadict[m[0]]=m[1]
 	else:
-		metadict[m[0]]=re.compile(m[1], re.DOTALL)
+		metadict[m[0]]=re.compile(m[1], re.MULTILINE)
 
 def finder(input_dir, meta_dict):
 	filecount=1
@@ -202,30 +221,31 @@ def finder(input_dir, meta_dict):
 		print '\n\n***', os.path.join(input_dir, fili), "\n"
 		with codecs.open(os.path.join(input_dir, fili), "r", "utf-8") as inputfili:
 			rawtext=inputfili.read()
+			#print rawtext[:100]
 		for entry in metadict:
 			if isinstance(metadict[entry], re._pattern_type):
-				print entry, len(metadict[entry].findall(rawtext)) ,# metadict[entry].findall(rawtext)
+				print entry, metadict[entry].findall(rawtext) ,# metadict[entry].findall(rawtext)
 
-		corpusstring=(
- 		"<file> <no="+str(filecount)+"> "
- 		"<corpusnumber="+fili+"> "
-  		"<corpus="+meta_dict['corpus']+"> " 
-  		"<title="+re.sub("<.*?>", "", meta_dict['title'].findall(rawtext)[0])+"> "
-  		"<author="+meta_dict['author']+"> "#+" ".join([i for i in meta_dict['author'].findall(rawtext) if i])+"> "
-  		"<dialect="+meta_dict['dialect']+"> "#+meta_dict['dialect'].findall(rawtext)[0]+"> "
-  		"<authorage="+meta_dict['authorage']+"> " #" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
-  		"<pubdate="+meta_dict['pubdate']+"> "#" ".join(meta_dict['pubdate'].findall(rawtext))+"> "
-  		"<genre1="+meta_dict['genre1']+"> "#.findall(rawtext)[0]+"> "
-  		"<genre2="+meta_dict['genre2']+"> "
-  		"<extraction_notes="+meta_dict['extraction_notes']+"> "
-  		"<notes="+meta_dict['notes']+"> "#re.sub("(\s+|<.*?>)", " "," ".join(meta_dict['notes'].findall(rawtext)))+"> "
-  		"<encoding="+meta_dict['encoding']+"> "
-  		"<text>"+re.sub("\d+ {,}", " ", meta_dict['text'].findall(rawtext)[0])+" </text> </file>"
- 		)
-		with codecs.open(os.path.join("outputfiles", str(fili)+"_extracted.txt"), "w", "utf-8") as outputfili:
-			outputfili.write(corpusstring)
-		filecount = filecount + 1
-		print "file {} processed succesfully, written to {}.\n".format(os.path.join(input_dir, fili), outputfili)
+# 		corpusstring=(
+#  		"<file> <no="+str(filecount)+"> "
+#  		"<corpusnumber="+fili+"> "
+#   		"<corpus="+meta_dict['corpus']+"> " 
+#   		"<title="+re.sub("<.*?>", "", meta_dict['title'].findall(rawtext)[0])+"> "
+#   		"<author="+meta_dict['author']+"> "#+" ".join([i for i in meta_dict['author'].findall(rawtext) if i])+"> "
+#   		"<dialect="+meta_dict['dialect']+"> "#+meta_dict['dialect'].findall(rawtext)[0]+"> "
+#   		"<authorage="+meta_dict['authorage']+"> " #" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
+#   		"<pubdate="+meta_dict['pubdate']+"> "#" ".join(meta_dict['pubdate'].findall(rawtext))+"> "
+#   		"<genre1="+meta_dict['genre1']+"> "#.findall(rawtext)[0]+"> "
+#   		"<genre2="+meta_dict['genre2']+"> "
+#   		"<extraction_notes="+meta_dict['extraction_notes']+"> "
+#   		"<notes="+meta_dict['notes']+"> "#re.sub("(\s+|<.*?>)", " "," ".join(meta_dict['notes'].findall(rawtext)))+"> "
+#   		"<encoding="+meta_dict['encoding']+"> "
+#   		"<text>"+re.sub("\d+ {,}", " ", meta_dict['text'].findall(rawtext)[0])+" </text> </file>"
+#  		)
+# 		with codecs.open(os.path.join("outputfiles", str(fili)+"_extracted.txt"), "w", "utf-8") as outputfili:
+# 			outputfili.write(corpusstring)
+# 		filecount = filecount + 1
+# 		print "file {} processed succesfully, written to {}.\n".format(os.path.join(input_dir, fili), outputfili)
 			
 
-finder("/Users/ps22344/Desktop/marcos_corpora/ShakespeareFirstFolio(MachineReadableTextFormat)/0119", metadict)	
+finder("/Users/ps22344/Downloads/editdistance/innsbruck", metadict)	
