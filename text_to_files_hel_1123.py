@@ -3,6 +3,8 @@ import codecs
 import os
 
 
+
+
 textregex=re.compile("<TEI n=.*?</TEI>", re.DOTALL)
 
 
