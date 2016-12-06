@@ -1,3 +1,7 @@
+import codecs
+import os
+import emodcorpustools as emo
+
 ##INSPECTING
 
 def tagextractor(text, tag, fili):
@@ -14,14 +18,20 @@ def tagextractor(text, tag, fili):
 
 
 
-taggetter(input_dir, tag):
+def taggetter(input_dir, tag):
 	for fili in [i for i in os.listdir(input_dir) if not i.startswith(".")]:
 		print "\n\n", fili
 		with codecs.open(os.path.join(input_dir, fili), "r", "utf-8") as inputfili:
 			inputtext=inputfili.read()
 			#print "raw text", inputtext[-100:]
-			print len(inputtext)
-			result=pattern.findall(inputtext)
-			print "resi in", fili, "is", len(result)
+			result=emo.tagextractor(inputtext, tag, fili)
+			print result
 			
-taggetter("Users/ps22344/Downloads/editdistance/outputfiles/eec_extracted/", "title")
+#taggetter("/Users/ps22344/Downloads/editdistance/outputfiles/eec_extracted/", "author")
+
+rr=emo.CorpusText("/Users/ps22344/Downloads/editdistance/outputfiles/eec_extracted/L_STUART_058_extracted.txt")
+
+
+rr.test()
+
+rr.getdetail("notes")
