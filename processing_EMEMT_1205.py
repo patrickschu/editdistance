@@ -30,7 +30,7 @@ def mixer(input_dir, list_of_endings):
 		print k
 				
 		print "workin on", filidict[k][0][-4:]
-		#so the text is in latin-1 and the html in utf-8?? how messed up is that?
+		#so the text is in latin-1 and the html in utf-8?? how messed up is that? actually, the text is ascii. 
 		#note that below relies on the fact that all the txt are first in dict entry
 		with codecs.open(filidict[k][0], "r", "latin-1") as input_1:
 			input_1=input_1.read()
