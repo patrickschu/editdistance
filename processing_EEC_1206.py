@@ -63,7 +63,7 @@ def splitter(input_dir, pattern):
 				if not len(res) == 2:
 					print  "Alarm, res in ", fili, "is ", len(result), "not two"
 				with codecs.open(os.path.join("outputfiles", res[0].strip("<>")+"_processed.txt"), "w", "utf-8") as outi:
-					outi.write(res[0]+res[1])
+					outi.write(res[1])
 				print "file written to" , os.path.join("outputfiles", res[0].strip("<>")+"_processed.txt"), "thank you very much"
 			#use res[0] for file name, dump the rest into file
 
