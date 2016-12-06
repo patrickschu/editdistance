@@ -25,6 +25,21 @@ class CorpusText(object):
 		self.fulltext = codecs.open(file_name, "r", 'utf-8').read()
 		self.charcount = len(self._adtextextractor(self.fulltext))
 		self.wordcount = len(nltk.word_tokenize(self.fulltext))
+		self.metalist= [
+		'no', 
+		'corpusnumber', 
+		'corpus', 
+		'title', 
+		'author', 
+		'dialect', 
+		'authorage', 
+		'pubdate', 
+		'genre1', 
+		'genre2', 
+		'notes', 
+		'extraction_notes', 
+		'encoding'
+		]
 		
 		self.uniq = "this is the overall corpus number"
 		self.corpusnumber = self._tagextractor(self.fulltext, "corpusnumber")
@@ -32,6 +47,7 @@ class CorpusText(object):
 		self.title = self._tagextractor(self.fulltext, "title")
 		self.author = self._tagextractor(self.fulltext, "author")
 		self.pubdate = self._tagextractor(self.fulltext, "pubdate")
+		self.meta = {k:self._tagextractor(self.fulltext, k) for k in self.metalist}
 		
 	def test(self):
 		print "fulltext", len(self.fulltext)
@@ -41,6 +57,7 @@ class CorpusText(object):
 		print "author", self.author
 		print "pubdate", self.pubdate
 		print "wordcount", self.wordcount 
+		print self.meta
 	
 	def getdetail(self, tag):
 		#flexible tag extractor; returns what _tagextractor finds for relevant tag
