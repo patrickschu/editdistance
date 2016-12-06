@@ -214,32 +214,44 @@ print metadict
 # 		metadict[m[0]]=re.compile(m[1], re.MULTILINE)
 
 
-
+##STEP 7
+#EMEMT second to last
+##/Users/ps22344/Desktop/marcos_corpora/EMEMTFullCorpus/
+##in EMEMT _CORPUS, we have several categories. 
+## wihtin, its NUMBER_NAME _TITLE
+#_info.html for metadata
+#.txt for text
+# we need to combine those
+#disregard all NORM files
+#we delete a lot of stuff
+#we compile html and text into one file, then combine metadata. 
+#this is done. 
+#note the wacky encoding on this one. 
 
 
 
 meta=[
 ("no",'X'), 
-("corpusnumber",'<Quid: numerus currens: (\d*)') , #<Quid: numerus currens: 7
-("corpus", "innsbruck_letter_corpus"), 
-("title",   '<Quid: numerus currens: (\d*)'), 
-("author", r"<Author\(s\)\/writer\(s\): (\D+?)(?:\r\n|,.*?|\(.*)"), #<Author(s)/writer(s)
-("dialect", "bre"),
-("authorage", '<Age of author: (.*?)\r\n'), #<Age of author: 30
-("pubdate", '<Exact date: (.*?)\r\n'), #<Exact date:
-("genre1", 'letter'), 
+("corpusnumber",'X') , #Filename
+("corpus", "early_modern_english_medical_texts"), 
+("title",   '<title>\d{4} .+: (.*?)</title>'), #<title>1525 Braunschweig: Handy warke of surgeri</title>
+("author", r"<p><strong>Author:(.*?)</p>"), #<p><strong>Author:</strong> Hieronymus Braunschweig [Brunschwig; Jerome of Brunswick] </p>
+("dialect", "X"),
+("authorage", '<p><strong>Dates of birth and death:(.*?) </p>'), # <p><strong>Dates of birth and death:</strong> 1450&ndash;c. 1512 </p>
+("pubdate", '<p><strong>Year of publication:(.*?) </p>'), #<p><strong>Year of publication:</strong> 1525 </p>
+("genre1", 'medical'), 
 ("genre2", 'X'),
-("notes", 'The Innsbruck Corpus of English Letters from 1386 to 1698, (prepared by ICAMET, i.e. THE INNSBRUCK COMPUTER ARCHIVE OF MACHINE-READABLE ENGLISH TEXTS, second edition 2007'),
-("extraction_notes", """this has markup like so: X/*Y (hitherward/*so far) and so LAT_X (LAT_Item)"""),
+("notes", 'The corpus of Early Modern English Medical Texts (EMEMT, 1500-1700) is a register-specific corpus containing a representative  selection of texts across the entire field of English medical writing of the  period, ranging from theoretically-oriented texts rooted in academic traditions  of medicine to popularized and utilitarian texts verging on household  literature'),
+("extraction_notes", """comments in square brackets removed bec there was so much of it; original text in ascii"""),
 ("encoding", 'utf-8'),
-('text', r"^\$N(.*?)\r\n")
+('text', r"<text>(.*?)</text>")#replace everything in "["
 ]
 
 for m in meta:
-	if m[1] in ['X', 'bre'] or m[0] in ['notes', 'genre1', 'corpus', "extraction_notes", 'encoding']:
+	if m[1] in ['X', 'bre'] or m[0] in [ 'notes', 'genre1', 'corpus', "extraction_notes", 'encoding']:
 		metadict[m[0]]=m[1]
 	else:
-		metadict[m[0]]=re.compile(m[1], re.MULTILINE)
+		metadict[m[0]]=re.compile(m[1], re.DOTALL)
 
 
 def finder(input_dir, meta_dict):
@@ -251,28 +263,28 @@ def finder(input_dir, meta_dict):
 			#print rawtext[:100]
 		for entry in metadict:
 			if isinstance(metadict[entry], re._pattern_type):
-				print entry, metadict[entry].findall(rawtext) ,# metadict[entry].findall(rawtext)
+				print entry, len(metadict[entry].findall(rawtext)) ,# metadict[entry].findall(rawtext)
 
- 		corpusstring=(
-  		"<file> <no="+str(filecount)+"> "
-  		"<corpusnumber="+meta_dict['corpusnumber'].findall(rawtext)[0]+"> "
+  		corpusstring=(
+   		"<file> <no="+str(filecount)+"> "
+   		"<corpusnumber="+str(fili).rstrip("_consolidated.txt")+"> "
    		"<corpus="+meta_dict['corpus']+"> " 
-   		"<title="+re.sub("<.*?>", "", meta_dict['title'].findall(rawtext)[0])+"> "
-   		"<author="+meta_dict['author'].findall(rawtext)[0]+"> "   #+" ".join([i for i in meta_dict['author'].findall(rawtext) if i])+"> "
+    	"<title="+re.sub("<.*?>", "", meta_dict['title'].findall(rawtext)[0])+"> "
+   		"<author="+" ".join([re.sub("<.*?>", "", i) if i else 'unknown' for i in meta_dict['author'].findall(rawtext)])+"> "   #
    		"<dialect="+meta_dict['dialect']+"> "#+meta_dict['dialect'].findall(rawtext)[0]+"> "
-   		"<authorage="+meta_dict['authorage'].findall(rawtext)[0]+"> " #" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
-   		"<pubdate="+meta_dict['pubdate'].findall(rawtext)[0]+"> "#" ".join(meta_dict['pubdate'].findall(rawtext))+"> "
+   		"<authorage="+" ".join([re.sub("<.*?>", "", i) if i else 'unknown' for i in meta_dict['authorage'].findall(rawtext)])+"> " #" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
+   		"<pubdate="+re.sub("<.*?>", "", meta_dict['pubdate'].findall(rawtext)[0])+"> "#" ".join(meta_dict['pubdate'].findall(rawtext))+"> "
    		"<genre1="+meta_dict['genre1']+"> "#.findall(rawtext)[0]+"> "
    		"<genre2="+meta_dict['genre2']+"> "
    		"<extraction_notes="+meta_dict['extraction_notes']+"> "
    		"<notes="+meta_dict['notes']+"> "#re.sub("(\s+|<.*?>)", " "," ".join(meta_dict['notes'].findall(rawtext)))+"> "
    		"<encoding="+meta_dict['encoding']+"> "
-   		"<text>"+"\n".join(meta_dict['text'].findall(rawtext))+" </text> </file>"
-  		)
-		with codecs.open(os.path.join("outputfiles", str(fili.rstrip(".txt"))+"_extracted.txt"), "w", "utf-8") as outputfili:
-			outputfili.write(corpusstring)
-		filecount = filecount + 1
-		print "file {} processed succesfully, written to {}.\n".format(os.path.join(input_dir, fili), outputfili)
+   		"<text>"+"\n".join([re.sub("\[.*?\]", " ", i) for i in meta_dict['text'].findall(rawtext)])+" </text> </file>"
+   		)
+ 		with codecs.open(os.path.join("outputfiles", str(fili.rstrip("_consolidated.txt"))+"_extracted.txt"), "w", "utf-8") as outputfili:
+ 			outputfili.write(corpusstring)
+ 		filecount = filecount + 1
+ 		print "file {} processed succesfully, written to {}.\n".format(os.path.join(input_dir, fili), outputfili)
 			
 
-finder("/Users/ps22344/Downloads/editdistance/innsbruck_formatting_fixed_1205", metadict)	
+finder("/Users/ps22344/Downloads/editdistance/ememt_processed", metadict)	
