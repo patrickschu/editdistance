@@ -1,6 +1,8 @@
 #my things
 *.zip
 *.pyc
+outputfiles/*
+
 
 *.DS_Store
 .AppleDouble
