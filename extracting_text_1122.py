@@ -186,7 +186,34 @@ print metadict
 # is here
 # /Users/ps22344/Desktop/marcos_corpora/InnsbruckLetterCorpus
 # it is in RTF....
-#
+# omg that was terrible. but now done 
+
+# 
+# meta=[
+# ("no",'X'), 
+# ("corpusnumber",'<Quid: numerus currens: (\d*)') , #<Quid: numerus currens: 7
+# ("corpus", "innsbruck_letter_corpus"), 
+# ("title",   '<Quid: numerus currens: (\d*)'), 
+# ("author", r"<Author\(s\)\/writer\(s\): (\D+?)(?:\r\n|,.*?|\(.*)"), #<Author(s)/writer(s)
+# ("dialect", "bre"),
+# ("authorage", '<Age of author: (.*?)\r\n'), #<Age of author: 30
+# ("pubdate", '<Exact date: (.*?)\r\n'), #<Exact date:
+# ("genre1", 'letter'), 
+# ("genre2", 'X'),
+# ("notes", 'The Innsbruck Corpus of English Letters from 1386 to 1698, (prepared by ICAMET, i.e. THE INNSBRUCK COMPUTER ARCHIVE OF MACHINE-READABLE ENGLISH TEXTS, second edition 2007'),
+# ("extraction_notes", """this has markup like so: X/*Y (hitherward/*so far) and so LAT_X (LAT_Item)"""),
+# ("encoding", 'utf-8'),
+# ('text', r"^\$N(.*?)\r\n")
+# ]
+
+# 
+# for m in meta:
+# 	if m[1] in ['X', 'bre'] or m[0] in ['notes', 'genre1', 'corpus', "extraction_notes", 'encoding']:
+# 		metadict[m[0]]=m[1]
+# 	else:
+# 		metadict[m[0]]=re.compile(m[1], re.MULTILINE)
+
+
 
 
 
@@ -208,12 +235,12 @@ meta=[
 ('text', r"^\$N(.*?)\r\n")
 ]
 
-
 for m in meta:
 	if m[1] in ['X', 'bre'] or m[0] in ['notes', 'genre1', 'corpus', "extraction_notes", 'encoding']:
 		metadict[m[0]]=m[1]
 	else:
 		metadict[m[0]]=re.compile(m[1], re.MULTILINE)
+
 
 def finder(input_dir, meta_dict):
 	filecount=1
