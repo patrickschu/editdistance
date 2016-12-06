@@ -249,24 +249,26 @@ print metadict
 ##Eraly English Correspondence, parsed
 #this is the last one. not counting EEBO, that is..
 #/Users/ps22344/Desktop/marcos_corpora/EarlyEnglishCorrespondence
+# we go in and change more letter "03" to "033"
+# we keep all the weird capital letters markup. who knows when we might need it. 
 
 
 
 meta=[
 ("no",'X'), 
-("corpusnumber",'X') , #Filename
+("corpusnumber",'<L_(.*?_\d{3})>') , #<L_CONWAY_055>
 ("corpus", "parsed_corpus_of_early_english_correspondence"), 
-("title",   '<title>\d{4} .+: (.*?)</title>'), #<title>1525 Braunschweig: Handy warke of surgeri</title>
-("author", r"<p><strong>Author:(.*?)</p>"), #<p><strong>Author:</strong> Hieronymus Braunschweig [Brunschwig; Jerome of Brunswick] </p>
-("dialect", "X"),
-("authorage", '<p><strong>Dates of birth and death:(.*?) </p>'), # <p><strong>Dates of birth and death:</strong> 1450&ndash;c. 1512 </p>
-("pubdate", '<p><strong>Year of publication:(.*?) </p>'), #<p><strong>Year of publication:</strong> 1525 </p>
-("genre1", 'medical'), 
+("title",   '\{(?:ED|COM):(.*?)\}'), #<Q_\w{3}_.*?>
+("author", r"<A_(.*?)>"), #<p><strong>Author:</strong> Hieronymus Braunschweig [Brunschwig; Jerome of Brunswick] </p>
+("dialect", "bre"),
+("authorage", '<A-DOB_(\d{4})>'), # <A-DOB_1602>, '<A-DOB_(\d{4})>
+("pubdate", ':(?:E|M)\d:(\d{4})'), #E2:1593:
+("genre1", 'letter'), 
 ("genre2", 'X'),
 ("notes", 'The conventions used to indicate editorial comments and other types of text markup are the same as used in the ../annotation/intro.htm#text_markup" PPCME2/PPCEME'),
-("extraction_notes", """comments in square brackets removed bec there was so much of it; original text in ascii"""),
+("extraction_notes", """removed lines beginning with { or <; left all the capitalized comments in"""),
 ("encoding", 'utf-8'),
-('text', r"<text>(.*?)</text>")#replace everything in "["
+('text', "X")
 ]
 
 
@@ -281,35 +283,40 @@ for m in meta:
 
 def finder(input_dir, meta_dict):
 	filecount=1
-	for fili in [i for i in os.listdir(input_dir) if not i.startswith(".") and not i.startswith("shakdoc")]:
+	for fili in [i for i in os.listdir(input_dir) if not i.startswith(".")]:
 		print '\n\n***', os.path.join(input_dir, fili), "\n"
 		with codecs.open(os.path.join(input_dir, fili), "r", "utf-8") as inputfili:
 			rawtext=inputfili.read()
-			#print rawtext[:100]
+			#print rawtext[200:400]
 		for entry in metadict:
-			if isinstance(metadict[entry], re._pattern_type):
-				print entry, len(metadict[entry].findall(rawtext)) ,# metadict[entry].findall(rawtext)
-
-  		corpusstring=(
-   		"<file> <no="+str(filecount)+"> "
-   		"<corpusnumber="+str(fili).rstrip("_consolidated.txt")+"> "
-   		"<corpus="+meta_dict['corpus']+"> " 
-    	"<title="+re.sub("<.*?>", "", meta_dict['title'].findall(rawtext)[0])+"> "
-   		"<author="+" ".join([re.sub("<.*?>", "", i) if i else 'unknown' for i in meta_dict['author'].findall(rawtext)])+"> "   #
-   		"<dialect="+meta_dict['dialect']+"> "#+meta_dict['dialect'].findall(rawtext)[0]+"> "
-   		"<authorage="+" ".join([re.sub("<.*?>", "", i) if i else 'unknown' for i in meta_dict['authorage'].findall(rawtext)])+"> " #" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
-   		"<pubdate="+re.sub("<.*?>", "", meta_dict['pubdate'].findall(rawtext)[0])+"> "#" ".join(meta_dict['pubdate'].findall(rawtext))+"> "
-   		"<genre1="+meta_dict['genre1']+"> "#.findall(rawtext)[0]+"> "
-   		"<genre2="+meta_dict['genre2']+"> "
-   		"<extraction_notes="+meta_dict['extraction_notes']+"> "
-   		"<notes="+meta_dict['notes']+"> "#re.sub("(\s+|<.*?>)", " "," ".join(meta_dict['notes'].findall(rawtext)))+"> "
-   		"<encoding="+meta_dict['encoding']+"> "
-   		"<text>"+"\n".join([re.sub("\[.*?\]", " ", i) for i in meta_dict['text'].findall(rawtext)])+" </text> </file>"
-   		)
- 		with codecs.open(os.path.join("outputfiles", str(fili.rstrip("_consolidated.txt"))+"_extracted.txt"), "w", "utf-8") as outputfili:
+			if isinstance(metadict[entry], re._pattern_type) and len(metadict[entry].findall(rawtext)) == 0:
+				print entry, len(metadict[entry].findall(rawtext)) ,metadict[entry].findall(rawtext)
+		if meta_dict['title'].findall(rawtext):
+			title=meta_dict['title'].findall(rawtext)[0]
+		else:
+			print "title replace"
+			title="unknown"
+  		with codecs.open(os.path.join(input_dir, fili), "r", "utf-8") as inputfili:
+			corpusstring=(
+			"<file> <no="+str(filecount)+"> "
+			"<corpusnumber="+metadict['corpusnumber'].findall(rawtext)[0]+"> "
+			"<corpus="+meta_dict['corpus']+"> " 
+			"<title="+title+"> "
+			"<author="+" ".join([re.sub("<.*?>", "", i) if i else 'unknown' for i in meta_dict['author'].findall(rawtext)])+"> "   #
+			"<dialect="+meta_dict['dialect']+"> "#+meta_dict['dialect'].findall(rawtext)[0]+"> "
+			"<authorage="+" ".join([re.sub("<.*?>", "", i) if i else 'unknown' for i in meta_dict['authorage'].findall(rawtext)])+"> " #" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
+			"<pubdate="+re.sub("<.*?>", "", meta_dict['pubdate'].findall(rawtext)[0])+"> "#" ".join(meta_dict['pubdate'].findall(rawtext))+"> "
+			"<genre1="+meta_dict['genre1']+"> "#.findall(rawtext)[0]+"> "
+			"<genre2="+meta_dict['genre2']+"> "
+			"<extraction_notes="+meta_dict['extraction_notes']+"> "
+			"<notes="+meta_dict['notes']+"> "#re.sub("(\s+|<.*?>)", " "," ".join(meta_dict['notes'].findall(rawtext)))+"> "
+			"<encoding="+meta_dict['encoding']+"> "
+			"<text>"+"".join([i for i in inputfili.readlines() if not (i.startswith("{") or i.startswith("<") or i.startswith("_"))])+" </text> </file>"
+			)
+ 		with codecs.open(os.path.join("outputfiles", "eec_extracted", str(fili.rstrip("_processed.txt"))+"_extracted.txt"), "w", "utf-8") as outputfili:
  			outputfili.write(corpusstring)
  		filecount = filecount + 1
  		print "file {} processed succesfully, written to {}.\n".format(os.path.join(input_dir, fili), outputfili)
 			
 
-finder("/Users/ps22344/Downloads/editdistance/ememt_processed", metadict)	
+finder("/Users/ps22344/Downloads/editdistance/outputfiles/eec_processed", metadict)	
