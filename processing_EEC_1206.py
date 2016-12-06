@@ -58,10 +58,16 @@ def splitter(input_dir, pattern):
 			#print "raw text", inputtext[-100:]
 			print len(inputtext)
 			result=pattern.findall(inputtext)
-			print "resi", len(result), result
+			print "resi in", fili, "is", len(result)
+			for res in result:
+				if not len(res) == 2:
+					print  "Alarm, res in ", fili, "is ", len(result), "not two"
+				with codecs.open(os.path.join("outputfiles", res[0].strip("<>")+"_processed.txt"), "w", "utf-8") as outi:
+					outi.write(res[0]+res[1])
+				print "file written to" , os.path.join("outputfiles", res[0].strip("<>")+"_processed.txt"), "thank you very much"
+			#use res[0] for file name, dump the rest into file
 
-
-splitter("/Users/ps22344/Desktop/marcos_corpora/EarlyEnglishCorrespondence/2510/PCEEC/corpus/txt", "(<L_.*?_\d{3}>)(.*?)(?:<L_.*?_\d{3}>|$)")
+splitter("/Users/ps22344/Desktop/marcos_corpora/EarlyEnglishCorrespondence/2510/PCEEC/corpus/txt", "(<L_.*?_\d{3}>)(.*?)(?:<Q_\w{3}_.*?>|$)")
 
 r="<Q_\w+_.*?>(.*?)<Q_\w+_.*?>"
 
