@@ -292,13 +292,13 @@ print metadict
 
 meta=[
 ("no",'X'), 
-("corpusnumber",'X') , #<L_CONWAY_055>
+("corpusnumber",'X') , #file name
 ("corpus", "early_english_books_online"), 
-("title",   '\{(?:ED|COM):(.*?)\}'), #<Q_\w{3}_.*?>
-("author", r"<AUTHOR>(.*?)</AUTHOR>"), #<AUTHOR>Fennor, William.</AUTHOR></p>
+("title",   '<TITLE TYPE=.*?>(.*?)</TITLE>'), #<TITLE TYPE="245" I2="0">Fennors defence: or, I am your first man VVherein the VVater-man, Iohn Taylor, is dasht, sowst, and finally fallen into the Thames: With his slanderous taxations, base imputations, scandalous accusations and foule abhominations, against his maiesties ryming poet: who hath answered him without vexatione, or [...] bling recantations. The reason of my not meeting at the Hope with Taylor, is truly demonstrated in the induction to the [...] udger. Thy hastie gallop my milde muse shall checke, that if thou sit not sure, will breake thy necke.</TITLE>
+("author", r"<AUTHOR>(.*?)</AUTHOR>"), #<AUTHOR>Fennor, William.</AUTHOR></p> #limit to name only, ignore dates
 ("dialect", "bre"),
-("authorage", '<A-DOB_(\d{4})>'), # <A-DOB_1602>, '<A-DOB_(\d{4})>
-("pubdate", ':(?:E|M)\d:(\d{4})'), #E2:1593:
+("authorage", 'X'), # we can get this from after author names
+("pubdate", '<DATE>([0-1][0-9]\d+).+</DATE>'), #"#<DATE>1615.</DATE>
 ("genre1", 'letter'), 
 ("genre2", 'X'),
 ("notes", 'The conventions used to indicate editorial comments and other types of text markup are the same as used in the ../annotation/intro.htm#text_markup" PPCME2/PPCEME'),
@@ -328,16 +328,16 @@ def finder(input_dir, meta_dict):
 			#print rawtext[200:400]
 			for entry in [i for i in metadict.keys() if not i in {'text'}]:
 				if isinstance(metadict[entry], re._pattern_type):
-					print entry, len(metadict[entry].findall(rawtext))# ,metadict[entry].findall(rawtext)
+					print entry, len(metadict[entry].findall(rawtext)),metadict[entry].findall(rawtext)
 	# 		corpusstring=(
 	# 			"<file> <no="+str(filecount)+"> "
 	# 			"<corpusnumber="+metadict['corpusnumber'].findall(rawtext)[0]+"> "
 	# 			"<corpus="+meta_dict['corpus']+"> " 
-	# 			"<title="+title+"> " # <TITLE TYPE="245" I2="0">Fennors defence: or, I am your first man VVherein the VVater-man, Iohn Taylor, is dasht, sowst, and finally fallen into the Thames: With his slanderous taxations, base imputations, scandalous accusations and foule abhominations, against his maiesties ryming poet: who hath answered him without vexatione, or [...] bling recantations. The reason of my not meeting at the Hope with Taylor, is truly demonstrated in the induction to the [...] udger. Thy hastie gallop my milde muse shall checke, that if thou sit not sure, will breake thy necke.</TITLE>
-	# 			"<author="+" ".join([re.sub("<.*?>", "", i) if i else 'unknown' for i in meta_dict['author'].findall(rawtext)])+"> "   #<AUTHOR>Fennor, William.</AUTHOR>
+	# 			"<title="+title+"> " # 
+	# 			"<author="+" ".join([re.sub("<.*?>", "", i) if i else 'unknown' for i in meta_dict['author'].findall(rawtext)][0])+"> "   #<AUTHOR>Fennor, William.</AUTHOR>
 	# 			"<dialect="+meta_dict['dialect']+"> "#+meta_dict['dialect'].findall(rawtext)[0]+"> "
 	# 			"<authorage="+" ".join([re.sub("<.*?>", "", i) if i else 'unknown' for i in meta_dict['authorage'].findall(rawtext)])+"> " #" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
-	# 			"<pubdate="+re.sub("<.*?>", "", meta_dict['pubdate'].findall(rawtext)[0])+"> "#<DATE>1615.</DATE>
+	# 			"<pubdate="+re.sub("<.*?>", "", meta_dict['pubdate'].findall(rawtext)[0])+"> 
 	# 			"<genre1="+meta_dict['genre1']+"> "#.findall(rawtext)[0]+"> "
 	# 			"<genre2="+meta_dict['genre2']+"> "
 	# 			"<extraction_notes="+meta_dict['extraction_notes']+"> "
