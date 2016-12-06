@@ -228,12 +228,34 @@ print metadict
 #this is done. 
 #note the wacky encoding on this one. 
 
+# meta=[
+# ("no",'X'), 
+# ("corpusnumber",'X') , #Filename
+# ("corpus", "early_modern_english_medical_texts"), 
+# ("title",   '<title>\d{4} .+: (.*?)</title>'), #<title>1525 Braunschweig: Handy warke of surgeri</title>
+# ("author", r"<p><strong>Author:(.*?)</p>"), #<p><strong>Author:</strong> Hieronymus Braunschweig [Brunschwig; Jerome of Brunswick] </p>
+# ("dialect", "X"),
+# ("authorage", '<p><strong>Dates of birth and death:(.*?) </p>'), # <p><strong>Dates of birth and death:</strong> 1450&ndash;c. 1512 </p>
+# ("pubdate", '<p><strong>Year of publication:(.*?) </p>'), #<p><strong>Year of publication:</strong> 1525 </p>
+# ("genre1", 'medical'), 
+# ("genre2", 'X'),
+# ("notes", 'The corpus of Early Modern English Medical Texts (EMEMT, 1500-1700) is a register-specific corpus containing a representative  selection of texts across the entire field of English medical writing of the  period, ranging from theoretically-oriented texts rooted in academic traditions  of medicine to popularized and utilitarian texts verging on household  literature'),
+# ("extraction_notes", """comments in square brackets removed bec there was so much of it; original text in ascii"""),
+# ("encoding", 'utf-8'),
+# ('text', r"<text>(.*?)</text>")#replace everything in "["
+# ]
+
+##STEP 8
+##Eraly English Correspondence, parsed
+#this is the last one. not counting EEBO, that is..
+#/Users/ps22344/Desktop/marcos_corpora/EarlyEnglishCorrespondence
+
 
 
 meta=[
 ("no",'X'), 
 ("corpusnumber",'X') , #Filename
-("corpus", "early_modern_english_medical_texts"), 
+("corpus", "parsed_corpus_of_early_english_correspondence"), 
 ("title",   '<title>\d{4} .+: (.*?)</title>'), #<title>1525 Braunschweig: Handy warke of surgeri</title>
 ("author", r"<p><strong>Author:(.*?)</p>"), #<p><strong>Author:</strong> Hieronymus Braunschweig [Brunschwig; Jerome of Brunswick] </p>
 ("dialect", "X"),
@@ -241,11 +263,14 @@ meta=[
 ("pubdate", '<p><strong>Year of publication:(.*?) </p>'), #<p><strong>Year of publication:</strong> 1525 </p>
 ("genre1", 'medical'), 
 ("genre2", 'X'),
-("notes", 'The corpus of Early Modern English Medical Texts (EMEMT, 1500-1700) is a register-specific corpus containing a representative  selection of texts across the entire field of English medical writing of the  period, ranging from theoretically-oriented texts rooted in academic traditions  of medicine to popularized and utilitarian texts verging on household  literature'),
+("notes", 'The conventions used to indicate editorial comments and other types of text markup are the same as used in the ../annotation/intro.htm#text_markup" PPCME2/PPCEME'),
 ("extraction_notes", """comments in square brackets removed bec there was so much of it; original text in ascii"""),
 ("encoding", 'utf-8'),
 ('text', r"<text>(.*?)</text>")#replace everything in "["
 ]
+
+
+
 
 for m in meta:
 	if m[1] in ['X', 'bre'] or m[0] in [ 'notes', 'genre1', 'corpus', "extraction_notes", 'encoding']:
