@@ -297,8 +297,8 @@ meta=[
 ("title",   '<TITLE TYPE=.*?>(.*?)</TITLE>'), #<TITLE TYPE="245" I2="0">Fennors defence: or, I am your first man VVherein the VVater-man, Iohn Taylor, is dasht, sowst, and finally fallen into the Thames: With his slanderous taxations, base imputations, scandalous accusations and foule abhominations, against his maiesties ryming poet: who hath answered him without vexatione, or [...] bling recantations. The reason of my not meeting at the Hope with Taylor, is truly demonstrated in the induction to the [...] udger. Thy hastie gallop my milde muse shall checke, that if thou sit not sure, will breake thy necke.</TITLE>
 ("author", r"<AUTHOR>(.*?)</AUTHOR>"), #<AUTHOR>Fennor, William.</AUTHOR></p> #limit to name only, ignore dates
 ("dialect", "bre"),
-("authorage", 'X'), # we can get this from after author names
-("pubdate", '<DATE>([0-1][0-9]\d+).+</DATE>'), #"#<DATE>1615.</DATE>
+("authorage", 'X'), # we can get this from after author names  [i.e. 1645]
+("pubdate", '<DATE>.*?(?:ca. |the yeare?\.? |between |\D \. |Anno Dom. |.*? anno |.*?, |\[|\[i.e. |\[.*?|\D+ \[)?(1[2-8][0-9][0-9]).+</DATE>'), #"#<DATE>1615.</DATE> #[between 1695 and 1700] #<DATE>(?:between |\D \. |Anno Dom. |.*? anno |.*?, |\[|\[i.e. |\[.*?|\D+ \[)?([0-1][0-9][0-9][0-9]).+</DATE>'
 ("genre1", 'letter'), 
 ("genre2", 'X'),
 ("notes", 'The conventions used to indicate editorial comments and other types of text markup are the same as used in the ../annotation/intro.htm#text_markup" PPCME2/PPCEME'),
@@ -307,7 +307,7 @@ meta=[
 ('text', "<TEXT LANG=\"eng\">.*?</TEXT>")#, <TEXT LANG="eng">
 ]
 
-
+ 
 
 
 for m in meta:
@@ -322,12 +322,13 @@ def finder(input_dir, meta_dict):
 	filecount=1
 	for folder in [i for i in os.listdir(input_dir) if not i.startswith(".")]:	
 		for fili in [i for i in os.listdir(os.path.join(input_dir, folder)) if not i.startswith(".")]:
-			print '\n\n***', os.path.join(input_dir, folder, fili), "\n"
+			#print '\n\n***', os.path.join(input_dir, folder, fili), "\n"
 			with codecs.open(os.path.join(input_dir, folder, fili), "r", "utf-8") as inputfili:
 				rawtext=inputfili.read()
 			#print rawtext[200:400]
-			for entry in [i for i in metadict.keys() if not i in {'text'}]:
-				if isinstance(metadict[entry], re._pattern_type):
+			for entry in [i for i in metadict.keys() if i in {'pubdate'}]:
+				if isinstance(metadict[entry], re._pattern_type) and len(metadict[entry].findall(rawtext)) == 0:
+					print '\n\n***', os.path.join(input_dir, folder, fili), "\n"
 					print entry, len(metadict[entry].findall(rawtext)),metadict[entry].findall(rawtext)
 	# 		corpusstring=(
 	# 			"<file> <no="+str(filecount)+"> "
