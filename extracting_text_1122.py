@@ -322,21 +322,26 @@ def finder(input_dir, meta_dict):
 	filecount=1
 	for folder in [i for i in os.listdir(input_dir) if not i.startswith(".")]:	
 		for fili in [i for i in os.listdir(os.path.join(input_dir, folder)) if not i.startswith(".")]:
-			#print '\n\n***', os.path.join(input_dir, folder, fili), "\n"
+			print '\n\n***', os.path.join(input_dir, folder, fili), "\n"
 			with codecs.open(os.path.join(input_dir, folder, fili), "r", "utf-8") as inputfili:
 				rawtext=inputfili.read()
 			#print rawtext[200:400]
-			for entry in [i for i in metadict.keys() if i in {'pubdate'}]:
+			for entry in [i for i in metadict.keys() if not i in {'text'}]:
 				if isinstance(metadict[entry], re._pattern_type) and len(metadict[entry].findall(rawtext)) == 0:
-					print '\n\n***', os.path.join(input_dir, folder, fili), "\n"
+					print '\n\n***ALARM', os.path.join(input_dir, folder, fili), "\n"
 					print entry, len(metadict[entry].findall(rawtext)),metadict[entry].findall(rawtext)
+			if len(metadict['author'].findall(rawtext)) == 0:
+				author="unknown"
+			else:
+				author=re.sub("(\d+,?| b\. | d\. |-|\?|,? fl\.|,?\Wca\.? |\.| or )", "", metadict['author'].findall(rawtext)[0])
+				print "ottiotti", author.rstrip(", ")
 			corpusstring=(
 				"<file> <no="+str(filecount)+"> "
 	 			"<corpusnumber="+fili.rstrip(".headed.xml")+"> "
 	 			"<corpus="+meta_dict['corpus']+"> " 
 	 			"<title="+meta_dict['title'].findall(rawtext)[0]+"> " # 
-	 			"<author="+meta_dict['author'].findall(rawtext)[0]+"> "   #<AUTHOR>Fennor, William.</AUTHOR>
-	# 			"<dialect="+meta_dict['dialect']+"> "#+meta_dict['dialect'].findall(rawtext)[0]+"> "
+	 			"<author="+author.rstrip(", ")+"> "   #<AUTHOR>Fennor, William.</AUTHOR>
+	 			"<dialect="+meta_dict['dialect']+"> "#+meta_dict['dialect'].findall(rawtext)[0]+"> "
 	# 			"<authorage="+" ".join([re.sub("<.*?>", "", i) if i else 'unknown' for i in meta_dict['authorage'].findall(rawtext)])+"> " #" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
 	# 			"<pubdate="+re.sub("<.*?>", "", meta_dict['pubdate'].findall(rawtext)[0])+"> 
 	# 			"<genre1="+meta_dict['genre1']+"> "#.findall(rawtext)[0]+"> "
