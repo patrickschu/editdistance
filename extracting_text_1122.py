@@ -297,7 +297,7 @@ meta=[
 ("title",   '<TITLE TYPE=.*?>(.*?)</TITLE>'), #<TITLE TYPE="245" I2="0">Fennors defence: or, I am your first man VVherein the VVater-man, Iohn Taylor, is dasht, sowst, and finally fallen into the Thames: With his slanderous taxations, base imputations, scandalous accusations and foule abhominations, against his maiesties ryming poet: who hath answered him without vexatione, or [...] bling recantations. The reason of my not meeting at the Hope with Taylor, is truly demonstrated in the induction to the [...] udger. Thy hastie gallop my milde muse shall checke, that if thou sit not sure, will breake thy necke.</TITLE>
 ("author", r"<AUTHOR>(.*?)</AUTHOR>"), #<AUTHOR>Fennor, William.</AUTHOR></p> #limit to name only, ignore dates
 ("dialect", "bre"),
-("authorage", 'X'), # we can get this from after author names  [i.e. 1645]
+("authorage", "<AUTHOR>.*?(\d{4}(?:-\d{2,4})?)\.?</AUTHOR>"), # we can get this from after author names  [i.e. 1645]
 ("pubdate", '<DATE>.*?(?:ca. |the yeare?\.? |between |\D \. |Anno Dom. |.*? anno |.*?, |\[|\[i.e. |\[.*?|\D+ \[)?(1[2-8][0-9][0-9]).+</DATE>'), #"#<DATE>1615.</DATE> #[between 1695 and 1700] #<DATE>(?:between |\D \. |Anno Dom. |.*? anno |.*?, |\[|\[i.e. |\[.*?|\D+ \[)?([0-1][0-9][0-9][0-9]).+</DATE>'
 ("genre1", 'X'), 
 ("genre2", 'X'),
@@ -333,7 +333,7 @@ def finder(input_dir, meta_dict):
 			if len(metadict['author'].findall(rawtext)) == 0:
 				author="unknown"
 			else:
-				author=re.sub("(\d+,?| b\. | d\. |-|\?|,? fl\.|,?\Wca\.? |\.| or )", "", metadict['author'].findall(rawtext)[0])
+				author=re.sub("(\d+(st|th|rd)(/\d+(st|th|rd))?( Ccent)?|\d+,?| b\. | d\. |-|\?|,? fl\.? |,?\Wca\.? |\.| or )", "", metadict['author'].findall(rawtext)[0])
 				print "ottiotti", author.rstrip(", ")
 			corpusstring=(
 				"<file> <no="+str(filecount)+"> "
@@ -342,7 +342,7 @@ def finder(input_dir, meta_dict):
 	 			"<title="+meta_dict['title'].findall(rawtext)[0]+"> " # 
 	 			"<author="+author.rstrip(", ")+"> "   #<AUTHOR>Fennor, William.</AUTHOR>
 	 			"<dialect="+meta_dict['dialect']+"> "#+meta_dict['dialect'].findall(rawtext)[0]+"> "
-	# 			"<authorage="+" ".join([re.sub("<.*?>", "", i) if i else 'unknown' for i in meta_dict['authorage'].findall(rawtext)])+"> " #" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
+	 			"<authorage="+" ".join([ i if i else 'unknown' for i in meta_dict['authorage'].findall(rawtext)][0])+"> " #" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
 	# 			"<pubdate="+re.sub("<.*?>", "", meta_dict['pubdate'].findall(rawtext)[0])+"> 
 	# 			"<genre1="+meta_dict['genre1']+"> "#.findall(rawtext)[0]+"> "
 	# 			"<genre2="+meta_dict['genre2']+"> "
