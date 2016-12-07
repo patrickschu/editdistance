@@ -299,7 +299,7 @@ meta=[
 ("dialect", "bre"),
 ("authorage", 'X'), # we can get this from after author names  [i.e. 1645]
 ("pubdate", '<DATE>.*?(?:ca. |the yeare?\.? |between |\D \. |Anno Dom. |.*? anno |.*?, |\[|\[i.e. |\[.*?|\D+ \[)?(1[2-8][0-9][0-9]).+</DATE>'), #"#<DATE>1615.</DATE> #[between 1695 and 1700] #<DATE>(?:between |\D \. |Anno Dom. |.*? anno |.*?, |\[|\[i.e. |\[.*?|\D+ \[)?([0-1][0-9][0-9][0-9]).+</DATE>'
-("genre1", 'letter'), 
+("genre1", 'X'), 
 ("genre2", 'X'),
 ("notes", 'The conventions used to indicate editorial comments and other types of text markup are the same as used in the ../annotation/intro.htm#text_markup" PPCME2/PPCEME'),
 ("extraction_notes", """removed all markup in triangle brackets"""),
@@ -330,12 +330,12 @@ def finder(input_dir, meta_dict):
 				if isinstance(metadict[entry], re._pattern_type) and len(metadict[entry].findall(rawtext)) == 0:
 					print '\n\n***', os.path.join(input_dir, folder, fili), "\n"
 					print entry, len(metadict[entry].findall(rawtext)),metadict[entry].findall(rawtext)
-	# 		corpusstring=(
-	# 			"<file> <no="+str(filecount)+"> "
-	# 			"<corpusnumber="+metadict['corpusnumber'].findall(rawtext)[0]+"> "
-	# 			"<corpus="+meta_dict['corpus']+"> " 
-	# 			"<title="+title+"> " # 
-	# 			"<author="+" ".join([re.sub("<.*?>", "", i) if i else 'unknown' for i in meta_dict['author'].findall(rawtext)][0])+"> "   #<AUTHOR>Fennor, William.</AUTHOR>
+			corpusstring=(
+				"<file> <no="+str(filecount)+"> "
+	 			"<corpusnumber="+fili.rstrip(".headed.xml")+"> "
+	 			"<corpus="+meta_dict['corpus']+"> " 
+	 			"<title="+meta_dict['title'].findall(rawtext)[0]+"> " # 
+	 			"<author="+meta_dict['author'].findall(rawtext)[0]+"> "   #<AUTHOR>Fennor, William.</AUTHOR>
 	# 			"<dialect="+meta_dict['dialect']+"> "#+meta_dict['dialect'].findall(rawtext)[0]+"> "
 	# 			"<authorage="+" ".join([re.sub("<.*?>", "", i) if i else 'unknown' for i in meta_dict['authorage'].findall(rawtext)])+"> " #" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
 	# 			"<pubdate="+re.sub("<.*?>", "", meta_dict['pubdate'].findall(rawtext)[0])+"> 
@@ -345,11 +345,11 @@ def finder(input_dir, meta_dict):
 	# 			"<notes="+meta_dict['notes']+"> "#re.sub("(\s+|<.*?>)", " "," ".join(meta_dict['notes'].findall(rawtext)))+"> " #<NOTE>Transcribed from: (Early English Books Online ; image set 15207)</NOTE> -- there can be several
 	# 			"<encoding="+meta_dict['encoding']+"> "
 	# 			"<text>"+"".join([i for i in inputfili.readlines() if not (i.startswith("{") or i.startswith("<") or i.startswith("_"))])+" </text> </file>"
-	# 			)
-	#  		with codecs.open(os.path.join("outputfiles", "eebo", str(fili.rstrip("_processed.txt"))+"_extracted.txt"), "w", "utf-8") as outputfili:
-	#  			outputfili.write(corpusstring)
-	#  		filecount = filecount + 1
- 	#		print "file {} processed succesfully, written to {}.\n".format(os.path.join(input_dir, fili), outputfili)
+				)
+	 		with codecs.open(os.path.join("outputfiles",  str(fili)+"_extracted.txt"), "w", "utf-8") as outputfili:
+	 			outputfili.write(corpusstring)
+	 		filecount = filecount + 1
+ 			print "file {} processed succesfully, written to {}.\n".format(os.path.join(input_dir, folder, fili), outputfili)
 			
 
 finder("/Users/ps22344/Desktop/marcos_corpora/eebo", metadict)	
