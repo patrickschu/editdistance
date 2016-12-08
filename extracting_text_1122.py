@@ -1,6 +1,7 @@
 import codecs
 import re
 import os
+import time
 
 ##TEMPLATE
 """
@@ -298,7 +299,7 @@ meta=[
 ("author", r"<AUTHOR>(.*?)</AUTHOR>"), #<AUTHOR>Fennor, William.</AUTHOR></p> #limit to name only, ignore dates
 ("dialect", "bre"),
 ("authorage", "<AUTHOR>.*?((?:d\. |b\. )?\d{4}(?:-\d{2,4})?)\.?</AUTHOR>"), # we can get this from after author names  [i.e. 1645]
-("pubdate", '<DATE>.*?(?:ca. |the yeare?\.? |between |\D \. |Anno Dom. |.*? anno |.*?, |\[|\[i.e. |\[.*?|\D+ \[)?(1[2-8][0-9][0-9]).*?</DATE>'), #"#<DATE>1615.</DATE> #[between 1695 and 1700] #<DATE>(?:between |\D \. |Anno Dom. |.*? anno |.*?, |\[|\[i.e. |\[.*?|\D+ \[)?([0-1][0-9][0-9][0-9]).+</DATE>'
+("pubdate", '\n<DATE>\D*?(?:ca. |the yeare?\.? |between |\D \. |Anno Dom. |.*? anno |.*?, |\[|\[i.e. |\[.*?|\D+ \[)?(1[2-8][0-9][0-9])\??\]{,2}.*?\.?</DATE>\n'), #"#<DATE>1615.</DATE> #2003-01 (EEBO-TCP Phase 1)
 ("genre1", '<TERM TYPE=.*>(.*?)\.?</TERM>'), #<TERM TYPE="geographic name">Gambia River --  Description and travel --  Early works to 1800.</TERM><TERM TYPE="geographic name">Africa, West --  Description and travel --  To 1850.</TERM>
 ("genre2", 'X'),
 ("notes", '<NOTE>(.*?)</NOTE>'),
@@ -308,8 +309,8 @@ meta=[
 ]
 
  
-
-
+authorsub=re.compile("(\d+(st|th|rd)(/\d+(st|th|rd))?( Ccent)?|\d+,?| b\. | d\. |-|\?|,? fl\.? |,?\Wca\.?|\.| or )")
+htmlsub=re.compile("<.*?>")
 for m in meta:
 	if m[1] in ['X', 'bre'] or m[0] in ['corpus', "extraction_notes", 'encoding']:
 		metadict[m[0]]=m[1]
@@ -320,32 +321,38 @@ for m in meta:
 
 def finder(input_dir, meta_dict):
 	filecount=1
+	
 	for folder in [i for i in os.listdir(input_dir) if not i.startswith(".")]:	
 		for fili in [i for i in os.listdir(os.path.join(input_dir, folder)) if not i.startswith(".")]:
+			start=time.time()
 			print '\n\n***', os.path.join(input_dir, folder, fili), "\n"
 			with codecs.open(os.path.join(input_dir, folder, fili), "r", "utf-8") as inputfili:
 				rawtext=inputfili.read()
 			#print rawtext[200:400]
-			for entry in [i for i in metadict.keys() if i not in {'text'}]:
-				if isinstance(metadict[entry], re._pattern_type) and len(metadict[entry].findall(rawtext)) == 0:
-					print '\n\n***ALARM', os.path.join(input_dir, folder, fili), "\n"
-					print entry, len(metadict[entry].findall(rawtext)),metadict[entry].findall(rawtext)
+# 			for entry in [i for i in metadict.keys() if i not in {'text'}]:
+# 				if isinstance(metadict[entry], re._pattern_type) and len(metadict[entry].findall(rawtext)) == 0:
+# 					print '\n\n***ALARM', os.path.join(input_dir, folder, fili), "\n"
+# 					print entry, len(metadict[entry].findall(rawtext)),metadict[entry].findall(rawtext)
+			print meta_dict['pubdate'].search(rawtext).group()
+			print "start author"
 			if len(metadict['author'].findall(rawtext)) == 0:
 				author="unknown"
 			else:
-				author=re.sub("(\d+(st|th|rd)(/\d+(st|th|rd))?( Ccent)?|\d+,?| b\. | d\. |-|\?|,? fl\.? |,?\Wca\.?|\.| or )", "", metadict['author'].findall(rawtext)[0])
-				print "ottiotti", author.rstrip(", ")
+				author=authorsub.sub("", metadict['author'].findall(rawtext)[0])
+				print "author", author.rstrip(", ")
+			print 'author done'
 			if len(meta_dict['authorage'].findall(rawtext)) > 0:
 				authorage=meta_dict['authorage'].findall(rawtext)[0]
-				print authorage
+				#print authorage
 			else:
 				authorage="unknown"
+			print "authorage done"
 			if len(meta_dict['genre1'].findall(rawtext)) > 0:
 				genre=meta_dict['genre1'].findall(rawtext)[0]
-				print genre
+				#print genre
 			else:
 				genre="unknown"
-				
+			print "genre done"	
 			corpusstring=(
 				"<file> <no="+str(filecount)+"> "
 	 			"<corpusnumber="+fili.rstrip(".headed.xml")+"> "
@@ -354,21 +361,23 @@ def finder(input_dir, meta_dict):
 	 			"<author="+author.rstrip(", ")+"> "   #<AUTHOR>Fennor, William.</AUTHOR>
 	 			"<dialect="+meta_dict['dialect']+"> "#+meta_dict['dialect'].findall(rawtext)[0]+"> "
 	 			"<authorage="+authorage+"> " #" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
-	 			"<pubdate="+re.sub("<.*?>", "", meta_dict['pubdate'].findall(rawtext)[0])+"> "
+	 			"<pubdate="+htmlsub.sub("", meta_dict['pubdate'].search(rawtext).group())+"> "
 	 			"<genre1="+genre+"> "
 	 			"<genre2="+meta_dict['genre2']+"> "
 	 			"<extraction_notes="+meta_dict['extraction_notes']+"> "
 	 			"<notes="+meta_dict['notes'].findall(rawtext)[0].strip("()")+"> "#re.sub("(\s+|<.*?>)", " "," ".join(meta_dict['notes'].findall(rawtext)))+"> " #<NOTE>Transcribed from: (Early English Books Online ; image set 15207)</NOTE> -- there can be several
 	 			"<encoding="+meta_dict['encoding']+"> "
-	 			"<text>"+"\n".join([re.sub("<.*?>", "", i) for i in meta_dict['text'].findall(rawtext)])+" </text> </file>"
+	 			"<text>"+"\n".join([htmlsub.sub("", i) for i in meta_dict['text'].findall(rawtext)])+" </text> </file>"
 				)
+	 		print "string made"
 	 		with codecs.open(os.path.join("outputfiles",  str(fili)+"_extracted.txt"), "w", "utf-8") as outputfili:
 	 			outputfili.write(corpusstring)
 	 		filecount = filecount + 1
  			print "file {} processed succesfully, written to {}.\n".format(os.path.join(input_dir, folder, fili), outputfili)
-			
+			end=time.time()
+			print "this took us {} minutes. so slow".format((end-start)/60)
 
-finder("/Users/ps22344/Desktop/marcos_corpora/eebo", metadict)	
+finder("/Users/ps22344/Desktop/eebo", metadict)	
 
 
 
