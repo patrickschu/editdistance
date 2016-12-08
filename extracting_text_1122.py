@@ -298,7 +298,7 @@ meta=[
 ("author", r"<AUTHOR>(.*?)</AUTHOR>"), #<AUTHOR>Fennor, William.</AUTHOR></p> #limit to name only, ignore dates
 ("dialect", "bre"),
 ("authorage", "<AUTHOR>.*?((?:d\. |b\. )?\d{4}(?:-\d{2,4})?)\.?</AUTHOR>"), # we can get this from after author names  [i.e. 1645]
-("pubdate", '<DATE>.*?(?:ca. |the yeare?\.? |between |\D \. |Anno Dom. |.*? anno |.*?, |\[|\[i.e. |\[.*?|\D+ \[)?(1[2-8][0-9][0-9]).+</DATE>'), #"#<DATE>1615.</DATE> #[between 1695 and 1700] #<DATE>(?:between |\D \. |Anno Dom. |.*? anno |.*?, |\[|\[i.e. |\[.*?|\D+ \[)?([0-1][0-9][0-9][0-9]).+</DATE>'
+("pubdate", '<DATE>.*?(?:ca. |the yeare?\.? |between |\D \. |Anno Dom. |.*? anno |.*?, |\[|\[i.e. |\[.*?|\D+ \[)?(1[2-8][0-9][0-9]).*?</DATE>'), #"#<DATE>1615.</DATE> #[between 1695 and 1700] #<DATE>(?:between |\D \. |Anno Dom. |.*? anno |.*?, |\[|\[i.e. |\[.*?|\D+ \[)?([0-1][0-9][0-9][0-9]).+</DATE>'
 ("genre1", '<TERM TYPE=.*>(.*?)\.?</TERM>'), #<TERM TYPE="geographic name">Gambia River --  Description and travel --  Early works to 1800.</TERM><TERM TYPE="geographic name">Africa, West --  Description and travel --  To 1850.</TERM>
 ("genre2", 'X'),
 ("notes", '<NOTE>(.*?)</NOTE>'),
@@ -326,8 +326,8 @@ def finder(input_dir, meta_dict):
 			with codecs.open(os.path.join(input_dir, folder, fili), "r", "utf-8") as inputfili:
 				rawtext=inputfili.read()
 			#print rawtext[200:400]
-			for entry in [i for i in metadict.keys() if i in {'text'}]:
-				if isinstance(metadict[entry], re._pattern_type) and len(metadict[entry].findall(rawtext)) > 1:
+			for entry in [i for i in metadict.keys() if i not in {'text'}]:
+				if isinstance(metadict[entry], re._pattern_type) and len(metadict[entry].findall(rawtext)) == 0:
 					print '\n\n***ALARM', os.path.join(input_dir, folder, fili), "\n"
 					print entry, len(metadict[entry].findall(rawtext)),metadict[entry].findall(rawtext)
 			if len(metadict['author'].findall(rawtext)) == 0:
@@ -358,9 +358,9 @@ def finder(input_dir, meta_dict):
 	 			"<genre1="+genre+"> "
 	 			"<genre2="+meta_dict['genre2']+"> "
 	 			"<extraction_notes="+meta_dict['extraction_notes']+"> "
-	 			"<notes="+meta_dict['notes'].findall(rawtext)[0]+"> "#re.sub("(\s+|<.*?>)", " "," ".join(meta_dict['notes'].findall(rawtext)))+"> " #<NOTE>Transcribed from: (Early English Books Online ; image set 15207)</NOTE> -- there can be several
+	 			"<notes="+meta_dict['notes'].findall(rawtext)[0].strip("()")+"> "#re.sub("(\s+|<.*?>)", " "," ".join(meta_dict['notes'].findall(rawtext)))+"> " #<NOTE>Transcribed from: (Early English Books Online ; image set 15207)</NOTE> -- there can be several
 	 			"<encoding="+meta_dict['encoding']+"> "
-	 			"<text>"+meta_dict['text'].findall(rawtext)[0]+" </text> </file>"
+	 			"<text>"+"\n".join([re.sub("<.*?>", "", i) for i in meta_dict['text'].findall(rawtext)])+" </text> </file>"
 				)
 	 		with codecs.open(os.path.join("outputfiles",  str(fili)+"_extracted.txt"), "w", "utf-8") as outputfili:
 	 			outputfili.write(corpusstring)
