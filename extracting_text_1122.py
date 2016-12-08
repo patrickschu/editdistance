@@ -296,10 +296,10 @@ meta=[
 ("corpusnumber",'X') , #file name
 ("corpus", "early_english_books_online"), 
 ("title",   '<TITLE TYPE=.*?>(.*?)</TITLE>'), #<TITLE TYPE="245" I2="0">Fennors defence: or, I am your first man VVherein the VVater-man, Iohn Taylor, is dasht, sowst, and finally fallen into the Thames: With his slanderous taxations, base imputations, scandalous accusations and foule abhominations, against his maiesties ryming poet: who hath answered him without vexatione, or [...] bling recantations. The reason of my not meeting at the Hope with Taylor, is truly demonstrated in the induction to the [...] udger. Thy hastie gallop my milde muse shall checke, that if thou sit not sure, will breake thy necke.</TITLE>
-("author", r"<AUTHOR>(.*?)</AUTHOR>"), #<AUTHOR>Fennor, William.</AUTHOR></p> #limit to name only, ignore dates
+("author", r"<AUTHOR>(.*?)</AUTHOR>"), #<AUTHOR>Fennor, William.</AUTHOR></p> #limit to name only, ignore dates 163[5?]<
 ("dialect", "bre"),
-("authorage", "<AUTHOR>.*?((?:d\. |b\. )?\d{4}(?:-\d{2,4})?)\.?</AUTHOR>"), # we can get this from after author names  [i.e. 1645]
-("pubdate", '\n<DATE>\D*?(?:ca. |the yeare?\.? |between |\D \. |Anno Dom. |.*? anno |.*?, |\[|\[i.e. |\[.*?|\D+ \[)?(1[2-8][0-9][0-9])\??\]{,2}.*?\.?</DATE>\n'), #"#<DATE>1615.</DATE> #2003-01 (EEBO-TCP Phase 1)
+("authorage", "<AUTHOR>.*?((?:d\. |b\. )?\d{4}(?:-\d{2,4})?)\.?</AUTHOR>"), # we can get this from after author names  [i.e. 1645]July 12. 1642
+("pubdate", '\n<DATE>\D*?(?:ca. |the yeare?\.? |between |\D \. |Anno Dom. |.*? anno |.*?, |\[|\[i.e. |\[.*?|\D+ \[|\w+\.? \d{1,2}\. )?(1[2-8]\[?[0-9]\[?[0-9]\??|Anno. M.D.LIIII. mense Septembri)\??\]{,2}.*?\.?</DATE>\n'), #"#<DATE>1615.</DATE> #2003-01 (EEBO-TCP Phase 1)
 ("genre1", '<TERM TYPE=.*>(.*?)\.?</TERM>'), #<TERM TYPE="geographic name">Gambia River --  Description and travel --  Early works to 1800.</TERM><TERM TYPE="geographic name">Africa, West --  Description and travel --  To 1850.</TERM>
 ("genre2", 'X'),
 ("notes", '<NOTE>(.*?)</NOTE>'),
@@ -348,32 +348,32 @@ def finder(input_dir, meta_dict):
 				authorage="unknown"
 			print "authorage done"
 			if len(meta_dict['genre1'].findall(rawtext)) > 0:
-				genre=meta_dict['genre1'].findall(rawtext)[0]
+				genre=meta_dict['genre1'].search(rawtext).group()
 				#print genre
 			else:
 				genre="unknown"
 			print "genre done"	
-			corpusstring=(
-				"<file> <no="+str(filecount)+"> "
-	 			"<corpusnumber="+fili.rstrip(".headed.xml")+"> "
-	 			"<corpus="+meta_dict['corpus']+"> " 
-	 			"<title="+meta_dict['title'].findall(rawtext)[0]+"> " # 
-	 			"<author="+author.rstrip(", ")+"> "   #<AUTHOR>Fennor, William.</AUTHOR>
-	 			"<dialect="+meta_dict['dialect']+"> "#+meta_dict['dialect'].findall(rawtext)[0]+"> "
-	 			"<authorage="+authorage+"> " #" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
-	 			"<pubdate="+htmlsub.sub("", meta_dict['pubdate'].search(rawtext).group())+"> "
-	 			"<genre1="+genre+"> "
-	 			"<genre2="+meta_dict['genre2']+"> "
-	 			"<extraction_notes="+meta_dict['extraction_notes']+"> "
-	 			"<notes="+meta_dict['notes'].findall(rawtext)[0].strip("()")+"> "#re.sub("(\s+|<.*?>)", " "," ".join(meta_dict['notes'].findall(rawtext)))+"> " #<NOTE>Transcribed from: (Early English Books Online ; image set 15207)</NOTE> -- there can be several
-	 			"<encoding="+meta_dict['encoding']+"> "
-	 			"<text>"+"\n".join([htmlsub.sub("", i) for i in meta_dict['text'].findall(rawtext)])+" </text> </file>"
-				)
-	 		print "string made"
-	 		with codecs.open(os.path.join("outputfiles",  str(fili)+"_extracted.txt"), "w", "utf-8") as outputfili:
-	 			outputfili.write(corpusstring)
-	 		filecount = filecount + 1
- 			print "file {} processed succesfully, written to {}.\n".format(os.path.join(input_dir, folder, fili), outputfili)
+# 			corpusstring=(
+# 				"<file> <no="+str(filecount)+"> "
+# 	 			"<corpusnumber="+fili.rstrip(".headed.xml")+"> "
+# 	 			"<corpus="+meta_dict['corpus']+"> " 
+# 	 			"<title="+meta_dict['title'].findall(rawtext)[0]+"> " # 
+# 	 			"<author="+author.rstrip(", ")+"> "   #<AUTHOR>Fennor, William.</AUTHOR>
+# 	 			"<dialect="+meta_dict['dialect']+"> "#+meta_dict['dialect'].findall(rawtext)[0]+"> "
+# 	 			"<authorage="+authorage+"> " #" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
+# 	 			"<pubdate="+htmlsub.sub("", meta_dict['pubdate'].search(rawtext).group().strip(".[]"))+"> "
+# 	 			"<genre1="+genre+"> "
+# 	 			"<genre2="+meta_dict['genre2']+"> "
+# 	 			"<extraction_notes="+meta_dict['extraction_notes']+"> "
+# 	 			"<notes="+meta_dict['notes'].findall(rawtext)[0].strip("()")+"> "#re.sub("(\s+|<.*?>)", " "," ".join(meta_dict['notes'].findall(rawtext)))+"> " #<NOTE>Transcribed from: (Early English Books Online ; image set 15207)</NOTE> -- there can be several
+# 	 			"<encoding="+meta_dict['encoding']+"> "
+# 	 			"<text>"+"\n".join([htmlsub.sub("", i) for i in meta_dict['text'].findall(rawtext)])+" </text> </file>"
+# 				)
+# 	 		print "string made"
+# 	 		with codecs.open(os.path.join("outputfiles",  str(fili)+"_extracted.txt"), "w", "utf-8") as outputfili:
+# 	 			outputfili.write(corpusstring)
+# 	 		filecount = filecount + 1
+#  			print "file {} processed succesfully, written to {}.\n".format(os.path.join(input_dir, folder, fili), outputfili)
 			end=time.time()
 			print "this took us {} minutes. so slow".format((end-start)/60)
 
