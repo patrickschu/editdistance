@@ -297,21 +297,21 @@ meta=[
 ("title",   '<TITLE TYPE=.*?>(.*?)</TITLE>'), #<TITLE TYPE="245" I2="0">Fennors defence: or, I am your first man VVherein the VVater-man, Iohn Taylor, is dasht, sowst, and finally fallen into the Thames: With his slanderous taxations, base imputations, scandalous accusations and foule abhominations, against his maiesties ryming poet: who hath answered him without vexatione, or [...] bling recantations. The reason of my not meeting at the Hope with Taylor, is truly demonstrated in the induction to the [...] udger. Thy hastie gallop my milde muse shall checke, that if thou sit not sure, will breake thy necke.</TITLE>
 ("author", r"<AUTHOR>(.*?)</AUTHOR>"), #<AUTHOR>Fennor, William.</AUTHOR></p> #limit to name only, ignore dates
 ("dialect", "bre"),
-("authorage", "<AUTHOR>.*?(\d{4}(?:-\d{2,4})?)\.?</AUTHOR>"), # we can get this from after author names  [i.e. 1645]
+("authorage", "<AUTHOR>.*?((?:d\. |b\. )?\d{4}(?:-\d{2,4})?)\.?</AUTHOR>"), # we can get this from after author names  [i.e. 1645]
 ("pubdate", '<DATE>.*?(?:ca. |the yeare?\.? |between |\D \. |Anno Dom. |.*? anno |.*?, |\[|\[i.e. |\[.*?|\D+ \[)?(1[2-8][0-9][0-9]).+</DATE>'), #"#<DATE>1615.</DATE> #[between 1695 and 1700] #<DATE>(?:between |\D \. |Anno Dom. |.*? anno |.*?, |\[|\[i.e. |\[.*?|\D+ \[)?([0-1][0-9][0-9][0-9]).+</DATE>'
-("genre1", 'X'), 
+("genre1", '<TERM TYPE=.*>(.*?)\.?</TERM>'), #<TERM TYPE="geographic name">Gambia River --  Description and travel --  Early works to 1800.</TERM><TERM TYPE="geographic name">Africa, West --  Description and travel --  To 1850.</TERM>
 ("genre2", 'X'),
-("notes", 'The conventions used to indicate editorial comments and other types of text markup are the same as used in the ../annotation/intro.htm#text_markup" PPCME2/PPCEME'),
-("extraction_notes", """removed all markup in triangle brackets"""),
+("notes", '<NOTE>(.*?)</NOTE>'),
+("extraction_notes", """removed all markup in triangle brackets. 286 files with TEXT tag lat deleted"""),
 ("encoding", 'utf-8'),
-('text', "<TEXT LANG=\"eng\">.*?</TEXT>")#, <TEXT LANG="eng">
+('text', "<TEXT(?: LANG=\"(?:eng|eng lat|lat eng)\")?>.*?</TEXT>")#, <TEXT LANG="eng"> <TEXT LANG="lat eng">
 ]
 
  
 
 
 for m in meta:
-	if m[1] in ['X', 'bre'] or m[0] in [ 'notes', 'genre1', 'corpus', "extraction_notes", 'encoding']:
+	if m[1] in ['X', 'bre'] or m[0] in ['corpus', "extraction_notes", 'encoding']:
 		metadict[m[0]]=m[1]
 	else:
 		metadict[m[0]]=re.compile(m[1], re.DOTALL)
@@ -326,15 +326,26 @@ def finder(input_dir, meta_dict):
 			with codecs.open(os.path.join(input_dir, folder, fili), "r", "utf-8") as inputfili:
 				rawtext=inputfili.read()
 			#print rawtext[200:400]
-			for entry in [i for i in metadict.keys() if not i in {'text'}]:
-				if isinstance(metadict[entry], re._pattern_type) and len(metadict[entry].findall(rawtext)) == 0:
+			for entry in [i for i in metadict.keys() if i in {'text'}]:
+				if isinstance(metadict[entry], re._pattern_type) and len(metadict[entry].findall(rawtext)) > 1:
 					print '\n\n***ALARM', os.path.join(input_dir, folder, fili), "\n"
 					print entry, len(metadict[entry].findall(rawtext)),metadict[entry].findall(rawtext)
 			if len(metadict['author'].findall(rawtext)) == 0:
 				author="unknown"
 			else:
-				author=re.sub("(\d+(st|th|rd)(/\d+(st|th|rd))?( Ccent)?|\d+,?| b\. | d\. |-|\?|,? fl\.? |,?\Wca\.? |\.| or )", "", metadict['author'].findall(rawtext)[0])
+				author=re.sub("(\d+(st|th|rd)(/\d+(st|th|rd))?( Ccent)?|\d+,?| b\. | d\. |-|\?|,? fl\.? |,?\Wca\.?|\.| or )", "", metadict['author'].findall(rawtext)[0])
 				print "ottiotti", author.rstrip(", ")
+			if len(meta_dict['authorage'].findall(rawtext)) > 0:
+				authorage=meta_dict['authorage'].findall(rawtext)[0]
+				print authorage
+			else:
+				authorage="unknown"
+			if len(meta_dict['genre1'].findall(rawtext)) > 0:
+				genre=meta_dict['genre1'].findall(rawtext)[0]
+				print genre
+			else:
+				genre="unknown"
+				
 			corpusstring=(
 				"<file> <no="+str(filecount)+"> "
 	 			"<corpusnumber="+fili.rstrip(".headed.xml")+"> "
@@ -342,14 +353,14 @@ def finder(input_dir, meta_dict):
 	 			"<title="+meta_dict['title'].findall(rawtext)[0]+"> " # 
 	 			"<author="+author.rstrip(", ")+"> "   #<AUTHOR>Fennor, William.</AUTHOR>
 	 			"<dialect="+meta_dict['dialect']+"> "#+meta_dict['dialect'].findall(rawtext)[0]+"> "
-	 			"<authorage="+" ".join([ i if i else 'unknown' for i in meta_dict['authorage'].findall(rawtext)][0])+"> " #" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
-	# 			"<pubdate="+re.sub("<.*?>", "", meta_dict['pubdate'].findall(rawtext)[0])+"> 
-	# 			"<genre1="+meta_dict['genre1']+"> "#.findall(rawtext)[0]+"> "
-	# 			"<genre2="+meta_dict['genre2']+"> "
-	# 			"<extraction_notes="+meta_dict['extraction_notes']+"> "
-	# 			"<notes="+meta_dict['notes']+"> "#re.sub("(\s+|<.*?>)", " "," ".join(meta_dict['notes'].findall(rawtext)))+"> " #<NOTE>Transcribed from: (Early English Books Online ; image set 15207)</NOTE> -- there can be several
-	# 			"<encoding="+meta_dict['encoding']+"> "
-	# 			"<text>"+"".join([i for i in inputfili.readlines() if not (i.startswith("{") or i.startswith("<") or i.startswith("_"))])+" </text> </file>"
+	 			"<authorage="+authorage+"> " #" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
+	 			"<pubdate="+re.sub("<.*?>", "", meta_dict['pubdate'].findall(rawtext)[0])+"> "
+	 			"<genre1="+genre+"> "
+	 			"<genre2="+meta_dict['genre2']+"> "
+	 			"<extraction_notes="+meta_dict['extraction_notes']+"> "
+	 			"<notes="+meta_dict['notes'].findall(rawtext)[0]+"> "#re.sub("(\s+|<.*?>)", " "," ".join(meta_dict['notes'].findall(rawtext)))+"> " #<NOTE>Transcribed from: (Early English Books Online ; image set 15207)</NOTE> -- there can be several
+	 			"<encoding="+meta_dict['encoding']+"> "
+	 			"<text>"+meta_dict['text'].findall(rawtext)[0]+" </text> </file>"
 				)
 	 		with codecs.open(os.path.join("outputfiles",  str(fili)+"_extracted.txt"), "w", "utf-8") as outputfili:
 	 			outputfili.write(corpusstring)
