@@ -23,3 +23,11 @@ meta=[
 
 m=[i[0] for i in meta]
 print m
+
+
+tt="Here we go my <xfriend<x>"
+
+regex=re.compile("<x>(.*?)<x>")
+
+print [i if i else "xx" for i in regex.findall(tt)]
+
