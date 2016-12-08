@@ -24,8 +24,8 @@ class CorpusText(object):
 	def __init__(self, file_name):
 		self.filename = file_name
 		self.fulltext = codecs.open(file_name, "r", 'utf-8').read()
-		self.charcount = len(self._adtextextractor(self.fulltext))
-		self.wordcount = len(nltk.word_tokenize(self.fulltext))
+		self.charcount = float(len(self._adtextextractor(self.fulltext)))
+		self.wordcount = float(len(nltk.word_tokenize(self.fulltext)))
 		self.metalist= [
 		'no', 
 		'corpusnumber', 
