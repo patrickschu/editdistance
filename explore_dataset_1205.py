@@ -37,3 +37,9 @@ explorer ('/Users/ps22344/Downloads/editdistance/outputfiles/eec_extracted/')
 # 	print k, rr.meta[k]
 
 #print rr.meta['title']
+
+
+#make overview
+#by corpus
+#by author
+#by text length
