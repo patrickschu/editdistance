@@ -289,7 +289,7 @@ print metadict
 # /Users/ps22344/Desktop/marcos_corpora/eebo
 # lots of markup in here; lets delete anythin
 
-
+#<DATE>5 April. 1533]</DATE>
 
 meta=[
 ("no",'X'), 
@@ -298,8 +298,8 @@ meta=[
 ("title",   '<TITLE TYPE=.*?>(.*?)</TITLE>'), #<TITLE TYPE="245" I2="0">Fennors defence: or, I am your first man VVherein the VVater-man, Iohn Taylor, is dasht, sowst, and finally fallen into the Thames: With his slanderous taxations, base imputations, scandalous accusations and foule abhominations, against his maiesties ryming poet: who hath answered him without vexatione, or [...] bling recantations. The reason of my not meeting at the Hope with Taylor, is truly demonstrated in the induction to the [...] udger. Thy hastie gallop my milde muse shall checke, that if thou sit not sure, will breake thy necke.</TITLE>
 ("author", r"<AUTHOR>(.*?)</AUTHOR>"), #<AUTHOR>Fennor, William.</AUTHOR></p> #limit to name only, ignore dates 163[5?]<
 ("dialect", "bre"),
-("authorage", "<AUTHOR>.*?((?:d\. |b\. )?\d{4}(?:-\d{2,4})?)\.?</AUTHOR>"), # we can get this from after author names  [i.e. 1645]July 12. 1642
-("pubdate", '\n<DATE>\D*?(?:ca. |the yeare?\.? |between |\D \. |Anno Dom. |.*? anno |.*?, |\[|\[i.e. |\[.*?|\D+ \[|\w+\.? \d{1,2}\. )?(1[2-8]\[?[0-9]\[?[0-9]\??|Anno. M.D.LIIII. mense Septembri)\??\]{,2}.*?\.?</DATE>\n'), #"#<DATE>1615.</DATE> #2003-01 (EEBO-TCP Phase 1)
+("authorage", "<AUTHOR>.*?((?:d\. |b\. )?\d{4}(?:-\d{2,4})?)\.?</AUTHOR>"), # we can get this from after author names  [i.e. 1645]July 12. 1642 Jun. 28 [1642]
+("pubdate", '\n<DATE>\D*?(?:ca. |the yeare?\.? |between |\D \. |Anno Dom. |.*? anno |.*?, |\[|\[i.e. |\[.*?|\D+ \[|\w+\.? \d{1,2}\. |\w+\.? \d{1,2}\ \[?|\d{,2} April\. |.*? \[26 July )?(1[2-8]\[?[0-9]\[?[0-9]\??|Anno. M.D.LIIII. mense Septembri)\??\]{,2}.*?\.?</DATE>\n'), #"#<DATE>1615.</DATE> #2003-01 (EEBO-TCP Phase 1)
 ("genre1", '<TERM TYPE=.*>(.*?)\.?</TERM>'), #<TERM TYPE="geographic name">Gambia River --  Description and travel --  Early works to 1800.</TERM><TERM TYPE="geographic name">Africa, West --  Description and travel --  To 1850.</TERM>
 ("genre2", 'X'),
 ("notes", '<NOTE>(.*?)</NOTE>'),
@@ -335,24 +335,24 @@ def finder(input_dir, meta_dict):
 # 					print entry, len(metadict[entry].findall(rawtext)),metadict[entry].findall(rawtext)
 			print meta_dict['pubdate'].search(rawtext).group()
 			print "start author"
-			if len(metadict['author'].findall(rawtext)) == 0:
-				author="unknown"
-			else:
-				author=authorsub.sub("", metadict['author'].findall(rawtext)[0])
-				print "author", author.rstrip(", ")
-			print 'author done'
-			if len(meta_dict['authorage'].findall(rawtext)) > 0:
-				authorage=meta_dict['authorage'].findall(rawtext)[0]
-				#print authorage
-			else:
-				authorage="unknown"
-			print "authorage done"
-			if len(meta_dict['genre1'].findall(rawtext)) > 0:
-				genre=meta_dict['genre1'].search(rawtext).group()
-				#print genre
-			else:
-				genre="unknown"
-			print "genre done"	
+			# if len(metadict['author'].findall(rawtext)) == 0:
+# 				author="unknown"
+# 			else:
+# 				author=authorsub.sub("", metadict['author'].findall(rawtext)[0])
+# 				print "author", author.rstrip(", ")
+# 			print 'author done'
+# 			if len(meta_dict['authorage'].findall(rawtext)) > 0:
+# 				authorage=meta_dict['authorage'].findall(rawtext)[0]
+# 				#print authorage
+# 			else:
+# 				authorage="unknown"
+# 			print "authorage done"
+# 			if len(meta_dict['genre1'].findall(rawtext)) > 0:
+# 				genre=meta_dict['genre1'].search(rawtext).group()
+# 				#print genre
+# 			else:
+# 				genre="unknown"
+# 			print "genre done"	
 # 			corpusstring=(
 # 				"<file> <no="+str(filecount)+"> "
 # 	 			"<corpusnumber="+fili.rstrip(".headed.xml")+"> "
