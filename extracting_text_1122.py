@@ -298,9 +298,9 @@ meta=[
 ("title",   '<TITLE TYPE=.*?>(.*?)</TITLE>'), #<TITLE TYPE="245" I2="0">Fennors defence: or, I am your first man VVherein the VVater-man, Iohn Taylor, is dasht, sowst, and finally fallen into the Thames: With his slanderous taxations, base imputations, scandalous accusations and foule abhominations, against his maiesties ryming poet: who hath answered him without vexatione, or [...] bling recantations. The reason of my not meeting at the Hope with Taylor, is truly demonstrated in the induction to the [...] udger. Thy hastie gallop my milde muse shall checke, that if thou sit not sure, will breake thy necke.</TITLE>
 ("author", r"<AUTHOR>(.*?)</AUTHOR>"), #<AUTHOR>Fennor, William.</AUTHOR></p> #limit to name only, ignore dates 163[5?]<
 ("dialect", "bre"),
-("authorage", "<AUTHOR>.*?((?:d\. |b\. )?\d{4}(?:-\d{2,4})?)\.?</AUTHOR>"), # we can get this from after author names  [i.e. 1645]July 12. 1642 Jun. 28 [1642] December. 3. [1576] <DATE>the 29. of Ianua. 1582.</DATE> 5 April. 1533] the 29. of Ianua. 1582.< October 22, [1642] <DATE>21. Nouemb. 1564.</DATE> not before 
-("pubdate", '\n<DATE>\D*?(?:ca. |the yeare?\.? |between |\D \. |Anno Dom. |.*? anno |.*?, |\[|\[i.e. |\[.*?|\D+ \[|\w+\.? \d{1,2}\. |\w+\.? \d{1,2}\.?,? \[?|(not before )?\d{,2}\.? (April|Maij|Ianu|Nouemb|June)\.? |.*? \[26 July |\d{,2}\. of Ianua\. )?(1[2-8]\[?[0-9]\[?[0-9]\??|Anno. M.D.LIIII. mense Septembri|MDCC)\??\]{,2}.*?\.?</DATE>\n'), #"#<DATE>1615.</DATE> #2003-01 (EEBO-TCP Phase 1)
-("genre1", '<TERM TYPE=.*>(.*?)\.?</TERM>'), #<TERM TYPE="geographic name">Gambia River --  Description and travel --  Early works to 1800.</TERM><TERM TYPE="geographic name">Africa, West --  Description and travel --  To 1850.</TERM>
+("authorage", "<AUTHOR>.*?((?:d\. |b\. )?\d{4}(?:-\d{2,4})?)\.?</AUTHOR>"), # we can get this from after author names  [i.e. 1645]July 12. 1642 Jun. 28 [1642] December. 3. [1576] <DATE>the 29. of Ianua. 1582.</DATE> 5 April. 1533] the 29. of Ianua. 1582.< October 22, [1642] <DATE>21. Nouemb. 1564.</DATE> not before <DATE>3. Feb. 1582.</DATE> the 14. of December 1597. Febr. 2. Anno Dom. 1643.
+("pubdate", '\n<DATE>\D*?(?:ca. |the ye[ae]re?\.? |between |\D \. | Anno Dom\.? |.*? [Aa][Nn][Nn][Oo] |.*?, |\[|\[i.e. |\[.*?|\D+ \[|\w+\.? \d{1,2}\. |\w+\.? \d{1,2}\.?,? \[?|(?:not before |(?:not)? after )?\d{,2}\.? (?:Iun\w+|April|Maij|May|Ian\w+|Nouemb|Au\w+|Jun\w|Feb|June|July|Nov|Oc\w+|Dec|Dec\w+|Sep\w+)\.? |.*? \[26 July |\d{,2}\. of (?:Ianu\w+|December|May|Nov\w+|Oct\w+|Aug\w+)\.? )?(1[2-8]\[?[0-9]\[?[0-9]\??|Anno. M.D.LIIII. mense Septembri|MDCC|M.DC.LXXII|M.D.XLIX)\??\]{,2}.*?\.?</DATE>\n'), #"#<DATE>1615.</DATE> #2003-01 (EEBO-TCP Phase 1)
+("genre1", '<TERM TYPE=.*>(.*?)\.?</T5ERM>'), #<TERM TYPE="geographic name">Gambia River --  Description and travel --  Early works to 1800.</TERM><TERM TYPE="geographic name">Africa, West --  Description and travel --  To 1850.</TERM>
 ("genre2", 'X'),
 ("notes", '<NOTE>(.*?)</NOTE>'),
 ("extraction_notes", """removed all markup in triangle brackets. 286 files with TEXT tag lat deleted"""),
@@ -322,7 +322,7 @@ for m in meta:
 def finder(input_dir, meta_dict):
 	filecount=1
 	
-	for folder in [i for i in os.listdir(input_dir) if not i.startswith(".")]:	
+	for folder in [i for i in os.listdir(input_dir) if not i.startswith(".")]:# if not i in ['headed-xml-200802','headed-xml-200702','headed-xml-200609','headed-xml-200604','headed-xml-200601','headed-xml-200510','headed-xml-200504', 'headed-xml-200501', 'headed-xml-200410','headed-xml-200407','headed-xml-200402','headed-xml-200404','headed-xml-200310', 'headed-xml-200312', 'headed-xml-200310','headed-xml-200308', 'headed-xml-200201', 'headed-xml-200202', 'headed-xml-200203', 'headed-xml-200205', 'headed-xml-200206', 'headed-xml-200207', 'headed-xml-200208', 'headed-xml-200210', 'headed-xml-200212' , 'headed-xml-200306', 'headed-xml-200111', 'headed-xml-200112', 'headed-xml-200204', 'headed-xml-200302', 'headed-xml-200304']]:	
 		for fili in [i for i in os.listdir(os.path.join(input_dir, folder)) if not i.startswith(".")]:
 			start=time.time()
 			print '\n\n***', os.path.join(input_dir, folder, fili), "\n"
@@ -333,8 +333,11 @@ def finder(input_dir, meta_dict):
 # 				if isinstance(metadict[entry], re._pattern_type) and len(metadict[entry].findall(rawtext)) == 0:
 # 					print '\n\n***ALARM', os.path.join(input_dir, folder, fili), "\n"
 # 					print entry, len(metadict[entry].findall(rawtext)),metadict[entry].findall(rawtext)
-			print meta_dict['pubdate'].search(rawtext).group()
-			print "start author"
+			try:
+				print meta_dict['pubdate'].findall(rawtext)
+			except AttributeError:
+				os.system("open "+os.path.join(input_dir, folder, fili))
+				print "start author"
 		
 			# if len(metadict['author'].findall(rawtext)) == 0:
 # 				author="unknown"
@@ -376,8 +379,8 @@ def finder(input_dir, meta_dict):
 # 	 		filecount = filecount + 1
 #  			print "file {} processed succesfully, written to {}.\n".format(os.path.join(input_dir, folder, fili), outputfili)
 			end=time.time()
-			print "this took us {} minutes. so slow".format((end-start)/60)
-		print "---folder ", folder, " done---"
+			print "this took us {} seconds. so slow".format((end-start))
+		print "---folder '", folder, "' done---"
 
 finder("/Users/ps22344/Desktop/eebo", metadict)	
 
