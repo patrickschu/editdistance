@@ -5,21 +5,13 @@ from collections import defaultdict
 
 ##INSPECTING
 
-def tagextractor(text, tag, fili):
-    regexstring="<"+tag+"=(.*?)>"
-    result=re.findall(regexstring, text, re.DOTALL)
-    if len(result) != 1:
-        print "alarm in tagextractor", fili, result
-    return result[0]
-    
-
-
-
-
-
 
 
 def explorer(input_dir):
+	"""
+	The explorer wanders thru the input_dir, returns a dictionary with relevant info.
+	Info specified by CorpusText object.
+	"""
 	dicti=defaultdict(dict)
 	for fili in [i for i in os.listdir(input_dir) if not i.startswith(".")]:
 		print "\n\n", fili
@@ -41,6 +33,11 @@ fullcorpus=explorer ('/Users/ps22344/Desktop/innsbruck_extracted')
 
 
 def aggregator(dictionary, category, *list_of_terms):
+	"""
+	The aggregator aggregates all items from dictionary.
+	It goes thru the list of terms, and returns a dictionary.
+	It add each term as a key and enters all the relevant data from dicitonary.
+	"""
 	dicti=defaultdict(dict)
 	for term in list_of_terms:
 		dicti[term]={k:v for k,v in dictionary.items() if term in dictionary[k][category]}
