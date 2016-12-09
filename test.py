@@ -25,9 +25,10 @@ m=[i[0] for i in meta]
 print m
 
 
-tt="Here we go my <xfriend<x>"
+tt="Here x we go my x <xfriend<x>"
 
-regex=re.compile("<x>(.*?)<x>")
+regex=re.compile("(x)")
 
-print [i if i else "xx" for i in regex.findall(tt)]
+#print [i if i else "xx" for i in regex.findall(tt)]
 
+print regex.search(tt).group()
