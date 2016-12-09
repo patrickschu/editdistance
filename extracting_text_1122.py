@@ -298,8 +298,8 @@ meta=[
 ("title",   '<TITLE TYPE=.*?>(.*?)</TITLE>'), #<TITLE TYPE="245" I2="0">Fennors defence: or, I am your first man VVherein the VVater-man, Iohn Taylor, is dasht, sowst, and finally fallen into the Thames: With his slanderous taxations, base imputations, scandalous accusations and foule abhominations, against his maiesties ryming poet: who hath answered him without vexatione, or [...] bling recantations. The reason of my not meeting at the Hope with Taylor, is truly demonstrated in the induction to the [...] udger. Thy hastie gallop my milde muse shall checke, that if thou sit not sure, will breake thy necke.</TITLE>
 ("author", r"<AUTHOR>(.*?)</AUTHOR>"), #<AUTHOR>Fennor, William.</AUTHOR></p> #limit to name only, ignore dates 163[5?]<
 ("dialect", "bre"),
-("authorage", "<AUTHOR>.*?((?:d\. |b\. )?\d{4}(?:-\d{2,4})?)\.?</AUTHOR>"), # we can get this from after author names  [i.e. 1645]July 12. 1642 Jun. 28 [1642] December. 3. [1576] <DATE>the 29. of Ianua. 1582.</DATE> 5 April. 1533]
-("pubdate", '\n<DATE>\D*?(?:ca. |the yeare?\.? |between |\D \. |Anno Dom. |.*? anno |.*?, |\[|\[i.e. |\[.*?|\D+ \[|\w+\.? \d{1,2}\. |\w+\.? \d{1,2}\.? \[?|\d{,2}\.? (April|Maij|Ianu)\.? |.*? \[26 July |\d{,2} (?:of)? Ianua\. )?(1[2-8]\[?[0-9]\[?[0-9]\??|Anno. M.D.LIIII. mense Septembri)\??\]{,2}.*?\.?</DATE>\n'), #"#<DATE>1615.</DATE> #2003-01 (EEBO-TCP Phase 1)
+("authorage", "<AUTHOR>.*?((?:d\. |b\. )?\d{4}(?:-\d{2,4})?)\.?</AUTHOR>"), # we can get this from after author names  [i.e. 1645]July 12. 1642 Jun. 28 [1642] December. 3. [1576] <DATE>the 29. of Ianua. 1582.</DATE> 5 April. 1533] the 29. of Ianua. 1582.< October 22, [1642] <DATE>21. Nouemb. 1564.</DATE> not before 
+("pubdate", '\n<DATE>\D*?(?:ca. |the yeare?\.? |between |\D \. |Anno Dom. |.*? anno |.*?, |\[|\[i.e. |\[.*?|\D+ \[|\w+\.? \d{1,2}\. |\w+\.? \d{1,2}\.?,? \[?|(not before )?\d{,2}\.? (April|Maij|Ianu|Nouemb|June)\.? |.*? \[26 July |\d{,2}\. of Ianua\. )?(1[2-8]\[?[0-9]\[?[0-9]\??|Anno. M.D.LIIII. mense Septembri|MDCC)\??\]{,2}.*?\.?</DATE>\n'), #"#<DATE>1615.</DATE> #2003-01 (EEBO-TCP Phase 1)
 ("genre1", '<TERM TYPE=.*>(.*?)\.?</TERM>'), #<TERM TYPE="geographic name">Gambia River --  Description and travel --  Early works to 1800.</TERM><TERM TYPE="geographic name">Africa, West --  Description and travel --  To 1850.</TERM>
 ("genre2", 'X'),
 ("notes", '<NOTE>(.*?)</NOTE>'),
@@ -335,6 +335,7 @@ def finder(input_dir, meta_dict):
 # 					print entry, len(metadict[entry].findall(rawtext)),metadict[entry].findall(rawtext)
 			print meta_dict['pubdate'].search(rawtext).group()
 			print "start author"
+		
 			# if len(metadict['author'].findall(rawtext)) == 0:
 # 				author="unknown"
 # 			else:
@@ -376,6 +377,7 @@ def finder(input_dir, meta_dict):
 #  			print "file {} processed succesfully, written to {}.\n".format(os.path.join(input_dir, folder, fili), outputfili)
 			end=time.time()
 			print "this took us {} minutes. so slow".format((end-start)/60)
+		print "---folder ", folder, " done---"
 
 finder("/Users/ps22344/Desktop/eebo", metadict)	
 
