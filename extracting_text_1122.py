@@ -352,7 +352,7 @@ def finder(input_dir, meta_dict):
 				authorage="unknown"
 			print "authorage done"
 			if len(meta_dict['genre1'].findall(rawtext)) > 0:
-				genre=meta_dict['genre1'].search(rawtext).group()
+				genre=meta_dict['genre1'].findall(rawtext)[0]
 				#print genre
 			else:
 				genre="unknown"
@@ -365,13 +365,13 @@ def finder(input_dir, meta_dict):
 	 			"<author="+author.rstrip(", ")+"> "   #<AUTHOR>Fennor, William.</AUTHOR>
 	 			"<dialect="+meta_dict['dialect']+"> "#+meta_dict['dialect'].findall(rawtext)[0]+"> "
 	 			"<authorage="+authorage+"> " #" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
-	 			"<pubdate="+htmlsub.sub("", meta_dict['pubdate'].search(rawtext).group().strip(".[]"))+"> "
+	 			"<pubdate="+htmlsub.sub("", meta_dict['pubdate'].findall(rawtext)[0].strip(".[]"))+"> "
 	 			"<genre1="+genre+"> "
 	 			"<genre2="+meta_dict['genre2']+"> "
 	 			"<extraction_notes="+meta_dict['extraction_notes']+"> "
 	 			"<notes="+meta_dict['notes'].findall(rawtext)[0].strip("()")+"> "#re.sub("(\s+|<.*?>)", " "," ".join(meta_dict['notes'].findall(rawtext)))+"> " #<NOTE>Transcribed from: (Early English Books Online ; image set 15207)</NOTE> -- there can be several
 	 			"<encoding="+meta_dict['encoding']+"> "
-	 			"<text>"+"\n".join([htmlsub.sub("", i) for i in meta_dict['text'].findall(rawtext)])+" </text> </file>"
+	 			"<text>"+"\n".join([htmlsub.sub("", i).strip("\n") for i in meta_dict['text'].findall(rawtext)])+" </text> </file>"
 				)
 	 		print "string made"
 	 		with codecs.open(os.path.join("outputfiles",  str(fili)+"_extracted.txt"), "w", "utf-8") as outputfili:
