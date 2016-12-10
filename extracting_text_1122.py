@@ -339,45 +339,45 @@ def finder(input_dir, meta_dict):
 				os.system("open "+os.path.join(input_dir, folder, fili))
 				print "start author"
 		
-			# if len(metadict['author'].findall(rawtext)) == 0:
-# 				author="unknown"
-# 			else:
-# 				author=authorsub.sub("", metadict['author'].findall(rawtext)[0])
-# 				print "author", author.rstrip(", ")
-# 			print 'author done'
-# 			if len(meta_dict['authorage'].findall(rawtext)) > 0:
-# 				authorage=meta_dict['authorage'].findall(rawtext)[0]
-# 				#print authorage
-# 			else:
-# 				authorage="unknown"
-# 			print "authorage done"
-# 			if len(meta_dict['genre1'].findall(rawtext)) > 0:
-# 				genre=meta_dict['genre1'].search(rawtext).group()
-# 				#print genre
-# 			else:
-# 				genre="unknown"
-# 			print "genre done"	
-# 			corpusstring=(
-# 				"<file> <no="+str(filecount)+"> "
-# 	 			"<corpusnumber="+fili.rstrip(".headed.xml")+"> "
-# 	 			"<corpus="+meta_dict['corpus']+"> " 
-# 	 			"<title="+meta_dict['title'].findall(rawtext)[0]+"> " # 
-# 	 			"<author="+author.rstrip(", ")+"> "   #<AUTHOR>Fennor, William.</AUTHOR>
-# 	 			"<dialect="+meta_dict['dialect']+"> "#+meta_dict['dialect'].findall(rawtext)[0]+"> "
-# 	 			"<authorage="+authorage+"> " #" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
-# 	 			"<pubdate="+htmlsub.sub("", meta_dict['pubdate'].search(rawtext).group().strip(".[]"))+"> "
-# 	 			"<genre1="+genre+"> "
-# 	 			"<genre2="+meta_dict['genre2']+"> "
-# 	 			"<extraction_notes="+meta_dict['extraction_notes']+"> "
-# 	 			"<notes="+meta_dict['notes'].findall(rawtext)[0].strip("()")+"> "#re.sub("(\s+|<.*?>)", " "," ".join(meta_dict['notes'].findall(rawtext)))+"> " #<NOTE>Transcribed from: (Early English Books Online ; image set 15207)</NOTE> -- there can be several
-# 	 			"<encoding="+meta_dict['encoding']+"> "
-# 	 			"<text>"+"\n".join([htmlsub.sub("", i) for i in meta_dict['text'].findall(rawtext)])+" </text> </file>"
-# 				)
-# 	 		print "string made"
-# 	 		with codecs.open(os.path.join("outputfiles",  str(fili)+"_extracted.txt"), "w", "utf-8") as outputfili:
-# 	 			outputfili.write(corpusstring)
-# 	 		filecount = filecount + 1
-#  			print "file {} processed succesfully, written to {}.\n".format(os.path.join(input_dir, folder, fili), outputfili)
+			if len(metadict['author'].findall(rawtext)) == 0:
+				author="unknown"
+			else:
+				author=authorsub.sub("", metadict['author'].findall(rawtext)[0])
+				print "author", author.rstrip(", ")
+			print 'author done'
+			if len(meta_dict['authorage'].findall(rawtext)) > 0:
+				authorage=meta_dict['authorage'].findall(rawtext)[0]
+				#print authorage
+			else:
+				authorage="unknown"
+			print "authorage done"
+			if len(meta_dict['genre1'].findall(rawtext)) > 0:
+				genre=meta_dict['genre1'].search(rawtext).group()
+				#print genre
+			else:
+				genre="unknown"
+			print "genre done"	
+			corpusstring=(
+				"<file> <no="+str(filecount)+"> "
+	 			"<corpusnumber="+fili.rstrip(".headed.xml")+"> "
+	 			"<corpus="+meta_dict['corpus']+"> " 
+	 			"<title="+meta_dict['title'].findall(rawtext)[0]+"> " # 
+	 			"<author="+author.rstrip(", ")+"> "   #<AUTHOR>Fennor, William.</AUTHOR>
+	 			"<dialect="+meta_dict['dialect']+"> "#+meta_dict['dialect'].findall(rawtext)[0]+"> "
+	 			"<authorage="+authorage+"> " #" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
+	 			"<pubdate="+htmlsub.sub("", meta_dict['pubdate'].search(rawtext).group().strip(".[]"))+"> "
+	 			"<genre1="+genre+"> "
+	 			"<genre2="+meta_dict['genre2']+"> "
+	 			"<extraction_notes="+meta_dict['extraction_notes']+"> "
+	 			"<notes="+meta_dict['notes'].findall(rawtext)[0].strip("()")+"> "#re.sub("(\s+|<.*?>)", " "," ".join(meta_dict['notes'].findall(rawtext)))+"> " #<NOTE>Transcribed from: (Early English Books Online ; image set 15207)</NOTE> -- there can be several
+	 			"<encoding="+meta_dict['encoding']+"> "
+	 			"<text>"+"\n".join([htmlsub.sub("", i) for i in meta_dict['text'].findall(rawtext)])+" </text> </file>"
+				)
+	 		print "string made"
+	 		with codecs.open(os.path.join("outputfiles",  str(fili)+"_extracted.txt"), "w", "utf-8") as outputfili:
+	 			outputfili.write(corpusstring)
+	 		filecount = filecount + 1
+ 			print "file {} processed succesfully, written to {}.\n".format(os.path.join(input_dir, folder, fili), outputfili)
 			end=time.time()
 			print "this took us {} seconds. so slow".format((end-start))
 		print "---folder '", folder, "' done---"
