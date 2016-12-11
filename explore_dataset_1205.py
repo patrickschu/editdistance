@@ -48,8 +48,8 @@ def main (input_dir):
 		filename=folder
 		#make full corpus
 		fullcorpus=explorer (os.path.join(input_dir, folder))
-		with codecs.open(filename+"_fullcorpus.csv", "w", "utf-8") as fullcorpus_out:
-			pandas.DataFrame(fullcorpus).T.to_csv(fullcorpus_out, encoding='utf-8')
+		with open(filename+"_fullcorpus.txt", "w") as fullcorpus_out:
+			pandas.DataFrame(fullcorpus).T.to_csv(fullcorpus_out, sep="\t", encoding='utf-8')
 		print "full dataset written to", fullcorpus_out
 		#look at authors
 		fullcorpus_by_author=aggregator(fullcorpus, 'author', set([v['author'] for k,v in fullcorpus.items()]))
@@ -61,7 +61,7 @@ def main (input_dir):
 		for key in fullcorpus_by_author:
 			for entry in fullcorpus_by_author[key]:
 				with codecs.open(filename+"_by_author.txt", "a", "utf-8") as fullcorpus_by_author_out:
-					fullcorpus_by_author_out.write(key+"\t".join([str(i) for i in fullcorpus_by_author[key][entry].values()])+"\n")
+					fullcorpus_by_author_out.write(key+"\t".join([unicode(i) for i in fullcorpus_by_author[key][entry].values()])+"\n")
 		print "author dataset written to", fullcorpus_by_author_out
 
 main ('/Users/ps22344/Desktop/extracted_corpora')
