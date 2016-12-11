@@ -43,7 +43,7 @@ class CorpusText(object):
 		]
 		
 		self.uniq = "this is the overall corpus number"
-		self.meta = {k:self._tagextractor(self.fulltext, k) for k in self.metalist}
+		self.meta = {k:re.sub("(\t|\n)", " ", self._tagextractor(self.fulltext, k)) for k in self.metalist}
 		
 	def test(self):
 		print "fulltext", len(self.fulltext)
