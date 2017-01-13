@@ -15,7 +15,7 @@ def explorer(input_dir):
 	"""
 	dicti=defaultdict(dict)
 	for fili in [i for i in os.listdir(input_dir) if not i.startswith(".")]:
-		print "\n\n", fili
+		#print "\n\n", fili
 		texti=emo.CorpusText(os.path.join(input_dir, fili))
 		dicti[fili]['wordcount']=texti.wordcount
 		dicti[fili]['charcount']=texti.charcount
@@ -48,23 +48,24 @@ def main (input_dir):
 		filename=folder
 		#make full corpus
 		fullcorpus=explorer (os.path.join(input_dir, folder))
-		with open(filename+"_fullcorpus.txt", "w") as fullcorpus_out:
-			pandas.DataFrame(fullcorpus).T.to_csv(fullcorpus_out, sep="\t", encoding='utf-8')
-		print "full dataset written to", fullcorpus_out
+		#with open(filename+"_fullcorpus.csv", "w") as fullcorpus_out:
+		#	pandas.DataFrame(fullcorpus).T.to_csv(fullcorpus_out, sep="\t", encoding='utf-8')
+		#print "full dataset written to", fullcorpus_out
 		#look at authors
 		fullcorpus_by_author=aggregator(fullcorpus, 'author', set([v['author'] for k,v in fullcorpus.items()]))
-		t= {k:v.values() for k,v in fullcorpus_by_author.items()}
-		cols= [[i.keys() for i in v] for k,v in t.items()]
-		print cols[0][0]
-		with codecs.open(filename+"_by_author.txt", "a", "utf-8") as columns:
-			columns.write("\t".join(cols[0][0])+"\n")
-		for key in fullcorpus_by_author:
-			for entry in fullcorpus_by_author[key]:
-				with codecs.open(filename+"_by_author.txt", "a", "utf-8") as fullcorpus_by_author_out:
-					fullcorpus_by_author_out.write(key+"\t".join([unicode(i) for i in fullcorpus_by_author[key][entry].values()])+"\n")
-		print "author dataset written to", fullcorpus_by_author_out
+		print fullcorpus_by_author
+		# t= {k:v.values() for k,v in fullcorpus_by_author.items()}
+		# cols= [[i.keys() for i in v] for k,v in t.items()]
+		# print cols[0][0]
+		# with codecs.open(filename+"_by_author.txt", "a", "utf-8") as columns:
+			# columns.write("\t".join(cols[0][0])+"\n")
+		# for key in fullcorpus_by_author:
+			# for entry in fullcorpus_by_author[key]:
+				# with codecs.open(filename+"_by_author.txt", "a", "utf-8") as fullcorpus_by_author_out:
+					# fullcorpus_by_author_out.write(key+"\t".join([unicode(i) for i in fullcorpus_by_author[key][entry].values()])+"\n")
+		# print "author dataset written to", fullcorpus_by_author_out
 
-main ('/Users/ps22344/Desktop/extracted_corpora')
+main ('extracted_corpora')
 
 	
 
