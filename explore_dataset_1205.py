@@ -42,30 +42,34 @@ def aggregator(dictionary, category, list_of_terms):
 
 
 
-def main (input_dir):
+def fullcorpusmaker (input_dir, output_csv=False):
+	"""
+	Iterates over input_dir, calls on explorer.
+	Writes to tab-separated csv/
+	"""
 	for folder in [i for i in os.listdir(input_dir) if not i.startswith(".")]:
 		print folder
 		filename=folder
 		#make full corpus
 		fullcorpus=explorer (os.path.join(input_dir, folder))
-		#with open(filename+"_fullcorpus.csv", "w") as fullcorpus_out:
-		#	pandas.DataFrame(fullcorpus).T.to_csv(fullcorpus_out, sep="\t", encoding='utf-8')
-		#print "full dataset written to", fullcorpus_out
-		#look at authors
-		fullcorpus_by_author=aggregator(fullcorpus, 'author', set([v['author'] for k,v in fullcorpus.items()]))
-		print fullcorpus_by_author
-		# t= {k:v.values() for k,v in fullcorpus_by_author.items()}
-		# cols= [[i.keys() for i in v] for k,v in t.items()]
-		# print cols[0][0]
-		# with codecs.open(filename+"_by_author.txt", "a", "utf-8") as columns:
-			# columns.write("\t".join(cols[0][0])+"\n")
-		# for key in fullcorpus_by_author:
-			# for entry in fullcorpus_by_author[key]:
-				# with codecs.open(filename+"_by_author.txt", "a", "utf-8") as fullcorpus_by_author_out:
-					# fullcorpus_by_author_out.write(key+"\t".join([unicode(i) for i in fullcorpus_by_author[key][entry].values()])+"\n")
-		# print "author dataset written to", fullcorpus_by_author_out
+		if output_csv:
+			with open(filename+"_fullcorpus.csv", "w") as fullcorpus_out:
+				pandas.DataFrame(fullcorpus).T.to_csv(fullcorpus_out, sep="\t", encoding='utf-8')
+		print "full dataset written to", fullcorpus_out
+		
 
-main ('extracted_corpora')
+		
+def byauthormaker (input_dir, full_corpus):
+	"""Incomplete"""
+	fullcorpus_by_author=aggregator(fullcorpus, 'author', set([v['author'] for k,v in fullcorpus.items()]))
+	for d in fullcorpus_by_author:
+		#print d, fullcorpus_by_author[d], "length", len(fullcorpus_by_author[d]) 
+		authorlist=[v['wordcount'] for k,v in fullcorpus_by_author[d].items()]
+		fullcorpus_by_author[d]['totalwords']=sum(authorlist)
+		#print fullcorpus_by_author
+		#structure: AUTHOR : {filename:{genre:X, corpus:Y, etc}, filename_2:{genre:Z, corpus:Y, etc}, totalwords:x}
+
+main ('extracted_corpora_small')
 
 	
 
