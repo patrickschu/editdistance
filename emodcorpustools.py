@@ -59,8 +59,9 @@ class CorpusText(object):
 	"""
 	def __init__(self, file_name):
 		self.filename = file_name
-		self.fulltext = codecs.open(file_name, "r", 'utf-8').read()
-		self.charcount = float(len(self._adtextextractor(self.fulltext)))
+		self.fullfile = codecs.open(file_name, "r", 'utf-8').read()
+		self.fulltext = self._adtextextractor(self.fullfile)
+		self.charcount = float(len(self.fulltext))
 		self.wordcount = float(len(nltk.word_tokenize(self.fulltext)))
 		self.metalist= [
 		'no', 
@@ -79,7 +80,7 @@ class CorpusText(object):
 		]
 		
 		self.uniq = "this is the overall corpus number"
-		self.meta = {k:re.sub("(\t+|\n+|\r+)", " ", self._tagextractor(self.fulltext, k)) for k in self.metalist}
+		self.meta = {k:re.sub("(\t+|\n+|\r+)", " ", self._tagextractor(self.fullfile, k)) for k in self.metalist}
 		
 	def test(self):
 		print "fulltext", len(self.fulltext)
@@ -88,7 +89,7 @@ class CorpusText(object):
 	
 	def gettag(self, tag):
 		#flexible tag extractor; returns what _tagextractor finds for relevant tag
-		result=self._tagextractor(self.fulltext, tag)
+		result=self._tagextractor(self.fullfile, tag)
 		print result
 		return result
 		
