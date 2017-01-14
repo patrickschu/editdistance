@@ -34,7 +34,7 @@ def yieldexplorer(input_dir):
 
 def explorer(input_dir):
 	"""
-	The explorer wanders thru the input_dir, returns a dictionary with relevant info.
+	The explorer wanders thru the input_dir, returns a dictionary with relevant info/metadata on each file.
 	Info supplied by CorpusText object.
 	"""
 	dicti=defaultdict(dict)
@@ -89,20 +89,56 @@ def bytext(input_dir, output_json=False):
 				'wordcount':outputdict[k]['wordcount'],
 				'author':outputdict[k]['author'], 
 				'corpus':outputdict[k]['corpus'], 
-				'title': outputdict[k]['title']} for k,v in outputdict.items()}
+				'title': outputdict[k]['title'].lstrip(" ")} for k,v in outputdict.items()}
 	if output_json:
 		with codecs.open("bytext_0113.json", "w", "utf-8") as jsonout:
 			json.dump(finaldict, jsonout)
 	result= [v for k,v in finaldict.items()]
-	sortedresult=sorted(result, key=lambda x:x['title'] )
-	outputi=codecs.open("titles.txt", "a", "utf-8")
+	sortedresult=sorted(result, key=lambda x:(x['wordcount'], x['title']) )
+	outputi=codecs.open("titles_sorted_by_wordcount.txt", "a", "utf-8")
 	for dict in sortedresult:
-		outputi.write(dict['title']+"\t"+dict['corpus']+"\t"+dict['author']+"\t"+unicode(dict['wordcount'])+"\n")
+		outputi.write(dict['title']+"\t**"+dict['corpus']+"\t**"+dict['author']+"\t**"+unicode(dict['wordcount'])+"\n")
 	outputi.close()
 	
 
+
+def bycount(input_dir, output_json=False):
+	inputdict=yieldexplorer(input_dir)
+	outputdict=defaultdict(list)
+	outputtext=codecs.open("bycount.txt", "a", "utf-8")
+	for entry in inputdict:
+		outputdict[inputdict[entry]['wordcount']].append(inputdict[entry])
+	for item in sorted(outputdict):
+		if len(outputdict[item]) > 1:
+			print "\n****",item
+			print "\t".join(["author", "title", "corpus"])
+			sortedresults= sorted(outputdict[item], key=lambda x:(x['author'], x['title']))
+			print "\n".join(["\t".join((i['author'], i['title'], i['corpus'])) for i in sortedresults])
+			#writeout
+			outputtext.write("\n\n****"+unicode(item)+"\n")
+			#outputtext.write("\t".join(["author", "title", "corpus"])+"\n")
+			sortedresults= sorted(outputdict[item], key=lambda x:(x['author'], x['title']))
+			#print sortedresults
+			outputtext.write("\n".join(["\t*".join((i['author'], i['title'], i['corpus'])) for i in sortedresults]))
+	outputtext.close()
+			
+	# finaldict= {outputdict[k]['filename']:{
+# 				'wordcount':outputdict[k]['wordcount'],
+# 				'author':outputdict[k]['author'], 
+# 				'corpus':outputdict[k]['corpus'], 
+# 				'title': outputdict[k]['title'].lstrip(" ")} for k,v in outputdict.items()}
+# 	if output_json:
+# 		with codecs.open("bytext_0113.json", "w", "utf-8") as jsonout:
+# 			json.dump(finaldict, jsonout)
+# 	result= [v for k,v in finaldict.items()]
+# 	sortedresult=sorted(result, key=lambda x:(x['wordcount'], x['title']) )
+# 	outputi=codecs.open("titles_sorted_by_wordcount.txt", "a", "utf-8")
+# 	for dict in sortedresult:
+# 		outputi.write(dict['title']+"\t**"+dict['corpus']+"\t**"+dict['author']+"\t**"+unicode(dict['wordcount'])+"\n")
+# 	outputi.close()
+
 	
-bytext('extracted_corpora', output_json=True)
+bycount('extracted_corpora', output_json=True)
 
 
 
