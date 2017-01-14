@@ -22,12 +22,12 @@ def yieldexplorer(input_dir):
 			dicti[texti.filename]={
 			'wordcount':texti.wordcount,
 			'charcount':texti.charcount,
-			'avg_wordlength':(dicti[texti.filename]['charcount'])/(dicti[texti.filename]['wordcount']),
 			'filename':texti.filename
 			}
+			dicti[texti.filename]['avg_wordlength']=(dicti[texti.filename]['charcount'])/(dicti[texti.filename]['wordcount'])
 			for key in texti.meta:
 				dicti[texti.filename][key]=texti.meta[key]
-	print dicti
+	#print dicti
 	return dicti
 
 
@@ -83,16 +83,26 @@ def fullcorpusmaker (input_dir, output_csv=False):
 		print "full dataset written to", fullcorpus_out
 		
 		
-def bytext(input_dir, output_csv=False):
+def bytext(input_dir, output_json=False):
 	outputdict=yieldexplorer(input_dir)
-	finaldict= {outputdict[k]['filename']:{'author':outputdict[k]['author'], 'corpus':outputdict[k]['corpus'], 'filename': outputdict[k]['title']} for k,v in outputdict.items()}
-	with codecs.open("bytext_0113.json", "w", "utf-8") as jsonout:
-		json.dump(finaldict, jsonout)
-	
+	finaldict= {outputdict[k]['filename']:{
+				'wordcount':outputdict[k]['wordcount'],
+				'author':outputdict[k]['author'], 
+				'corpus':outputdict[k]['corpus'], 
+				'title': outputdict[k]['title']} for k,v in outputdict.items()}
+	if output_json:
+		with codecs.open("bytext_0113.json", "w", "utf-8") as jsonout:
+			json.dump(finaldict, jsonout)
+	result= [v for k,v in finaldict.items()]
+	sortedresult=sorted(result, key=lambda x:x['title'] )
+	outputi=codecs.open("titles.txt", "a", "utf-8")
+	for dict in sortedresult:
+		outputi.write(dict['title']+"\t"+dict['corpus']+"\t"+dict['author']+"\t"+unicode(dict['wordcount'])+"\n")
+	outputi.close()
 	
 
 	
-bytext('extracted_corpora_small')
+bytext('extracted_corpora', output_json=True)
 
 
 
