@@ -4,6 +4,8 @@ import emodcorpustools as emo
 from collections import defaultdict
 import pandas
 import json
+import nltk
+import re
 
 ##INSPECTING
 
@@ -119,26 +121,76 @@ def bycount(input_dir, output_json=False):
 			#outputtext.write("\t".join(["author", "title", "corpus"])+"\n")
 			sortedresults= sorted(outputdict[item], key=lambda x:(x['author'], x['title']))
 			#print sortedresults
+			outputtext.write("\n".join(["\t*".join((i['author'], i['title'], i['corpus'], i['filename'])) for i in sortedresults]))
+	outputtext.close()
+
+
+def dictmaker(input_dir, json_out=False):
+	"""
+	count all words in the corpus.
+	Parameters
+	---
+	input_dir to iterate over
+	
+	Returns
+	---
+	Dictionary {word:count, word2:count, ...}
+	"""
+	htmlregex=re.compile("<.*?>", re.DOTALL)
+	curlyregex=re.compile("\{.*?\}")
+	fulldict=defaultdict(float)
+	for folder in [i for i in os.listdir(input_dir) if not i.startswith(".")]:
+		print folder
+		for fili in [i for i in os.listdir(os.path.join(input_dir, folder)) if not i.startswith(".")]:
+			#print "\n\n", fili
+			texti=emo.CorpusText(os.path.join(input_dir, folder, fili))
+			cleantext=curlyregex.sub("", texti.fulltext)
+			cleantext=htmlregex.sub("", cleantext)
+			for word in nltk.word_tokenize(cleantext):
+				fulldict[word]=fulldict[word]+1
+	if json_out:
+		with codecs.open("fulldict.json", "w", "utf-8") as jsonout:
+			json.dump(fulldict, jsonout, encoding="utf-8")
+	sorteddict=sorted(fulldict, key=lambda x:fulldict[x], reverse=True)
+	outputfile=codecs.open("dicti.txt","w", "utf-8")
+	outputfile.write("\n".join([":".join((i, unicode(fulldict[i]))) for i in sorteddict if fulldict[i] > 100]))
+	outputfile.close()		
+			# dicti[texti.filename]={
+# 			'wordcount':texti.wordcount,
+# 			'charcount':texti.charcount,
+# 			'filename':texti.filename
+# 			}
+# 			dicti[texti.filename]['avg_wordlength']=(dicti[texti.filename]['charcount'])/(dicti[texti.filename]['wordcount'])
+# 			for key in texti.meta:
+# 				dicti[texti.filename][key]=texti.meta[key]
+# 		#print dicti
+# 		return dicti
+dictmaker('extracted_corpora', json_out=True)
+
+"""
+not even started on this one
+"""
+def byauthor(input_dir, output_json=False):
+	inputdict=yieldexplorer(input_dir)
+	outputdict=defaultdict(list)
+	outputtext=codecs.open("bycount.txt", "a", "utf-8")
+	for entry in inputdict:
+		outputdict[inputdict[entry]['wordcount']].append(inputdict[entry])
+	for item in sorted(outputdict):
+		if len(outputdict[item]) > 1:
+			print "\n****",item
+			print "\t".join(["author", "title", "corpus"])
+			sortedresults= sorted(outputdict[item], key=lambda x:(x['author'], x['title']))
+			print "\n".join(["\t".join((i['author'], i['title'], i['corpus'])) for i in sortedresults])
+			#writeout
+			outputtext.write("\n\n****"+unicode(item)+"\n")
+			#outputtext.write("\t".join(["author", "title", "corpus"])+"\n")
+			sortedresults= sorted(outputdict[item], key=lambda x:(x['author'], x['title']))
+			#print sortedresults
 			outputtext.write("\n".join(["\t*".join((i['author'], i['title'], i['corpus'])) for i in sortedresults]))
 	outputtext.close()
-			
-	# finaldict= {outputdict[k]['filename']:{
-# 				'wordcount':outputdict[k]['wordcount'],
-# 				'author':outputdict[k]['author'], 
-# 				'corpus':outputdict[k]['corpus'], 
-# 				'title': outputdict[k]['title'].lstrip(" ")} for k,v in outputdict.items()}
-# 	if output_json:
-# 		with codecs.open("bytext_0113.json", "w", "utf-8") as jsonout:
-# 			json.dump(finaldict, jsonout)
-# 	result= [v for k,v in finaldict.items()]
-# 	sortedresult=sorted(result, key=lambda x:(x['wordcount'], x['title']) )
-# 	outputi=codecs.open("titles_sorted_by_wordcount.txt", "a", "utf-8")
-# 	for dict in sortedresult:
-# 		outputi.write(dict['title']+"\t**"+dict['corpus']+"\t**"+dict['author']+"\t**"+unicode(dict['wordcount'])+"\n")
-# 	outputi.close()
-
 	
-bycount('extracted_corpora', output_json=True)
+#bycount('extracted_corpora', output_json=True)
 
 
 
