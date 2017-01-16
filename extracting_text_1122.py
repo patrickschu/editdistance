@@ -300,7 +300,7 @@ meta=[
 ("dialect", "bre"),
 ("authorage", "<AUTHOR>.*?((?:d\. |b\. )?\d{4}(?:-\d{2,4})?)\.?</AUTHOR>"), # we can get this from after author names  [i.e. 1645]July 12. 1642 Jun. 28 [1642] December. 3. [1576] <DATE>the 29. of Ianua. 1582.</DATE> 5 April. 1533] the 29. of Ianua. 1582.< October 22, [1642] <DATE>21. Nouemb. 1564.</DATE> not before <DATE>3. Feb. 1582.</DATE> the 14. of December 1597. Febr. 2. Anno Dom. 1643.
 ("pubdate", '\n<DATE>\D*?(?:ca. |the ye[ae]re?\.? |between |\D \. | Anno Dom\.? |.*? [Aa][Nn][Nn][Oo] |.*?, |\[|\[i.e. |\[.*?|\D+ \[|\w+\.? \d{1,2}\. |\w+\.? \d{1,2}\.?,? \[?|(?:not before |(?:not)? after )?\d{,2}\.? (?:Iun\w+|April|Maij|May|Ian\w+|Nouemb|Au\w+|Jun\w|Feb|June|July|Nov|Oc\w+|Dec|Dec\w+|Sep\w+)\.? |.*? \[26 July |\d{,2}\. of (?:Ianu\w+|December|May|Nov\w+|Oct\w+|Aug\w+)\.? )?(1[2-8]\[?[0-9]\[?[0-9]\??|Anno. M.D.LIIII. mense Septembri|MDCC|M.DC.LXXII|M.D.XLIX)\??\]{,2}.*?\.?</DATE>\n'), #"#<DATE>1615.</DATE> #2003-01 (EEBO-TCP Phase 1)
-("genre1", '<TERM TYPE=.*>(.*?)\.?</T5ERM>'), #<TERM TYPE="geographic name">Gambia River --  Description and travel --  Early works to 1800.</TERM><TERM TYPE="geographic name">Africa, West --  Description and travel --  To 1850.</TERM>
+("genre1", '<TERM TYPE=.*>(.*?)\.?</TERM>'), #<TERM TYPE="geographic name">Gambia River --  Description and travel --  Early works to 1800.</TERM><TERM TYPE="geographic name">Africa, West --  Description and travel --  To 1850.</TERM>
 ("genre2", 'X'),
 ("notes", '<NOTE>(.*?)</NOTE>'),
 ("extraction_notes", """removed all markup in triangle brackets. 286 files with TEXT tag lat deleted"""),
@@ -321,7 +321,7 @@ for m in meta:
 
 def finder(input_dir, meta_dict):
 	filecount=1
-	
+	donefiles=codecs.open("files_processed.txt", "w", "utf-8")
 	for folder in [i for i in os.listdir(input_dir) if not i.startswith(".")]:# if not i in ['headed-xml-200802','headed-xml-200702','headed-xml-200609','headed-xml-200604','headed-xml-200601','headed-xml-200510','headed-xml-200504', 'headed-xml-200501', 'headed-xml-200410','headed-xml-200407','headed-xml-200402','headed-xml-200404','headed-xml-200310', 'headed-xml-200312', 'headed-xml-200310','headed-xml-200308', 'headed-xml-200201', 'headed-xml-200202', 'headed-xml-200203', 'headed-xml-200205', 'headed-xml-200206', 'headed-xml-200207', 'headed-xml-200208', 'headed-xml-200210', 'headed-xml-200212' , 'headed-xml-200306', 'headed-xml-200111', 'headed-xml-200112', 'headed-xml-200204', 'headed-xml-200302', 'headed-xml-200304']]:	
 		for fili in [i for i in os.listdir(os.path.join(input_dir, folder)) if not i.startswith(".")]:
 			start=time.time()
@@ -378,6 +378,7 @@ def finder(input_dir, meta_dict):
 	 			outputfili.write(corpusstring)
 	 		filecount = filecount + 1
  			print "file {} processed succesfully, written to {}.\n".format(os.path.join(input_dir, folder, fili), outputfili)
+			donefiles.write(os.path.join(input_dir, folder, fili)+"\n")
 			end=time.time()
 			print "this took us {} seconds. so slow".format((end-start))
 		print "---folder '", folder, "' done---"
