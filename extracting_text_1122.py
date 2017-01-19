@@ -2,6 +2,7 @@ import codecs
 import re
 import os
 import time
+import shutil
 
 ##TEMPLATE
 """
@@ -316,15 +317,16 @@ for m in meta:
 		metadict[m[0]]=m[1]
 	else:
 		metadict[m[0]]=re.compile(m[1], re.DOTALL)
+excludelist=[]
 
-with codecs.open('files_processed.txt', 'r', 'utf-8') as excludefile:
-	excludelist=excludefile.read().split("\n")
+#with codecs.open('files_processed.txt', 'r', 'utf-8') as excludefile:
+#	excludelist=excludefile.read().split("\n")
 
 print excludelist, len(excludelist)
 
 def finder(input_dir, meta_dict, exclude_list):
 	filecount=1
-	donefiles=codecs.open("files_processed.txt", "w", "utf-8")
+	donefiles=codecs.open("files_processed.txt", "a", "utf-8")
 	for folder in [i for i in os.listdir(input_dir) if not i.startswith(".")]:# if not i in ['headed-xml-200802','headed-xml-200702','headed-xml-200609','headed-xml-200604','headed-xml-200601','headed-xml-200510','headed-xml-200504', 'headed-xml-200501', 'headed-xml-200410','headed-xml-200407','headed-xml-200402','headed-xml-200404','headed-xml-200310', 'headed-xml-200312', 'headed-xml-200310','headed-xml-200308', 'headed-xml-200201', 'headed-xml-200202', 'headed-xml-200203', 'headed-xml-200205', 'headed-xml-200206', 'headed-xml-200207', 'headed-xml-200208', 'headed-xml-200210', 'headed-xml-200212' , 'headed-xml-200306', 'headed-xml-200111', 'headed-xml-200112', 'headed-xml-200204', 'headed-xml-200302', 'headed-xml-200304']]:	
 		for fili in [i for i in os.listdir(os.path.join(input_dir, folder)) if not i.startswith(".")]:
 			if not os.path.join(input_dir, folder, fili) in exclude_list:
@@ -361,7 +363,8 @@ def finder(input_dir, meta_dict, exclude_list):
 				#else:
 				#	genre="unknown"
 				print "genre done"	
-				corpusstring=(
+				try:
+					corpusstring=(
 					"<file> <no="+str(filecount)+"> "
 					"<corpusnumber="+fili.rstrip(".headed.xml")+"> "
 					"<corpus="+meta_dict['corpus']+"> " 
@@ -377,11 +380,14 @@ def finder(input_dir, meta_dict, exclude_list):
 					"<encoding="+meta_dict['encoding']+"> "
 					"<text>"+"\n".join([htmlsub.sub("", i).strip("\n") for i in meta_dict['text'].findall(rawtext)])+" </text> </file>"
 					)
-				print "string made"
-				with codecs.open(os.path.join("outputfiles",  str(fili)+"_extracted.txt"), "w", "utf-8") as outputfili:
-					outputfili.write(corpusstring)
-				filecount = filecount + 1
-				print "file {} processed succesfully, written to {}.\n".format(os.path.join(input_dir, folder, fili), outputfili)
+					print "string made"
+					with codecs.open(os.path.join("outputfiles",  str(fili)+"_extracted.txt"), "w", "utf-8") as outputfili:
+						outputfili.write(corpusstring)
+					filecount = filecount + 1
+					print "file {} processed succesfully, written to {}.\n".format(os.path.join(input_dir, folder, fili), outputfili)
+				except IndexError:
+					print "Index error in ", os.path.join(input_dir, folder, fili)
+					shutil.move(os.path.join(input_dir, folder, fili), os.path.join("damnedfiles", fili))
 				donefiles.write(os.path.join(input_dir, folder, fili)+"\n")
 				end=time.time()
 				print "this took us {} seconds. so slow".format((end-start))
