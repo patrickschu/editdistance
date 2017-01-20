@@ -6,6 +6,8 @@ import pandas
 import json
 import nltk
 import re
+from subprocess import call
+
 
 
 def yieldexplorer(input_dir):
@@ -84,6 +86,7 @@ def authorfinder(input_dir, output_txt=False):
 	Gives title and location for each
 	"""
 	authordict=defaultdict(list)
+	comments=[]
 	for folder in [i for i in os.listdir(input_dir) if not i.startswith(".")]:
 		print folder
 		for fili in [i for i in os.listdir(os.path.join(input_dir, folder)) if not i.startswith(".")]:
@@ -94,9 +97,14 @@ def authorfinder(input_dir, output_txt=False):
 		#title, corpus, file_name
 		 corpora= set([corpus for title, corpus, file_name in authordict[k]])
 		 if len(corpora) > 1 and len([file_name for title, corpus, file_name in authordict[k]]) < 10:
-		 	print k, corpora, [file_name for title, corpus, file_name in authordict[k]]
+		 	print "\n", k, corpora#, [file_name for title, corpus, file_name in authordict[k]]
 		 	for i in [file_name for title, corpus, file_name in authordict[k]]:
-		 		os.system(i)
+		 		print i
+		 	#	call (['open', i])
+		 	#comment=raw_input("what?" )
+		 	#comments.append((k, comment))
+	print comments
+		 		
 
 
 	
