@@ -1,0 +1,2 @@
+01/20: are we consistent with "unknown" vs "X" in author, genre etc.?
+Spaces leading and trailig in titles, authors
