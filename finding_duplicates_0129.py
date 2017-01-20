@@ -74,32 +74,6 @@ def bycount(input_dir, output_json=False):
 	outputtext.close()
 
 
-def authornameconverter(name_string, corpus_name):
-	"""
-	Converts all author names from different corpora to lastname_firstname.
-	If not firstname, use "X"
-	What about missing names?
-	"""
-	corpusdict={
-	'parsed_corpus_of_early_english_correspondence': (lambda x: "_".join((x[len(x)-1], x[0]))),#"WILLIAM_MARYON",
-	'lampeter_corpus' : (lambda x: "_".join((x[len(x)-1], x[0]))),#"Richard Mead"
-	'early_modern_english_medical_texts' : (lambda x: "_".join((x[len(x)-1], x[0]))),#Joseph Blagrave 
-	'helsinki_corpus_xml_edition' : (lambda x: "_".join((x[0], x[len(x)-1]))),#SMITH HENRY
-	'innsbruck_letter_corpus' : (lambda x: "_".join((x[len(x)-1], x[0]))),#Queen Margaret, Dorothye Plumpton
-	'first_folio_of_shakespeare_machine_readable_text_format' : (lambda x: "_".join((x[0], x[len(x)-1]))),#shakespeare, william
-	'corpus_of_early_english_dialogs' : (lambda x: "_".join((x[0], x[len(x)-1])))#WARNER WILLIAM
-	
-	}
-	seps=[" ", "_"]
-	seps=re.compile("|".join(seps))
-	
-	name_string=name_string.strip(" ")
-	if len(seps.split(name_string)) == 1:
-			return name_string.lower()
-	else:
-		outputname= seps.split(name_string.lower())
-		return corpusdict[corpus_name](outputname)
-
 
 
 	
@@ -114,12 +88,17 @@ def authorfinder(input_dir, output_txt=False):
 		print folder
 		for fili in [i for i in os.listdir(os.path.join(input_dir, folder)) if not i.startswith(".")]:
 			corpustext=emo.CorpusText(os.path.join(input_dir, folder, fili))
-			author_normalized=authornameconverter(corpustext.meta['author'], corpustext.meta['corpus'])
-			authordict[author_normalized].append((corpustext.meta['title'], corpustext.meta['corpus'], os.path.join(input_dir, folder)))
-	for f in sorted(authordict.keys()):
-		for title, corpus, file_name in authordict[f]:
-			if len(set(corpus)) > 10:
-				print f
+			author_normalized=emo.authornameconverter(corpustext.meta['author'], corpustext.meta['corpus'])
+			authordict[author_normalized].append((corpustext.meta['title'], corpustext.meta['corpus'], os.path.join(input_dir, folder, fili)))
+	for k in sorted(authordict.keys()):
+		#title, corpus, file_name
+		 corpora= set([corpus for title, corpus, file_name in authordict[k]])
+		 if len(corpora) > 1 and len([file_name for title, corpus, file_name in authordict[k]]) < 10:
+		 	print k, corpora, [file_name for title, corpus, file_name in authordict[k]]
+		 	for i in [file_name for title, corpus, file_name in authordict[k]]:
+		 		os.system(i)
+
+
 	
 
 authorfinder('/Users/ps22344/Downloads/editdistance/extracted_corpora')
