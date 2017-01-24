@@ -1,0 +1,237 @@
+barrington_john', ['dup', 'detailsunsure']) 
+barrington_judith', ['nodup'])
+betson_thomas', ['dup', 'stonor72,067,064,044']) #explanation: if only one list of files is given, they are all consolidated in one file, usually helsinki
+cecil_robert', ['dup', 'Edmonde018,016'])
+cely_george', ['dup', 'cely077,065,037'])
+cornwallis_elizabeth', ['dup', 'cornwal146,145,147'])
+edmondes_thomas', ['nodup', 'nodup'])
+elyot_thomas', ['doublecheck', 'note:booksvletters'])
+ferrar_nicholas', ['dup', 'feerar003,exactduplicateofhelsinki'])
+haddock_richard', ['dup', 'haddock009'])
+meautys_anne', ['dup', 'cornwal192=innsbruck382,cornwal191=inn370,corn183=inn362,corn169=inn356,corn168=inn355,corn167=inn354,corn158=inn353']) #identical texts are indicate with "="
+plumpton_agnes', ['dup', 'thesamelettersareininnsbruch,helsinkiandparsed.almost100%overlap'])
+savill_henry', ['dup', 'plumpton_116=innsbruck182,p115=i180,p114=i179,p113=i178,p112=i177'])]
+
+
+barrington_john set([u'parsed_corpus_of_early_english_correspondence', u'helsinki_corpus_xml_edition'])
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_004_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_027_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_031_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_033_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_049_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_055_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_064_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_069_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_075_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_083_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_085_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_086_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_093_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_095_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_098_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_099_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_101_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_102_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/helsinki_extracted/300helsinki_extracted.txt
+what?dup detailsunsure
+
+barrington_judith set([u'parsed_corpus_of_early_english_correspondence', u'innsbruck_letter_corpus'])
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_021_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_040_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_047_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_080_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_097_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_103_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_148_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_154_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_177_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_180_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_184_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_186_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_189_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_BARRING_191_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/innsbruck_extracted/339_innsbruck_extracted.txt
+what?nodup
+
+betson_thomas set([u'parsed_corpus_of_early_english_correspondence', u'helsinki_corpus_xml_edition'])
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_STONOR_039_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_STONOR_040_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_STONOR_044_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_STONOR_054_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_STONOR_062_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_STONOR_063_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_STONOR_064_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_STONOR_065_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_STONOR_067_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_STONOR_068_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_STONOR_072_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/helsinki_extracted/212helsinki_extracted.txt
+what?dup stonor72,067,064,044        
+
+cecil_robert set([u'parsed_corpus_of_early_english_correspondence', u'helsinki_corpus_xml_edition'])
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_EDMONDE_004_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_EDMONDE_009_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_EDMONDE_013_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_EDMONDE_014_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_EDMONDE_015_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_EDMONDE_016_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_EDMONDE_018_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_EDMONDE_019_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_EDMONDE_022_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_HUTTON_017_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_HUTTON_018_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_HUTTON_024_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_HUTTON_033_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_HUTTON_047_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_ORIGIN3_003_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/helsinki_extracted/311helsinki_extracted.txt
+what?dup Edmonde018,016
+
+cely_george set([u'parsed_corpus_of_early_english_correspondence', u'helsinki_corpus_xml_edition'])
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CELY_003_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CELY_016_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CELY_033_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CELY_036_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CELY_037_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CELY_065_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CELY_077_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CELY_080_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CELY_090_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CELY_123_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CELY_144_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CELY_149_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/helsinki_extracted/214helsinki_extracted.txt
+what?dup cely077,065,037
+
+cornwallis_elizabeth set([u'parsed_corpus_of_early_english_correspondence', u'innsbruck_letter_corpus'])
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CORNWAL_145_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CORNWAL_146_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CORNWAL_147_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CORNWAL_171_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CORNWAL_173_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CORNWAL_181_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CORNWAL_184_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CORNWAL_186_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CORNWAL_189_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/innsbruck_extracted/344_innsbruck_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/innsbruck_extracted/345_innsbruck_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/innsbruck_extracted/349_innsbruck_extracted.txt
+what?dup cornwal146,145,147
+
+edmondes_thomas set([u'parsed_corpus_of_early_english_correspondence', u'helsinki_corpus_xml_edition'])
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_EDMONDE_001_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_EDMONDE_003_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_EDMONDE_005_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_EDMONDE_006_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_EDMONDE_007_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_EDMONDE_017_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_EDMONDE_020_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_EDMONDE_021_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_EDMONDE_023_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/helsinki_extracted/312helsinki_extracted.txt
+what?nodup nodup
+
+elyot_thomas set([u'parsed_corpus_of_early_english_correspondence', u'helsinki_corpus_xml_edition'])
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_ELYOT_001_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_ELYOT_002_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_ELYOT_003_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_ELYOT_004_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_ELYOT_005_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_ELYOT_006_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_ELYOT_007_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_ELYOT_008_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_ELYOT_009_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_ELYOT_010_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_ELYOT_011_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/helsinki_extracted/223helsinki_extracted.txt
+what?doublecheck note:booksvletters
+
+ferrar_nicholas set([u'parsed_corpus_of_early_english_correspondence', u'helsinki_corpus_xml_edition'])
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_FERRAR_001_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_FERRAR_003_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_FERRAR_006_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_FERRAR_007_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_FERRAR_008_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_FERRAR_009_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_FERRAR_010_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_FERRAR_011_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_FERRAR_012_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_FERRAR_013_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_FERRAR_020_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_FERRAR_024_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/helsinki_extracted/298helsinki_extracted.txt
+what?dup feerar003,exactduplicateofhelsinki
+
+haddock_richard set([u'parsed_corpus_of_early_english_correspondence', u'helsinki_corpus_xml_edition'])
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_HADDOCK_001_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_HADDOCK_002_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_HADDOCK_003_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_HADDOCK_004_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_HADDOCK_005_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_HADDOCK_006_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_HADDOCK_007_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_HADDOCK_008_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_HADDOCK_009_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_HADDOCK_010_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_HADDOCK_011_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_HADDOCK_012_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/helsinki_extracted/348helsinki_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/helsinki_extracted/349helsinki_extracted.txt
+what?dup haddock009
+
+meautys_anne set([u'parsed_corpus_of_early_english_correspondence', u'innsbruck_letter_corpus'])
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CORNWAL_158_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CORNWAL_167_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CORNWAL_168_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CORNWAL_169_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CORNWAL_176_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CORNWAL_183_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CORNWAL_187_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CORNWAL_191_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_CORNWAL_192_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/innsbruck_extracted/353_innsbruck_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/innsbruck_extracted/354_innsbruck_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/innsbruck_extracted/355_innsbruck_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/innsbruck_extracted/356_innsbruck_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/innsbruck_extracted/359_innsbruck_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/innsbruck_extracted/362_innsbruck_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/innsbruck_extracted/370_innsbruck_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/innsbruck_extracted/382_innsbruck_extracted.txt
+what?dup cornwal192=innsbruck382,cornwal191=inn370,corn183=inn362,corn169=inn356,corn168=inn355,corn167=inn354,corn158=inn353
+
+plumpton_agnes set([u'parsed_corpus_of_early_english_correspondence', u'innsbruck_letter_corpus', u'helsinki_corpus_xml_edition'])
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_PLUMPTO_078_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_PLUMPTO_079_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_PLUMPTO_080_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_PLUMPTO_088_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_PLUMPTO_089_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_PLUMPTO_090_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_PLUMPTO_091_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/helsinki_extracted/245helsinki_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/innsbruck_extracted/105_innsbruck_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/innsbruck_extracted/106_innsbruck_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/innsbruck_extracted/107_innsbruck_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/innsbruck_extracted/108_innsbruck_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/innsbruck_extracted/110_innsbruck_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/innsbruck_extracted/111_innsbruck_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/innsbruck_extracted/112_innsbruck_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/innsbruck_extracted/113_innsbruck_extracted.txt
+what?dup thesamelettersareininnsbruch,helsinkiandparsed.almost100%overlap
+
+savill_henry set([u'parsed_corpus_of_early_english_correspondence', u'innsbruck_letter_corpus'])
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_PLUMPTO_112_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_PLUMPTO_113_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_PLUMPTO_114_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_PLUMPTO_115_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/eec_processed/L_PLUMPTO_116_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/innsbruck_extracted/177_innsbruck_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/innsbruck_extracted/178_innsbruck_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/innsbruck_extracted/179_innsbruck_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/innsbruck_extracted/180_innsbruck_extracted.txt
+/Users/ps22344/Downloads/extracted_corpora_0114/innsbruck_extracted/182_innsbruck_extracted.txt
+what?dup plumpton_116=innsbruck182,p115=i180,p114=i179,p113=i178,p112=i177
+[(u'barrington_john', ['dup', 'detailsunsure']), (u'barrington_judith', ['nodup']), (u'betson_thomas', ['dup', 'stonor72,067,064,044']), (u'cecil_robert', ['dup', 'Edmonde018,016']), (u'cely_george', ['dup', 'cely077,065,037']), (u'cornwallis_elizabeth', ['dup', 'cornwal146,145,147']), (u'edmondes_thomas', ['nodup', 'nodup']), (u'elyot_thomas', ['doublecheck', 'note:booksvletters']), (u'ferrar_nicholas', ['dup', 'feerar003,exactduplicateofhelsinki']), (u'haddock_richard', ['dup', 'haddock009']), (u'meautys_anne', ['dup', 'cornwal192=innsbruck382,cornwal191=inn370,corn183=inn362,corn169=inn356,corn168=inn355,corn167=inn354,corn158=inn353']), (u'plumpton_agnes', ['dup', 'thesamelettersareininnsbruch,helsinkiandparsed.almost100%overlap']), (u'savill_henry', ['dup', 'plumpton_116=innsbruck182,p115=i180,p114=i179,p113=i178,p112=i177'])]
+
+
+
+
