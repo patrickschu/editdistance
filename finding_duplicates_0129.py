@@ -96,20 +96,25 @@ def authorfinder(input_dir, output_txt=False):
 	for k in sorted(authordict.keys()):
 		#title, corpus, file_name
 		 corpora= set([corpus for title, corpus, file_name in authordict[k]])
-		 if len(corpora) > 1 and len([file_name for title, corpus, file_name in authordict[k]]) < 10:
-		 	print "\n", k, corpora#, [file_name for title, corpus, file_name in authordict[k]]
-		 	for i in [file_name for title, corpus, file_name in authordict[k]]:
-		 		print i
-		 	#	call (['open', i])
-		 	#comment=raw_input("what?" )
-		 	#comments.append((k, comment))
+		 if len(corpora) > 1 and len([file_name for title, corpus, file_name in authordict[k]]) >19:
+		 	print "\n", k, corpora, len([file_name for title, corpus, file_name in authordict[k]])#, [file_name for title, corpus, file_name in authordict[k]]
+		 	# for i in [file_name for title, corpus, file_name in authordict[k]]:
+# 		 		print i
+# 		 		call (['open', i])
+# 		 	comment=raw_input("what?" )
+# 		 	comments.append((k, comment.split(" ")))
 	print comments
-		 		
 
+input_dir='/Users/ps22344/Downloads/extracted_corpora_0114'		 		
 
+for folder in [i for i in os.listdir(input_dir) if not i.startswith(".")]:
+		print folder
+		for fili in [i for i in os.listdir(os.path.join(input_dir, folder)) if not i.startswith(".")]:
+			corpustext=emo.CorpusText(os.path.join(input_dir, folder, fili))
+			emo.authornameconverter(corpustext.meta['author'], corpustext.meta['corpus'])
 	
 
-authorfinder('/Users/ps22344/Downloads/editdistance/extracted_corpora')
+authorfinder('/Users/ps22344/Downloads/extracted_corpora_0114')
 	
 	
 
