@@ -85,6 +85,7 @@ def authorfinder(input_dir, output_txt=False):
 	Outputs list of authors to ID writers present in several corpora.
 	Gives title and location for each
 	"""
+	print "running authorfinder"
 	authordict=defaultdict(list)
 	comments=[]
 	for folder in [i for i in os.listdir(input_dir) if not i.startswith(".")]:
@@ -92,26 +93,21 @@ def authorfinder(input_dir, output_txt=False):
 		for fili in [i for i in os.listdir(os.path.join(input_dir, folder)) if not i.startswith(".")]:
 			corpustext=emo.CorpusText(os.path.join(input_dir, folder, fili))
 			author_normalized=emo.authornameconverter(corpustext.meta['author'], corpustext.meta['corpus'])
-			authordict[author_normalized].append((corpustext.meta['title'], corpustext.meta['corpus'], os.path.join(input_dir, folder, fili)))
+			authordict[author_normalized].append((corpustext.meta['title'], corpustext.meta['corpus'], corpustext.meta['pubdate'], os.path.join(input_dir, folder, fili)))
 	for k in sorted(authordict.keys()):
 		#title, corpus, file_name
-		 corpora= set([corpus for title, corpus, file_name in authordict[k]])
-		 if len(corpora) > 1 and len([file_name for title, corpus, file_name in authordict[k]]) >19:
-		 	print "\n", k, corpora, len([file_name for title, corpus, file_name in authordict[k]])#, [file_name for title, corpus, file_name in authordict[k]]
-		 	# for i in [file_name for title, corpus, file_name in authordict[k]]:
-# 		 		print i
-# 		 		call (['open', i])
-# 		 	comment=raw_input("what?" )
-# 		 	comments.append((k, comment.split(" ")))
-	print comments
+		 corpora= set([corpus for title, corpus, pubdate, file_name in authordict[k]])
+		 if len(corpora) > 1 and len([file_name for title, corpus, pubdate, file_name in authordict[k]]) > 19:
+		 	print "\n", k, corpora, len([file_name for title, corpus, pubdate, file_name in authordict[k]])#, [file_name for title, corpus, file_name in authordict[k]]
+		 	for i in [(file_name, pubdate) for title, corpus, pubdate, file_name in authordict[k]]:
+ 		 		print "\t".join(i)
+ 		 		call (['open', i[0]])
+ 		 	comment=raw_input("what?" )
+			#comment="x x"
+ 		 	comments.append((k, ",".join(comment.split(" "))))
+	print "\n".join([",".join(i) for i in comments])
 
-input_dir='/Users/ps22344/Downloads/extracted_corpora_0114'		 		
 
-for folder in [i for i in os.listdir(input_dir) if not i.startswith(".")]:
-		print folder
-		for fili in [i for i in os.listdir(os.path.join(input_dir, folder)) if not i.startswith(".")]:
-			corpustext=emo.CorpusText(os.path.join(input_dir, folder, fili))
-			emo.authornameconverter(corpustext.meta['author'], corpustext.meta['corpus'])
 	
 
 authorfinder('/Users/ps22344/Downloads/extracted_corpora_0114')
@@ -124,3 +120,12 @@ def sametextfinder(input_dir, chunk_length, starting_point=0):
 	Then compares to rest of corpus.
 	"""
 	print "assi"
+	
+	
+# input_dir='/Users/ps22344/Downloads/extracted_corpora_0114'		 		
+# this is just for illustrative purposes
+# for folder in [i for i in os.listdir(input_dir) if not i.startswith(".")]:
+# 		print folder
+# 		for fili in [i for i in os.listdir(os.path.join(input_dir, folder)) if not i.startswith(".")]:
+# 			corpustext=emo.CorpusText(os.path.join(input_dir, folder, fili))
+# 			emo.authornameconverter(corpustext.meta['author'], corpustext.meta['corpus'])
