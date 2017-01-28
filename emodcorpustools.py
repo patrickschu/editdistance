@@ -36,11 +36,11 @@ def authornameconverter(name_string, corpus_name):
 	
 	name_string=name_string.strip(" ")
 	if len(seps.split(name_string)) == 1:
-			print "turned {} into {}".format(name_string, name_string.lower())
+			#print "turned {} into {}".format(name_string.decode("utf-8"), name_string.lower().decode("utf-8"))
 			return name_string.lower()
 	else:
 		outputname= seps.split(name_string.lower())
-		print "turned {} into {}".format(outputname, corpusdict[corpus_name](outputname))
+		#print "turned {} into {}".format(name_string, corpusdict[corpus_name](outputname).decode("utf-8"))
 		return corpusdict[corpus_name](outputname)
 
 
