@@ -97,7 +97,7 @@ def authorfinder(input_dir, output_txt=False):
 	for k in sorted(authordict.keys()):
 		#title, corpus, file_name
 		 corpora= set([corpus for title, corpus, pubdate, file_name in authordict[k]])
-		 if len(corpora) > 1 and len([file_name for title, corpus, pubdate, file_name in authordict[k]]) > 19:
+		 if len(corpora) > 1 and len([file_name for title, corpus, pubdate, file_name in authordict[k]]) <10:
 		 	print "\n", k, corpora, len([file_name for title, corpus, pubdate, file_name in authordict[k]])#, [file_name for title, corpus, file_name in authordict[k]]
 		 	for i in [(file_name, pubdate) for title, corpus, pubdate, file_name in authordict[k]]:
  		 		print "\t".join(i)
