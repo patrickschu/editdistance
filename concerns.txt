@@ -6,4 +6,8 @@ I hope by your goodnes thes doughts shall bee taken away ;
 What is up with this - this should have been eliminated?
 
 
-01/28
+02/08
+Also, the name of the corpus is “corpus of English dialogues”: I would be grateful if this could be amended throughout the 3 list, if you can files (for future appendix reasons); likewise, “eec” should in fact be ceec (corpus of early English correspondence)
+
+Fix the extraction issue with eec : lines starting with < as in <parens> are deleted
+
