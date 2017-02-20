@@ -11,3 +11,5 @@ Also, the name of the corpus is “corpus of English dialogues”: I would be gr
 
 Fix the extraction issue with eec : lines starting with < as in <parens> are deleted
 
+02/20
+Look over author names in Author list.docx
