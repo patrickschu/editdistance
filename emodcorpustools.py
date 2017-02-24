@@ -4,6 +4,8 @@ import codecs
 import nltk.tokenize
 import pandas
 import string
+from collections import defaultdict
+
 
 #some of these are taken from clustertools
 def tagextractor(text, tag, fili):
@@ -14,9 +16,12 @@ def tagextractor(text, tag, fili):
     return result[0]
     
     
-#helper functions
+#regexes and strings
 punct= string.punctuation
+metaregex= "({|<).*?(>|})"
 
+
+#helper functions
 def authornameconverter(name_string, corpus_name):
 	"""
 	Converts all author names from different corpora to lastname_firstname according to rules associated with corpus_name. 
@@ -45,6 +50,22 @@ def authornameconverter(name_string, corpus_name):
 		#print "turned {} into {}".format(name_string, corpusdict[corpus_name](outputname).decode("utf-8"))
 		return corpusdict[corpus_name](outputname)
 
+def dictbuilder(input_dir):
+	"""
+	Builds a dictionary of all texts in input_dir.
+	Format: {word:count}
+	"""
+	dicti=defaultdict(int)
+	for w in os.walk(input_dir):
+		folder=w[0]
+		print "folder", folder 
+		for fili in [i for i in w[2] if i.endswith(".txt")]:
+			text= CorpusText(os.path.join(input_dir, folder, fili))
+			for word in text.tokenizer(cleantext=True):
+				dicti[word.lower()]= dicti[word]+1
+	return dicti
+
+
 
 
 class CorpusText(object):
@@ -56,9 +77,9 @@ class CorpusText(object):
 		self.filename = file_name
 		self.fullfile = codecs.open(file_name, "r", 'utf-8').read()
 		self.fulltext = self._adtextextractor(self.fullfile)
-		self.fulltext_tokenized= nltk.word_tokenize(self.fulltext)
+		self.cleantext= re.sub(metaregex, " ", self.fulltext)
 		self.charcount = float(len(self.fulltext))
-		self.wordcount = float(len([i for i in self.fulltext_tokenized if not i in punct]))
+		self.wordcount = float(len([i for i in nltk.word_tokenize(self.cleantext) if not i in punct]))
 		self.metalist= [
 		'no', 
 		'corpusnumber', 
@@ -82,6 +103,12 @@ class CorpusText(object):
 		print "fulltext", len(self.fulltext)
 		print "charcount", self.charcount
 		print self.meta
+	
+	def tokenizer(self, cleantext=False):
+		if cleantext:
+			return nltk.word_tokenize(self.cleantext)
+		else:
+			return nltk.word_tokenize(self.fulltext)
 	
 	def gettag(self, tag):
 		#flexible tag extractor; returns what _tagextractor finds for relevant tag
