@@ -3,9 +3,9 @@ import re
 import codecs
 import nltk.tokenize
 import pandas
+import string
 
-#partially, these are taken from clustertools
-
+#some of these are taken from clustertools
 def tagextractor(text, tag, fili):
     regexstring="<"+tag+"=(.*?)>"
     result=re.findall(regexstring, text, re.DOTALL)
@@ -15,6 +15,8 @@ def tagextractor(text, tag, fili):
     
     
 #helper functions
+punct= string.punctuation
+
 def authornameconverter(name_string, corpus_name):
 	"""
 	Converts all author names from different corpora to lastname_firstname according to rules associated with corpus_name. 
@@ -45,56 +47,18 @@ def authornameconverter(name_string, corpus_name):
 
 
 
-
-class Corpus(object):
-	"""
-	The Corpus object compiles all relevant info for an entire corpus. 
-	It reads in a tab-separated spreadsheet. 
-	"""
-	def __init__(self, spreadsheet):
-		self.corpusname = spreadsheet
-		self.data = pandas.read_csv(spreadsheet, delimiter = "\t", encoding = "utf-8")
-	
-	def filecount(self):
-		#returns the number of files, a.k.a. the number of rows
-		#NAs?
-		filecount = len(self.data.index)
-		#print "{} files".format(filecount)
-		return filecount
-	
-	def wordcount(self, column_name):
-		#returns the sum of the column with column_name, which contains wordcounts per file
-		#also returns dict with major statistics
-		wordcount = self.data[column_name].sum()
-		wordmean = self.data[column_name].mean()
-		wordmedian = self.data[column_name].median()
-		wordstdev = self.data[column_name].std()
-		#print "{} words".format(wordcount)
-		return wordcount, {'count': wordcount, 'mean': wordmean, 'median': wordmedian, 'stdev': wordstdev}
-	
-	def categoryfeatures(self, column_name):
-		#this returns the features of the category contained in column_name:
-		#how many Ns, how many uniques
-		subset=self.data[column_name]
-		categorytype = subset.dtype
-		categorylevels = subset.unique()
-		return {'type': categorytype , 'levels': categorylevels}
-		
-	def describe(self):
-		self.data.describe()
-
-
 class CorpusText(object):
 	"""
-	The CorpusText object compiles all the relevant infos for corpus files.
+	The CorpusText object compiles all the relevant infos for individual corpus files/texts.
 	Metadata outside of text are stored in dictionary 'meta'.
 	"""
 	def __init__(self, file_name):
 		self.filename = file_name
 		self.fullfile = codecs.open(file_name, "r", 'utf-8').read()
 		self.fulltext = self._adtextextractor(self.fullfile)
+		self.fulltext_tokenized= nltk.word_tokenize(self.fulltext)
 		self.charcount = float(len(self.fulltext))
-		self.wordcount = float(len(nltk.word_tokenize(self.fulltext)))
+		self.wordcount = float(len([i for i in self.fulltext_tokenized if not i in punct]))
 		self.metalist= [
 		'no', 
 		'corpusnumber', 
@@ -140,3 +104,45 @@ class CorpusText(object):
 		if len(result) != 1:
 			print "alarm in adtextextractor", fili, result
 		return result[0]
+
+
+
+
+class Corpus(object):
+	"""
+	The Corpus object compiles all relevant info for an entire corpus. 
+	It reads in a tab-separated spreadsheet. 
+	"""
+	def __init__(self, spreadsheet):
+		self.corpusname = spreadsheet
+		self.data = pandas.read_csv(spreadsheet, delimiter = "\t", encoding = "utf-8")
+	
+	def filecount(self):
+		#returns the number of files, a.k.a. the number of rows
+		#NAs?
+		filecount = len(self.data.index)
+		#print "{} files".format(filecount)
+		return filecount
+	
+	def wordcount(self, column_name):
+		#returns the sum of the column with column_name, which contains wordcounts per file
+		#also returns dict with major statistics
+		wordcount = self.data[column_name].sum()
+		wordmean = self.data[column_name].mean()
+		wordmedian = self.data[column_name].median()
+		wordstdev = self.data[column_name].std()
+		#print "{} words".format(wordcount)
+		return wordcount, {'count': wordcount, 'mean': wordmean, 'median': wordmedian, 'stdev': wordstdev}
+	
+	def categoryfeatures(self, column_name):
+		#this returns the features of the category contained in column_name:
+		#how many Ns, how many uniques
+		subset=self.data[column_name]
+		categorytype = subset.dtype
+		categorylevels = subset.unique()
+		return {'type': categorytype , 'levels': categorylevels}
+		
+	def describe(self):
+		self.data.describe()
+
+
