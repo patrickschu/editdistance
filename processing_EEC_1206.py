@@ -67,7 +67,7 @@ def splitter(input_dir, pattern):
 				print "file written to" , os.path.join("outputfiles", res[0].strip("<>")+"_processed.txt"), "thank you very much"
 			#use res[0] for file name, dump the rest into file
 
-splitter("/Users/ps22344/Desktop/marcos_corpora/EarlyEnglishCorrespondence/2510/PCEEC/corpus/txt", "(<L_.*?_\d{3}>)(.*?)(?:<Q_\w{3}_.*?>|$)")
+splitter("/Users/ps22344/Downloads/Parsed Corpus of Early English Correspondence/2510/PCEEC/corpus/txt", "(<L_.*?_\d{3}>)(.*?)(?:<Q_\w{3}_.*?>|$)")
 
 r="<Q_\w+_.*?>(.*?)<Q_\w+_.*?>"
 
