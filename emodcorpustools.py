@@ -4,7 +4,9 @@ import codecs
 import nltk.tokenize
 import pandas
 import string
+import time
 from collections import defaultdict
+
 
 
 #some of these are taken from clustertools
@@ -50,7 +52,7 @@ def authornameconverter(name_string, corpus_name):
 		#print "turned {} into {}".format(name_string, corpusdict[corpus_name](outputname).decode("utf-8"))
 		return corpusdict[corpus_name](outputname)
 
-def dictbuilder(input_dir):
+def dictbuilder(input_dir, output_csv=False):
 	"""
 	Builds a dictionary of all texts in input_dir.
 	Format: {word:count}
@@ -63,6 +65,9 @@ def dictbuilder(input_dir):
 			text= CorpusText(os.path.join(input_dir, folder, fili))
 			for word in text.tokenizer(cleantext=True):
 				dicti[word.lower()]= dicti[word]+1
+	if output_csv:
+		with codecs.open("dictbuilder_output.json", "w") as jsonout:
+			json.dump(dicti, jsonout, encoding="utf-8")
 	return dicti
 
 
