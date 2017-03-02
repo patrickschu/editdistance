@@ -14,11 +14,6 @@ with codecs.open("dictbuilder_output.json", "r", "utf-8") as inputjson:
 
 print "lenght dicti", len(dicti)
 
-
-tab = maketrans("u", "v")
-for k in dicti.keys():
-	print k,k.encode("utf-8").translate(tab)
-
 #check out context
 def variantfinder(input_dict, variant_one, variant_two):
 	"""
@@ -37,4 +32,10 @@ def variantfinder(input_dict, variant_one, variant_two):
 	
 variantfinder(dicti, "u", "v")	
 	
-#def contextfinder(length)
+def contextfinder(input_dict, context_window):
+	"""
+	The contextfinder extracts all context of length context_window.
+	Returns a dict with counts for all of them.
+	"""
+	
+
