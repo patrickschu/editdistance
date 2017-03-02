@@ -5,6 +5,7 @@ import nltk.tokenize
 import pandas
 import string
 import time
+import json
 from collections import defaultdict
 
 
@@ -68,6 +69,7 @@ def dictbuilder(input_dir, output_csv=False):
 	if output_csv:
 		with codecs.open("dictbuilder_output.json", "w") as jsonout:
 			json.dump(dicti, jsonout, encoding="utf-8")
+		print "File written to", jsonout
 	return dicti
 
 
