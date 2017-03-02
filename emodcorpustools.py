@@ -73,7 +73,42 @@ def dictbuilder(input_dir, output_csv=False):
 	return dicti
 
 
+def variantfinder(input_dict, variant_one, variant_two):
+	"""
+	The variantfinder identifies words in in the input_dict that exist with both variant_1 and variant_2.
+	I.e. if variant_one is "u" and variant_two is "v", this will pick up on "us" and "vs".
+	It returns a dictionary with the counts for each variant, the key being variant_one.
+	"""
+	print "running the variantfinder"
+	variantonedict= {k:v for k,v in input_dict.items() if variant_one in list(k)}
+	outputdict= {}
+	for entry in variantonedict:
+		if input_dict.get(re.sub(variant_one, variant_two, entry), None):
+			outputdict[entry]={variant_one:variantonedict[entry], variant_two:input_dict[re.sub(variant_one, variant_two, entry)]}
+	return outputdict
 
+
+
+def contextfinder(input_word, variant, context_window=2):
+	"""
+	The contextfinder finds all instances of variant in the input_word.
+	It yields a number of characters preceding and folllowing it as specified in context_window.
+	"""
+	#print "running the contextfinder"
+	#establish position of variants in the word
+	indices= [no for no,i in enumerate(list(input_word)) if i==variant]
+	if len(indices) < 1:
+		print "\nERROR in contextfinder: No instances of '{}' found in '{}'\n".format(variant, input_word)
+	#establish the indices for context
+	ranges= [(range(i-context_window, i),range(i+1, i+1+context_window))  for i in indices]
+	for ran in ranges:
+		output=tuple(tuple((input_word[x] for x in i if -1 < x < len(input_word))) for i in ran)
+		#print output
+		yield output
+
+
+
+##classes
 
 class CorpusText(object):
 	"""
