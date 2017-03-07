@@ -17,7 +17,11 @@ The contextfinder takes the following arguments:
 
 
 ## How to run it
-Run it in a shell. Help for [Mac](https://github.com/tgdp/tools/blob/master/run_mac.MD) and [Windows] (https://github.com/tgdp/tools/blob/master/run_windows.MD) users. 
+Run it in a shell. 
+
+Don't know how to do that? Help with running scripts on [Mac](https://github.com/tgdp/tools/blob/master/run_mac.MD) and [Windows] (https://github.com/tgdp/tools/blob/master/run_windows.MD) computers. 
+
+Never worked with Python before? Here is how to set up your [Windows](https://github.com/tgdp/tools/blob/master/setup_windows.MD) or [Mac](https://github.com/tgdp/tools/blob/master/setup_mac.MD) computer. 
 
 #### The basics. 
 
@@ -30,7 +34,7 @@ It will exclude all items with a differential of more than 20 percentage points,
 
 
 ## Notes:
-
+Do we want fixed length, or < length?
 
 ## Sample output:
 
