@@ -55,13 +55,17 @@ import sys
 # 	
 # 	
 # 
-# for g in contextfinder("muschbush", "v", 3):
+# for g in contextfinder("muhu", "v", 3):
 # 	print g
-def main(a,b):
-	print "args are", a,b
-
-if __name__ == '__main__':
-    # main should return 0 for success, something else (usually 1) for error.
-    print sys.argv[1:]
-    main(*sys.argv[1:])
+# def main(a,b):
+# 	print "args are", a,b
+# 
+# if __name__ == '__main__':
+#     # main should return 0 for success, something else (usually 1) for error.
+#     print sys.argv[1:]
+#     main(*sys.argv[1:])
     
+for g in emo.contextfinder("muschibear", "u", 100, 5):
+	print g
+#input_word, variant, pre_window, post_window)
+
