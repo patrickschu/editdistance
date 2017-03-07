@@ -17,7 +17,7 @@ The contextfinder takes the following arguments:
 
 
 ## How to run it
-Run it in a shell. Help for [Mac](https://github.com/tgdp/tools/blob/master/run_mac.MD) and [Windows] (https://github.com/tgdp/tools/blob/master/run_windows.MD) users. 
+Run it in a shell. Help for [Mac](https://github.com/tgdp/tools/blob/master/run_mac.MD) and [Windows] (https://github.com/tgdp/tools/blob/master/run_windows.MD) users. Here is how to set up your [Windows](https://github.com/tgdp/tools/blob/master/setup_windows.MD) or [Mac](https://github.com/tgdp/tools/blob/master/setup_mac.MD) computer if you have not worked with Python before. 
 
 #### The basics. 
 
