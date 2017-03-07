@@ -89,10 +89,11 @@ def variantfinder(input_dict, variant_one, variant_two):
 
 
 
-def contextfinder(input_word, variant, context_window=2):
+def contextfinder(input_word, variant, pre_window, post_window):
 	"""
 	The contextfinder finds all instances of variant in the input_word.
-	It yields a number of characters preceding and folllowing it as specified in context_window.
+	It yields a number of characters preceding and folllowing it as specified by pre_window and post_window.
+	Pre_window is the number of characters preceding, post_window the number following the variant. 
 	"""
 	#print "running the contextfinder"
 	#establish position of variants in the word
@@ -100,7 +101,7 @@ def contextfinder(input_word, variant, context_window=2):
 	if len(indices) < 1:
 		print "\nERROR in contextfinder: No instances of '{}' found in '{}'\n".format(variant, input_word)
 	#establish the indices for context
-	ranges= [(range(i-context_window, i),range(i+1, i+1+context_window))  for i in indices]
+	ranges= [(range(i-pre_window, i),range(i+1, i+1+post_window))  for i in indices]
 	for ran in ranges:
 		output=tuple(tuple((input_word[x] for x in i if -1 < x < len(input_word))) for i in ran)
 		#print output
