@@ -17,7 +17,7 @@ The contextfinder takes the following arguments:
 
 
 ## How to run it
-Run it in a shell. See here for instructions. 
+Run it in a shell. Help for [Mac](https://github.com/tgdp/tools/blob/master/run_mac.MD) and [Windows] (https://github.com/tgdp/tools/blob/master/run_windows.MD) users. 
 
 #### The basics. 
 
@@ -35,44 +35,45 @@ It will exclude all items with a differential of more than 20 percentage points,
 ## Sample output:
 
 
-****
+>****
+>
+>MOST FREQUENT CONTEXTS of u - v variation (token counts < 10 excluded) 
+>
+>****
+>
+>
+>i_a	tokens: 45	7.589% of total,u: 53.33%, v: 46.67%
+>
+>d_i	tokens: 24	4.047% of total,u: 41.67%, v: 58.33%
+>
+>r_e	tokens: 22	3.71% of total,u: 45.45%, v: 54.55%
+>
+>n_e	tokens: 10	1.686% of total,u: 40.0%, v: 60.0%
+>
+>n_i	tokens: 10	1.686% of total,u: 40.0%, v: 60.0%
+>
+>i_e	tokens: 10	1.686% of total,u: 50.0%, v: 50.0%
+>
+>_g	tokens: 10	1.686% of total,u: 50.0%, v: 50.0%
+>
+>****
+>
+>HIGHEST DIFFERENTIAL IN VARIANT USE of u - v variation (token counts < 10 excluded)
+>
+>n_e	tokens: 10	1.686% of total,u: 40.0%, v: 60.0%
+>
+>n_i	tokens: 10	1.686% of total,u: 40.0%, v: 60.0%
+>
+>d_i	tokens: 24	4.047% of total,u: 41.67%, v: 58.33%
+>
+>r_e	tokens: 22	3.71% of total,u: 45.45%, v: 54.55%
+>
+>i_a	tokens: 45	7.589% of total,u: 53.33%, v: 46.67%
+>
+>i_e	tokens: 10	1.686% of total,u: 50.0%, v: 50.0%
+>
+>_g	tokens: 10	1.686% of total,u: 50.0%, v: 50.0%
 
-MOST FREQUENT CONTEXTS of u - v variation (token counts < 10 excluded) 
-
-****
-
-
-i_a	tokens: 45	7.589% of total,u: 53.33%, v: 46.67%
-
-d_i	tokens: 24	4.047% of total,u: 41.67%, v: 58.33%
-
-r_e	tokens: 22	3.71% of total,u: 45.45%, v: 54.55%
-
-n_e	tokens: 10	1.686% of total,u: 40.0%, v: 60.0%
-
-n_i	tokens: 10	1.686% of total,u: 40.0%, v: 60.0%
-
-i_e	tokens: 10	1.686% of total,u: 50.0%, v: 50.0%
-
-_g	tokens: 10	1.686% of total,u: 50.0%, v: 50.0%
-
-****
-
-HIGHEST DIFFERENTIAL IN VARIANT USE of u - v variation (token counts < 10 excluded)
-
-n_e	tokens: 10	1.686% of total,u: 40.0%, v: 60.0%
-
-n_i	tokens: 10	1.686% of total,u: 40.0%, v: 60.0%
-
-d_i	tokens: 24	4.047% of total,u: 41.67%, v: 58.33%
-
-r_e	tokens: 22	3.71% of total,u: 45.45%, v: 54.55%
-
-i_a	tokens: 45	7.589% of total,u: 53.33%, v: 46.67%
-
-i_e	tokens: 10	1.686% of total,u: 50.0%, v: 50.0%
-
-_g	tokens: 10	1.686% of total,u: 50.0%, v: 50.0%
 
 
 
