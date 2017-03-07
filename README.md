@@ -34,7 +34,7 @@ It will exclude all items with a differential of more than 20 percentage points,
 
 
 ## Notes:
-Do we want fixed length, or up to length?
+Do we want fixed length, or < length?
 
 ## Sample output:
 
