@@ -19,7 +19,7 @@ The contextfinder takes the following arguments:
 ## How to run it
 Run it in a shell. 
 
-Don't know how to do that? Help with running scripts on [Mac](https://github.com/tgdp/tools/blob/master/run_mac.MD) and [Windows] (https://github.com/tgdp/tools/blob/master/run_windows.MD) computers. 
+Don't know how to do that? Help with running scripts on [Mac](https://github.com/tgdp/tools/blob/master/run_mac.MD) and [Windows](https://github.com/tgdp/tools/blob/master/run_windows.MD) computers. 
 
 Never worked with Python before? Here is how to set up your [Windows](https://github.com/tgdp/tools/blob/master/setup_windows.MD) or [Mac](https://github.com/tgdp/tools/blob/master/setup_mac.MD) computer. 
 
@@ -27,7 +27,7 @@ Never worked with Python before? Here is how to set up your [Windows](https://gi
 
 This example shows the basic setup for the contextfinder: 
 
-    python contextfinder.py u v /Users/ps22344/Downloads/editdistance/dictbuilder_output.json 1 3 20 
+    python contextfinder.py u v dictbuilder_output.json 1 3 20 
     
 This will find all items that occur with *u* and *v* interchangeably. It will extract a context window of one character preceding and up to three characters following the variant. 
 It will exclude all items with a differential of more than 20 percentage points, i.e. any item that has more than 80 percent of variant_one or variant_two will be excluded. 
