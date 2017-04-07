@@ -37,16 +37,24 @@ wordlist.txt contains only the word _getting_.
 
 >***
 >55 Variants for 'getting':
+>
 >beating, begetting, beotting, cutting, depting, dyetting, eating, eting, fitting, fretting, geating, gebring, gelding, gemeting, gemitting, gesing, geswing, getang, getig, getin, getten, gettings, gettyn, gettynge, getyng, geuing, geving, gewring, greting, heating, hitting, jesting, lething, leting, letting, lettinge, lettyng, meating, meeting, meting, potting, putting, resting, rotting, rutting, sething, setling, setting, settinge, settling, settyng, sitting, sytting, weting, wetting
 >
 >
 >***
+>
 >Token counts for variants:
+>
 >meeting 27.0
+>
 >eating 24.0
+>
 >sitting 17.0
+>
 >putting 17.0
+>
 >setting 16.0
+>
 >[...]
 
 
