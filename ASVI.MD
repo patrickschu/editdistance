@@ -1,6 +1,7 @@
 # ASVI
 Takes a wordlist, a corpus of folders containing text files, and the desired [edit distance](http://www.nltk.org/_modules/nltk/metrics/distance.html) as input. 
 Identifies all variants of the words in the wordlist within this edit window. 
+Download from [here](https://raw.githubusercontent.com/patrickschu/editdistance/master/analysis_scripts/editdist_shell.py).
 
 ## Description
 ASVI takes the following arguments:
