@@ -55,10 +55,12 @@ def main(wordlist, input_dir, distance):
 		print "{}{} Variants for '{}':".format(header,len(set(worddict[w])), w)
 		print ", ".join(sorted(list(set(worddict[w]))))
 	print "{}Token counts for variants:".format(header)
+	#ATTN this will fail when two items share variants. fix later
+	#But will it: it just mixes them together
 	for v in sorted(countdict, key=countdict.get, reverse =True):
 		print v, countdict[v]
 	
-	#ATTN this will fail when two items share variants. fix later
+
 	
 			
 			
