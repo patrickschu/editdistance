@@ -13,10 +13,10 @@ import pandas
 
 
 	
-	
+	#note that helsini is ball parked; os are unknown
 	
 input_dir= '/Users/ps22344/Downloads/extracted_corpora_0224'
-output_file= "helsinki"
+output_file= "firstfolio"
 
 t=emod.dictbuilder_2(input_dir, 'pubdate')
 u, totaldict=emod.variantfinder_2(t, 'meta_data placeholder', 'u','v')
