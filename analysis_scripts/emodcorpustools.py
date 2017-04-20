@@ -96,7 +96,10 @@ def dictbuilder_2(input_dir, meta_data, output_json=False):
 		print "folder", folder 
 		for fili in [i for i in w[2] if i.endswith(".txt")]:
 			text= CorpusText(os.path.join(input_dir, folder, fili))
-			meta= text.meta[meta_data]
+			if meta_data='pubdate':
+				meta= text.meta[meta_data][:4]
+			else:
+				meta= text.meta[meta_data]
 			for word in text.tokenizer(cleantext=True):
 				if word.lower() in dicti:
 					dicti[word.lower()][meta]= dicti[word.lower()][meta]+1
@@ -170,7 +173,7 @@ def variantfinder_2(input_dict, meta_data, variant_one, variant_two):
 		metadict[key]['total'] = sum(metadict[key].values())
 	variantonedict= {key:{k:v for k,v in val.items() if variant_one in list(k)} for key,val in metadict.items()}
 	#clean interior dictionary of non-varying items
-	combineddict= {key:{k:v for k,v in val.items() if re.sub(variant_one, variant_two, k) in input_dict} for key,val in variantonedict.items()}
+	combineddict= {key:{k:v for k,v in val.items() if re.sub(variant_one, variant_two, k) in input_dict or k in ['total']} for key,val in variantonedict.items()}
 	outputdict= {}
 	for entry in combineddict:
 		#entry is a year
