@@ -97,7 +97,6 @@ def dictbuilder_2(input_dir, meta_data, output_json=False):
 		with codecs.open(output_json+".json", "w") as jsonout:
 			json.dump(dicti, jsonout, encoding= "utf-8")
 		print "File written to", jsonout
-	print "\n".join([":".join((i, str(dicti[i]))) for i in sorted(dicti, key= dicti.get, reverse=True)[:100]])
 	return dicti
 	
 
