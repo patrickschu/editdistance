@@ -4,14 +4,13 @@ import re
 import codecs
 import os
 #rtf file was converted to utf 8 text in word. header manually deleted. 
-from pyth.plugins.rtf15.reader import Rtf15Reader
-import rtf.Rtf2Txt
 
+#second step: switch out file for unnormalized
 
 textregex=re.compile("-{10,}(.*?)-{10,}", re.DOTALL)
 
 
-with codecs.open("/Users/ps22344/Desktop/$N Letter Corpus Feb 08 (1).txt","r", "latin-1") as inputi:
+with codecs.open("/Users/ps22344/Desktop/$I Letter Corpus Feb 08 with headers.txt","r", "utf-8") as inputi:
 	rawtext=inputi.read()
 
 
