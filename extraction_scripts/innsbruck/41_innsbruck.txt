@@ -1,0 +1,41 @@
+
+
+<Quid: numerus currens: 40
+<Author(s)/writer(s): William Prior of Durham
+<Place of author: Durham
+<Sex of author(s): male
+<Age of author: 40+
+<Status of author: clergy
+<Recipient: a friend
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: friend
+<Relation of correspondents: friendly
+<Ranks of correspondents: equal
+<Exact date: 1451
+<Century (in quarters): 3/15
+<Educational background: clergy
+<Dialect: x
+
+<William, Prior of Durham to a friend (1451),
+<The Priory of Coldingham, ed. Raine, pp. 170-71.
+
+$I    Right welbiloved frennde, I grete yow hertly wele, thankynge
+$I you entierly for all your diligent labours and favours
+$I doon and shewide to me and my brether afortyme; praying
+$I you of your goode and effectuall contynuance. For as mykil
+$I as I have written befor tyme to your cousin maistre John Laxe,
+$I our procuratour in the courte, for our celle of Coldingham, in the
+$I whilke mater I had no certayn knawledge what labour or
+$I soott is maade agayns us, therfor I pray yow that yhe will write
+
+<p. 171
+
+$I tendirly to the said M. John Laxe, that he walde certifye me by
+$I writynge how the matier is prosecut in the courte; and in the
+$I mean tyme I sall provide for necessary costage and ex_pense
+$I for the goode spede and fortherannce of the same, with
+$I the grace of our Lorde, who have you, etc. Writen, etc. iiij
+$I day of May.
+
+

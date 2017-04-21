@@ -1,0 +1,63 @@
+
+
+<Quid: numerus currens: 6
+<Author(s)/writer(s): group
+<Place of author: London
+<Sex of author(s): male
+<Age of author: var
+<Status of author: var
+<Recipient: Duke of Bedford?
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: honourable Prince; you
+<Relation of correspondents: distant
+<Ranks of correspondents: upwards
+<Exact date: 1424
+<Century (in quarters): 1/15
+<Educational background: educated
+<Dialect: London
+
+<Aldermen of London to the Duke of Bedford (1424),
+<A book of London English, eds. Chambers & Daunt, pp. 87-88.
+
+$I Littera missa per Maiorem and Aldremannos domino
+$I   Duci Bedfordie.
+
+$I   Right high, right myghty, and right honurable Prince, we
+$I recomaunde vs vn-to your Lordly excellens in þe most humble
+$I and seruisable maner that we can best ymagine and deuise,
+$I Thankyng lowly your noble grace of þo gracious lettres in
+$I makyng gladsom in vndyrstandyng and passyng confortable in
+$I fauoring of our pouer degrees Whyche you liked late to sende
+$I vs from Craille vpon case in Normandie, be þat worshypfull
+$I and wel-auised man John Salueyn, your esquier, whyche hath
+$I made vs notable report and right comfortable exposicion of
+$I þestate and tidinges of þat londe, blessed be god. Bot amonges
+$I alle other, more gladder ne more comfortable tidinges myght non
+$I haue come, nor in better tyme, to satisfie and refressh þe feruent
+$I desire of vs that long haue thursted aftir knowlech of your
+$I prosperite, þan were seid gracious lettres, þat yaven vs ful enfor_macion
+$I and singler comfort of þe gode hele and disposicion of
+$I your persone, whyche crist of his soueraign mercy and pite
+$I infenite euer preserue and mainteigne in Joye and honure to his
+$I plesaunche. Right high, right myghty, and ryght honurable
+$I Prince, of þat þat your Lordly clemence so benigly voucheþ sauf,
+$I as is purported in þe parclose of your seid lettres to haue
+$I assercion be comers betwene of your gode desires, enclinyng
+$I your excellence to þaccomlissement of hem at alle tymes, it
+$I excedeth in-estimablich our power and konnyng to yeue you
+$I thankynges þerof recompensable in eny wyse. Bot god, þat is
+$I guerdoner of euery gode dede, quite rewarde yowe in stede of vs,
+$I wher we may not. And, for we truste and knowe verilich þat
+
+<p. 88
+
+$I hit pleseth yow to here of þestate of þe Cite of London, to whiche
+$I ye haue euyr be right gode Lorde and fauorable, we certefie
+$I vn-to your gracious Lordship þat in more quiete ne pesibler reste
+$I was neuer Cite nor place, blessed be god, whiche of his incom_parable
+$I bounte send you gode and graciouse lif, to þe plesaunche
+$I of hym, and comfort of vs and alle your oþer welwillers, long for
+$I to lede. Writen at London.
+
+

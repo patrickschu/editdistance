@@ -1,0 +1,60 @@
+
+
+<Quid: numerus currens: 373
+<Author(s)/writer(s): Oliver Cromwell (1599-1658)
+<Place of author: Ely
+<Sex of author(s): male
+<Age of author: 40+ (43)
+<Status of author: gentry, military and political leader
+<Recipient: Mayor of Colchester, others
+<PLace of recipient: Colchester
+<SEx of recipient: male
+<ADdress of recipient: Gentlemen
+<Relation of correspondents: distant
+<Ranks of correspondents: downwards
+<Exact date: 1642
+<Century (in quarters): 2/17
+<Educational background: educated
+<Dialect: standard
+
+<Oliver Cromwell to the Mayor of Colchester (1642),
+<Oliver Cromwell’s Letters and Speeches, ed. Carlyle,
+<Vol. I, letter VI, pp. 137-138.
+
+$I 'To the Mayor, &c. of Colchester, By Captain Dodsworth:
+$I                        These.'
+$I Gentlemen,                    'Cambridge,' 23d March 1642.
+$I    Upon the coming down of your Townsmen to Cam_bridge,
+$I Captain Langley not knowing how to dispose
+$I of them, desired me to nominate a fit Captain: which
+$I I did,  an honest, religious, valiant Gentleman, Cap_tain
+$I Dodsworth, the Bearer hereof.
+$I    He hath diligently attended the service, and much
+$I improved his men in their exercise; but hath been un_happy
+$I beyond others in not receiving any pay for him_self,
+$I and what he had for his soldiers is out long ago.
+
+<p. 138
+
+$I    He hath, by his prudence, what with fair and winning
+$I carriage, what with money borrowed, kept them to_gether.
+$I He is able to do so no longer: they will pre_sently
+$I disband if a course be not taken.
+$I    It's a pity it should be so! For I believe they are
+$I brought into as good order as most Companies in the
+$I Army. Besides, at this instant, there is great need to
+$I use them; I have received a special command from my
+$I Lord General, To advance with what force we can, to
+$I put an end, if it may be, to this Work,  God so as_sisting,
+$I from whom all help cometh.
+$I    I beseech you, therefore, consider this Gentleman,
+$I and the soldiers; and if it be possible, make up his
+$I Company a Hundred-and-twenty; and send them away
+$I with what expedition is possible. It may, through
+$I God's blessing, prove very happy. one month's pay
+$I may prove all your trouble. I speak to wise men: 
+$I God direct you.   I rest,
+$I                       Yours to serve you,
+$I                               Oliver Cromwell. 
+
+

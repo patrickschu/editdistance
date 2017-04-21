@@ -1,0 +1,36 @@
+
+
+<Quid: numerus currens: 263
+<Author(s)/writer(s): Robert Daborne (c1580-1628)
+<Place of author: London?
+<Sex of author(s): male
+<Age of author: -40 (c33)
+<Status of author: dramatist
+<Recipient: Phillip Hinchlow
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: Mr
+<Relation of correspondents: distant
+<Ranks of correspondents: upwards
+<Exact date: 1613
+<Century (in quarters): 1/17
+<Educational background: educated
+<Dialect: x
+
+<Robert Daborne to Henslowe (1613),
+<The Alleyn Papers, ed. Collier, p. 60.
+
+$I    M=r= Hinchlow, my trubles drawing to some end, have forced
+$I me to be trublesom to y=u= beyond my purpose, bycause I would
+$I be free at any rate. some papers I have sent y=u=, though not so
+$I fayr written all as I could wish. I will now wholy intend to
+$I finishe my promise, which, though it come not within compass
+$I of this Term, shall come upon y=e= neck of this new play they ar
+$I now studyinge: my request is, the xl. might be made up, whear
+$I of I have had 9l.; if y=u= please to appoynt any houer to read to
+$I M=r= Allin, I will not fayle, nor after this day loose any time till
+$I it be concluded. My best rememberance to y=u=, I rest
+$I                                   yo=rs=, ROBT. DABORNE.
+$I 8 May, 1613.
+
+

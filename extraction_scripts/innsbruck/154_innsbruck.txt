@@ -1,0 +1,53 @@
+
+
+<Quid: numerus currens: 154
+<Author(s)/writer(s): Sir Thomas More (1478-1535)
+<Place of author: Chelsey, London
+<Sex of author(s): male
+<Age of author: 40+ (56)
+<Status of author: nobility
+<Recipient: Thomas Cromwell
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: none
+<Relation of correspondents: distant
+<Ranks of correspondents: equal
+<Exact date: 1534
+<Century (in quarters): 2/16
+<Educational background: educated
+<Dialect: standard
+
+<Thomas More to Thomas Cromwell (1534),
+<The Life of Sir Thomas Moore, eds. Hitchcock/Hallet, pp. 180-182.
+
+$I   To maister Thomas Cromwell, one of his Maiesties
+$I priuie Counsell, Sir Thomas More, Knight.
+$I   Right worshipfull, after hartie commendations, so
+
+<p. 181
+
+$I it is y=t= I am informed that there is a bill put vp against
+$I me into the higher howse before the Lordes, concerning
+$I my communication with the Nunne of Canturburie,
+$I and my writing vnto her; whereof I not a litle meruaile,
+$I the truth of the matter being such as Grace and I knowe,
+$I and as I haue plainely declared vnto you by my former
+$I letteres, wherein I founde you then so good that I am
+$I now bold, vpon the same goodnes, to desire you to shewe
+$I me the fauoure that I might, by your meanes, haue a copie
+$I of my bill; which seene, if I finde any vntrue surmise
+$I therein, I may make my humble sute vnto the kinges
+$I good Grace to declare the truth, either to his Grace or by
+$I his Graces commaundement to anie when he shall
+$I please; for I am so clere herin that I nothing mis_trust
+$I his Graces favoure towardes me, nor the iudg_ment
+$I of any honest man. Never shall there any
+$I losse in this matter greve me, being my selfe so
+$I innocent as Grace and I knowe, by the grace of Al_mightie
+$I God, who both bodily and ghostly preserve
+$I you.
+$I   At Chelsey, Anno 1533, March. By the hand [of]
+$I hartelie all your owne,
+$I                    Thomas More, knight.
+
+

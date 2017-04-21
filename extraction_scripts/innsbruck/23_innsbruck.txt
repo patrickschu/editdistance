@@ -1,0 +1,46 @@
+
+
+<Quid: numerus currens: 22
+<Author(s)/writer(s): John Prior of Durham
+<Place of author: Durham
+<Sex of author(s): male
+<Age of author: x
+<Status of author: clergy
+<Recipient: Sir David Home
+<PLace of recipient: Coldingham, Scotland
+<SEx of recipient: male
+<ADdress of recipient: Sir
+<Relation of correspondents: distant
+<Ranks of correspondents: equal
+<Exact date: 1441
+<Century (in quarters): 2/15
+<Educational background: educated
+<Dialect: x
+
+<Litera Directa David Home (1441),
+<John Prior of Durham to Sir David Home,
+<The Priory of Coldingham, ed. Raine, p. 123.
+
+$I   Wirshipfull sir, I commend me to yowe, thankand yowe
+$I hertly of your good supportacion and labour shewid till my
+$I brether and oure celle of Coldingham, prayand yowe of your
+$I good contynuance. And as touchande the office of the Bailyery
+$I of Coldingham, lik hitt yow to undirstande that the lorde of
+$I Hales has wrytyn to me fore Alexandre Home for the office of
+$I the said bailyery, and also the said sir Alexander has writen to
+$I me rehersyng a certeyn condicion made betwix yowe and hym
+$I as touchand the said office, in whilke matere I haff wryten
+$I both to the said lord of Hale3 and to sir Alexander on this
+$I manere, that if yhe will discharge your selfe on your awen
+$I fre will and surrendoure your patentys of your office to me or to
+$I the prior of Coldyngham, I can well agre to grannt to sir
+$I Alexandre the office of the bailyery of Coldingham for certeyn
+$I yhere3; noght gaynstandyng, I consele yowe be wele awisid or
+$I yhe delyvere thaym for yowe, for hitt is noght, ne has been
+$I my entent to disharge yowe of your office wythoutyn othere
+$I cause than yhe haff gevyn or will giffe, as I suppoose; and thar
+$I for put no blame to me in tym commyng, for yhe shall haff no
+$I cause. And God almyghty haff yowe in his kepyng. Writen
+$I at Durham, the xiii day of Octobre.
+
+

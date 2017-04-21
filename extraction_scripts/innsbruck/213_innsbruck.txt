@@ -1,0 +1,36 @@
+
+
+<Quid: numerus currens: 213
+<Author(s)/writer(s): Robert Devereux, 2nd Earl of Essex (1567-1601)
+<Place of author: Cambridge
+<Sex of author(s): male
+<Age of author: -40 (16)
+<Status of author: nobility
+<Recipient: Richard Broughton
+<PLace of recipient: Blithfield
+<SEx of recipient: male
+<ADdress of recipient: impersonal; Mr
+<Relation of correspondents: acquainted
+<Ranks of correspondents: downward
+<Exact date: 1583
+<Century (in quarters): 4/16
+<Educational background: educated
+<Dialect: x
+
+<Robert, 2nd Earl of Essex, to Hugh Broughton
+<Devereux Papers with Richard Broughton's Memoranda (1575-1601)
+<ed. Malden
+<number 22, p. 23.
+<(1583)
+
+$I 10 July 1583.
+$I Mr. Broughton, I undrstand by M'. Wright that he hath re_ceaved
+$I nothing of his Annuitie sins my coming into Yorkeshire.
+$I I do assure my self that yf you will pay him it will not be misliked
+$I of any; and therefore I desire you that you will discharge that wch
+$I is due unto him. Thus hopinge you will do yor endeavor herein,
+$I I bid you hartely farewell.    Yorke, this xth of July 1583.
+$I Yors  
+$I (Signed) R. ESSEX.
+
+

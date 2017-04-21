@@ -1,0 +1,47 @@
+
+
+<Quid: numerus currens: 248
+<Author(s)/writer(s): Ben Jonson (1572-1637)
+<Place of author: London
+<Sex of author(s): male
+<Age of author: -40 (33)
+<Status of author: bourgeois, soldier, writer
+<Recipient: Earl of Pembroke
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: Most Noble Earl; you
+<Relation of correspondents: distant
+<Ranks of correspondents: upwards
+<Exact date: 1605
+<Century (in quarters): 1/17
+<Educational background: educated
+<Dialect: standard
+
+<Ben Jonson to the Earl of Pembrooke (1605),
+<Ben Jonson - The Man and His Work, eds. Herford/Simpson,
+<Letter 7, pp. 199-200.
+
+$I    Most Noble
+$I             Earle:
+$I      Neither am I or my cause so much unknowne to youre
+$I Lordshipp, as it should driue mee to seeke a second meanes, or
+$I dispaire of this to youre fauoure. You haue euer been free and
+$I Noble to mee, and I doubt not the same proportion of youre
+$I Bounties, if I can but answere it with preseruation of my vertue,
+
+<p. 200
+
+$I and Innocence, when I faile of those, let me not onlye be
+$I abandon'd of you, but of Men. the Anger of the Kinge is death
+$I (saith the wise man) and in truth it is little lesse with mee and my
+$I frend, for it hath buried vs quick. And though we know it onelie
+$I the propertie of men guiltie, and worthy of punishment to inuoke
+$I Mercye; yet now it might relieue vs, who haue onlie our Fortunes
+$I made our fault: and are indeede vexed for other mens licence.
+$I Most honor'd Earle, be hastie to our succoure. And, it shall be
+$I our care and studye, not to haue you repent the tymely benefit you
+$I do vs; which we will euer gratefullye receiue and Multiplye in our
+$I acknowledgment.
+$I                                     Ben: Johnson.
+
+

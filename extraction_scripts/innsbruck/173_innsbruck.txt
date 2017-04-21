@@ -1,0 +1,46 @@
+
+
+<Quid: numerus currens: 173
+<Author(s)/writer(s): Thomas Cromwell (c1485-1540)
+<Place of author: London
+<Sex of author(s): male
+<Age of author: 40+ (55)
+<Status of author: secretary, politician (minister of Henry VIII)
+<Recipient: Lord Hungerford
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: none
+<Relation of correspondents: distant
+<Ranks of correspondents: downwards
+<Exact date: 1540
+<Century (in quarters): 2/16
+<Educational background: educated
+<Dialect: x
+
+<Cromwell to Lord Hungerford (1540),
+<Life and Letters of Thomas Cromwell, ed. Merriman, no. 335, p. 248.
+
+<Feb. 9 [1540].
+
+$I   Thies be for asmoche as the Kinges Majestie hathe ben
+$I enformed that certaine lycences foundacions and other wry_tynges
+$I belongyng unto the late priory of Charterhous Henton
+$I and graunted by Thomas Horton Clothier and other hathe
+$I ben ymbeysted and conveyd away by certaine persons. The
+$I Kinges Majesties pleasure is that ye calling Dame Mary
+$I Horton Wydow, Thomas Horton, William Byrde clerke
+$I Richard Davis and Sir William Furber clerke before you shall
+$I examine therin and every of theym by vertue of an othe to be
+$I admynestred to theym by you of and uppon the premysses
+$I with the circumstaunces therof by all the wayes and meanes
+$I ye can or may excogitate and device and to advertise me of
+$I that ye shall fynd and knowe therin with all convenyent spede
+$I to thentent I may cause suche order and direction to be had
+$I and taken in that behalfe as the case shall requyre. Faile ye
+$I not thus to do as the Kinges trust and expectations ys
+$I in you.
+$I   London, 9 Feb.
+
+<Signed. Add.
+
+

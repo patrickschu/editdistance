@@ -1,0 +1,48 @@
+
+
+<Quid: numerus currens: 378
+<Author(s)/writer(s): Oliver Cromwell (1599-1658)
+<Place of author: Huntingdon
+<Sex of author(s): male
+<Age of author: 40+ (44)
+<Status of author: gentry, military and political leader
+<Recipient: Robert Barnard
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: personal
+<Relation of correspondents: close
+<Ranks of correspondents: equal
+<Exact date: 1643
+<Century (in quarters): 2/17
+<Educational background: educated
+<Dialect: standard
+
+<Oliver Cromwell to Robert Rarnard (1643),
+<Oliver Cromwell’s Letters and Speeches, ed. Carlyle, vol. I,
+<Letter VIII, p. 141.
+
+$I To my very loving friend Robert Barnard, Esquire: Present
+$I                        these.
+$I Sir,                       'Huntingdon,' 17th April 1643.
+$I    I have received two Letters, one from my lord of
+$I Manchester, the other from yourself; much to the same
+$I effect: I hope therefore one answer will serve them
+$I both.
+$I    Which is in short this: what we know you are dis_affected
+$I to the Parliament;  and truly if the Lords,
+$I or any Friends, may take you off from a reasonable
+$I Contribution, for my part I should be glad to be com_manded
+$I to any other employment. Sir, you may, if
+$I you will, "come freely into the country about your oc_casions."
+$I For my part, I have  protected you in your
+$I absence; and shall do so to you.
+$I    This is all,  but that I am ready to serve you,
+$I and rest,
+$I                   Your loving friend,
+$I                     OLIVER CROMWELL. 
+$I    Let Barnard return, therefore; take a lower level, where
+$I the ways are more sheltered in stormy weather;  and so
+$I save himself, and "become Recorder after the Restoration."
+$I Subtlety may deceive him; integrity never will! 
+
+

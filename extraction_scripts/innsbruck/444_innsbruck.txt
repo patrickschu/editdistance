@@ -1,0 +1,47 @@
+
+
+<Quid: numerus currens: 444
+<Author(s)/writer(s): Andrew Marvell, 1621-1678
+<Place of author: Westminster, London
+<Sex of author(s): male
+<Age of author: 40+ (57)
+<Status of author: politician and writer
+<Recipient: Hull Corporation
+<PLace of recipient: Kingston upon Hull
+<SEx of recipient: male
+<ADdress of recipient: formal; Gentlemen my very worthy friends
+<Relation of correspondents: distant
+<Ranks of correspondents: downwards
+<Exact date: 1678
+<Century (in quarters): 4/17
+<Educational background: educated
+<Dialect: standard
+
+<Andrew Marvell to unnamed gentlemen (1678),
+<The Poems and Letters of Andrew Marvell, ed. Margoliouth, vol. II,
+<p. 225.
+
+$I Gentlemen my very worthy friends,
+$I    I have very litle subject of writing, the present businesse of Parlia_ment
+$I hauing been all concluded yesterday morning. For his Majesty
+$I sent up for the Commons to the House of Lords and Prorogued the
+$I Parliament till the twenty third of this moneth. You know that
+$I always upon Prorogation whatsoever businesse was imperfect and
+$I depending is quite cut of and if the Parliament intend to proceede
+$I againe upon it, they must resume all from the very beginning. One
+$I thing you may please to take notice of that the Corne-clause is by the
+$I period of this Session expired. Also this Prorogation hauing thus
+$I happened & if there should be a Peace, it is now in the King and
+$I Parliaments power to revoke the French Prohibition next Meeting.
+$I It is probable the continuance of the Additionall Duty on French &
+$I other Wines may then too be considered. I doubt not but many will
+$I reflect upon this Prorogation for other reasons. But they that discourse
+$I the lest and thinke the best of it will be the wisest men and the best
+$I Subjects. God in mercy direct his Majesty always to that which may
+$I most conduce to his own and the Kingdomes happinesse. I remaine
+$I Gentlemen &c:
+$I                         Your most affectionate Servant
+$I                                Andr: Marvell
+$I    Westm: May. 14. 1678.
+
+

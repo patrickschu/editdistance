@@ -1,0 +1,53 @@
+
+
+<Quid: numerus currens: 231
+<Author(s)/writer(s): Sir Francis Drake (c1543-1596)
+<Place of author: aboard a ship (The Revenge)
+<Sex of author(s): male
+<Age of author: 40+ (45)
+<Status of author: nobility, discoverer
+<Recipient: Queen Elizabeth I
+<PLace of recipient: London?
+<SEx of recipient: female
+<ADdress of recipient: most gracious sovereign
+<Relation of correspondents: distant
+<Ranks of correspondents: upwards
+<Exact date: 1588
+<Century (in quarters): 4/16
+<Educational background: educated
+<Dialect: x (normalised by editor)
+
+<Sir Francis Drake to the Queen (1588),
+<The Defeat of the Spanish Armada, ed. Laughton, vol. II, p. 68.
+
+$I   The absence of my Lord Admiral, most gracious
+$I Sovereign, hath emboldened me to put my pen to
+$I the paper. On Friday last, upon good consideration,
+$I we left the army of Spain so far to the northwards
+$I as they could neither recover England nor Scotland.
+$I And within three days after, we were entertained
+$I with a great storm, considering the time of the year;
+$I the which storm, in many of your judgments, hath
+$I not a little annoyed the enemy's army. If the wind
+$I hinder it not, I think they are forced to Denmark;
+$I and that for divers causes. Certain it is that many
+$I of their people were sick, and not a few killed.
+$I Their ships, sails, ropes, and masts needeth great
+$I reparations, for that they had all felt of your
+$I Majesty's force. If your Majesty thought it meet,
+$I it [would not be] amiss you sent presently to Den_mark
+$I to understand the truth, and to deal with their
+$I King according to your Majesty's great wisdom.
+$I   I have not written this whereby your Majesty
+$I should diminish any of your forces. Your Highness's
+$I enemies are many; yet God hath and will hear
+$I your Majesty's prayers, putting your hand to the
+$I plough for the defence of his truth, as your Majesty
+$I hath begun. God, for his christ's sake, bless your
+$I sacred Majesty, now and ever. Written aboard your
+$I Majesty's very good ship the Revenge, this 8th of
+$I August, 1588.
+$I                   Your Majesty's faithful vassal,
+$I                                        FRA. DRAKE.
+
+

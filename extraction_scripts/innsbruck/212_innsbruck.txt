@@ -1,0 +1,42 @@
+
+
+<Quid: numerus currens: 212
+<Author(s)/writer(s): Robert Devereux, 2nd Earl of Essex (1567-1601)
+<Place of author: Cambridge
+<Sex of author(s): male
+<Age of author: -40 (16)
+<Status of author: nobility
+<Recipient: Richard Broughton
+<PLace of recipient: Blithfield
+<SEx of recipient: male
+<ADdress of recipient: impersonal; Mr
+<Relation of correspondents: acquainted
+<Ranks of correspondents: downward
+<Exact date: 1583
+<Century (in quarters): 4/16
+<Educational background: educated
+<Dialect: x
+
+<Robert, 2nd Earl of Essex, to Richard Broughton
+<Devereux Papers with Richard Broughton's Memoranda (1575-1601)
+<ed. Malden
+<number 21, p. 23.
+<(1583)
+
+$I 28 June 1583.
+$I Mr. Broughton, I receaved l'res from my Aunt Devereux
+$I touching the death of one Browne late parson of Baxterley in the wch
+$I she referred the presentacon of the next encumbent to me. I do thinke
+$I the order wch is to be taken in that behalf to require yor advise, that
+$I thereby no advantage be taken against my presentee. I am desirous
+$I to bestowe the things on Mr. Bate and therefore do desire you to
+$I further my good meaninge towards him that he may enjoy the
+$I same, yf by yor Counsell my presentacion be sufficient and lawfull;
+$I then will I, uppon adv'tizemt given, send him one from Yorke; yf
+$I other wise, I loke to be advised by you what cors is most convenient
+$I herein. Thus wth my hartie comendacions I comitt you to God.
+$I Yorke this 28 of June 1583.
+$I Yours
+$I (Signed) R. ESSEX.
+
+

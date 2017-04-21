@@ -1,0 +1,53 @@
+
+
+<Quid: numerus currens: 236
+<Author(s)/writer(s): Robert Greene (1558?-1592)
+<Place of author: London
+<Sex of author(s): male
+<Age of author: -40 (34)
+<Status of author: poet
+<Recipient: wife
+<PLace of recipient: x
+<SEx of recipient: female
+<ADdress of recipient: other
+<Relation of correspondents: husband to wife
+<Ranks of correspondents: equal
+<Exact date: 1592
+<Century (in quarters): 4/16
+<Educational background: educated
+<Dialect: standard
+
+<Greene to his wife (1592),
+<The Dramatic and Poetical Works of Robert Greene, ed. Dyce, pp. 62-63.
+
+$I      A Letter written to his wife, found with this booke after his death.
+$I   The remembrance of many wrongs offered thee, and thy vnreprooued vertues,
+$I adde greater sorrow to my miserable state then I can vtter or thou conceiue.
+$I Neyther is it lessened by consideration of thy absence (though shame would let mee
+$I hardly behold thy face), but exceedingly aggrauated for that I cannot (as I ought) to
+$I thy owne selfe reconcile myselfe, that thou mightest witnesse my inward woe at this
+$I instant, that haue made thee a wofull wife fo so long a time. But equal haeuen
+$I hath denied that comfort, giuing, at my last neede, like succour as I haue sought all
+$I my life: being in this extremitie as voyde of helpe as thou has beene of hope.
+$I Reason would that, after so long waste, I should not send thee a childe to bring thee
+$I greater charge: but consider hee is the fruite of thy wombe, in whose face regard not
+$I the fathers so much as thy owne perfections. Hee is yet Greene, and may grow
+$I strait, if he be carefully tended: otherwise apt enough (I feare me) to follow his
+$I fathers folly. That I haue offended thee highly, I know; that thou canst forgette
+
+<p. 63
+
+$I my iniuries, I hardly beleeue: yet perswade I my selfe, if thou saw my wretched
+$I estate, thou couldest not but lament it; nay, certainely I know thou wouldest. All
+$I my wrongs muster themselues about me; euery euill at once plagues me. For my
+$I contempt of God I am contemned of men; for my swearing and forswearing no man
+$I will beleeue me; for my gluttony I suffer hunger; for my drunkennes, thirst; for
+$I my adulterie, vlcerous sores. Thus God hath cast mee downe, that I might bee
+$I humbled, and punished me for example of others sinne; and although he suffers me
+$I in this world to perish without succour, yet trust I in the world to come to find
+$I mercy, by the merits of my Sauiour, to whom I commend thee and commit my soule.
+$I                          Thy repentant husband
+$I                                for his disloyaltie,
+$I                                           Robert Greene.
+
+

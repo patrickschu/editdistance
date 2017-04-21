@@ -1,0 +1,47 @@
+
+
+<Quid: numerus currens: 11
+<Author(s)/writer(s): King Henry V, *1387
+<Place of author: Mant, France
+<Sex of author(s): male
+<Age of author: -40 (32)
+<Status of author: royal
+<Recipient: group
+<PLace of recipient: London
+<SEx of recipient: male
+<ADdress of recipient: Trusty and Welbeloved
+<Relation of correspondents: distant
+<Ranks of correspondents: downwards
+<Exact date: 1419
+<Century (in quarters): 1/15
+<Educational background: educated
+<Dialect: standard
+
+<King Henry V to Citizens of London (1418c),
+<A book of London English, eds. Chambers & Daunt pp. 73-74.
+
+$I Littera domini Regis missa Maiori Aldermannis &
+$I                    comunibus.
+
+<p. 74
+
+$I   Trusti and Welbeloued, We grete yow wel, And late you wete
+$I to youre comfort that we been in good heele and prosperite of
+$I oure persone, blessed be god, which graunte you always soo to bee;
+$I Ferthermore as touching tithinges, we signifie vnto yow þat god of
+$I his grace, worshiped be he, hath sent in to our handes our Toun
+$I of Pontoyse, and hough proffitable þe hauyng of it is vnto vs John
+$I Palyng, þe bringer of þis, can enfourme you. And we pray you
+$I thankeþ god þerof, and of alle his gracious soondes þat he send_eth
+$I vs. And forasmoch as our aduerse partie wol noo pees nor
+$I accord haue wiþ vs, but finally haue refused al meenes of pees,
+$I We be compelled ayein to werre thorough þair default, as he wot
+$I þat al knoweþ. To whoos mercy we trust, for our good wil and
+$I redinesse to þe pees, to haue þe better spede heraftur, þe which
+$I we recomende to your good prayers wiþ al our herte; And god
+$I haue you in his keping. Yeuen vnder our signet, at our town of
+$I Mant, þe v day of Augst.
+$I   To our trusty and welbeloued þe Mair, Shirreues,
+$I   Aldermen, and communs of our Citee of London. Tolyes.
+
+

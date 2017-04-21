@@ -1,0 +1,52 @@
+
+
+<Quid: numerus currens: 445
+<Author(s)/writer(s): Andrew Marvell, 1621-1678
+<Place of author: Westminster, London
+<Sex of author(s): male
+<Age of author: 40+ (57)
+<Status of author: politician and writer
+<Recipient: Hull Corporation
+<PLace of recipient: Kingston upon Hull
+<SEx of recipient: male
+<ADdress of recipient: formal; Gentlemen my very worthy friends
+<Relation of correspondents: distant
+<Ranks of correspondents: downwards
+<Exact date: 1678
+<Century (in quarters): 4/17
+<Educational background: educated
+<Dialect: standard
+
+<Andrew Marvell to unnamed gentlemen (1678),
+<The Poems and Letters of Andrew Marvell, ed. Margoliouth, vol. II,
+<pp. 225-26.
+
+$I Gentlemen, my very Worthy friends,
+$I    His Majesty open'd this Session with the Speech which I send you
+$I inclosed. And after that the Lord Chancellour spoke at large, but the
+$I Copy of it not hauing been communicated to the House of Commons,
+$I they appointed a Committee to peruse the Lords Journall for it, where
+$I such things are of course to be entred. The Lords have also ordered
+$I the Speech to be Printed: so that I suppose one way or other I may
+$I by the next Post compasse it for you. The House of Commons opened
+
+<p. 226
+
+$I their session as is usuall with reading a Bill and that which was pitched
+$I upon was the former Bill for regulating the Collection of Hearth-mony
+$I and then they appointed a day for its second reading. The rest of their
+$I time was spent in settling the ordinary affaires of their House appoint_ing
+$I days for their Grand Committees, naming and impowring their
+$I Committee of Privileges, and renewing the Clause against Bribery or
+$I interteinments in order to Elections and lastly in receiving severall
+$I Petitions concerning undue Elections. What I remarke in the House
+$I is that it is much fuller then ordinary and more are still upon the Road
+$I and there seems a more then usuall concernment among all men as if
+$I some great and I hope good thing were to be expected. God in his
+$I mercy direct all to the best. What I understand thereof I shall from
+$I time to time communicate to you, remaining Gentlemen &c:
+$I                             Your most affectionate Servant.
+$I                                  Andr: Marvell
+$I Westm: May 23. 1678
+
+

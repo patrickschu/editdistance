@@ -1,0 +1,47 @@
+
+
+<Quid: numerus currens: 129
+<Author(s)/writer(s): Mary, Queen of France, *ca. 1490
+<Place of author: Paris
+<Sex of author(s): female
+<Age of author: -40 (c24)
+<Status of author: royal
+<Recipient: King Henry VIII
+<PLace of recipient: London?
+<SEx of recipient: male
+<ADdress of recipient: my most kind brother; you
+<Relation of correspondents: family: sister to brother
+<Ranks of correspondents: upwards
+<Exact date: 1514
+<Century (in quarters): 1/16
+<Educational background: poor spelling (normalised)
+<Dialect: x (normalised)
+
+<Mary the French Queen to her brother King Henry VIII. (1514),
+<Letters of Royal and Illustrious Ladies, Wood ed., vol. 1,
+<Letter LXVIII, p. 181.
+
+$I          Mary Queen of France to her Brother, King
+$I                  Henry VIII.   A.D. 1514.
+$I My most kind and loving brother,
+$I   I recommend me unto your grace as heartily as
+$I I can, and I thank your grace for your kind letters,
+$I and for your good counsel,the which I trust to our
+$I Lord God I shall follow every day more and more.
+$I How lovingly the king my husband dealeth with
+$I me, the lord chamberlain, with other of your ambas_sadors,
+$I can clearly inform your grace, whom I
+$I beseech your grace heartily to thank for their great
+$I labours and pains that they have taken as here for
+$I me; for I trust they have made a substantial and a
+$I perfect end. As touching mine almoner, I thank
+$I your grace for him, Of his demeanour here your
+$I grace shall be informed better than I can write; as
+$I knoweth our Lord Jesu, who preserve your grace.
+$I Amen.
+$I   From Paris, the 15th day of November, by your
+$I loving sister,
+$I                                         Mary.
+$I   To the King my brother.
+
+

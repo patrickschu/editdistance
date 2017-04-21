@@ -1,0 +1,58 @@
+
+
+<Quid: numerus currens: 3
+<Author(s)/writer(s): group
+<Place of author: London
+<Sex of author(s): male
+<Age of author: var
+<Status of author: bourgeois
+<Recipient: King Henry V
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: Liege Lord; you
+<Relation of correspondents: distant
+<Ranks of correspondents: upwards
+<Exact date: 1418
+<Century (in quarters): 1/15
+<Educational background: educated
+<Dialect: London
+
+<Aldermen of London to Henry V (1418),
+<A book of London English, eds. Chambers & Daunt, pp. 72-73.
+
+$I Responcio eiusdem littere.
+
+$I    Of alle erthely Princes our most dred soueraign Liege lord and
+$I noblest kynge, we recomaunde vs vnto your soueraign highnesse
+$I and riall power, in as meke wyse and lowely maner as any symple
+$I officers and pouuere lieges best may or can ymagine and diuise
+$I vnto her most graciouse and most soueraign kyng, Thankyng
+$I with all our soules your most soueraign excellence and noble
+$I grace of þe right gentell, right graciouse, and right confortable
+$I lettres, which ye late liked to send vs fro your toun of pount-de_larche,
+$I which lettres wiþ al lowenesse and reuerence we haue
+$I mekly resceyued, and vnderstonde bi which lettres, amonges al
+$I other blessed spede and graciouse tithinges in hem conteyned, for
+$I which we thanke hyly, and euer shulle, the lord almighty, ware
+$I we most inwardly conforted and reioysed, whan we herde þe
+$I soueraign helthe and parfit prosperite of your most excellent
+
+<p. 73
+
+$I and graciouse persoune, which we beseche god of hys grete
+$I grace and noble pite euer to kepe and manteyne. And of the
+$I astate of your Cite of London, yif it like your soueraign high_nesse
+$I to here and vnderstonde, plese it your benigne grace to
+$I conceyue that in pesibler degre, treta[b]ler gouernaunce, ne Joy_fuller
+$I rest, as ferforth as absence of you þat ar our most soueraign
+$I and excellent lord may suffre, was neuer erthly Cite ne toun,
+$I y-blessed be god. Our most dred souueraign liege lord and noblest
+$I kyng, we lowly besech þe kyng of kynges, whos reaume shal
+$I endelesly Last, your blessed soule and noble body from either of
+$I ther enemys euermore to kepe and defend.
+$I    Writen at your sayd Cite of London the xij day of Augst.
+$I    The mair, shereues, Aldermen and all the comuners of your
+$I    cite London.
+$I    To the kyng our most dred and most soueraign Lorde.
+
+

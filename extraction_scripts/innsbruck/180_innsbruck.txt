@@ -1,0 +1,39 @@
+
+
+<Quid: numerus currens: 180
+<Author(s)/writer(s): Henry Savill
+<Place of author: York
+<Sex of author(s): male
+<Age of author: x
+<Status of author: gentry
+<Recipient: William Plumpton
+<PLace of recipient: Plumpton?
+<SEx of recipient: male
+<ADdress of recipient: personal
+<Relation of correspondents: family, cousins
+<Ranks of correspondents: equal
+<Exact date: 1545
+<Century (in quarters): 2/16
+<Educational background: educated
+<Dialect: x
+
+<Henry Savill to William Plumpton (1545),
+<Plumpton Correspondence, ed. Stapleton, no. 24, p. 250.
+
+$I To his right worshipful Coussin, William Plompton, esquire, this
+$I                          deliver.
+$I   Cossin Plompton, after my hartie recommendations; your servant
+$I sheweth me ye were and have bene very sick, wherof I am very
+$I sory. And if your sicknes continue, wheare the commaundment
+$I comes forth, send forth your servants and tennants, and send
+$I forth your excuse to my Lord Lieutennant, with a letter of the
+$I trough of your sicknes, and of the time of the continuance therof;
+$I and being advertised of the truth, he will excep of your lawfull
+$I and reasonable excuse. And thus hertely far you well. From
+$I York, the xxviij of May, Anno 1545, 37 H. 8.
+$I                             Your asurred kinsman,
+$I                                               Henry Savill.
+
+<[27 May 1545.]
+
+

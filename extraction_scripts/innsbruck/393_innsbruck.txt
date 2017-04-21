@@ -1,0 +1,45 @@
+
+
+<Quid: numerus currens: 392
+<Author(s)/writer(s): Elizabeth, Queen of Bohemia (sister to Charles I)
+<Place of author: The Hague
+<Sex of author(s): female
+<Age of author: x
+<Status of author: royal
+<Recipient: Edward Nicholas
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: Mr. Secretary; 
+<Relation of correspondents: employer to employee 
+<Ranks of correspondents: downwards
+<Exact date: 1654
+<Century (in quarters): 3/17
+<Educational background: educated
+<Dialect: x
+
+<The Queen of Bohemia to Sir E. Nicholas (1654),
+<Memoirs of John Evelyn, ed. Bray, vol. V, pp. 203-204.
+
+$I The Queen of Bohemia to Mr. Secretary Nicholas.
+$I Hagh Oct. 2. (1654.)
+$I Mr. Secretarie, I send you heere a letter for the King,
+$I it is about a match betwixt Prince Adolphe the King of
+$I Suedes brother and Sophie; he has desired it verie hand_somlie:
+$I my sonne has consented to it, reseruing the King
+$I of Suedens consent and mine, who ame to acquaint the
+$I King with it. I doe it now, and send you the copie of
+$I Prince Adolphes letter, I pray gett an answere from the
+
+<p. 204
+
+$I King as soone as you can. I haue no more to say, but
+$I ame euer
+$I Your most affectionat frend.
+$I I pray assure me to my Lo: Wentworth, I write not
+$I now to him, I haue no time, for the post is readie to goe.
+$I I pray say the same to reuerent Dick Harding.
+$I “2=o= 8=bris= 1654. st. No. R. 4=°=. The Queene of Bohemia to
+$I me concerning y=e= Kings consent for Presse Sophia to marry
+$I Pr=ce= Adolph, y=e= King of Swedens brother."
+
+

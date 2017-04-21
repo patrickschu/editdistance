@@ -1,0 +1,40 @@
+
+
+<Quid: numerus currens: 16
+<Author(s)/writer(s): Lady Alice Sudeley
+<Place of author: Sudeley
+<Sex of author(s): female
+<Age of author: x
+<Status of author: gentry
+<Recipient: Thomas Stonor
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: personal
+<Relation of correspondents: close
+<Ranks of correspondents: equal
+<Exact date: 1431
+<Century (in quarters): 2/15
+<Educational background: educated
+<Dialect: x
+
+<Alys, Lady Sudeley to Thomas Stonor (1431),
+<Stonor letters and papers 1290, ed. Kingsford, no. 53, p. 47.
+
+$I    Right trusty and entierly welbeloved frend y commaund me unto
+$I you: and, where as y of singler trust in you have before this
+$I enfeffed you with other in my Maners, londes and tenements
+$I withyn dyvers shires, wole and hertely prey you, for gret
+$I consideracions and causes touching my worship and gret profyt,
+$I that ye seale the deedes, made yn youre name and other, of the
+$I seid Maners to suche persons as be named in the same, wheche
+$I seid deedes the berer of this shall shewe unto you, as my full
+$I trust ys and hathe be unto you, like as the berer hereof shall
+$I enfourme you: to whom y prey you geve credence. And, sir, yf
+$I ther be anything that y may do for you in any mater in tyme
+$I comyng, y wole do yt with all myn hert, and that knoweth God,
+$I who have you in his blessed kepyng. Wreten at Sudely the iiij
+$I day of Avrell.
+$I    Alys, lady Sudeley.
+$I    To the worshipfull and my trusty frend Thomas Stoner.
+
+

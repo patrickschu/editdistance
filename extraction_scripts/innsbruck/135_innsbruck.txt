@@ -1,0 +1,83 @@
+
+
+<Quid: numerus currens: 135
+<Author(s)/writer(s): Mary, Queen of France, * c1490
+<Place of author: Paris
+<Sex of author(s): female
+<Age of author: -40 (c25)
+<Status of author: royal
+<Recipient: Wolsey, Archbishop of York
+<PLace of recipient: York
+<SEx of recipient: male
+<ADdress of recipient: formal; Most reverend father in God
+<Relation of correspondents: close
+<Ranks of correspondents: equal
+<Exact date: 1515
+<Century (in quarters): 1/16
+<Educational background: poor spelling (normalised)
+<Dialect: x (normalised)
+
+<Mary the French Queen to Archbishop Wolsey (1515),
+<Letters of Royal and Illustrious Ladies, ed. Wood, vol. 1,
+<Letter LXXIII, pp. 193-195.
+
+$I Mary Queen-Dowager of France to Archbishop
+$I               Wolsey.   A.D. 1515.
+$I Most reverend father in God,
+$I   I recommend me unto you heartily, and I thank
+$I you for the great kindness that I have evermore
+$I found in you. My lord, I thank you also for your
+$I loving letters which you have sent me as hither, to
+$I my great comfort, and in especial for them which
+$I you have sent me now of late. My lord, you
+$I remember, I doubt not, that, at my last being at
+$I Guildford, you desired the king my brother to give
+$I unto my trusty and well-beloved almoner, doctor
+$I Denton, the prebend in St Stephens, which as
+$I then the dean of his chapel, and now bishop of
+
+<p. 194
+
+$I Lincoln, had in possession, as then the king's grace
+$I shewed me in your presence that he should have it,
+$I and also you promised me the same, and to solicit
+$I the king my brother for the performance of his
+$I promise. Nevertheless, I am credibly informed that
+$I my almoner is disappointed of the said prebend,
+$I and that your chaplain hath it, of the which I
+$I marvel greatly; forasmuch as my said almoner hath
+$I done me good service in this country, to the great
+$I honour of the king my brother, and mine also,
+$I and that the promise was made undesired of my
+$I behalf, for you were the person that only moved the
+$I king to give it unto my almmoner, and I am assured
+$I that his grace would not have varied without he had
+$I been persuaded to the contrary.
+$I   My lord, forasmuch as I see you benevolent unto
+$I me in all my matters, and ever hath been since our
+$I first acquaintance, and now especially, I pray you,
+$I therefore, to do so much at mine instance and
+$I request to desire your chaplain to resign the said
+$I prebend to the behoof and use of my said almoner;
+$I and I promise you that I will not cease unto (until)
+$I I have gotten some promotion of the king my
+$I brother, or else of some other person, for your said
+$I chaplain, which I trust shall be worth do[uble] the
+$I value of Saint Stephen's; and, besides that, I shall
+$I help that he may have the next prebend hereafter in
+$I Saint Stephen's. I pray you, my lord, send me
+$I word of your mind, and that [there be] none excuse
+$I made; for I assure you, my lord, [my promise]
+
+<p. 195
+
+$I shall be without any excuse if God send me life; I
+$I  [will not] say that word that I would not wilfully
+$I per[form, as] knoweth his grace. Amen.
+$I   From Paris, the 18th d[ay of February,]
+$I                             By your loving friend,
+$I                                    MARY QUEEN OF FRANCE.
+$I To the most reverend father in God
+$I the Archbishop of York.
+
+

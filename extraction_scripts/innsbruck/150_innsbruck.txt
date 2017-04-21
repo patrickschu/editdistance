@@ -1,0 +1,50 @@
+
+
+<Quid: numerus currens: 150
+<Author(s)/writer(s): Wolsey, Archbishop of York, 1478-1535
+<Place of author: York
+<Sex of author(s): male
+<Age of author: 40+ (47)
+<Status of author: clergy
+<Recipient: Thomas More
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: Master Moore; you
+<Relation of correspondents: distant
+<Ranks of correspondents: downwards
+<Exact date: 1525
+<Century (in quarters): 1/16
+<Educational background: educated
+<Dialect: standard
+
+<Wolsey to More (1525),
+<Correspondence of Sir Thomas More, ed. Rogers,
+<Letter 141, pp. 321-22.
+
+$I    Master Moore, I commende me hartely vnto you, and
+$I right ioiesly and glad I am to vnderstonde, howe most consolingely,
+$I and with what reuerence, humilite and devocion the Kingis High_nes
+$I receyved the holy Jubile, to the gret merite, as I trust in God,
+$I of his Grace, and to the most holy, religiouse and honorable ex_ample,
+$I comfort and reioyse aswel of al those that wer present at
+$I the beholding and doing therof, as to al other his subgettis. And
+$I semblably glad I am that his Grace, like a most kind and gracious
+$I prince and master, tendering moore the helth of his seruauntis,
+$I officers and ministres thenne his owne priuate and particuler
+$I profit, is contented by your good meditation, to adiourne the terme,
+$I which vndowtedly is not oonly to the comfort of al such as shuld
+$I attende therat, but also the Kingis Grace haue goten therby many
+$I prayers, gret and most humble thankis [for] the same. And ther
+$I shal noo losse nor hindraunce to his affayres ensue therby.
+$I    Ye shal also aduertise the Kingis Grace, howe Monsieur John
+$I Joachim hath been with me, and communicate such newes as
+$I be wryten vnto the President and him in cyphres sent owt of
+$I Fraunce, wherby doth appere that, by reason of th'Emperors high
+$I demaundis, the French Kingis deliueraunce is not like to be soo
+$I sone as the President reported vnto the King at his being here,
+$I for nowe th'Emperor, perceyving that the French King is owt
+$I of parel of deth, and perfitely recouered requireth the hol Duchie
+$I of Burgon, the same to be holden of th'Empire, all Picardye, and
+$I other placis on this side the water of Somme, with discharge.
+
+

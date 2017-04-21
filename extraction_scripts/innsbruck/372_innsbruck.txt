@@ -1,0 +1,58 @@
+
+
+<Quid: numerus currens: 371
+<Author(s)/writer(s): Oliver Cromwell et al. (Thomas Martin, 6 others)
+<Place of author: Cambridge
+<Sex of author(s): male
+<Age of author: various
+<Status of author: various
+<Recipient: inhabitants of Fen Draiton
+<PLace of recipient: Fen Draiton
+<SEx of recipient: mixed
+<ADdress of recipient: none
+<Relation of correspondents: distant
+<Ranks of correspondents: downwards
+<Exact date: 1642
+<Century (in quarters): 2/17
+<Educational background: educated
+<Dialect: standard
+
+<Oliver Cromwell to the inhabitants of Fen Drayton (1642),
+<Oliver Cromwell’s Letters and Speeches, ed. Carlyle, vol. I,
+<Letter V, pp. 128-29.
+
+$I To all and every Inhabitants of Fen Drayton in the Hundred
+$I                        of Papworth.
+$I    WHEREAS we have been enforced, by apparent
+$I grounds of approaching danger, to begin to fortify the
+$I Town of Cambridge, for preventing the Enemy's in_road,
+$I and the better to maintain the peace of this
+$I County:
+$I    Having in part seen your good affections to the
+
+<p. 129
+
+$I Cause, and now standing in need of your further assist_ance
+$I to the perfecting of the said Fortifications, which
+$I will cost at least Two-thousand pounds, We are en_couraged
+$I as well as necessitated to desire a Freewill
+$I Offering of a Liberal Contribution from you, for the
+$I better enabling of us to attain our desired ends,  viz.
+$I the Preservation of our County;  knowing that every
+$I honest and well-affected man, considering the vast
+$I ex_penses we have already been at, and our willingness to
+$I do according to our ability, will be ready to contribute
+$I his best assistance to a work of so high concernment
+$I and so good an end.
+$I    We do therefore desire that what shall be by you
+$I freely given and collected may with all convenient speed
+$I be sent to the Commissioners at Cambridge, to be em_ployed
+$I to the use aforesaid. And so you shall further
+$I engage us to be
+$I                    Yours ready to serve,
+$I                        OLIVER CROMWELL.
+$I                        THOMAS MARTYN. 
+$I                        ('and Six others.')
+$I Cambridge, this 8th of March 1642.
+
+

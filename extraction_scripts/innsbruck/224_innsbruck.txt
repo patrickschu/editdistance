@@ -1,0 +1,67 @@
+
+
+<Quid: numerus currens: 224
+<Author(s)/writer(s): Charles Howard of Effingham (1536-1624)
+<Place of author: aboard a ship
+<Sex of author(s): male
+<Age of author: 40+ (51)
+<Status of author: admiral
+<Recipient: Lord Burghley
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: My very good Lord
+<Relation of correspondents: close
+<Ranks of correspondents: equal
+<Exact date: 1587
+<Century (in quarters): 4/16
+<Educational background: educated
+<Dialect: standard
+
+<Charles Howard to Burghley (1587),
+<The Defeat of the Spanish Armada, Laughton ed.,
+<Vol. I, pp. 23-24.
+
+$I    My very good Lord:  I now remain aboard the
+$I Bear; and as yet the provisions for the ships could
+$I not be taken all in by reason of the weather, which
+$I hath been so tempestuous as that no boats could lie
+$I aboard them to put in the same; yet I hope that
+$I within two or three days all things will be in a
+$I readiness.
+$I   Here is a very sufficient and able company of
+$I sailors as ever were seen; and because their long
+$I journeys out of all places of this realm, and this bad
+$I season, makes them unprovided of apparel and such
+$I necessaries, it were good for their relief to pay them
+$I one month's wages before hand.
+$I   Many great charges extraordinary hath grown
+$I this quarter, which I could  hardly have believed
+$I unless with mine own eyes and good examination I
+$I had seen. Wherefore in respect of those causes, and
+$I for the furtherance of service, I am to entreat your
+$I good Lordship to give order that the rest of the
+$I warrant lately granted for the whole navy may be
+$I paid to Mr Hawkyns, and 2.000l. more upon the old
+$I warrant of 29.000l. for the furnishing of those extra_ordinary
+$I charges, wherein your Lordship shall further
+$I a good service.
+
+<p. 24
+
+$I   We have entered into sea victuals this day, being
+$I the 22nd of this instant December, and not before,
+$I for the preserving of the six weeks' victuals. And
+$I Mr. Quarles hath sent down divers supplies more
+$I than allowancefor the numbers were great before
+$I we entered into the six weeks' victuals. Wherefore
+$I I pray your Lordship that he may be paid the  rest
+$I of his allowed warrant, and that consideration for the
+$I rest which I spake to your Lordship for heretofore.
+$I And so I bid your good lordship most heartily fare_well.
+$I From aboard the Bear, the 22d of December,
+$I 1587.
+$I           Your Lordship's most assured
+$I                    loving friend to command,
+$I                                      C. Howard.
+
+

@@ -1,0 +1,41 @@
+
+
+<Quid: numerus currens: 8
+<Author(s)/writer(s): King Henry V, *1387
+<Place of author: Caen, France
+<Sex of author(s): male
+<Age of author: -40 (30)
+<Status of author: royal
+<Recipient: Aldermen of London
+<PLace of recipient: London
+<SEx of recipient: male
+<ADdress of recipient: Trusty and Welbeloved; you
+<Relation of correspondents: distant
+<Ranks of correspondents: downwards
+<Exact date: 1417
+<Century (in quarters): 1/15
+<Educational background: educated
+<Dialect: x
+
+<King Henry V to the Aldermen of London (1417b),
+<A book of London English, eds. Chambers & Daunt pp. 67-68.
+
+$I Littera domini Regis Maiori & Aldremannis missa.
+
+$I   By the Kyng -- Right trusty and welbeloued, We grete you
+$I often tymes wel, doyng you to vndirstonde that, on Seint Cuth_bertes
+$I day the Translacion, god of his high grace send vn-to
+$I oure handes oure town of Caen by assault, and with right litell
+$I deth of oure peple, wherof we thanke our saviour lowelich
+$I as we can or may, prayng you that ye do the same, and as de_uoutely
+$I as ye can; certefying you also that we and our host been
+$I in good prosperite and helth, thankyd be god of hys mercy, who
+$I haue you in hys kepyng. Yeuen vnde our signet, in our sayd
+$I town of Caen, the vte day of Septembre.
+$I   Ferthermore, aftir the date of this lettres, our Castell of Caen ys
+$I yolden to vs, and hostages leyd upon this condicion, but yif they
+$I be rescowed bi bataille to be youen vn-to us by oure aduersaire
+$I of france, other his son called the Dolphin, other therle of
+$I Ermenak, be the xix day of the sayd moneth of Septembre.
+
+

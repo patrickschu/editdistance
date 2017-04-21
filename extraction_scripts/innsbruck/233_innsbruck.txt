@@ -1,0 +1,50 @@
+
+
+<Quid: numerus currens: 233
+<Author(s)/writer(s): Sir Francis Drake (c1543-1596)
+<Place of author: aboard a ship (The Revenge)
+<Sex of author(s): male
+<Age of author: 40+ (45)
+<Status of author: nobility, discoverer
+<Recipient: Sir Francis Walsyngham
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: Most Honourable
+<Relation of correspondents: distant
+<Ranks of correspondents: equal
+<Exact date: 1588
+<Century (in quarters): 4/16
+<Educational background: educated
+<Dialect: x (normalised by editor)
+
+<Sir Francis Drake to Walsyngham (1588b),
+<The Defeat of the Spanish Armada, ed. Laughton, vol. II, p. 101.
+
+$I     Most Honourable:  The sudden sending for of
+$I my very good Lord, my Lord Admiral, hath caused
+$I me to scribble these few lines. First most humbly
+$I beseeching your Honour to deliver this letter unto
+$I her Majesty as a testification of my Lord Amiral's
+$I most honourable using of me in this action, where
+$I it hath pleased his good Lordship to accept of that
+$I which I have sometimes spoken, and commended
+$I that little service which I was able, much better
+$I than in either of them both I was able to deserve.
+$I Wherein, if I have not performed as much as was
+$I looked for, yet I persuade myself his good Lordship
+$I will confess I have been dutiful.
+$I   Touching any other causes that either hath been
+$I done or is to be done, let me pray pardon of your
+$I Honour, for I assure your Honour that my Lord
+$I Admiral hath so sufficiently instructed himself daily,
+$I as I faithfully believe his good Lordship will
+$I thoroughly satisfy her Majesty and your Honours
+$I what is now best to be done. Thus humbly taking
+$I my leave, I beseech God to bless the work of her
+$I Majesty's hands always. Written aboard her
+$I Majesty's good ship the Revenge, at midnight, this
+$I 11th of August, 1588.
+$I   Your Honour's faithfully to be commanded,
+$I                                     FRA. DRAKE.
+
+

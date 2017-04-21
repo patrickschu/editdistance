@@ -1,0 +1,60 @@
+
+
+<Quid: numerus currens: 302
+<Author(s)/writer(s): Sir Henry Wotton (1568-1639)
+<Place of author: Venice
+<Sex of author(s): male
+<Age of author: 40+ (50)
+<Status of author: nobility, writer, ambassador in Venice
+<Recipient: Robert Naunton
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: Right Honourable
+<Relation of correspondents: distant
+<Ranks of correspondents: upwards
+<Exact date: 1618
+<Century (in quarters): 1/17
+<Educational background: educated
+<Dialect: standard
+
+<Henry Wotton to Sir Robert Naunton (1618),
+<The Life and Letters of Sir Henry Wotton, ed. Smith,
+<Vol. II, letter 309, pp. 152-53.
+
+$I                        From Venice, this 26th of July, 1618.
+$I    RIGHT HONOURABLE,
+$I       Under this date I write two letters unto you; whereof the
+$I present is the latter,and is written to correct the former. For
+$I whereas in the same I advertised that an execution had been done
+$I upon certain mutinous persons of the Holland troops, that had
+$I fortified themselves against the General on the shore of Dalmatia
+$I (which I took from the first voice) there is now (though I am sorry
+$I to express it) fresher advice come from the armata that those
+$I mutineers were English, and of the late arrived under Sir Henry
+$I Peyton's conduct, to the number of some 150, who demanded the
+$I same pay that the foresaid Hollanders had, and made that the subject
+$I of their division. To which the General made answer, that he would
+$I stand to the contract concluded between the amabassador of this
+$I State and their conductor in England, and therfore wished them to
+$I be quiet; which they refusing, he landed 200 Albanesi to reduce
+$I them by force, against whom the English turned their pikes and
+
+<p. 153
+
+$I their shot, which the general perceiving, he laid the prows of two of
+$I his galleys against them, and so they yielded. Barbarigo upon this
+$I forming their process, did hang eight of them, who are said to be
+$I captains, lieutenants, and corporals, and that three of these did
+$I die in the Roman faith. their names I yet know not, which shall
+$I be advertised in my next. God send the success fairer than the
+$I beginning.
+$I    To this I must add that by the letters of Milan arrived at this
+$I moment, is intimated a secret conjunction between Fraunce and Savoy
+$I against the Genovese, which if it proceed, will inflame this whole
+$I country. These be resolutions proper for the canicular days, which
+$I are newly begun with us. And so, Sir, wishing us the continuance
+$I of blessed peace at home,I humbly rest,
+$I                                    At your commandments,
+$I                                                  HENRY WOTTON.
+
+

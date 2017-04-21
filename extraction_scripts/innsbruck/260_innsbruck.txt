@@ -1,0 +1,37 @@
+
+
+<Quid: numerus currens: 259
+<Author(s)/writer(s): Robert Daborne (c1580-1628)
+<Place of author: London?
+<Sex of author(s): male
+<Age of author: -40 (c33)
+<Status of author: dramatist
+<Recipient: Phillip Hinchlow
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: Mr
+<Relation of correspondents: distant
+<Ranks of correspondents: upwards
+<Exact date: 1613
+<Century (in quarters): 1/17
+<Educational background: educated
+<Dialect: x
+
+<Robert Daborne to Mr. Henslowe (1613),
+<The Alleyn Papers, ed. Collier, p. 57.
+
+$I    Good M=r= Hinchlow, I am upon y=e= sodeyn put to great ex_tremyty
+$I in bayling my man, comitted to Newgate upon taking
+$I a possession for me, and I took less mony of my kinsman, a
+$I lawier y=t= was with me, then servd my turn. I am thearfor to
+$I beseech y=u= to spare me xxs., which will doe me so great plea_sure
+$I y=t= y=u= shall find me thankfull, and performing more then ever
+$I I promisd or am tyed to: so, bold upon so great an occation to
+$I truble y=u=, I crave y=r= favorable interpretation, and rest
+$I                            ever at y=r= comaund,
+$I                              ROB. DABORNE.
+$I 28 Aprill, 1613.
+$I Lente M=r= Daborne this money.
+$I                     witness, HUGH ATWELL.
+
+

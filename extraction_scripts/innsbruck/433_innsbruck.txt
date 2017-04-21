@@ -1,0 +1,37 @@
+
+
+<Quid: numerus currens: 433
+<Author(s)/writer(s): John Wilmot, 1647-1680
+<Place of author: London
+<Sex of author(s): male
+<Age of author: -40 (25)
+<Status of author: nobility, poet, satirist
+<Recipient: Mrs. Wilmot
+<PLace of recipient: Adderbury, Banbury, Oxfordshire
+<SEx of recipient: female
+<ADdress of recipient: Madam
+<Relation of correspondents: married
+<Ranks of correspondents: equal
+<Exact date: 1672
+<Century (in quarters): 3/17
+<Educational background: educated
+<Dialect: standard
+
+<John Wilmot, Earl of Rochester, to his Wife (ca. 1672),
+<The Letters of John Wilmot, ed. Treglown, p. 80.
+
+$I Madam
+$I    I am extreamly troubled for the sickness of y=r= son as well in
+$I consideration of the affliction it gives you, as the dearness I
+$I have for him myself; you have I heare done mee the favour to
+$I expect me long in the Country where I intended to have bin long
+$I agoe, but Court affaires are more hardly sollicited now then ever,
+$I and having follow'd them till I had spent all my owne money &
+$I y=rs= too, I was forc't to stay somthing longer here till I had
+$I contriv'd a supply, w=ch= being now dispatch'd I have nothing to
+$I hinder mee from what I heartily desire w=ch= is to waite on y=r= La=sp=
+$I at Adderbury
+$I                      I am y=r= humble servant
+$I For my Wife
+
+

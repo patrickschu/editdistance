@@ -1,0 +1,36 @@
+
+
+<Quid: numerus currens: 58
+<Author(s)/writer(s): Alice, Duchess of Suffolk
+<Place of author: Ewelme
+<Sex of author(s): female
+<Age of author: x
+<Status of author: nobility
+<Recipient: William Stonor
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: Right trusty and entirely beloved friend
+<Relation of correspondents: friends
+<Ranks of correspondents: equal
+<Exact date: 1475
+<Century (in quarters): 4/15
+<Educational background: educated
+<Dialect: Oxfordshire (?)
+
+<Alice, Duchess of Suffolk, to William Stonor (5 March,? 1475)
+<The Stonor Letters and Papers 1290 – 1483, ed. Charles Lethbridge Kingsford, Vol. I
+<Letter 148, p. 154.
+
+$I Right trusty and entierly beloved ffrende we grete you well, desiryng
+$I and praying yow, all excuses layde apart, that incontinent this lettur
+$I seyne ye come to us to Ewelme for certayne grete causes concernyng
+$I our wele and pleasir, whiche at your comyng ye shall undrestond more
+$I pleynely: and theruppon ye to departe ayen at your pleasir, so that ye
+$I fayle not here ynne at this tyme as our parfait trust ys in you: and as
+$I in gretter case we woll be gladde to do for you, that knoweth our lorde,
+$I who have you ever yn gouvernaunce. Wreten at Ewelme the v day of
+$I Marche • 3 •
+$I Alyce Suffolk.
+$I To our Right trusty and entierly beloved ffrende Wyllyam Stoner.
+
+

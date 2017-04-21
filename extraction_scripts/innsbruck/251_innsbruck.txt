@@ -1,0 +1,57 @@
+
+
+<Quid: numerus currens: 250
+<Author(s)/writer(s): John Donne (1572-1631)
+<Place of author: Micham, London?
+<Sex of author(s): male
+<Age of author: -40 (35)
+<Status of author: clergy, writer
+<Recipient: Magdalen Herbert
+<PLace of recipient: x
+<SEx of recipient: female
+<ADdress of recipient: Madam
+<Relation of correspondents: distant
+<Ranks of correspondents: equal
+<Exact date: 1607
+<Century (in quarters): 1/17
+<Educational background: educated
+<Dialect: standard
+
+<John Donne to Magdalen Herbert (1607),
+<The Life and Letters of John Donne, ed. Gosse,
+<Vol. I, pp. 164-165.
+
+$I   "To the Worthiest Lady Mistress Magdalen Herbert.
+$I   "MADAM,  Every excuse hath in it somewhat of
+$I accusation; and since I am innocent, and yet must excuse,
+$I how shall I do for that part of accusing? By my troth,
+$I as desperate and perplexed men grow from thence bold,
+$I so must I take the boldness of accusing you, who would
+$I draw so dark a curtain betwixt me and your purposes, as
+$I that I had no glimmering, neither of your goings, nor the
+$I way which my letters might haunt. yet have I given this
+$I licence to travel, but I know not whither, nor it. It is
+$I therefore rather a pinnace to discover; and the entire
+
+<p. 165
+
+$I colony of letters, of hundreds an fifties, must follow;
+$I whose employment is more honourable than that which
+$I our State meditates to Virginia, because you are worthier
+$I than all of that country, of which that is a wretched inch;
+$I for you have better treasure, and a harmlessness. If this
+$I sound like a flattery, tear it out. I am to my letters as
+$I rigid as a Puritan, as Caesar was to his wife. I can as ill
+$I endure a suspicion and misinterpretable word as a fault.
+$I But remember that nothing is flattery which the speaker
+$I believes; and of the grossest flattery there is this good
+$I use,that they tell us what we should be. But, madam,
+$I you are beyond instruction, and therefore there can belong
+$I to you only praises; of which, though you be no good
+$I hearer, yet allow all my letters leave to have in them one
+$I part of it, which is thankfulness towards you.  Your un_worthiest
+$I servant, except your accepting have mended him,
+$I                                          John Donne.
+$I "Micham, July 11, 1607."
+
+

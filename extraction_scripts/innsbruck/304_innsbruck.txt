@@ -1,0 +1,52 @@
+
+
+<Quidnumerus currens: 303
+<Author(s)/writer(s): Sir Henry Wotton (1568-1639)
+<Place of author: Venice
+<Sex of author(s): male
+<Age of author: 40+ (50)
+<Status of author: nobility, writer, ambassador in Venice
+<Recipient: Robert Naunton
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: Sir
+<Relation of correspondents: distant
+<Ranks of correspondents: upwards
+<Exact date: 1618
+<Century (in quarters): 1/17
+<Educational background: educated
+<Dialect: standard
+
+<Henry Wotton to Sir Robert Naunton (1618),
+<The Life and Letters of Sir Henry Wotton, ed. Smith,
+<Vol. II, letter 314, pp. 159-160
+
+$I 9th of October, 1618.
+$I Sir,
+$I    I take presumption, upon the assured promise of your love, to
+$I write unto you herein a few private lines about myself; whereof the
+$I scope is this, to beseech you that, as you have obtained leave for my
+$I return home the next spring, to the comfortable sight of my gracious
+$I master, so you will be pleased likewise to deal with his Majesty
+$I in my behalf, that none may be appointed to succeed me here till
+$I my arrival; because, when I have settled some of my peculiar
+
+<p. 160
+
+$I occasions, I shall rather wish to come hither back again, than to
+$I be onerous to his Majesty at home; for without his bounty I cannot
+$I live. In the meanwhile, my Italian ssecretary, Gregorio de' Monti
+$I (who supplied the place all the while that Sir Dudley Carleton was
+$I at Turino, and afterwards till my coming), will discharge it with
+$I fidelity and discretion; being a person of much sufficiency, and of
+$I twelve years' approvement in the King's service. This is my most
+$I humble and hearty request unto you, about which I have by letter
+$I prayed Mr. Bargrave to intercede with you for me. But having not
+$I heard from him, I thought fit provisionally to move it by mine own
+$I pen; having with no man else living communicated these thoughts,
+$I about which I shall languish to receive a line or two from you.
+$I And so, again,
+$I                             Sir, I am yours,
+$I                                     HENRY WOTTON.
+
+

@@ -1,0 +1,47 @@
+
+
+<Quid: numerus currens: 145
+<Author(s)/writer(s): Sir Thomas More, 1478-1535
+<Place of author: Woking, Surrey
+<Sex of author(s): male
+<Age of author: 40+ (45)
+<Status of author: nobility
+<Recipient: Wolsey, Archbishop of York
+<PLace of recipient: York
+<SEx of recipient: male
+<ADdress of recipient: none
+<Relation of correspondents: distant
+<Ranks of correspondents: equal
+<Exact date: 1523
+<Century (in quarters): 1/16
+<Educational background: educated
+<Dialect: standard
+
+<Thomas More to Wolsey (1523),
+<Correspondence of Sir Thomas More, ed. Rogers,
+<pp. 278-279.
+
+<[Brit. Mus. MS. Vesp. F. XIII. fol. 243.]
+
+$I                                Woking
+$I                            1 September [1523]
+$I   Hit may lyke your good Grace to be aduertised that
+$I according to your Gracis commaundement, geven me by your
+$I lettres dated the xxxth day of Auguste, I haue shewed vn to the
+
+<p. 279
+
+$I Kingis Grace the byll devised for Sir Richard Wyngfeld, sub_scribed
+$I by your Grace, and the old bill, also aduertisyng his Grace
+$I of such thingis as your Grace in the new bill caused to be lefte
+$I owte for thadvantage of his Highnes, which pointis I shewed his
+$I Grace cancelled in the old bill and omitted in the new, ffor which
+$I his Highnes, with hartie thankis to your Grace for your labor
+$I taken therin, hath signed the new, which I haue delivered to hym
+$I of whom I received hit.
+$I   And thus our Lord long preserve your good Grace in honour and
+$I helth. At Okyng the ffyrst day of Septembre.
+$I     Your humble orator and moost bounden bedeman
+$I                                             [Thomas More]
+
+

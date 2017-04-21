@@ -1,0 +1,61 @@
+
+
+<Quid: numerus currens: 240
+<Author(s)/writer(s): John Donne (1572-1631)
+<Place of author: London
+<Sex of author(s): male
+<Age of author: -40 (29)
+<Status of author: lawyer, writer
+<Recipient: Henry Goodyer
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: Sir
+<Relation of correspondents: close
+<Ranks of correspondents: equal
+<Exact date: 1601
+<Century (in quarters): 1/17
+<Educational background: educated
+<Dialect: standard
+
+<John Donne to Sir Henry Goodyer (1601),
+<The Life and Letters of John Donne, ed. Gosse,
+<Vol. I, pp. 109-110.
+
+$I    "Sir,  Of myself (who, if honesty were precious, were
+$I worth the talking of) let me say a little. The Commis_sioners
+$I by imprisoning the witnesses and excommunicating
+$I all us, have implicitly justified our marriage. Sir George
+$I will, as I hear, keep her till I send for her: and let her re_main
+$I there yet, his good nature and her sorrow will work
+$I something. I have liberty to ride abroad, and feel not
+$I much of an imprisonment. For my return to my Lord,
+$I and Sir George's pacification, you know my means, and
+$I therefore my hopes.
+$I    "Of Ostend it is said there hath been a new blow given.
+$I Losses of men somewhat equal, but the enemy hath re_covered
+$I a trench with Sir Francis had held out of the town.
+$I The States have honoured him by publishing an edict with
+$I sharp punishment to any that spoke dishonourably of his
+$I parley with the Archduke. If the Emperor were dead
+$I before you went, perchance he is buried by this time.
+
+<p. 110
+
+$I    "I hope somebody else hath had the ill luck to tell
+$I you first, that the young Bedford is dead. The King of
+$I Spain intends to spend this summer in Italy: and there
+$I I think by that time will be our Lords of Pembroke,
+$I Willoughby, and Worcester. The Lord-Deputy hath cut
+$I off some of Tyrrels now lately, but no great number. I
+$I send this letter to ask the way to Polesworth: if I hear it,
+$I find it, I shall cost you half-an-hour a week to read the
+$I rest. I hear nothing of your warrant from Mr. Andrew
+$I Lee. Take my love and honesty into the good opinion,
+$I and commend my poor unworthy thanks and service to
+$I your good lady. 23rd february 1601[2] from my chamber
+$I at Mr. Haines' house by the Savoy (for this language your
+$I subscriptions use).
+$I                   "Your true certain friend,
+$I                                         "Jo. Donne.
+
+

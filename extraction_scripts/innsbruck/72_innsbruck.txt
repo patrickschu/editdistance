@@ -1,0 +1,32 @@
+
+
+<Quid: numerus currens: 71
+<Author(s)/writer(s): Margery Hampden Stonor
+<Place of author: x
+<Sex of author(s): female
+<Age of author: x
+<Status of author: gentry
+<Recipient: William Stonor
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: personal
+<Relation of correspondents: family (cousins)
+<Ranks of correspondents: equal
+<Exact date: 1477
+<Century (in quarters): 4/15
+<Educational background: educated
+<Dialect: x
+
+<Margery Hampden Stonor to William Stonor
+<The Stonor Letters and Papers 1290–1483, ed. Charles Lethbridge Kingsford, Vol. II
+<Letter 186, p. 28.
+
+$I Worchypfull Cossyne, I recomaund me unto yow, and I pray yow 
+$I hartely, cossyne, to come heder thys nyte or to-morow by tymesse, both 
+$I for þe mater off my nefew, and also for þe mater that I desyred yow, 
+$I asse my truste yn yow, or asse I may do thynge to yowr plesur, þe 
+$I weche to do I wold, be glad, God knowthe, ho have yow yn ys kepinge.
+$I Yowres M. Hampdun.
+$I To my worchippfull Cossyn, W. Stonor, in haste.
+
+

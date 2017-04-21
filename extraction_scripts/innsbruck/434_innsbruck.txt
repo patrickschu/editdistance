@@ -1,0 +1,33 @@
+
+
+<Quid: numerus currens: 434
+<Author(s)/writer(s): John Wilmot, 1647-1680
+<Place of author: London
+<Sex of author(s): male
+<Age of author: -40 (25)
+<Status of author: nobility, poet, satirist
+<Recipient: Mrs. Wilmot
+<PLace of recipient: Adderbury, Banbury, Oxfordshire
+<SEx of recipient: female
+<ADdress of recipient: Wife
+<Relation of correspondents: husband to wife
+<Ranks of correspondents: equal
+<Exact date: 1672
+<Century (in quarters): 3/17
+<Educational background: educated
+<Dialect: standard
+
+<John Wilmot, Earl of Rochester, to his wife (1672),
+<The Letters of John Wilmot, ed. Treglown, p. 82.
+
+$I      From our Tubb att M=ns= Fourcards this 18nt of Octob:
+$I    Wife; Our gutt has allready binn griped, & wee are now in bed
+$I soe that wee are not in a condition of writing either according to
+$I thy merritt or our desert, wee therefore doe command thy
+$I benigne acceptance of these our letters in what way soever by us
+$I inscribed or directed, willing thee therewithall to assure our sole
+$I daughter & heire issue female, the Lady ann part. of our best
+$I respects, this with your care & dilligence, in the erection of our
+$I furnaces is att present the utmost of our will & pleasure 
+
+

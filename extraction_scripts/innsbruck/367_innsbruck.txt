@@ -1,0 +1,42 @@
+
+
+<Quid: numerus currens: 366
+<Author(s)/writer(s): Queen Henrietta Marie (1609-1669) (wife of Charles I)
+<Place of author: Oatlands, Surrey
+<Sex of author(s): female
+<Age of author: 32
+<Status of author: royal
+<Recipient: Edward Nicholas
+<PLace of recipient: London
+<SEx of recipient: male
+<ADdress of recipient: you; Master
+<Relation of correspondents: friend
+<Ranks of correspondents: downwards
+<Exact date:1641
+<Century (in quarters): 2/17
+<Educational background: educated
+<Dialect: x
+
+<Queen Henrietta Marie to Sir E. Nicholas (1641a),
+<Memoirs of John Evelyn ... the private correspondence
+<between King Charles I. and Sir Edward Nicholas, ed. Bray,
+<Vol. V, p. 4.
+
+$I Maistre Nicholas, I haue reseaued your letter: and
+$I that you send me from the King: which writes me word
+$I he as been vere well reseaued in scotland: and that
+$I both the armie: and the people: have shued a creat joye
+$I to see the King: and such: that theay say was neuer
+$I seen before: pray god it may continued: for the letter
+$I that I writt to you counserning the commissionaires it is
+$I them that are toe dispatch bussinesse in the Kings ab_sence:
+$I I thank you for your care of geuing me aduises
+$I of what passes at London: and soe I reste
+$I Your frand,
+$I Henriette Marie R.
+$I Otelands, the 19 August.
+$I Indorsed, “For Mistre Nicholas."
+$I In Sir E. N.'s writing:
+$I “19=o= Aug. 1641.    The Queenes le=r= to me."
+
+

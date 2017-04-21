@@ -1,0 +1,47 @@
+
+
+<Quid: numerus currens: 255
+<Author(s)/writer(s): Queen Anne of Denmark, wife of James I (1574-1619)
+<Place of author: Copenhagen?
+<Sex of author(s): female
+<Age of author: -40 (36)
+<Status of author: royal
+<Recipient: Sir George Villiers, Duke of Buckingham
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: My kind dog (!) 
+<Relation of correspondents: familiar
+<Ranks of correspondents: equal
+<Exact date: ca. 1610
+<Century (in quarters): 1/17
+<Educational background: educated
+<Dialect: x
+
+<Anne of Denmark to Sir George Villiers (ca. 1610),
+<(afterwards Duke of Buckingham),
+<Original Letters, ed. Ellis, vol. 3,
+<LETTER CCLXII, pp. 100-101.
+
+$I MY KIND DOG
+$I Your Letter hath bin acceptable to me; I rest
+$I alreadie assured of your carefulnesse. Yow maye tell
+$I your Maister that the King of Dennemarke hath sent 
+$I me tuelf faire mares, and as the bringer of them assures
+
+<p. 101
+
+$I me, all great with foles, which I intend to put into 
+$I Byfield Parke, where being the other daye a hunting 
+$I I could find but verie few deare, but greate store
+$I of other cattle as I shall tell your Maister my self when 
+$I I see him. I hope to meete you all at Woodstock at
+$I the time apponited, till when I wish you all happines
+$I and contentment.
+$I ANNA R.
+$I I thank yow for your paines taken in re_membring
+$I the King for the pailing of me
+$I parke. I will doe you anie service I can.
+$I To
+$I Sir George Villiers.
+
+

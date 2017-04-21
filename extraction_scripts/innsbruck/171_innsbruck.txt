@@ -1,0 +1,62 @@
+
+
+<Quid: numerus currens: 171
+<Author(s)/writer(s): group: ten ladies of the court
+<Place of author: Portsmouth
+<Sex of author(s): female
+<Age of author: var
+<Status of author: aristocrats
+<Recipient: Henry VIII
+<PLace of recipient: London?
+<SEx of recipient: male
+<ADdress of recipient: sovereign Lord; Your Highness; Your Majesty et al.
+<Relation of correspondents: distant
+<Ranks of correspondents: upwards
+<Exact date: ca. 1540
+<Century (in quarters): 2/16
+<Educational background: educated
+<Dialect: x
+
+<Ten Ladies of the Court, to King Henry the Eighth,
+<upon visiting His Majesty's new Great Ship at Portsmouth (1540),
+<Original Letters, ed. Ellis, Vol. II,
+<LETTER CXLVI, pp. 126-127.
+
+$I Most gratiouse and benigne sovraigne Lorde,
+$I please it your Highnes to understonde that wee have
+$I scene and beene in your newe Greate Shippe, and the
+$I rest of your shippes at Portismowth, wiche arr things
+$I so goodlie to beeholde, that, in our liefs wee have not
+$I scene (excepting your royall person and my lord the
+$I Prince your sonne) a more pleasaunt sight; for wiche,
+$I and the most bountiful gifts, the chere and most gra_tiouse
+$I enterteignment, wich your Grace hath vouch_savid
+$I to bestowe upon us your most unworthie and
+$I humble servaunts, wee rendre and send unto the same
+$I our most humble and entier thanks wich wee beseche
+
+<p. 127
+
+$I your Ma=tie= to accept in good parte, advertising the same
+$I that there rest nowe but only ij. sorowes; the tone
+$I for lacke of your royall presence that ye might have
+$I seene your said Shippes, nowe at this tyme whan wee
+$I might have waited on you here; the toodre that wee
+$I thinke long til it may eftsones lieke you to have us
+$I with you, wiche wee all most hertely beseche our Lord
+$I God may bee shortely; who preserve your most noble
+$I person, and my Lord Prince, and graunte you bothe
+$I to reigne over us; Your Majesty many yeris, His
+$I Grace with long continuance but by late succession,
+$I as never Princes did before You. From Your Ma_jesties
+$I havon and towne of Portismowth the iiij=th=. of August.
+$I Yo=r= Highnes most bounden
+$I and humble servaunts,
+$I and beadwomen
+$I MABYELL SOUTHAMPTON
+$I MARGARET TAYLEBOIS,   MARGRETT HOWARDE,
+$I ALYS BROWNE.     ANNE KNEVYTT.     JANE DENNY.
+$I JANE MEOWS   ANNE BASSET
+$I ELIZABETH TYRWHYT     ELSABETH HARVY
+
+

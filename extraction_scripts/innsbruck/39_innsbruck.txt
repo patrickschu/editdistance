@@ -1,0 +1,50 @@
+
+
+<Quid: numerus currens: 38
+<Author(s)/writer(s): Agnes Paston, * c.1400
+<Place of author: Paston
+<Sex of author(s): female
+<Age of author: 40+ (c.51)
+<Status of author: gentry
+<Recipient: John Paston
+<PLace of recipient: London
+<SEx of recipient: male
+<ADdress of recipient: personal, mother to son
+<Relation of correspondents: family
+<Ranks of correspondents: equal
+<Exact date: 1451
+<Century (in quarters): 3/15
+<Educational background: educated
+<Dialect: EM
+
+<Agnes Paston to John Paston I (1451),
+<The Paston Letters, ed. Davis, pp. 19-20.
+
+$I Address: To John Paston, dwyllyng in the Tempyll at London,
+$I   be this letter delyverid in haste.
+
+$I I gret you well, and lete you wete that Warne Harman, on the
+$I Sonday after Hallumes Day after ensong, seyd oponly in the cherch
+$I 3erde that he wyst wyll that and the wall were pud doun, thou
+$I he were an hondryd myle fro Paston he wyste well that I wolde
+$I sey he ded yt, and he xuld bere the blame; seying, `Telle yte here
+$I hoso wyll, thou it xuld coste me xx nobyllys it xall be pud doun
+
+<p. 20
+
+$I ayen.' And the seyd Warnys wyfe wyth a loude vosse seyd, `All
+$I the devyllys of hell drawe here sowle to hell for the weye that
+$I she hat mad.'
+$I    And at evyn a sertyn man suppyd wyth me, and tolde me that
+$I the patent grantyt to closse but a perch on bred, and that I had
+$I clossyd more than the grant of the patent is, as men seyd. And
+$I John Marchall tolde me that there was a thryfty woman come
+$I forby the watteryng and fond the wey stoppyde and askyd hym
+$I ho had stoppyd the weye; and he seyd they that had pore to yeve
+$I it, and askyd here wat was freere than yyfte. And she seyd she
+$I sey the day that Paston men wold not a sofferyd that.
+$I    And God be wyth you. Wretyn at Paston on Monday after
+$I Hallumys Day.
+$I                            Be youre modyr, Annes Paston.
+
+

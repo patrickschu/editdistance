@@ -1,0 +1,41 @@
+
+
+<Quid: numerus currens: 24
+<Author(s)/writer(s): John Prior of Durham
+<Place of author: Durham
+<Sex of author(s): male
+<Age of author: x
+<Status of author: clergy
+<Recipient: Lord of Hales
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: Sir
+<Relation of correspondents: distant
+<Ranks of correspondents: equal
+<Exact date: 1441
+<Century (in quarters): 2/15
+<Educational background: educated
+<Dialect: x
+
+<Litera Directa Domino de Hayles (1441),
+<John Prior of Durham to Lord de Hales,
+<The Priory of Coldingham, ed. Raine, p. 124.
+
+$I   Right honorabill and worshipfull lord, I commend me to
+$I you, thankand you of your graciouse supportacion doon to oure
+$I celle of Coldingham, and to my brother John Oll, newly pre_sennt
+$I to the said celle, besekand yowe of your goode conti_nuance.
+$I And lyk itt you to remembre how att your request I
+$I grannt the office of the bailyery of Coldingham to sir Alexan_der
+$I Home for certeyn yhere3, if so be Sir Davy wald surren_dour
+$I his lettres of the said office to me or to the prior of Cold_ingham,
+$I and now late the said sir Alexander present your
+$I honorabill lettres to me as touchand the same matere. And as
+$I I wratt to your lordshipp befor, so wrytt I yhitt, thatt I and
+$I my brether att your especiall request will grannt to the said Sir
+$I Alexander the office of the said bailyery for lx yheere, so thatt
+$I sir Davy will surrendour his lettres, as I wrate to you afore.
+$I And Gode and our lady haff yow evermoore in thayre gra_ciouse
+$I kepyng. Wreten at Durham, the xxiiii day of Novem_bre.
+
+

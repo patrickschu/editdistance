@@ -1,0 +1,39 @@
+
+
+<Quid: numerus currens: 218
+<Author(s)/writer(s): Robert Devereux, 2nd Earl of Essex (1567-1601)
+<Place of author: Leiden
+<Sex of author(s): male
+<Age of author: -40 (18)
+<Status of author: nobility
+<Recipient: Richard Broughton
+<PLace of recipient: Blithfield
+<SEx of recipient: male
+<ADdress of recipient: impersonal
+<Relation of correspondents: acquainted
+<Ranks of correspondents: downward
+<Exact date: 1585
+<Century (in quarters): 4/16
+<Educational background: educated
+<Dialect: x
+
+<Robert, 2nd Earl of Essex, to Hugh Broughton
+<Devereux Papers with Richard Broughton's Memoranda (1575-1601)
+<ed. Malden
+<number 26, p. 24.
+<(1585)
+
+$I 5 January 1585.
+$I Mr. Broughton, I forgot in my l'res to write for Mr. Aldersey's
+$I bills to be sent over in hast by Merik. I pray you as ever you do
+$I any thing for me dispatch him wth all speede; for els I shalbe dryven
+$I to buy some of those thinges here and take up the mony upon
+$I interest. The plate, especially, both dyshes & the other, must be
+$I sent out of hand. If you have that care wch I assure my self you
+$I will, my man may returne wthin a weeke after he cometh to London.
+$I Thus, in hast, I end; referring what I have forgotten to write to
+$I his message.    Leyden this vth of January, 1585.
+$I Yours assured
+$I (Signed) R. ESSEX.
+
+

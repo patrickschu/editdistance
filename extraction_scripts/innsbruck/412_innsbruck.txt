@@ -1,0 +1,56 @@
+
+
+<Quid: numerus currens: 412
+<Author(s)/writer(s): Andrew Marvell, 1621-1678 (and Anthony Gylby)
+<Place of author: Westminster
+<Sex of author(s): male
+<Age of author: -40 (39)
+<Status of author: politician and writer
+<Recipient: Christopher Richardson
+<PLace of recipient: Newcastle
+<SEx of recipient: male
+<ADdress of recipient: Gentlemen; you
+<Relation of correspondents: distant
+<Ranks of correspondents: equal
+<Exact date: 1660
+<Century (in quarters): 3/17
+<Educational background: educated
+<Dialect: standard
+
+<Andrew Marvell to Major Richardson (1661),
+<The Poems and Letters of Andrew Marvell, ed. Margoliouth,
+<Vol. II, letter 24, p. 25.
+
+$I To Mayor Richardson.
+$I Gentlemen,
+$I    In addition to what we writ you last, you may please to take notice
+$I that whereas in your letter to us you say a summe not exceeding 250=li=
+$I per annum, it is absolutely necessary that you ascertain in expresse
+$I words the summe that is to be raised by pound rent without leaving
+$I it so farre indefinite. But if you had once got the consent and sub_scription
+$I of all those particular persons who are to contribute after
+$I the separation to the maintenance of your ministers (w=ch= can not
+$I neither properly be had but to a certain summe) you should then find
+$I for the rest that your bill should have as quick a dispatch as you or
+$I we can desire. In that matter of ballast we have spoke with the
+$I members of severall ports who are sensible of that grieuance & we
+$I are deliberating how to proceed therein either by petition to his
+$I M=ty= for reversing the Patent or else by a short act for that end.
+$I As for the Patent for gaging of wines we think the sooner you send
+$I up your charter for that from king James that it may be renewed,
+$I the better you will do; & then will be the most naturall time to
+$I take notice of that of Palmers. For your foure wine licences by
+$I statute of Edward the 6=th= we haue appointed a meeting with
+$I M=r=. Recorder before the next Post, & according as we shall upon the
+$I discussing of it find you more or lesse concerned, we shall in the bill
+$I for confirmation of publick Acts wherein also is that for wine licences,
+$I interpose for the preservation of your interest therein. We remaine
+$I in some hast
+$I                                       Gentlemen
+$I                       Your most affectionate friends to serve you
+$I                                            Antho Gylby.
+$I    Westm: May 20. 1661.
+$I    We beseech you be mindfull that the 29=th= of May be kept for
+$I a thanksgiving according to the Act in that case.
+
+

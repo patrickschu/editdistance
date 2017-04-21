@@ -1,0 +1,53 @@
+
+
+<Quid: numerus currens: 10
+<Author(s)/writer(s): King Henry V (*1387)
+<Place of author: Rouen, France
+<Sex of author(s): male
+<Age of author: -40 (31)
+<Status of author: royal
+<Recipient: group
+<PLace of recipient: London
+<SEx of recipient: male
+<ADdress of recipient: Trusty and Welbeloved; you
+<Relation of correspondents: distant
+<Ranks of correspondents: downwards
+<Exact date: 1418
+<Century (in quarters): 1/15
+<Educational background: educated
+<Dialect: standard
+
+<King Henry V to the Aldermen of London (1418b),
+<A book of London English, eds. Chambers & Daunt pp. 73-74.
+
+$I Littera missa Maiori, Aldermannis, & Comunibus
+$I Ciuitatis Londonie pro Victualibus mittendis Do_mino
+$I Regi in obsidione ante Rothomago iacenti &c.
+
+$I   Right trusty And welbeloued, We grete you ofte tymes well,
+$I And forasmoche as, in þe name of Almighty god and in oure
+$I right, wiþ hys grace, we haue leyd þe siege afore the cite of
+$I Roan, which is the most notable place in fraunce saue Parys, atte
+$I which siege vs nedeþ gretly refresshing for us and for our hoost;
+$I and we haue founde you our trewe lieges and subgitz of good
+$I wille at al tymes, to do al thing that might do vs worship and ese,
+$I wherof we can you right hertely thank, And pray you effectuelly,
+
+<p. 74
+
+$I that in al the haste that ye may ye wille do arme as manie smale
+$I vessels as ye may, goodly with vitaille, and namly with drinke,
+$I for to come to Harfleu, And fro þennes as fer as they may vp þe
+$I Riuer of Seyne to Roan-ward wiþ þe said vitaille for the refressh_ing
+$I of vs and our said hoost, as oure trust is to you; for the which
+$I vessels þer shal be ordeigned suffisant conduyt, with goddes
+$I grace; wetyng well also þat ther-inne ye may don vs right gret
+$I plesaunce And refresshing for al our hoost aboue sayd, And yeue
+$I vs cause to shewe þerfor to you euer the better lordship in tyme
+$I comynge, wyth the help of oure saueour, the which we praye þat
+$I he haue you in hys sauf warde. Yeuen vnder our signet, in our
+$I hoost afore the sayd Cite of Roan, þe x day of August.
+$I   To oure Right trusty and welbeloued þe Mair, Aldermen, and
+$I al the worthi communers of our cite of London.
+
+

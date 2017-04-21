@@ -1,0 +1,35 @@
+
+
+<Quid: numerus currens: 142
+<Author(s)/writer(s): Cecily Marchioness of Dorset
+<Place of author: Bedwell
+<Sex of author(s): female
+<Age of author: x
+<Status of author: nobility
+<Recipient: Thomas Cromwell (later Lord Cromwell)
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: Cromwell
+<Relation of correspondents: acquainted, employer to employee
+<Ranks of correspondents: downwards
+<Exact date: c1523
+<Century (in quarters): 1/16
+<Educational background: educated
+<Dialect: x
+
+<Cecily Marchioness of Dorset to Thomas Cromwell (1523),
+<Original Letters, Illustrative of English History, ed. Ellis,
+<vol. II, letter LXXVIII, p. 219.
+
+$I Cromwell, I woll that yow send to me in hast the
+$I trussynn bed of cloth of tyssewe, and the fether bed,
+$I wyth the fustyons and a materas longynn to the same
+$I wyth the cownterpoynt; also I woll that you delyver
+$I all such tents, pavylyons, and hales as you have of
+$I myne on to my sonne Lenard, as you tender my ple_sur.
+$I And thys shall be your suffycyant warrant and
+$I dyscharge att all tymes. Wrytyn at Bedwell thys
+$I present Thorysdaye by foore our Lady daye the As_sumpcyon.
+$I CECYL DORSETT.
+
+

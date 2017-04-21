@@ -1,0 +1,51 @@
+-
+
+<Quid: numerus currens: 138
+<Author(s)/writer(s): Mary, Queen of France, * c1490
+<Place of author: Paris
+<Sex of author(s): female
+<Age of author: -40 (c25)
+<Status of author: royal
+<Recipient: Wolsey, Archbishop of York
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: personal; My very good Lord
+<Relation of correspondents: close
+<Ranks of correspondents: equal
+<Exact date: 1515
+<Century (in quarters): 1/16
+<Educational background: poor spelling (normalised)
+<Dialect: x (normalised)
+
+<Mary the French Queen to Archbishop Wolsey (1515),
+<Letters of Royal and Illustrious Ladies, ed. Wood,
+<vol. 1, letter LXXVI, p. 202.
+
+$I   Mary Queen-Dowager of France to Wolsey.
+$I                        A.D. 1515.
+$I My very good lord,
+$I   With all my heart I commend me unto you. I
+$I understand that it hath pleased the king my brother
+$I to promote doctor West, being here one of his
+$I ambassadors, to the bishoprick of Ely, whereof I
+$I am right glad. By reason of which promotion he
+$I must depart with divers of his benefices, among
+$I which he hath two, one called Egglesfield, in the
+$I bishopric of Durham, and the other the archdaeconry
+$I of Derby, which (as I am informed) be of no great
+$I value. Beseeching you, my lord, at mine instance,
+$I and for my sake, to be so good lord unto my ser_vant
+$I John Palgrave, master of art, which hath done
+$I unto me right good and acceptable service, to his
+$I and his friends' great charge, and on my part as yet
+$I hitherto unremembered, as by your good wisdom
+$I and provision to find the means that he may have
+$I one of the said benefices. Heartily praying you and
+$I trusting that you will do it with effect, and to re_scribe
+$I unto me your good will done therein. And
+$I thus the Holy Ghost preserve you.
+$I   From Paris, the third day of April.
+$I                            MARY QUEEN OF FRANCE.
+$I   To my lord of York.
+
+

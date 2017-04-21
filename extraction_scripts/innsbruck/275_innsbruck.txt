@@ -1,0 +1,43 @@
+
+
+<Quid: numerus currens: 274
+<Author(s)/writer(s): Robert Daborne (c1580-1628)
+<Place of author: London?
+<Sex of author(s): male
+<Age of author: -40 (c33)
+<Status of author: dramatist
+<Recipient: Phillip Hinchlow
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: Mr
+<Relation of correspondents: distant
+<Ranks of correspondents: upwards
+<Exact date: 1613
+<Century (in quarters): 1/17
+<Educational background: educated
+<Dialect: x
+
+<Robert Daborne to Henslowe (1613),
+<The Alleyn Papers, ed. Collier, p. 69.
+
+$I    M=r= Hinchlow, I builded upon y=r= promyse to my wife, neather
+$I did I aquaint the company with any mony I had of yow, bicause
+$I they should seek to y=u=, as I know they will, and giv you any
+$I terms y=u= can desyre; if they doe not, I will bring y=u= y=r= mony,
+$I for the papers and many thanks: neather will I fayle to bring
+$I in the whole play next week; whearfor I pray S=r=, of all ffrynd_ship,
+$I disburse one 40s., and this note shall suffice to acknowledg
+$I my self indebted to y=u= with my q=r=ter's rent, 8l., for which y=u=
+$I shall eather have the whole companye's bonds to pay y=u= the
+$I first day of my play being playd, or the king's men shall pay
+$I it y=u= and take my papers. S=r=, my credit is as deer to me now
+$I as ever, and I will be as carefull of it as heartofore, or may I
+$I never prosper nor myne: so, desyring this may satisfy y=u= till
+$I y=u= appoynt a tyme when I shall bring y=u= the companie's bond,
+$I I rest expecting y=r= no more defering me,
+$I                                 ever at y=r= command,
+$I                                             Rob. Daborne.
+$I                                Witnes,    Moyses Bowler.
+$I    october xiiij, 1613.
+
+

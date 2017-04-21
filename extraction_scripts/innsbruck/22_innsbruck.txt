@@ -1,0 +1,47 @@
+
+
+<Quid: numerus currens: 21
+<Author(s)/writer(s): John Prior of Durham
+<Place of author: Durham
+<Sex of author(s): male
+<Age of author: x
+<Status of author: clergy
+<Recipient: Lord Hales
+<PLace of recipient: Durham
+<SEx of recipient: male
+<ADdress of recipient: Sir
+<Relation of correspondents: distant
+<Ranks of correspondents: equal
+<Exact date: 1441
+<Century (in quarters): 2/15
+<Educational background: educated
+<Dialect: x
+
+<Litera Directa Domino de Hales: a brother of Coldingham to Lord Hales (1441),
+<The Priory of Coldingham, ed. Raine, p. 122.
+
+$I   Wirshipfull sir, I commend me to yowe, thankyng yow of
+$I your goode supportacion shewid to your celle of Coldyngham,
+$I besekand yow of your good continuance. And lik hitt yow to
+$I weete that I haff receyvid your lettres, sennd to me by my bro_ther
+$I John Penchere. And as touchand the office of the bailyery
+$I of Coldingham, I am right sary thatt ony heavynesse or debate
+$I suld be betwen yowe and your cosyn Sir Davy for hitt, for in
+$I goode faith, and I warre nerhande yow, I wald labour wyth all
+$I myn hertt both wyth my goode and my body to make goode
+$I unite and pece between yowe. And yhe will, att the reverence
+$I of Gode, considir howe thatt Gode has endouid yowe wyth
+$I gretter lyveloode than is sir Davy, and if the fee of the Bailyery,
+$I the whilke is a grett help to his liveloode, be takyn fro hym,
+$I hitt ware to hym grett loose and hynderannce, and to yowe
+$I litill encresse. Never the lesse, as I have wrytyn to the Lorde
+$I of Hayles, who wrate to me for yowe for the office of the
+$I bailyery aforsaid, if the said Sir Davy will of his awen fre will
+$I surrendour his patente3 of the said office of the bailyery of Col_dyngham,
+$I and delyvere thayme to me or to the Prior of Col_dyngham,
+$I I can wele agree me to grannte yowe the said office
+$I for certeyn yheres apon certeyn condicion3. And God haff
+$I yowe in his graciouse kepyng. Wrtyn att Durham, the xiiI
+$I day of Octobre.
+
+

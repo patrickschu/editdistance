@@ -1,0 +1,49 @@
+
+
+<Quid: numerus currens: 372
+<Author(s)/writer(s): Oliver Cromwell (1599-1658)
+<Place of author: Ely
+<Sex of author(s): male
+<Age of author: 40+ (43)
+<Status of author: gentry, military and political leader
+<Recipient: Deputy Lieutenants
+<PLace of recipient: Suffolk
+<SEx of recipient: male
+<ADdress of recipient: Gentlemen
+<Relation of correspondents: distant
+<Ranks of correspondents: downwards
+<Exact date: 1642
+<Century (in quarters): 2/17
+<Educational background: educated
+<Dialect: standard
+
+<Oliver Cromwell to the Deputy Lieutenants (1642),
+<Oliver Cromwell’s Letters and Speeches, ed. Carlyle, vol. I,
+<Letter V, p. 131.
+
+$I To my honoured Friends the Deputy Lieutenants for the County
+$I                         of Suffolk.
+$I GENTLEMEN,                        Cambridge, 10th March 1642.
+$I    I am sorry I should so often trouble you about the
+$I business of money: it's no pleasant subject to be too
+$I frequent upon. But such is Captain Nelson's occasion,
+$I for want thereof, that he hath not wherewith to satis_fy
+$I for the billet of his soldiers; and so this Business
+$I for Norfolk, so hopeful to set all right there, may fail.
+$I Truly he hath borrowed from me, else he could not
+$I have paid to discharge this Town at his departure.
+$I    It's a pity a Gentleman of his affections should be
+$I discouraged! Wherefore I earnestly beseech you to
+$I consider him and the Cause. It's honourable that you
+$I do so.  What you can help to, be pleased to
+$I send into Norfolk; he hath not wherewith to pay a
+$I Troop one day, as he tells me. Let your return be
+$I speedy,  to Norwich.
+$I        Gentlemen, command
+$I                 Your servant,
+$I                          OLIVER CROMWELL.
+$I    ‘P.S.’ I hope to serve you in my return: with your
+$I conjunction, we shall quickly put an end to these
+$I businesses, the Lord assisting.
+
+

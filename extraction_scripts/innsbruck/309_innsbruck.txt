@@ -1,0 +1,56 @@
+
+
+<Quid: numerus currens: 308
+<Author(s)/writer(s): Sir Henry Wotton (1568-1639)
+<Place of author: Venice
+<Sex of author(s): male
+<Age of author: 40+ (50)
+<Status of author: nobility, writer, ambassador in Venice
+<Recipient: Sir Robert Naunton
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: formal, Right honourable; Your Honour
+<Relation of correspondents: distant
+<Ranks of correspondents: upwards
+<Exact date: 1619
+<Century (in quarters): 1/17
+<Educational background: educated
+<Dialect: standard
+
+<Henry Wotton to Sir Robert Naunton (1619),
+<The Life and Letters of Sir Henry Wotton, ed. Smith,
+<Vol. II, letter 324, pp. 172-73
+
+$I    Right Honourable,
+$I       This is only to signify unto his Majesty that by God's favour,
+$I within two or three days after the date thereof, we shall depart
+$I from hence; so as my next will be from Augusta, where there is, as
+$I you know, a feat to be done, for which the party is well prepared.
+$I I leave here (as Sir Dudley Carleton did during the whole time of
+$I his negotiation in Piedmont) Gregorio de' Monti, to supply the service
+$I by continual advertisements; upon which point I gave a touch, at
+$I my leave-taking to the Prince, desiring him to esteem it as an
+$I argument of clear and disumbrageous friendship, that we serve
+$I ourselves even of his own subjects; for Gregorio is a natural
+$I Venetian, though now many years as it were Englished, with
+$I singular approvement both of his fidelity, diligence, and discretion.
+$I Whereof he hath likewise a testimony from his Majesty, under his
+$I royal hand, sent him in the time of Sir Ralphe Winwoode, for his
+$I better encouragement, after my predecessor and myself had repre_sented
+$I his good deservings.
+$I Now to return to myself. I carry in my breast, besides that
+$I honest business which you know, some important commissions
+$I from this State which have a silent reflection (though not meant by
+
+<p. 173
+
+$I them) upon our main end. These I shall particularize in my letter
+$I from Augusta; and will end the present with mine humble thanks
+$I to Almighty God for the happy news, which we have had this week,
+$I of his Majesty's escape from a painful infirmity. The same good
+$I God yield him long unto us and to the Christian world.
+$I                        And so I rest,
+$I                             At your Honour's commandment,
+$I                                       HENRY WOTTON.
+
+

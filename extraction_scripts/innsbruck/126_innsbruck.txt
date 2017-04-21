@@ -1,0 +1,68 @@
+
+
+<Quid: numerus currens: 125
+<Author(s)/writer(s): Mary, Queen of France, *ca. 1490
+<Place of author: Abbeville
+<Sex of author(s): female
+<Age of author: -40 (c24)
+<Status of author: royal
+<Recipient: King Henry VIII
+<PLace of recipient: London?
+<SEx of recipient: male
+<ADdress of recipient: my most kind brother; you
+<Relation of correspondents: family: sister to brother
+<Ranks of correspondents: upwards
+<Exact date: 1514
+<Century (in quarters): 1/16
+<Educational background: poor spelling (normalised)
+<Dialect: x (normalised)
+
+<Mary the French Queen to her brother King Henry VIII. (1514),
+<Letters of Royal and Illustrious Ladies, Wood ed., vol. 1,
+<Letter LXIV, pp. 174-176.
+
+$I My most kind and loving brother,
+$I   I heartily recommend me unto you. Pleaseth it
+$I your grace to understand that my lord the king hath
+
+<p. 175
+
+$I instantly desired me to write unto you, that it would
+$I please you, for his sake and mine, to send unto my
+$I lord Darcy, to deliver Francois Descars, upon a
+$I reasonable ransom, unto you; and that it would
+$I please your grace to pay his ransom for the time,
+$I and that he might be delivered unto your grace,
+$I you shortly to have the money again, after that
+$I word is of his deliverance, or else he not to return
+$I as hither. Furthermore, the duke of Bretagne,
+$I otherwise called the dauphin, hath divers seasons
+$I moved me to write to your grace for the said
+$I Francois, forasmuch as he is one of his servants; the
+$I which to do I made him promise, and to the duke
+$I of Longuevilee also: for I assure your grace they
+$I made me and the noblemen of my company great
+$I cheer, from Bologne forth; as the duke of Norfolk,
+$I the lord marquis, with other noble men, can inform
+$I your grace. These premises considered, I beseech
+$I your grace to desire the lord Darcy to deliver, upon
+$I as little a ransom as reasonably may be, his said
+$I prisoner; for, as I am credibly informed here, he is
+$I but a poor gentleman. Now somewhat I would
+$I that my lord the king, (and) the both dukes to whom
+$I I am much bound, should think he should be the
+$I more favoured for my sake. When this man is de_livered,
+$I I beseech you to send word by the bringer of
+$I this, or some other, what his ransom is, which I
+$I pray God may be reasonable and little, who preserve
+$I your grace. Amen.
+
+<p. 176
+
+$I From Abbeville, the 18th day of October, by
+$I your very loving sister,
+$I                               MARY QUEEN OF FRANCE.
+$I   To my most kind and loving brother the king's
+$I              grace of England.
+
+

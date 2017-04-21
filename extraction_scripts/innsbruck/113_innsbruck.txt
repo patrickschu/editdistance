@@ -1,0 +1,49 @@
+
+
+<Quid: numerus currens: 111
+<Author(s)/writer(s): Agnes Plumpton (c1455-1504)
+<Place of author: Plumpton, Yorkshire
+<Sex of author(s): female
+<Age of author: 40+ (49)
+<Status of author: gentry
+<Recipient: Robert Plumpton
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: Sir
+<Relation of correspondents: wife to husband
+<Ranks of correspondents: equal
+<Exact date: 1504
+<Century (in quarters): 1/16
+<Educational background: educated
+<Dialect: x
+
+<Agnes Plumpton to Sir Robert Plumpton (1504c),
+<Plumpton Correspondence, ed. Stapleton,
+<Letter 153, p. 188.
+
+$I     To the worshipfull Robart Plompton, kt. be thes byll delivered
+$I                             in hast.
+$I   Right worshipfull, I in most hartee wyse recomennd me unto
+$I you, desiring to heare of your wellfaire and good speed in your
+$I matters, letting you understand that I am in good helth, with all
+$I your children (blessed be Jesu), and pray you of your daly bless_inge;
+$I and all your servants is in good health and is right glad to
+$I here of your welfare. Sir, on the eving after the making of this
+$I letter, your servant Edmund Robyson come home, and so I un_derstond
+$I by your letter, that you wold understand if sir John Ro_clife
+$I servants have received any ferme in Yorkshire, but therof I
+$I can get no knowledg as yet. But they have sold oke wood at
+$I Nesfeld, and lettes them stand to the tyme of the yere, one oke
+$I that is worth xl=d= for xij=d=; and also they have sold aches at the
+$I same place: and the okes are sold to William Clapame and Rich_ard
+$I Clapame, and the aches to the towards there about. And
+$I also at Idell, they have sold holyn to James Formes and to Tho_mas
+$I Quentin and William Aches, and herof I can geet no more
+$I certaintie as yet. And also there is no mo of your tenaunts to get
+$I as yet, nor your servants nether, at this tyme; but the Trenitie
+$I have you in his blessed keepinge      Scrybbled in hast, the fryday
+$I next after St Marke day.
+$I                                       By your wyffe,
+$I       (26 April 1504.)                     Dame AGNES PLOMPTON.
+
+

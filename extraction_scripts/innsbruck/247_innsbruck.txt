@@ -1,0 +1,36 @@
+
+
+<Quid: numerus currens: 246
+<Author(s)/writer(s): Ben Jonson (1572-1637)
+<Place of author: London?
+<Sex of author(s): male
+<Age of author: -40 (33)
+<Status of author: bourgeois, soldier, writer
+<Recipient: Esme, Lord D'Aubigny?
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: Lord
+<Relation of correspondents: distant
+<Ranks of correspondents: upwards
+<Exact date: 1605
+<Century (in quarters): 1/17
+<Educational background: educated
+<Dialect: standard
+
+<Ben Jonson to Esme ,Lord D'Aubigny (1605),
+<Ben Jonson - The Man and His Work, eds. Herford/Simpson,
+<Letter 5, p. 198.
+
+$I The Noble fauoures you haue done vs, Most worthy Lord: can
+$I not be so conceald or remou'd: but that they haue broke in vpon
+$I vs, euen where we lye double bound to their Comforts; Nor can
+$I we doubt, but he who hath so farre, and freelie aduentur'd to the
+$I reliefe of our vertue, will goe on to the vtmost release of it; And
+$I though I know yo=r= Lo: hath bene far from doinge any thinge
+$I herein to youre owne Ambition; yet be pleas'd to take this
+$I protestation, that (Next his Maiesties fauoure) I shall not couet
+$I that thinge more in the worlde, than to expresse the lastinge
+$I Gratitude, I haue conceiu'd in soule towards yo=r= Lordshipp.
+$I                                    Ben: Johnson.
+
+

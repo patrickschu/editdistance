@@ -1,0 +1,39 @@
+
+
+<Quid: numerus currens: 70
+<Author(s)/writer(s): Richard Cely the Elder (+ c.1482)
+<Place of author: London
+<Sex of author(s): male
+<Age of author: 40+
+<Status of author: merchant
+<Recipient: George Cely
+<PLace of recipient: Calais
+<SEx of recipient: male
+<ADdress of recipient: other
+<Relation of correspondents: family (father to son)
+<Ranks of correspondents: equal
+<Exact date: 1477
+<Century (in quarters): 4/15
+<Educational background: opoor spelling and grammar
+<Dialect: x
+
+<Richard Cely the elder to George Cely at Calais (1477),
+<The Cely Letters, ed. Hanham, p. 12.
+
+$I                Jhesu M=l=iiij=c= lxxvij
+
+$I I grete the wyl, and I thynke long tyl I haue wrytyng from the of
+$I syche maters as ye haue to doe for me at the marte. God send you
+$I a good marte, and me also. Ye schall understand that Robard Cely
+$I and Thomas Folbord my pryntys be comyng to Caleys, for I muste
+$I make the forsayd Thomas Folborne, my prentys, freman of the
+$I Staple wythin iiij 3ere of ys terme, the weche ys viiij 3ere as aperyt
+$I be ys endentur, for the weche I wyll ye doe youre pert for me to
+$I make hym freman. I wryt no more to you at thys tyme, but Jhesu
+$I kepe you. Wryt at London the xxvj day of Jun in grete haste.
+$I                      per Rychard Cely the elder.
+
+<Dorse: To Jorge Cely at Caleys be thys delyuer. 
+<(Seal_and_shield.)
+
+

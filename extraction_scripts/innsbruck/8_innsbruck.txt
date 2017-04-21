@@ -1,0 +1,44 @@
+
+
+<Quid: numerus currens: 7
+<Author(s)/writer(s): King Henry V
+<Place of author: x
+<Sex of author(s): male
+<Age of author: 30
+<Status of author: royal
+<Recipient: Aldermen of London
+<PLace of recipient: London
+<SEx of recipient: male
+<ADdress of recipient: other
+<Relation of correspondents: distant
+<Ranks of correspondents: downwards
+<Exact date: 1417
+<Century (in quarters): 1/15
+<Educational background: educated
+<Dialect: London
+
+<King Henry V to the Aldermen of London (1417a),
+<A book of London English, eds. Chambers & Daunt, p. 67.
+
+$I Littera domini Regis Maiori and Aldremannis missa.
+
+$I   By the Kyng -- Trusty and wel-beloued, We grete yow often
+$I tymes wel, Doyng yow to vnderstande for youre confort that by
+$I the grace of god we ben sauely arryued into oure lond of Nor_mandie,
+$I with all oure subgitz ordeyned to goo with vs for the
+$I ferst passage; and this day, the Euen of Seint Laurence, aboute
+$I mydday was yolden vn-to us the Castell of Touque, a-boute the
+$I whiche our wel-beloued cosyn therle of Huntyngdon lay, and the
+$I keyes of the sayd castell deliuered vnto vs withoute shedyng of
+$I cristen blood, or deffense mad by oure enemys; the whech Castel
+$I is an honneur, and all the viscountie and Lordshippes of Auge
+$I halden ther-of, as we ben enfourmed by such men as were ther
+$I yn. Wherof we thanke god lowely that hym lust of high grace
+$I to shewe vnto vs so faire begynnyng in our present voiage,
+$I Desiryng Also that ye thanke god therof in the most best wyse
+$I that ye can and that ye sende vs fro tyme to tyme suche tydyng,
+$I be komerys be-thwene, as ye haue in that syde the see. Yeuen
+$I vnder our signet, at our sayd Castel of Touque, the ix day of
+$I Aost.
+
+

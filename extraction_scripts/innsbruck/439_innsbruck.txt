@@ -1,0 +1,54 @@
+
+
+<Quid: numerus currens: 439
+<Author(s)/writer(s): John Wilmot, 1647-1680
+<Place of author: Adderbury, Oxfordshire
+<Sex of author(s): male
+<Age of author: -40 (28)
+<Status of author: nobility
+<Recipient: Mrs. Wilmot
+<PLace of recipient: Enmore
+<SEx of recipient: female
+<ADdress of recipient: formal; Madam
+<Relation of correspondents: married
+<Ranks of correspondents: equal
+<Exact date: 1675
+<Century (in quarters): 3/17
+<Educational background: educated
+<Dialect: standard
+
+<John Wilmot, Earl of Rochester, to his wife (1675),
+<The Letters of John Wilmot, ed. Treglown, pp. 100-101.
+
+$I Madam,
+$I I am at last come to Adderbury, where I find none but the
+$I housekeeper, the butler and rats who squeak mightily and are
+$I all in good health. Your daughter our next-door neighbour is
+$I well; I gave her your present which she received handsomely.
+$I Your maids for good husbandry and equipage sake I would
+$I have sent you from tithing to tithing, as the law of England
+
+<p. 101
+
+$I allows, but Florence was gentle and penitent and deserves
+$I something better. I have given her counsel for one end and
+$I a soft pillion for the other, upon which she ambles to Somerset_shire,
+$I where I am glad to hear your ladyship is, I hope in good
+$I health, at this present writing. Your other maid is a very
+$I eloquent person and I have paid her wages. Tomorrow I intend
+$I for Woodstock and from thence to London, where I hope to
+$I receive your commands. Present my humble duty to my Lady
+$I Warre, whose favours will ever be in my grateful memory; my
+$I humble service to Lady La Warre, to cousin Betty, sweet honey,
+$I Mrs Windham, the sprite, and the little girl whom my soul
+$I loveth. I hope my brother is well, but it is not usual to present
+$I our service to men in ladies' letters, so like a well-bred
+$I gentleman I rest,
+$I                         Madam,
+$I                           Your humble servant,
+$I                            Rochester.
+$I If you are pleased, I am pleased; were my mother pleased, all
+$I were pleased, which God be pleased to grant.
+$I                         Rochester.
+
+

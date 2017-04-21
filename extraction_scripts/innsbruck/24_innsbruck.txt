@@ -1,0 +1,48 @@
+
+
+<Quid: numerus currens: 23
+<Author(s)/writer(s): John Prior of Durham
+<Place of author: Durham
+<Sex of author(s): male
+<Age of author: x
+<Status of author: clergy
+<Recipient: “comes D’Angus”
+<PLace of recipient: Coldingham, Scotland
+<SEx of recipient: male
+<ADdress of recipient: Lord
+<Relation of correspondents: distant
+<Ranks of correspondents: equal
+<Exact date: 1441
+<Century (in quarters): 2/15
+<Educational background: educated
+<Dialect: x
+
+<Litera Directa Comiti D’Angus (1441),
+<John Prior of Durham to a fellow of Angus,
+<The Priory of Coldingham, ed. Raine, pp. 123-24.
+
+$I   Right honorabill and worshipfull lorde, I comend me to your
+$I lordship, thankand yow of the goode grace tendirnesse and
+$I supportacion whilke yhe haff doon and dayly doose to oure
+$I celle of Coldingham, besekyng you evermoor of your graciouse
+$I continuance. And as touchand the office of the bailyery of
+$I Coldyngham, to the whilke yhe desyre to be promote Sir Alex_ander
+$I Home, your welbelovyd cosyn, lik itt your said lordshipp
+$I to undirstande that before michaelmesse last past Sir Davy
+$I Home was att Durham, to wham I and my brethere grannte
+
+<p. 124
+
+$I the office of the balyery of Coldingham for xl yheere, under
+$I certeyn condicion3, whe thatt tyme noght knawand na conande
+$I ne pacte made betwixt Sir Alexander and Sir Davy. Never_thelesse
+$I if the said Sir Davy Home will discharge hym selfe
+$I and surrendour his lettres to me, or to the Priour of Coldyng_ham
+$I I can well agree me for your sake and att your requeste
+$I to grannte the said office of the said bailyery to sir Alexander
+$I Home for xl yheere, upon certeyn condicon3. And Gode and
+$I his blessid modre and oure haly patron seynt Cuthbert ever_moore
+$I haff you in thayre haly keepynge. Writen at Durham,
+$I the xxiiii day of Novembr.
+
+

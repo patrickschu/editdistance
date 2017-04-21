@@ -1,0 +1,41 @@
+
+
+<Quid: numerus currens: 175
+<Author(s)/writer(s): Thomas Cromwell (c1485-1540)
+<Place of author: Westminster, London
+<Sex of author(s): male
+<Age of author: 40+ (55)
+<Status of author: secretary, politician (minister of Henry VIII)
+<Recipient: unnamed Lord
+<PLace of recipient: x
+<SEx of recipient: male
+<ADdress of recipient: your Lordship
+<Relation of correspondents: distant
+<Ranks of correspondents: downwards
+<Exact date: 1540
+<Century (in quarters): 2/16
+<Educational background: x
+<Dialect: x (officialese)
+
+<Cromwell to an unnamed lord (1540),
+<Life and Letters of Thomas Cromwell, ed. Merriman, no. 337, pp. 249-50.
+
+$I   Aftre my right hartie comendacions vnto your lordship
+$I wheras I am enformed that sir Richard Smithe parson of
+$I Langom in the contie of Pembroke is accused and laid in
+$I prison by the bailif ther for certain wordes spokyn sounding
+$I to be treson against the Kinges maiestie These shalbe to
+$I require you with convenient celeritie [to] send as well for the
+$I said parson as other his accusors and vpon examinacion hade
+$I and due proves and the said Smithe found gyltye therin he to
+$I remain in prison to suche tyme as the kinges further plesor
+$I shalbe known therin, and in the case his said accusors can make
+
+<p. 250
+
+$I no dew prove of the same that then he finding sufficiente
+$I sureties per bondes for his apperance at all tyms when he
+$I shalbe called for by the kinges highnes or any of his honour_able
+$I consill you suffre him to go at libertie
+
+

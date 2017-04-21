@@ -1,0 +1,56 @@
+
+
+<Quid: numerus currens: 131
+<Author(s)/writer(s): Mary, Queen of France (sister of Henry VIII), * c1490
+<Place of author: Paris
+<Sex of author(s): female
+<Age of author: -40 (c25)
+<Status of author: royal
+<Recipient: Wolsey, Archbishop of York
+<PLace of recipient: York?
+<SEx of recipient: male
+<ADdress of recipient: my own good Lord; you
+<Relation of correspondents: friendly, sister to brother
+<Ranks of correspondents: equal
+<Exact date: 1515
+<Century (in quarters): 1/16
+<Educational background: educated
+<Dialect: x
+
+<Mary Queen of France to Wolsey (1514),
+<after the death of her husband Louis the Twelfth,
+<Original Letters, Illustrative of English History, ed. Henry Ellis,
+<vol. 2, letter XLI, pp. 120-121.
+
+$I My nanne good Lord, I recomend me to yow and
+$I thankyng yow for yo=r= kynde and lovyng Letter, dys_syryng
+$I yow of yo=r= good contenevans and good les_sones
+$I that yow hathe gyffen to me; my lord, I pray
+$I yow as my trust ys in yow, for to remember me to the
+$I Kyng my brother, for sowche causses and bessynes
+$I as I have for to do; for as now I have no nother
+$I to put my trust in but the Kyng my brother and yow.
+
+<p. 121
+
+$I And as yt shall ples the Kyng my brother and hys
+$I Counsell I wolbe horderd. And so I pray yow, my
+$I lord, to show hys Grace, seyng that the Kyng my
+$I howsbande ys departed to God, of whos sole God
+$I pardon. And wher as yow a vyse me that I shulde
+$I macke no promas, My Lord, I trust the Kyng my
+$I brother and yow wole nat reken in me sovche chyld_hode.
+$I I trust I have so horderd my selffe so sens
+$I that I came hether, that I trust yt hathe ben to the
+$I honar of the Kyng my brother and me, sens I come
+$I hether, and so I trust to contenew. Yff ther be any
+$I thynge that I may do for yow I wold be glade for to
+$I do yt in thys partes. I shalbe glade to do yt for yow.
+$I No more to you at thys tyme but Jhs preserve yow.
+$I Wretten at Pares the x. day of January 1515.
+$I By yowr lowyng
+$I frende MARY
+$I QUENE OF FRANCE.
+$I To My Lorde of Yorke.
+
+
