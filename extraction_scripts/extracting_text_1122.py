@@ -445,7 +445,71 @@ def finder(input_dir, meta_dict, exclude_list):
 
 #finder("/Users/ps22344/Desktop/eebo", metadict, excludelist)	
 
+##ADD on 4/20: Second round of Innsbruck
+import re
+import os
+import codecs
 
+
+meta=[
+("no",'X'), 
+("corpusnumber",'<Quid: numerus currens: (\d*)') , #<Quid: numerus currens: 7
+("corpus", "innsbruck_letter_corpus"), 
+("title",   '<Quid: numerus currens: (\d*)'), 
+("author", r"<Author\(s\)\/writer\(s\): (\D+?)(?:\r\n|,.*?|\(.*)"), #<Author(s)/writer(s)
+("dialect", "bre"),
+("authorage", '<Age of author: (.*?)\r\n'), #<Age of author: 30
+("pubdate", '<Exact date: (.*?)\r\n'), #<Exact date:
+("genre1", 'letter'), 
+("genre2", 'X'),
+("notes", 'The Innsbruck Corpus of English Letters from 1386 to 1698, (prepared by ICAMET, i.e. THE INNSBRUCK COMPUTER ARCHIVE OF MACHINE-READABLE ENGLISH TEXTS, second edition 2007'),
+("extraction_notes", """this has markup like so: X/*Y (hitherward/*so far) and so LAT_X (LAT_Item)"""),
+("encoding", 'utf-8'),
+('text', r"^\$I(.*?)\n")
+]
+
+metadict={}
+for m in meta:
+	if m[1] in ['X', 'bre'] or m[0] in ['notes', 'genre1', 'corpus', "extraction_notes", 'encoding']:
+		metadict[m[0]]=m[1]
+	else:
+		metadict[m[0]]=re.compile(m[1], re.MULTILINE)
+		
+
+def finder(input_dir, meta_dict):
+	filecount=1
+	for fili in [i for i in os.listdir(input_dir) if not i.startswith(".")]:
+		print '\n\n***', os.path.join(input_dir, fili), "\n"
+		with codecs.open(os.path.join(input_dir, fili), "r", "utf-8") as inputfili:
+			rawtext=inputfili.read()
+			print "regex", len(metadict['text'].findall(rawtext))
+		for entry in metadict:
+			if isinstance(metadict[entry], re._pattern_type) and len(metadict[entry].findall(rawtext)) == 0:
+				print entry, len(metadict[entry].findall(rawtext)) ,metadict[entry].findall(rawtext)
+  		with codecs.open(os.path.join(input_dir, fili), "r", "utf-8") as inputfili:
+			corpusstring=(
+			"<file> <no="+str(filecount)+"> "
+			"<corpusnumber="+metadict['corpusnumber'].findall(rawtext)[0]+"> "
+			"<corpus="+meta_dict['corpus']+"> " 
+			"<title="+metadict['title'].findall(rawtext)[0]+"> "
+			"<author="+" ".join([re.sub("<.*?>", "", i) if i else 'unknown' for i in meta_dict['author'].findall(rawtext)])+"> "   #
+			"<dialect="+meta_dict['dialect']+"> "#+meta_dict['dialect'].findall(rawtext)[0]+"> "
+			"<authorage="+metadict['authorage'].findall(rawtext)[0]+"> " #" ".join([i for i in meta_dict['authorage'].findall(rawtext)])+"> "
+			"<pubdate="+re.sub("<.*?>", "", meta_dict['pubdate'].findall(rawtext)[0])+"> "#" ".join(meta_dict['pubdate'].findall(rawtext))+"> "
+			"<genre1="+meta_dict['genre1']+"> "#.findall(rawtext)[0]+"> "
+			"<genre2="+meta_dict['genre2']+"> "
+			"<extraction_notes="+meta_dict['extraction_notes']+"> "
+			"<notes="+meta_dict['notes']+"> "#re.sub("(\s+|<.*?>)", " "," ".join(meta_dict['notes'].findall(rawtext)))+"> "
+			"<encoding="+meta_dict['encoding']+"> "
+			"<text>"+" ".join(metadict['text'].findall(rawtext))+" </text> </file>"
+			)
+ 		with codecs.open(os.path.join("outputfiles", "innsbruck_extracted_2", str(fili.rstrip("_processed.txt"))+"_extracted.txt"), "w", "utf-8") as outputfili:
+ 			outputfili.write(corpusstring)
+ 		filecount = filecount + 1
+ 		print "file {} processed succesfully, written to {}.\n".format(os.path.join(input_dir, fili), outputfili)
+			
+
+finder("outputfiles/extract", metadict)	
 
 
 
