@@ -96,9 +96,10 @@ def dictbuilder_2(input_dir, meta_data, output_json=False):
 		print "folder", folder 
 		for fili in [i for i in w[2] if i.endswith(".txt")]:
 			text= CorpusText(os.path.join(input_dir, folder, fili))
-			if meta_data == 'pubdate':
-				meta= text.meta[meta_data][:4]
-			else:
+			#print os.path.join(input_dir, folder, fili)
+ 			if meta_data == 'pubdate':
+ 				meta= text.meta[meta_data].lstrip(" c")[:4]
+ 			else:
 				meta= text.meta[meta_data]
 			for word in text.tokenizer(cleantext=True):
 				if word.lower() in dicti:
