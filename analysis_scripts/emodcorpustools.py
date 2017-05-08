@@ -90,7 +90,7 @@ def dictbuilder_2(input_dir, meta_data, output_json=False):
 	Builds on dictbuilder but adds functionality to collect by external factors such as date.
 	Format: {word: {meta: count, meta:count, meta:count}, word: {}}
 	"""
-	dicti=defaultdict(dict)
+	dicti={}
 	for w in os.walk(input_dir):
 		folder=w[0]
 		print "folder", folder 
@@ -102,11 +102,14 @@ def dictbuilder_2(input_dir, meta_data, output_json=False):
  			else:
 				meta= text.meta[meta_data]
 			for word in text.tokenizer(cleantext=True):
-				if word.lower() in dicti:
-					dicti[word.lower()][meta]= dicti[word.lower()][meta]+1
-				else:
-					dicti[word.lower()]=defaultdict(int)
-					dicti[word.lower()][meta]=1
+				lword=word.lower()
+				if not lword in dicti:
+					dicti[lword]={}
+					dicti[lword][meta]= 1
+				elif not meta in dicti[lword]:
+					dicti[lword][meta]= 1
+				else:					
+					dicti[lword][meta]= dicti[lword][meta]+1
 	if output_json:
 		with codecs.open(output_json+".json", "w") as jsonout:
 			json.dump(dicti, jsonout, encoding= "utf-8")
