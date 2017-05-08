@@ -63,21 +63,25 @@ def variantfinder_3(input_dict, meta_data, variant_one, variant_two):
 		#print entry
 		for word in variantonedict[entry]:
 			print "wordiword", word
-			for pos in [i for i in range(0,len(word)) if word[i] == variant_one]:
+			#note that were doing len - 1 here to exclude final chars
+			for pos in [i for i in range(0,len(word)-1) if word[i] == variant_one]:
 				print "listi", [i for i in range(0,len(word)) if word[i] == variant_one]
 				wordlist=list(word)
 				variantwordlist= list(word)
 				variantwordlist[pos]= variant_two
 				print "word", word, "varwords", "".join(variantwordlist)
 				if wordlist[pos]== variant_one and input_dict.get("".join(variantwordlist), None):
-		#combineddict= {key:{pos:v for k,v in val.items()} for key,val in variantonedict.items()}
+					#combineddict= {key:{pos:v for k,v in val.items()} for key,val in variantonedict.items()}
 					print "here we go, word:", wordlist, "var 2", input_dict.get("".join(variantwordlist))
 					#note that a missing entry in the input_dict returns a zero cause it was initialized as an int defaultdict
 					combineddict[entry]={pos:{word:{"variant_one": variantonedict[entry][word], "variant_two":input_dict["".join(variantwordlist)][entry]}}}
 					print "entry were making", combineddict[entry], "key:", entry
 					#needs to be : year : {word: {variant_one: count, variant_two:  count}, word2 : {}}
-	
-	#combineddict= {key:{k:v for k,v in val.items() if re.sub(variant_one, variant_two, k) in input_dict} for key,val in variantonedict.items()}
+	print "test on vnderstand", input_dict['vnderstand']
+	print "test in understand", input_dict['understand']
+	for key in combineddict:
+		print "key", key
+		print "vals", combineddict[key]
 	#outputdict= {}
 	#for entry in combineddict:
 		
@@ -91,7 +95,7 @@ def variantfinder_3(input_dict, meta_data, variant_one, variant_two):
 		#print combineddict[entry]
 		#format is {year1:{word1:{variant_one:X, variant_two:X}, word2:{}}, year2:{}}
 		#outputdict[entry]={k:{variant_one:v, variant_two:metadict[entry].get(re.sub(variant_one, variant_two, k), 0)} for k,v in combineddict[entry].items()}
-	#return outputdict, totaldict
+	return combineddict, totaldict
 
 
 		
@@ -113,17 +117,31 @@ u, totaldict=variantfinder_3(t, 'meta_data placeholder', 'u','v')
 u={k[:4]:v for k,v in u.items()}
 #print u.keys()
 
+for key in u:
+	print "key", key
+	print "vals", u[key]
 
 yeardict={}
 for year in u:
-# 	print u[year].keys()
+ 	#print u[year].keys()
 # 	print [{k:v for k,v in h.items() if k == 'u'} for h in u[year].values()]
+	#yeardict needs to look like this: year:{position:{u:count, v:count}}
+	#ie for each year and position, sum the variant_ones to 'u', the variant_twos to 'v'
+	#step 1
+	#WERE HERE
+	for word in u[year]:
+		yeardict[year] = [counts for counts in u[year].values()]
+	
 	#print [[v for k,v in h.items() if k == 'u'] for h in u[year].values()]
-	us= [[v for k,v in h.items() if k == 'u'] for h in u[year].values()]
-	usum= sum([image for menuitem in us for image in menuitem])
-	vs= [[v for k,v in h.items() if k == 'v'] for h in u[year].values()]
-	vsum= sum([image for menuitem in vs for image in menuitem])
-	yeardict[year]= {'u':usum, 'v':vsum, 'types':len(u[year].keys()), 'totalwords': totaldict[year]}
+	#us= [[v for k,v in h.items() if k == 'u'] for h in u[year].values()]
+	#usum= sum([image for menuitem in us for image in menuitem])
+	#vs= [[v for k,v in h.items() if k == 'v'] for h in u[year].values()]
+	#vsum= sum([image for menuitem in vs for image in menuitem])
+	#yeardict[year]= {'u':usum, 'v':vsum, 'types':len(u[year].keys()), 'totalwords': totaldict[year]}
+
+for key in yeardict:
+	print "key", key
+	print "vals", yeardict[key]
 
 df=pandas.DataFrame.from_dict(yeardict, orient='index')
 
