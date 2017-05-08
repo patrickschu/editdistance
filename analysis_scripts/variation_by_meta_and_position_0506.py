@@ -136,36 +136,36 @@ u, totaldict=variantfinder_3(t, 'meta_data placeholder', 'u','v')
 #output csv
 #year:{word1:{u:x,v:x}, word2:{}}
 
-u={k[:4]:v for k,v in u.items()}
+# u={k[:4]:v for k,v in u.items()}
 #print u.keys()
 
-for key in u:
-	print "key", key
-	print "vals", u[key]
+# for key in u:
+# 	print "key", key
+# 	print "vals", u[key]
+# 
+# yeardict={}
+# for year in u:
+#  	#print u[year].keys()
+# # 	print [{k:v for k,v in h.items() if k == 'u'} for h in u[year].values()]
+# 	#yeardict needs to look like this: year:{position:{u:count, v:count}}
+# 	#ie for each year and position, sum the variant_ones to 'u', the variant_twos to 'v'
+# 	#step 1
+# 	#WERE HERE
+# 	for word in u[year]:
+# 		yeardict[year] = [counts for counts in u[year].values()]
+# 	
+# 	#print [[v for k,v in h.items() if k == 'u'] for h in u[year].values()]
+# 	#us= [[v for k,v in h.items() if k == 'u'] for h in u[year].values()]
+# 	#usum= sum([image for menuitem in us for image in menuitem])
+# 	#vs= [[v for k,v in h.items() if k == 'v'] for h in u[year].values()]
+# 	#vsum= sum([image for menuitem in vs for image in menuitem])
+# 	#yeardict[year]= {'u':usum, 'v':vsum, 'types':len(u[year].keys()), 'totalwords': totaldict[year]}
+# 
+# for key in yeardict:
+# 	print "key", key
+# 	print "vals", yeardict[key]
 
-yeardict={}
-for year in u:
- 	#print u[year].keys()
-# 	print [{k:v for k,v in h.items() if k == 'u'} for h in u[year].values()]
-	#yeardict needs to look like this: year:{position:{u:count, v:count}}
-	#ie for each year and position, sum the variant_ones to 'u', the variant_twos to 'v'
-	#step 1
-	#WERE HERE
-	for word in u[year]:
-		yeardict[year] = [counts for counts in u[year].values()]
-	
-	#print [[v for k,v in h.items() if k == 'u'] for h in u[year].values()]
-	#us= [[v for k,v in h.items() if k == 'u'] for h in u[year].values()]
-	#usum= sum([image for menuitem in us for image in menuitem])
-	#vs= [[v for k,v in h.items() if k == 'v'] for h in u[year].values()]
-	#vsum= sum([image for menuitem in vs for image in menuitem])
-	#yeardict[year]= {'u':usum, 'v':vsum, 'types':len(u[year].keys()), 'totalwords': totaldict[year]}
-
-for key in yeardict:
-	print "key", key
-	print "vals", yeardict[key]
-
-df=pandas.DataFrame.from_dict(yeardict, orient='index')
+df=pandas.DataFrame.from_dict(u, orient='index')
 
 print df.columns
 
@@ -173,7 +173,7 @@ print list(df.columns)
 
 print len(list(df.columns))
 with codecs.open(output_file+".csv", "w") as csvout:
-	df.to_csv(csvout, index_label= 'year', encoding="utf-8")
+	df.to_csv(csvout, index_label= 'year', encoding="utf-8", na_rep="NA")
 
 #print yeardict
 print "written to", output_file
