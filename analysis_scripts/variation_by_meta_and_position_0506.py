@@ -74,11 +74,26 @@ def variantfinder_3(input_dict, meta_data, variant_one, variant_two):
 					#combineddict= {key:{pos:v for k,v in val.items()} for key,val in variantonedict.items()}
 					print "here we go, word:", wordlist, "var 2", input_dict.get("".join(variantwordlist))
 					#note that a missing entry in the input_dict returns a zero cause it was initialized as an int defaultdict
-					combineddict[entry]={pos:{word:{"variant_one": variantonedict[entry][word], "variant_two":metadict[entry].get("".join(variantwordlist), 0)}}}
-					#print "entry were making", combineddict[entry], "key:", entry
-					#combineddict is : {year : {word: {variant_one: count, variant_two:  count}, word2 : {}}
+					if not entry in combineddict:
+						combineddict[entry]={pos:{word:{"variant_one": variantonedict[entry][word], "variant_two":metadict[entry].get("".join(variantwordlist), 0)}}}
+					else:
+						combineddict[entry][pos] = {word:{"variant_one": variantonedict[entry][word], "variant_two":metadict[entry].get("".join(variantwordlist), 0)}}
+					print "entry were making", combineddict[entry], "key:", entry
+					#combineddict is : {year : {positionX : {{word: {variant_one: count, variant_two:  count}, word2 : {}}}
 					#make u and v counts per year
-	print "check tyhis", {k:v.values() for k,v in combineddict.items()}
+
+	#k:{pos1:{var1:X, var2:X}, pos2:{}}
+	yeardict= {key:{k:v.values() for k,v in value.items()} for key,value in combineddict.items()}
+	#yeardict is {year:{pos: [{var1:X, var2:Y}], pos2:[]}, ...}
+	finaldict= {}
+	for year in yeardict:
+		finaldict[year]={}
+		for pos in yeardict[year]:
+			#finaldict[year][pos]={}
+			finaldict[year][str(pos)+'_u']=yeardict[year][pos][0]['variant_one']
+			finaldict[year][str(pos)+'_v']=yeardict[year][pos][0]['variant_two']
+	print "yes lets do it"
+	print finaldict
 	print "test on vnderstand", input_dict['vnderstand']
 	print "test in understand", input_dict['understand']
 	#outputdict needs to be like so: year: {position1:{variant_one: count, variant_two:count}, position2: {}}
@@ -102,7 +117,7 @@ def variantfinder_3(input_dict, meta_data, variant_one, variant_two):
 		#print combineddict[entry]
 		#format is {year1:{word1:{variant_one:X, variant_two:X}, word2:{}}, year2:{}}
 		#outputdict[entry]={k:{variant_one:v, variant_two:metadict[entry].get(re.sub(variant_one, variant_two, k), 0)} for k,v in combineddict[entry].items()}
-	return combineddict, totaldict
+	return finaldict, totaldict
 
 
 		
