@@ -52,15 +52,20 @@ def variantfinder_3(input_dict, meta_data, variant_one, variant_two):
 	# only non-final!
 	# variantonedict = {1666 : {1:us, 2:{su:count, suu: count}, 3:suut: count, 
 	variantonedict= {key:{k:v for k,v in val.items() if variant_one in list(k)} for key,val in metadict.items()}
-	variantonedict= {k:v for k,v in variantonedict.items() if re.sub(variant_one, variant_two, k) in input_dict}
+	print "var one dict", variantonedict
+	#variantonedict= {k:v for k,v in variantonedict.items() if re.sub(variant_one, variant_two, k) in input_dict}
+	variantonedict= {key:{k:v for k,v in val.items() if re.sub(variant_one, variant_two, k) in input_dict} for key,val in variantonedict.items()}
+	print "var one dict", variantonedict
 	varianttwodict= {key:{k:v for k,v in val.items() if variant_two in list(k)} for key,val in metadict.items()}
 	varianttwodict= {k:v for k,v in varianttwodict.items() if re.sub(variant_two, variant_one, k) in input_dict}
+	print "var two dict", varianttwodict
 	print "len one dict", len(variantonedict), "len two dict", len(varianttwodict)
+	
 	combineddict= defaultdict(dict)
 	#clean interior dictionary of non-varying items
 	#
 	for entry in variantonedict:
-		#print entry
+		print "variant one entry", entry
 		for word in variantonedict[entry]:
 			print "wordiword", word
 			#note that were doing len - 1 here to exclude final chars
@@ -82,9 +87,11 @@ def variantfinder_3(input_dict, meta_data, variant_one, variant_two):
 					#combineddict is : {year : {positionX : {{word: {variant_one: count, variant_two:  count}, word2 : {}}}
 					#make u and v counts per year
 
+	print "combineddict keys", combineddict
 	#k:{pos1:{var1:X, var2:X}, pos2:{}}
 	yeardict= {key:{k:v.values() for k,v in value.items()} for key,value in combineddict.items()}
 	#yeardict is {year:{pos: [{var1:X, var2:Y}], pos2:[]}, ...}
+	print "yeardict keys", yeardict.keys()
 	finaldict= {}
 	for year in yeardict:
 		finaldict[year]={}
@@ -94,8 +101,8 @@ def variantfinder_3(input_dict, meta_data, variant_one, variant_two):
 			finaldict[year][str(pos)+'_v']=yeardict[year][pos][0]['variant_two']
 	print "yes lets do it"
 	print finaldict
-	print "test on vnderstand", input_dict['vnderstand']
-	print "test in understand", input_dict['understand']
+	#print "test on vnderstand", input_dict['vnderstand']
+	#print "test in understand", input_dict['understand']
 	#outputdict needs to be like so: year: {position1:{variant_one: count, variant_two:count}, position2: {}}
 	outputdict= defaultdict(dict)
 # 	for key in combineddict:
@@ -124,9 +131,10 @@ def variantfinder_3(input_dict, meta_data, variant_one, variant_two):
 #note that helsinki is ball parked; os are unknown
 	
 input_dir= '/Users/ps22344/Downloads/extracted_corpora_0420'
-output_file= "xzx"
+output_file= "innsbruck"
 
 t=emod.dictbuilder_2(input_dir, 'pubdate')
+print "t keys", t.keys()
 u, totaldict=variantfinder_3(t, 'meta_data placeholder', 'u','v')
 
 
