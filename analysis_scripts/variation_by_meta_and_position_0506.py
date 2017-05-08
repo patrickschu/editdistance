@@ -7,7 +7,7 @@ import os
 import emodcorpustools as emod
 import re
 import time
-import pandas
+#import pandas
 
 
 #Yes, perhaps "non-initial" could be expanded into: 
@@ -48,33 +48,53 @@ def variantfinder_3(input_dict, meta_data, variant_one, variant_two):
 	# only non-final!
 	# variantonedict = {1666 : {1:us, 2:{su:count, suu: count}, 3:suut: count, 
 	# or do in combineddict??
-	for key in metadict:
-		print "keykeykey", key
-		print "value", metadict[key]
+	#for key in metadict:
+		#print "keykeykey", key
+		#print "value", metadict[key]
 		#
 		
 		
 	
 	variantonedict= {key:{k:v for k,v in val.items() if variant_one in list(k)} for key,val in metadict.items()}
-	
+	combineddict= defaultdict(dict)
 	#clean interior dictionary of non-varying items
 	#
-	combineddict= {key:{k:v for k,v in val.items() if re.sub(variant_one, variant_two, k) in input_dict} for key,val in variantonedict.items()}
-	outputdict= {}
-	for entry in combineddict:
+	for entry in variantonedict:
+		#print entry
+		for word in variantonedict[entry]:
+			print "wordiword", word
+			for pos in [i for i in range(0,len(word)) if word[i] == variant_one]:
+				print "listi", [i for i in range(0,len(word)) if word[i] == variant_one]
+				wordlist=list(word)
+				variantwordlist= list(word)
+				variantwordlist[pos]= variant_two
+				print "word", word, "varwords", "".join(variantwordlist)
+				if wordlist[pos]== variant_one and input_dict.get("".join(variantwordlist), None):
+		#combineddict= {key:{pos:v for k,v in val.items()} for key,val in variantonedict.items()}
+					print "here we go, word:", wordlist, "var 2", input_dict.get("".join(variantwordlist))
+					#note that a missing entry in the input_dict returns a zero cause it was initialized as an int defaultdict
+					combineddict[entry]={pos:{word:{"variant_one": variantonedict[entry][word], "variant_two":input_dict["".join(variantwordlist)][entry]}}}
+					print "entry were making", combineddict[entry], "key:", entry
+					#needs to be : year : {word: {variant_one: count, variant_two:  count}, word2 : {}}
+	
+	#combineddict= {key:{k:v for k,v in val.items() if re.sub(variant_one, variant_two, k) in input_dict} for key,val in variantonedict.items()}
+	#outputdict= {}
+	#for entry in combineddict:
 		
 		# or do in combineddict??
 		# like so:
 		# combineddict = {1666 : {1:us, 2:{su:count, suu: count}, 3:suut: count, 
+		#data from input_dcit comes in like so: word:{year:count}
 		# ?
 		
 		#entry is a year
 		#print combineddict[entry]
 		#format is {year1:{word1:{variant_one:X, variant_two:X}, word2:{}}, year2:{}}
-		outputdict[entry]={k:{variant_one:v, variant_two:metadict[entry].get(re.sub(variant_one, variant_two, k), 0)} for k,v in combineddict[entry].items()}
-	return outputdict, totaldict
+		#outputdict[entry]={k:{variant_one:v, variant_two:metadict[entry].get(re.sub(variant_one, variant_two, k), 0)} for k,v in combineddict[entry].items()}
+	#return outputdict, totaldict
 
-	
+
+		
 #note that helsinki is ball parked; os are unknown
 	
 input_dir= '/Users/ps22344/Downloads/extracted_corpora_0420'
@@ -91,7 +111,7 @@ u, totaldict=variantfinder_3(t, 'meta_data placeholder', 'u','v')
 #year:{word1:{u:x,v:x}, word2:{}}
 
 u={k[:4]:v for k,v in u.items()}
-print u.keys()
+#print u.keys()
 
 
 yeardict={}
