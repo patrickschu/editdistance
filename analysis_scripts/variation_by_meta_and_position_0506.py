@@ -7,7 +7,7 @@ import os
 import emodcorpustools as emod
 import re
 import time
-#import pandas
+import pandas
 
 
 #Yes, perhaps "non-initial" could be expanded into: 
@@ -28,15 +28,19 @@ def variantfinder_3(input_dict, meta_data, variant_one, variant_two):
 	Add functionality for iding variation by position in word
 	"""
 	print "running the variantfinder_3"
+	#input_dict is {word: {year1:x , year2:y ...}, word2: {}}
 	#metadict collects data by meta cateogry, e.g. year
 	#metadict = {year_X: {word_1: count, word_2:count, ...}, year_Y: {}}
-	metadict = defaultdict(dict)
+	metadict = {}
 	#iterate over input_dict, which was produced by dictbuilder_2
 	for entry in input_dict:
-		print entry
-		print input_dict[entry].keys()
+		#print entry
+		#print input_dict[entry].keys()
 		for key in input_dict[entry].keys():
-			if not metadict[key].get(entry, None):
+			if not key in metadict:
+				metadict[key]= {}
+				metadict[key][entry]= input_dict[entry][key]
+			elif not metadict[key].get(entry, None):
 				metadict[key][entry] = input_dict[entry][key]
 			else:
 				print "Alarm this is weird"
@@ -47,15 +51,11 @@ def variantfinder_3(input_dict, meta_data, variant_one, variant_two):
 	# make variantonedict; variantonedict={'year':{1:{}, {2:{}}, {3:{}}
 	# only non-final!
 	# variantonedict = {1666 : {1:us, 2:{su:count, suu: count}, 3:suut: count, 
-	# or do in combineddict??
-	#for key in metadict:
-		#print "keykeykey", key
-		#print "value", metadict[key]
-		#
-		
-		
-	
 	variantonedict= {key:{k:v for k,v in val.items() if variant_one in list(k)} for key,val in metadict.items()}
+	variantonedict= {k:v for k,v in variantonedict.items() if re.sub(variant_one, variant_two, k) in input_dict}
+	varianttwodict= {key:{k:v for k,v in val.items() if variant_two in list(k)} for key,val in metadict.items()}
+	varianttwodict= {k:v for k,v in varianttwodict.items() if re.sub(variant_two, variant_one, k) in input_dict}
+	print "len one dict", len(variantonedict), "len two dict", len(varianttwodict)
 	combineddict= defaultdict(dict)
 	#clean interior dictionary of non-varying items
 	#
@@ -74,15 +74,20 @@ def variantfinder_3(input_dict, meta_data, variant_one, variant_two):
 					#combineddict= {key:{pos:v for k,v in val.items()} for key,val in variantonedict.items()}
 					print "here we go, word:", wordlist, "var 2", input_dict.get("".join(variantwordlist))
 					#note that a missing entry in the input_dict returns a zero cause it was initialized as an int defaultdict
-					combineddict[entry]={pos:{word:{"variant_one": variantonedict[entry][word], "variant_two":input_dict["".join(variantwordlist)][entry]}}}
+					combineddict[entry]={pos:{word:{"variant_one": variantonedict[entry][word], "variant_two":varianttwodict[entry][word]}}}
 					print "entry were making", combineddict[entry], "key:", entry
 					#needs to be : year : {word: {variant_one: count, variant_two:  count}, word2 : {}}
 	print "test on vnderstand", input_dict['vnderstand']
 	print "test in understand", input_dict['understand']
+	#outputdict needs to be like so: year: {position1:{variant_one: count, variant_two:count}, position2: {}}
+	outputdict= defaultdict(dict)
 	for key in combineddict:
 		print "key", key
 		print "vals", combineddict[key]
-	#outputdict= {}
+		
+		
+	
+	
 	#for entry in combineddict:
 		
 		# or do in combineddict??
