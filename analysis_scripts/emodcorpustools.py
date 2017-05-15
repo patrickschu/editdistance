@@ -202,18 +202,18 @@ class CorpusText(object):
 		self.fulltext = self._adtextextractor(self.fullfile)
 		self.cleantext= re.sub(metaregex, " ", self.fulltext)
 		self.charcount = float(len(self.fulltext))
-		self.wordcount = float(len([i for i in nltk.word_tokenize(self.cleantext) if not i in punct]))
+		#self.wordcount = float(len([i for i in nltk.word_tokenize(self.cleantext) if not i in punct]))
 		self.metalist= [
-		'no', 
-		'corpusnumber', 
-		'corpus', 
+		#'no', 
+		#'corpusnumber', 
+		#'corpus', 
 		'title', 
 		'author', 
-		'dialect', 
-		'authorage', 
+		#'dialect', 
+		#'authorage', 
 		'pubdate', 
 		'genre1', 
-		'genre2', 
+		#'genre2', 
 		#'notes', 
 		#'extraction_notes', 
 		#'encoding'
