@@ -42,5 +42,4 @@ with codecs.open(output_file, "w", "utf-8") as writeout:
 #no crazy short ones either, they look good, just a few ?s and Latin numerals
 #there are no genres
 #the texts in problemtexts are probably just titles
-#empty texts (tokenized) in tokenized_0514 
-#empty text (string) in 'fulltext_0514'
+#empty texts (tokenized) in tokenized_0514 , empty text (string) in 'fulltext_0514': these are the same ones presumably. 91 files. 
