@@ -2,13 +2,13 @@ import os
 import re
 import codecs
 import nltk.tokenize
-import pandas
+#import pandas
 import string
 import time
 import json
 from collections import defaultdict
 
-
+header = "\n+++++\n"
 
 #some of these are taken from clustertools
 def tagextractor(text, tag, fili):
@@ -212,13 +212,12 @@ class CorpusText(object):
 		#'dialect', 
 		#'authorage', 
 		'pubdate', 
-		'genre1', 
+		'genre1' 
 		#'genre2', 
 		#'notes', 
 		#'extraction_notes', 
 		#'encoding'
 		]
-		
 		self.uniq = "this is the overall corpus number"
 		self.meta = {k:re.sub("(\t+|\n+|\r+)", " ", self._tagextractor(self.fullfile, k)) for k in self.metalist}
 		
@@ -255,13 +254,56 @@ class CorpusText(object):
 			print "alarm in adtextextractor", fili, result
 		return result[0]
 
-
+class CorpusWord(CorpusText):
+	"""
+	The CorpusWord object compiles all relevant info for a specific word. 
+	"""
+	def __init__(self, word):
+		self.word = word
+	#integrate variation by position
+	# do we need?
+	def yeardict(self, input_dir, lower_case = False):
+		#yeardict compiles counts of self.word by year across all texts in input_dir
+		#if lower_case, texts in input_dir will be lower cased. 
+		#NOTE THAT THE DEFDICT WILL DEFAULT TO 0; I.E no EMPTY KEYS
+		tokensperyear = defaultdict(int)
+		for root, dir, filis in os.walk(input_dir):
+			print header, "working on", root, len(filis), "files"
+			for fili in [i for i in filis if not i.startswith(".")]:
+				inputtext = CorpusText(os.path.join(root, fili))
+				if lower_case:
+					inputtokens = [i.lower() for i in inputtext.tokenizer(cleantext = True)]
+				else:
+					inputtokens = inputtext.tokenizer(cleantext = True)
+				if self.word in inputtokens:
+					hits = [i for i in inputtokens if i == self.word]
+					#clean the pubdates
+					pubdate = "".join([i for i in list(inputtext.meta['pubdate']) if i.isdigit()][:4])
+					tokensperyear[pubdate] = tokensperyear[pubdate] + 1
+		return(tokensperyear)
+		# we can model other flexible word counts on this: just give attribute to sort by as argument. 
+		# smooth. 			
+	
+class Dataset(object):
+	def __init__(self, input_dir):
+		self.name = input_dir
+	
+	#compute all words
+	
+	
+	#compute mean etc
+	
+	
+	#compute words by year, etc. 
+	def countbyexternality(self, input_dir, attribute ot CorpusText to groupBy, lower_case = False):
+		1
 
 
 class Corpus(object):
 	"""
 	The Corpus object compiles all relevant info for an entire corpus. 
 	It reads in a tab-separated spreadsheet. 
+	WHAT KIND OF SPREADSHEET ETC
 	"""
 	def __init__(self, spreadsheet):
 		self.corpusname = spreadsheet
