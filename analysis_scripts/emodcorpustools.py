@@ -263,20 +263,20 @@ class VariantItem(object):
 	"""
 	This compiles the potential variants of a word
 	"""
-	def __init__(self, word, variant):
+	def __init__(self, word):
 		self.word = word
-		self.variant = variant
-		self.regex = re.match(variant, word)
-		self.indices = [i for i, char in enumerate(list(word)) if char == variant]
 		
-	def indexer(self):
-		text = self.word
+	def indexer(self, variant):
+		#finds instances of variant in self.word
+		#NOTE THAT THIS WILL NOT SPLIT UP 3 CHAR STRETCHES WHEN LOOKING FOR 2 CHARS, e.g. "uuu" will be one instance of "uu", not 2
+		word = self.word
 		index = 0
-		while index < len(text):
-			index = text.find(self.variant, index)
+		print word
+		while index < len(word):
+			index = word.find(variant, index)
 			if index == -1:
 				break
-			print('ll found at', index)
+			print(variant, 'found at', index)
 			index = index + len(variant)
 		
 
