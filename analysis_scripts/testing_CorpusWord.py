@@ -17,22 +17,16 @@ def main(search_term, input_dir):
 def main(input_dir):
 	v = emod.dictbuilder(input_dir)
 	emod.findvariants(v, "u", "v")
+
+main(corpusdir)
 	
 def main(input_dir):
 	t = "deppski"
 	r = emod.VariantItem(t, "pp")
 	print r.regex
 
-#main(corpusdir)
 
-def indexer(word, variant):
-	text = word
-	index = 0
-	while index < len(text):
-		index = text.find(self.variant, index)
-		if index == -1:
-			break
-		print('thing found at', index)
-		index = index + len(variant)
+
+#for word in ["uu", "sup", "suup", "uussuuu"]:
+	#emod.VariantItem(word).indexer("u")
 		
-indexer("spasst", "s")
