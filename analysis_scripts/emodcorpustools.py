@@ -30,7 +30,7 @@ def timer(func):
 		t = time.time()
 		print "Running {}".format(func.func_name)
 		res = func(*args, **kwargs)
-		print "{} took us {}".format(func.func_name, time.time()-t/60)
+		print "{} took us {}".format(func.func_name, (time.time()-t)/60)
 		return res
 	return wrapper
 
@@ -276,7 +276,8 @@ class VariantItem(object):
 			index = word.find(variant, index)
 			if index == -1:
 				break
-			print(variant, 'found at', index)
+			print variant, 'found at', index
+			yield variant, index
 			index = index + len(variant)
 		
 
@@ -340,14 +341,18 @@ def findvariants(input_vocab, variant_one, variant_two, threshold = 0):
 	subregex = re.compile(variant_one)
 	onedict = {k:v for k,v in input_vocab.viewitems() if variant_one in list(k)}
 	#matches replacing all "u"s
-	onetwodict = {CorpusWord(k, variant_one):v for k,v in onedict.viewitems() if input_vocab.get(re.sub(variant_one, variant_two, k), None)}
+	#onetwodict = {CorpusWord(k, variant_one):v for k,v in onedict.viewitems() if input_vocab.get(re.sub(variant_one, variant_two, k), None)}
 	#for key in onetwodict:
-		
+	for key in onedict:
+		for variant in VariantItem(key).indexer(variant_one):
+			#put translate here for dict lookup
+			print input_vocab.get(variant, None)
+			
 	#if threshold ! = 0:
 		#outputdict = {k:v for k,v in onetwodict.viewitems if 
 	#else:
 		#outputdict = onetwodict
-	print onetwodict
+	#print onetwodict
 	
 	
 	
