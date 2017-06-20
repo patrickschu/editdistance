@@ -28,8 +28,9 @@ metaregex= "({|<).*?(>|})"
 def timer(func):
 	def wrapper(*args, **kwargs):
 		t = time.time()
+		print "Running {}".format(func.func_name)
 		res = func(*args, **kwargs)
-		print "{} took us {}".format(func.func_name, time.time()-t)
+		print "{} took us {}".format(func.func_name, time.time()-t/60)
 		return res
 	return wrapper
 
@@ -68,14 +69,17 @@ def dictbuilder(input_dir, output_json=False):
 	Builds a dictionary of all texts in input_dir.
 	Format: {word:count}
 	"""
-	dicti=defaultdict(int)
-	for w in os.walk(input_dir):
-		folder=w[0]
-		print "folder", folder 
-		for fili in [i for i in w[2] if i.endswith(".txt")]:
-			text= CorpusText(os.path.join(input_dir, folder, fili))
+	dicti= {}
+	for root, direct, filis in os.walk(input_dir):
+		print "folder", root 
+		for fili in [i for i in filis if i.endswith(".txt")]:
+			text= CorpusText(os.path.join(input_dir, root, fili))
 			for word in text.tokenizer(cleantext=True):
-				dicti[word.lower()]= dicti[word.lower()]+1
+				word = word.lower()
+				if word in dicti:
+					dicti[word] = dicti[word] + 1
+				else:
+					dicti[word] = 1
 	if output_json:
 		with codecs.open(output_json+".json", "w") as jsonout:
 			json.dump(dicti, jsonout, encoding= "utf-8")
@@ -254,20 +258,55 @@ class CorpusText(object):
 			print "alarm in adtextextractor", fili, result
 		return result[0]
 
+
+class VariantItem(object):
+	"""
+	This compiles the potential variants of a word
+	"""
+	def __init__(self, word, variant):
+		self.word = word
+		self.variant = variant
+		self.regex = re.match(variant, word)
+		self.indices = [i for i, char in enumerate(list(word)) if char == variant]
+		
+	def indexer(self):
+		text = self.word
+		index = 0
+		while index < len(text):
+			index = text.find(self.variant, index)
+			if index == -1:
+				break
+			print('ll found at', index)
+			index = index + len(variant)
+		
+
 class CorpusWord(CorpusText):
 	"""
-	The CorpusWord object compiles all relevant info for a specific word. 
+	The CorpusWord object compiles all relevant info for a specific word.
+	Args
+	word : String of word
+	variant : String of variant
+	position : index of variant in word
+	
+	Example
+	word : but
+	variant : u  
+	position : 1
 	"""
-	def __init__(self, word):
+	def __init__(self, word, variant, position):
 		self.word = word
+		self.variant = variant
+		self.position = position
+		self.length = len(word)
 	#integrate variation by position
 	# do we need?
+	@timer
 	def yeardict(self, input_dir, lower_case = False):
 		#yeardict compiles counts of self.word by year across all texts in input_dir
 		#if lower_case, texts in input_dir will be lower cased. 
 		#NOTE THAT THE DEFDICT WILL DEFAULT TO 0; I.E no EMPTY KEYS
 		tokensperyear = defaultdict(int)
-		for root, dir, filis in os.walk(input_dir):
+		for root, direct, filis in os.walk(input_dir):
 			print header, "working on", root, len(filis), "files"
 			for fili in [i for i in filis if not i.startswith(".")]:
 				inputtext = CorpusText(os.path.join(root, fili))
@@ -283,20 +322,49 @@ class CorpusWord(CorpusText):
 		return(tokensperyear)
 		# we can model other flexible word counts on this: just give attribute to sort by as argument. 
 		# smooth. 			
+@timer	
+def findvariants(input_vocab, variant_one, variant_two, threshold = 0):
+	"""
+	ID words that vary by variant only
+	Args : 
+	input_vocab : dictionary of vocab to test for variants. Format {word:count} NOTE DO NOT FEED A DEFAULTDICT INTO THIS
+	variant_one : String to be tested for variants with variant_two
+	variant_two : String to be tested for variants with variant_two
+	treshold : Int indicating the minimum tokens of both variants to be included in the output. 
 	
-class Dataset(object):
-	def __init__(self, input_dir):
-		self.name = input_dir
+	Examples:
+	input_dict = {but:1 , bvt:1}
+	variant_one = 1, variant_two = v
+	will return but, bvt if threshold < 2, else nothing
+	"""
+	subregex = re.compile(variant_one)
+	onedict = {k:v for k,v in input_vocab.viewitems() if variant_one in list(k)}
+	#matches replacing all "u"s
+	onetwodict = {CorpusWord(k, variant_one):v for k,v in onedict.viewitems() if input_vocab.get(re.sub(variant_one, variant_two, k), None)}
+	#for key in onetwodict:
+		
+	#if threshold ! = 0:
+		#outputdict = {k:v for k,v in onetwodict.viewitems if 
+	#else:
+		#outputdict = onetwodict
+	print onetwodict
 	
-	#compute all words
 	
 	
-	#compute mean etc
+	
+#class Dataset(object):
+	#def __init__(self, input_dir):
+		#self.name = input_dir
+	
+	##compute all words
 	
 	
-	#compute words by year, etc. 
-	def countbyexternality(self, input_dir, attribute ot CorpusText to groupBy, lower_case = False):
-		1
+	##compute mean etc
+	
+	
+	##compute words by year, etc. 
+	#def countbyexternality(self, input_dir, attribute ot CorpusText to groupBy, lower_case = False):
+		#1
 
 
 class Corpus(object):
