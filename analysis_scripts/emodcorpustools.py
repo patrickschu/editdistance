@@ -7,6 +7,7 @@ import string
 import time
 import json
 from collections import defaultdict
+from itertools import chain, combinations
 
 header = "\n+++++\n"
 
@@ -18,6 +19,11 @@ def tagextractor(text, tag, fili):
         print "alarm in tagextractor", fili, result
     return result[0]
     
+#thank you SO: https://stackoverflow.com/questions/464864/how-to-get-all-possible-combinations-of-a-list-s-elements/40986475#40986475
+def powerset(iterable):
+    #powerset([1,2,3]) --> () (1,) (2,) (3,) (1,2) (1,3) (2,3) (1,2,3)
+    s = list(set(iterable))  # allows duplicate elements
+    return chain.from_iterable(combinations(s, r) for r in range(len(s)+1))
     
 #regexes and strings
 punct= string.punctuation
@@ -268,18 +274,32 @@ class VariantItem(object):
 		
 	def indexer(self, variant):
 		#finds instances of variant in self.word
+		#return list of [(variant, index), (variant, index)]
 		#NOTE THAT THIS WILL NOT SPLIT UP 3 CHAR STRETCHES WHEN LOOKING FOR 2 CHARS, e.g. "uuu" will be one instance of "uu", not 2
 		word = self.word
+		indices = []
 		index = 0
 		print word
 		while index < len(word):
 			index = word.find(variant, index)
 			if index == -1:
+				return indices
 				break
-			print variant, 'found at', index
-			yield variant, index
+			#print variant, 'found at', index
+			indices.append((variant, index))
+			print indices
+			#yield variant, index
 			index = index + len(variant)
+			
+	def typegenerator(self, index, variant):
+		# creates new types of the word by replacing characters at index with variant
+		# when more than one substitution spot, create all permutations
+		word = self.word
+		wordlist
+		return (1)
+
 		
+# a WORD with VARIANT_ONE is TYPE_ONE, WITH VARIANT_TWO it is TYPE_TWO
 
 class CorpusWord(CorpusText):
 	"""
@@ -344,9 +364,7 @@ def findvariants(input_vocab, variant_one, variant_two, threshold = 0):
 	#onetwodict = {CorpusWord(k, variant_one):v for k,v in onedict.viewitems() if input_vocab.get(re.sub(variant_one, variant_two, k), None)}
 	#for key in onetwodict:
 	for key in onedict:
-		for variant in VariantItem(key).indexer(variant_one):
-			#put translate here for dict lookup
-			print input_vocab.get(variant, None)
+		VariantItem(key).indexer(variant_one)
 			
 	#if threshold ! = 0:
 		#outputdict = {k:v for k,v in onetwodict.viewitems if 
