@@ -3,6 +3,7 @@
 *.pyc
 outputfiles/*
 /extracted_corpus*
+.Rhistory
 
 *.DS_Store
 .AppleDouble
