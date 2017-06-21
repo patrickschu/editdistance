@@ -22,7 +22,7 @@ def tagextractor(text, tag, fili):
 #thank you SO: https://stackoverflow.com/questions/464864/how-to-get-all-possible-combinations-of-a-list-s-elements/40986475#40986475
 def powerset(iterable):
     #powerset([1,2,3]) --> () (1,) (2,) (3,) (1,2) (1,3) (2,3) (1,2,3)
-    s = list(set(iterable))  # allows duplicate elements
+    s = list(set(iterable))  # doesn't allow duplicate elements
     return chain.from_iterable(combinations(s, r) for r in range(len(s)+1))
     
 #regexes and strings
@@ -265,40 +265,7 @@ class CorpusText(object):
 		return result[0]
 
 
-class VariantItem(object):
-	"""
-	This compiles the potential variants of a word
-	"""
-	def __init__(self, word):
-		self.word = word
-		
-	def indexer(self, variant):
-		#finds instances of variant in self.word
-		#return list of [(variant, index), (variant, index)]
-		#NOTE THAT THIS WILL NOT SPLIT UP 3 CHAR STRETCHES WHEN LOOKING FOR 2 CHARS, e.g. "uuu" will be one instance of "uu", not 2
-		word = self.word
-		indices = []
-		index = 0
-		print word
-		while index < len(word):
-			index = word.find(variant, index)
-			if index == -1:
-				return indices
-				break
-			#print variant, 'found at', index
-			indices.append((variant, index))
-			print indices
-			#yield variant, index
-			index = index + len(variant)
-			
-	def typegenerator(self, index, variant):
-		# creates new types of the word by replacing characters at index with variant
-		# when more than one substitution spot, create all permutations
-		word = self.word
-		wordlist
-		return (1)
-
-		
+	
 # a WORD with VARIANT_ONE is TYPE_ONE, WITH VARIANT_TWO it is TYPE_TWO
 
 class CorpusWord(CorpusText):
@@ -343,6 +310,44 @@ class CorpusWord(CorpusText):
 		return(tokensperyear)
 		# we can model other flexible word counts on this: just give attribute to sort by as argument. 
 		# smooth. 			
+
+class VariantItem(object):
+	"""
+	This compiles the potential variants of a word
+	"""
+	def __init__(self, word):
+		self.word = word
+		
+	def indexer(self, variant):
+		#finds instances of variant in self.word
+		#return list of [(variant, index), (variant, index)]
+		#NOTE THAT THIS WILL NOT SPLIT UP 3 CHAR STRETCHES WHEN LOOKING FOR 2 CHARS, e.g. "uuu" will be one instance of "uu", not 2
+		word = self.word
+		indices = []
+		index = 0
+		print word
+		while index < len(word):
+			index = word.find(variant, index)
+			if index == -1:
+				return indices
+				break
+			#print variant, 'found at', index
+			indices.append((variant, index))
+			#print indices
+			#yield variant, index
+			index = index + len(variant)
+			
+	def typegenerator(self, indices, variant):
+		# creates new types of the word by replacing characters at index with variant
+		# when more than one substitution spot, create all permutations
+		print "runnin the typegenerator"
+		word = self.word
+		wordlist = list(word)
+		for type in powerset(indices):
+			print type
+			yield type
+
+
 @timer	
 def findvariants(input_vocab, variant_one, variant_two, threshold = 0):
 	"""
@@ -364,8 +369,10 @@ def findvariants(input_vocab, variant_one, variant_two, threshold = 0):
 	#onetwodict = {CorpusWord(k, variant_one):v for k,v in onedict.viewitems() if input_vocab.get(re.sub(variant_one, variant_two, k), None)}
 	#for key in onetwodict:
 	for key in onedict:
-		VariantItem(key).indexer(variant_one)
-			
+		indices = VariantItem(key).indexer(variant_one)
+		print "here be the indices", indices
+		for g in VariantItem(key).typegenerator(indices, variant_two):
+			print g	
 	#if threshold ! = 0:
 		#outputdict = {k:v for k,v in onetwodict.viewitems if 
 	#else:
