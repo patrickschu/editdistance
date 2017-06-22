@@ -315,37 +315,54 @@ class VariantItem(object):
 	"""
 	This compiles the potential variants of a word
 	"""
-	def __init__(self, word):
+	def __init__(self, word, variant_one, variant_two):
 		self.word = word
-		
-	def indexer(self, variant):
+		self.variant_one = variant_one
+		self.variant_two = variant_two
+		self.typedict = {word : []}
+
+	def indexer(self):
 		#finds instances of variant in self.word
 		#return list of [(variant, index), (variant, index)]
 		#NOTE THAT THIS WILL NOT SPLIT UP 3 CHAR STRETCHES WHEN LOOKING FOR 2 CHARS, e.g. "uuu" will be one instance of "uu", not 2
 		word = self.word
+		variant = self.variant_one
 		indices = []
 		index = 0
-		print word
 		while index < len(word):
 			index = word.find(variant, index)
+			#print word, index
 			if index == -1:
-				return indices
-				break
-			#print variant, 'found at', index
+				break			
 			indices.append((variant, index))
-			#print indices
-			#yield variant, index
 			index = index + len(variant)
+		return indices
 			
-	def typegenerator(self, indices, variant):
+	def typegenerator(self):
 		# creates new types of the word by replacing characters at index with variant
 		# when more than one substitution spot, create all permutations
-		print "runnin the typegenerator"
+		indices = self.indexer()
+		print header, "runnin the typegenerator"
 		word = self.word
-		wordlist = list(word)
-		for type in powerset(indices):
-			print type
-			yield type
+		#powerset combines the indices to unique combinations, e.g. [1,2] --> (1), (2), (1,2)
+		for index_tuple in powerset(indices):
+			if len(indices) > 1:
+				#print "index_tuple", index_tuple
+				if index_tuple: 
+					wordlist = list(word)
+					#error catching
+					index_list = [i[1] for i in index_tuple]
+					for ind in index_list:
+						if wordlist[ind] != self.variant_one:
+							print "WARNING : ISSUE IN TYPEGENERATOR (tuples returned from indexer do not match variant_one"
+					#print "original", "".join(wordlist)
+					for ind in index_list:
+						#print "ind:", ind #, "ind[1]", ind[1]
+						wordlist[ind] = self.variant_two
+					print "".join(wordlist)
+					self.typedict[self.word].append("".join(wordlist))
+					print self.typedict
+					yield index_tuple
 
 
 @timer	
@@ -369,10 +386,8 @@ def findvariants(input_vocab, variant_one, variant_two, threshold = 0):
 	#onetwodict = {CorpusWord(k, variant_one):v for k,v in onedict.viewitems() if input_vocab.get(re.sub(variant_one, variant_two, k), None)}
 	#for key in onetwodict:
 	for key in onedict:
-		indices = VariantItem(key).indexer(variant_one)
-		print "here be the indices", indices
-		for g in VariantItem(key).typegenerator(indices, variant_two):
-			print g	
+		for g in VariantItem(key, "u", "v").typegenerator():
+			print "file"	
 	#if threshold ! = 0:
 		#outputdict = {k:v for k,v in onetwodict.viewitems if 
 	#else:
