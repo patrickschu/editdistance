@@ -18,30 +18,7 @@ def main(input_dir):
 	v = emod.dictbuilder(input_dir)
 	emod.findvariants(v, "u", "v")
 
-#main(corpusdir)
-	
-def main(input_dir):
-	t = "deppski"
-	r = emod.VariantItem(t, "pp")
-	print r.regex
-
-
-
-#for word in ["uu", "sup", "suup", "uussuuu"]:
-	#emod.VariantItem(word).indexer("u")
-
-from itertools import chain, combinations
-
-def powerset(iterable):
-    "powerset([1,2,3]) --> () (1,) (2,) (3,) (1,2) (1,3) (2,3) (1,2,3)"
-    s = list(set(iterable))  # doesn't allow duplicate elements
-    return chain.from_iterable(combinations(s, r) for r in range(len(s)+1))
-    
-for g in powerset([1]):
-	print g
+main(corpusdir)
 	
 
-print header
-
-for g in powerset([1,2, 2, 3,4]):
-	print g
+		
