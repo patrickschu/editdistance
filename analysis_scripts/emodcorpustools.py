@@ -314,12 +314,13 @@ class CorpusWord(CorpusText):
 class VariantItem(object):
 	"""
 	This compiles the potential variants of a word
+	The typedict returns {word : [potential variant 1, pot var 2, ...}
 	"""
 	def __init__(self, word, variant_one, variant_two):
 		self.word = word
 		self.variant_one = variant_one
 		self.variant_two = variant_two
-		self.typedict = {word : []}
+		self.typedict = self.typegenerator()
 
 	def indexer(self):
 		#finds instances of variant in self.word
@@ -341,28 +342,30 @@ class VariantItem(object):
 	def typegenerator(self):
 		# creates new types of the word by replacing characters at index with variant
 		# when more than one substitution spot, create all permutations
+		typedict = {self.word : []}
 		indices = self.indexer()
 		print header, "runnin the typegenerator"
 		word = self.word
 		#powerset combines the indices to unique combinations, e.g. [1,2] --> (1), (2), (1,2)
 		for index_tuple in powerset(indices):
-			if len(indices) > 1:
-				#print "index_tuple", index_tuple
-				if index_tuple: 
-					wordlist = list(word)
-					#error catching
-					index_list = [i[1] for i in index_tuple]
-					for ind in index_list:
-						if wordlist[ind] != self.variant_one:
-							print "WARNING : ISSUE IN TYPEGENERATOR (tuples returned from indexer do not match variant_one"
-					#print "original", "".join(wordlist)
-					for ind in index_list:
-						#print "ind:", ind #, "ind[1]", ind[1]
-						wordlist[ind] = self.variant_two
-					print "".join(wordlist)
-					self.typedict[self.word].append("".join(wordlist))
-					print self.typedict
-					yield index_tuple
+			#print "index_tuple", index_tuple
+			if index_tuple: 
+				wordlist = list(word)
+				#error catching
+				index_list = [position for variant, position in index_tuple]
+				for ind in index_list:
+					if wordlist[ind] != self.variant_one:
+						print "WARNING : ISSUE IN TYPEGENERATOR (tuples returned from indexer do not match variant_one"
+				#print "original", "".join(wordlist)
+				for ind in index_list:
+					#print "ind:", ind #, "ind[1]", ind[1]
+					wordlist[ind] = self.variant_two
+				print "".join(wordlist)
+				typedict[self.word].append(CorpusWord("".join(wordlist), self.variant_two, index_list))
+		print typedict
+		return typedict
+
+
 
 
 @timer	
@@ -380,36 +383,12 @@ def findvariants(input_vocab, variant_one, variant_two, threshold = 0):
 	variant_one = 1, variant_two = v
 	will return but, bvt if threshold < 2, else nothing
 	"""
-	subregex = re.compile(variant_one)
-	onedict = {k:v for k,v in input_vocab.viewitems() if variant_one in list(k)}
-	#matches replacing all "u"s
-	#onetwodict = {CorpusWord(k, variant_one):v for k,v in onedict.viewitems() if input_vocab.get(re.sub(variant_one, variant_two, k), None)}
-	#for key in onetwodict:
-	for key in onedict:
-		for g in VariantItem(key, "u", "v").typegenerator():
-			print "file"	
-	#if threshold ! = 0:
-		#outputdict = {k:v for k,v in onetwodict.viewitems if 
-	#else:
-		#outputdict = onetwodict
-	#print onetwodict
-	
-	
-	
-	
-#class Dataset(object):
-	#def __init__(self, input_dir):
-		#self.name = input_dir
-	
-	##compute all words
-	
-	
-	##compute mean etc
-	
-	
-	##compute words by year, etc. 
-	#def countbyexternality(self, input_dir, attribute ot CorpusText to groupBy, lower_case = False):
-		#1
+	onedict = {VariantItem(k, variant_one, variant_two):v for k,v in input_vocab.viewitems() if variant_one in list(k)}
+	print {" ".join([i.word for i in VariantItem(k, variant_one, variant_two).typedict.values()[0]]):v for k,v in input_vocab.viewitems() if variant_one in list(k)}
+	#print onedict
+
+
+
 
 
 class Corpus(object):
