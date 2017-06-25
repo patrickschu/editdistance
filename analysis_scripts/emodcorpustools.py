@@ -351,13 +351,13 @@ class CorpusWord(CorpusText):
 	def yeardictsetter(self, pubdate, count):
 		#update function for yeardict
 		#this is also used in the method above, we can make a separate function for this, just like for authors
-		print pubdate
+		#print pubdate
 		pubdate = pubdateconverter(pubdate)
 		if not pubdate in self.yeardict:
 			self.yeardict[pubdate] = count
 		else:
 			self.yeardict[pubdate] = self.yeardict[pubdate] + count	
-		print "updating ", self.word, "\n", self.yeardict		
+			print "updating ", self.word, "\n", self.yeardict		
 
 class VariantItem(object):
 	"""
@@ -427,8 +427,8 @@ class Corpus_2(object):
 	@timer
 	def vocabbuilder(self, output_json=False):
 		"""
-		Builds a dictionary of all texts in input_dir.
-		{word: CorpusWord(), ...} 
+		Builds a dictionary of all texts in input_dir, updating the yeardict {} of Corpusword.
+		Returns a dictionary like so : {word: CorpusWord(), ...}
 		"""
 		print "running the vocabbuilder"
 		vocabdict = {}
@@ -436,24 +436,19 @@ class Corpus_2(object):
 			print "working on folder", root 
 			for fili in [i for i in filis if i.endswith(".txt")]:
 				text= CorpusText(os.path.join(self.input_dir, root, fili))
-				print os.path.join(self.input_dir, root, fili), text.meta['pubdate']
+				#print os.path.join(self.input_dir, root, fili), text.meta['pubdate']
 				for word in text.tokenizer(cleantext=True):
 					word = word.lower()
 					if not word in vocabdict:
-						vocabdict[word] = CorpusWord(word, "VARIANT", "POSITION").yeardictsetter(text.meta['pubdate'], 1)
-						
-					#def yeardictsetter(pubdate, count)
-					#if word in dicti:
-						#dicti[word] = dicti[word] + 1
-					#else:
-						#dicti[word] = 1
-				
-				#self.yeardict = {self.word:{}}
+						vocabdict[word] = CorpusWord(word, "VARIANT", "POSITION")
+						vocabdict[word].yeardictsetter(text.meta['pubdate'], 1)
+					else:
+						vocabdict[word].yeardictsetter(text.meta['pubdate'], 1)
 		if output_json:
 			with codecs.open(output_json+".json", "w") as jsonout:
 				json.dump(dicti, jsonout, encoding= "utf-8")
 			print "File written to", jsonout
-		print "\n".join([":".join((i, str(dicti[i]))) for i in sorted(dicti, key= dicti.get, reverse=True)[:100]])
-		return dicti
+		print "\n++".join([":".join((i, "\n".join([":".join((k,str(v))) for k,v in vocabdict[i].yeardict.items()]))) for i in sorted(vocabdict, key= lambda x: sum(vocabdict[x].yeardict.values()), reverse=True)[:100]])
+		return vocabdict
 		
 #vocab is the collection of all words in the corpus, for example stored in a dictionary
