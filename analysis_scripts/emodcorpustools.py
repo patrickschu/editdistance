@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import os
 import re
 import codecs
@@ -200,6 +202,31 @@ def variantfinder_2(input_dict, meta_data, variant_one, variant_two):
 
 
 
+
+
+@timer	
+def findvariants(input_vocab, variant_one, variant_two, threshold = 0):
+	"""
+	ID words that vary by variant only
+	Args : 
+	input_vocab : dictionary of vocab to test for variants. Format {word:count} NOTE DO NOT FEED A DEFAULTDICT INTO THIS
+	variant_one : String to be tested for variants with variant_two
+	variant_two : String to be tested for variants with variant_two
+	treshold : Int indicating the minimum tokens of both variants to be included in the output. 
+	
+	Examples:
+	input_dict = {but:1 , bvt:1}
+	variant_one = 1, variant_two = v
+	will return but, bvt if threshold < 2, else nothing
+	"""
+	onedict = {VariantItem(k, variant_one, variant_two):v for k,v in input_vocab.viewitems() if variant_one in list(k)}
+	#note that typedict.values[0] gives the list
+	#show variants
+	t=  {"+".join([i.word for i in VariantItem(k, variant_one, variant_two).typedict.values()[0]]):v for k,v in input_vocab.viewitems() if variant_one in list(k)}
+	print [[i.yeardict(corpusdir, lower_case = True) for i in k.typedict.values()[0]] for k in onedict.viewkeys()]
+	#print onedict
+
+
 ##classes
 
 class CorpusText(object):
@@ -264,10 +291,18 @@ class CorpusText(object):
 		if len(result) != 1:
 			print "alarm in adtextextractor", fili, result
 		return result[0]
-
-
 	
-# a WORD with VARIANT_ONE is TYPE_ONE, WITH VARIANT_TWO it is TYPE_TWO
+# a WORD with VARIANT_ONE is TYPE_ONE, WITH VARIANT_TWO it is TYPE_TWO. 
+# all words in the corpus constitute the VOCAB
+
+def pubdateconverter(pubdate):
+	#normalize pubdate to 4 digit format
+	pubdate = re.split(ur"(—|-|–)", pubdate)[0]
+	pubdate = "".join([i for i in list(pubdate) if i.isdigit()][:4])
+	if len(pubdate) > 4:
+		print "Warning from pubdateconverter: {} is longer than 4 digits".format(pubdate)
+	return pubdate	
+
 
 class CorpusWord(CorpusText):
 	"""
@@ -287,7 +322,7 @@ class CorpusWord(CorpusText):
 		self.variant = variant
 		self.position = position
 		self.length = len(word)
-		self.yeardict = {self.word:{}}
+		self.yeardict = {}
 	#integrate variation by position
 	# do we need?
 	@timer
@@ -307,19 +342,22 @@ class CorpusWord(CorpusText):
 				if self.word in inputtokens:
 					hits = [i for i in inputtokens if i == self.word]
 					#clean the pubdates
-					pubdate = "".join([i for i in list(inputtext.meta['pubdate']) if i.isdigit()][:4])
+					pubdate = pubdateconverter(inputtext.meta['pubdate'])
 					tokensperyear[pubdate] = tokensperyear[pubdate] + 1
 		return(tokensperyear)
 		# we can model other flexible word counts on this: just give attribute to sort by as argument. 
 		# smooth.
-		
-		def yeardictsetter(pubdate, count):
-			#update function for yeardict
-			if not pubdate in self.yeardict:
-				self.yeardict[pubdate] = count
-			else:
-				self.yeardict[pubdate] = self.yeardict[pubdate] + count	
-			print "updating ", self.word, "\n", self.yeardict		
+	
+	def yeardictsetter(self, pubdate, count):
+		#update function for yeardict
+		#this is also used in the method above, we can make a separate function for this, just like for authors
+		print pubdate
+		pubdate = pubdateconverter(pubdate)
+		if not pubdate in self.yeardict:
+			self.yeardict[pubdate] = count
+		else:
+			self.yeardict[pubdate] = self.yeardict[pubdate] + count	
+		print "updating ", self.word, "\n", self.yeardict		
 
 class VariantItem(object):
 	"""
@@ -378,29 +416,6 @@ class VariantItem(object):
 
 
 
-@timer	
-def findvariants(input_vocab, variant_one, variant_two, threshold = 0):
-	"""
-	ID words that vary by variant only
-	Args : 
-	input_vocab : dictionary of vocab to test for variants. Format {word:count} NOTE DO NOT FEED A DEFAULTDICT INTO THIS
-	variant_one : String to be tested for variants with variant_two
-	variant_two : String to be tested for variants with variant_two
-	treshold : Int indicating the minimum tokens of both variants to be included in the output. 
-	
-	Examples:
-	input_dict = {but:1 , bvt:1}
-	variant_one = 1, variant_two = v
-	will return but, bvt if threshold < 2, else nothing
-	"""
-	onedict = {VariantItem(k, variant_one, variant_two):v for k,v in input_vocab.viewitems() if variant_one in list(k)}
-	#note that typedict.values[0] gives the list
-	#show variants
-	t=  {"+".join([i.word for i in VariantItem(k, variant_one, variant_two).typedict.values()[0]]):v for k,v in input_vocab.viewitems() if variant_one in list(k)}
-	print [[i.yeardict(corpusdir, lower_case = True) for i in k.typedict.values()[0]] for k in onedict.viewkeys()]
-	#print onedict
-
-
 class Corpus_2(object):
 	"""
 	The Corpus_2 object defines corpus-wide methods and attributes.
@@ -413,17 +428,21 @@ class Corpus_2(object):
 	def vocabbuilder(self, output_json=False):
 		"""
 		Builds a dictionary of all texts in input_dir.
+		{word: CorpusWord(), ...} 
 		"""
-		print "running the dictbuilder"
-		
+		print "running the vocabbuilder"
+		vocabdict = {}
 		for root, direct, filis in os.walk(self.input_dir):
 			print "working on folder", root 
 			for fili in [i for i in filis if i.endswith(".txt")]:
 				text= CorpusText(os.path.join(self.input_dir, root, fili))
-				print text.meta['pubdate']
+				print os.path.join(self.input_dir, root, fili), text.meta['pubdate']
 				for word in text.tokenizer(cleantext=True):
 					word = word.lower()
-					
+					if not word in vocabdict:
+						vocabdict[word] = CorpusWord(word, "VARIANT", "POSITION").yeardictsetter(text.meta['pubdate'], 1)
+						
+					#def yeardictsetter(pubdate, count)
 					#if word in dicti:
 						#dicti[word] = dicti[word] + 1
 					#else:
@@ -438,44 +457,3 @@ class Corpus_2(object):
 		return dicti
 		
 #vocab is the collection of all words in the corpus, for example stored in a dictionary
-
-
-#class Corpus(object):
-	#"""
-	#The Corpus object compiles all relevant info for an entire corpus. 
-	#It reads in a tab-separated spreadsheet. 
-	#WHAT KIND OF SPREADSHEET ETC
-	#"""
-	#def __init__(self, spreadsheet):
-		#self.corpusname = spreadsheet
-		#self.data = pandas.read_csv(spreadsheet, delimiter = "\t", encoding = "utf-8")
-	
-	#def filecount(self):
-		##returns the number of files, a.k.a. the number of rows
-		##NAs?
-		#filecount = len(self.data.index)
-		##print "{} files".format(filecount)
-		#return filecount
-	
-	#def wordcount(self, column_name):
-		##returns the sum of the column with column_name, which contains wordcounts per file
-		##also returns dict with major statistics
-		#wordcount = self.data[column_name].sum()
-		#wordmean = self.data[column_name].mean()
-		#wordmedian = self.data[column_name].median()
-		#wordstdev = self.data[column_name].std()
-		##print "{} words".format(wordcount)
-		#return wordcount, {'count': wordcount, 'mean': wordmean, 'median': wordmedian, 'stdev': wordstdev}
-	
-	#def categoryfeatures(self, column_name):
-		##this returns the features of the category contained in column_name:
-		##how many Ns, how many uniques
-		#subset=self.data[column_name]
-		#categorytype = subset.dtype
-		#categorylevels = subset.unique()
-		#return {'type': categorytype , 'levels': categorylevels}
-		
-	#def describe(self):
-		#self.data.describe()
-
-
