@@ -287,10 +287,11 @@ class CorpusWord(CorpusText):
 		self.variant = variant
 		self.position = position
 		self.length = len(word)
+		self.yeardict = {self.word:{}}
 	#integrate variation by position
 	# do we need?
 	@timer
-	def yeardict(self, input_dir, lower_case = False):
+	def yeardictmaker(self, input_dir, lower_case = False):
 		#yeardict compiles counts of self.word by year across all texts in input_dir
 		#if lower_case, texts in input_dir will be lower cased. 
 		#NOTE THAT THE DEFDICT WILL DEFAULT TO 0; I.E no EMPTY KEYS
@@ -310,7 +311,13 @@ class CorpusWord(CorpusText):
 					tokensperyear[pubdate] = tokensperyear[pubdate] + 1
 		return(tokensperyear)
 		# we can model other flexible word counts on this: just give attribute to sort by as argument. 
-		# smooth. 			
+		# smooth.
+		
+		yeardictsetter(pubdate, count):
+			if not pubdate in self.yeardict:
+				self.yeardict[pubdate] = 1
+			else:
+				self.yeardict[pubdate] = self.yeardict[pubdate] 			
 
 class VariantItem(object):
 	"""
@@ -399,45 +406,74 @@ class Corpus_2(object):
 	def __init__(self, input_dir, name = "corpus"):
 		self.name = name
 		self.input_dir = input_dir
-
-
-
-class Corpus(object):
+	
+	@timer
+	def vocabbuilder(output_json=False):
 	"""
-	The Corpus object compiles all relevant info for an entire corpus. 
-	It reads in a tab-separated spreadsheet. 
-	WHAT KIND OF SPREADSHEET ETC
+	Builds a dictionary of all texts in input_dir.
 	"""
-	def __init__(self, spreadsheet):
-		self.corpusname = spreadsheet
-		self.data = pandas.read_csv(spreadsheet, delimiter = "\t", encoding = "utf-8")
+	print "running the dictbuilder"
 	
-	def filecount(self):
-		#returns the number of files, a.k.a. the number of rows
-		#NAs?
-		filecount = len(self.data.index)
-		#print "{} files".format(filecount)
-		return filecount
-	
-	def wordcount(self, column_name):
-		#returns the sum of the column with column_name, which contains wordcounts per file
-		#also returns dict with major statistics
-		wordcount = self.data[column_name].sum()
-		wordmean = self.data[column_name].mean()
-		wordmedian = self.data[column_name].median()
-		wordstdev = self.data[column_name].std()
-		#print "{} words".format(wordcount)
-		return wordcount, {'count': wordcount, 'mean': wordmean, 'median': wordmedian, 'stdev': wordstdev}
-	
-	def categoryfeatures(self, column_name):
-		#this returns the features of the category contained in column_name:
-		#how many Ns, how many uniques
-		subset=self.data[column_name]
-		categorytype = subset.dtype
-		categorylevels = subset.unique()
-		return {'type': categorytype , 'levels': categorylevels}
+	for root, direct, filis in os.walk(self.input_dir):
+		print "working on folder", root 
+		for fili in [i for i in filis if i.endswith(".txt")]:
+			text= CorpusText(os.path.join(input_dir, root, fili))
+			print text.metadict['pubdate']
+			for word in text.tokenizer(cleantext=True):
+				word = word.lower()
+				
+				#if word in dicti:
+					#dicti[word] = dicti[word] + 1
+				#else:
+					#dicti[word] = 1
+			
+			#self.yeardict = {self.word:{}}
+	if output_json:
+		with codecs.open(output_json+".json", "w") as jsonout:
+			json.dump(dicti, jsonout, encoding= "utf-8")
+		print "File written to", jsonout
+	print "\n".join([":".join((i, str(dicti[i]))) for i in sorted(dicti, key= dicti.get, reverse=True)[:100]])
+	return dicti
 		
-	def describe(self):
-		self.data.describe()
+#vocab is the collection of all words in the corpus, for example stored in a dictionary
+
+
+#class Corpus(object):
+	#"""
+	#The Corpus object compiles all relevant info for an entire corpus. 
+	#It reads in a tab-separated spreadsheet. 
+	#WHAT KIND OF SPREADSHEET ETC
+	#"""
+	#def __init__(self, spreadsheet):
+		#self.corpusname = spreadsheet
+		#self.data = pandas.read_csv(spreadsheet, delimiter = "\t", encoding = "utf-8")
+	
+	#def filecount(self):
+		##returns the number of files, a.k.a. the number of rows
+		##NAs?
+		#filecount = len(self.data.index)
+		##print "{} files".format(filecount)
+		#return filecount
+	
+	#def wordcount(self, column_name):
+		##returns the sum of the column with column_name, which contains wordcounts per file
+		##also returns dict with major statistics
+		#wordcount = self.data[column_name].sum()
+		#wordmean = self.data[column_name].mean()
+		#wordmedian = self.data[column_name].median()
+		#wordstdev = self.data[column_name].std()
+		##print "{} words".format(wordcount)
+		#return wordcount, {'count': wordcount, 'mean': wordmean, 'median': wordmedian, 'stdev': wordstdev}
+	
+	#def categoryfeatures(self, column_name):
+		##this returns the features of the category contained in column_name:
+		##how many Ns, how many uniques
+		#subset=self.data[column_name]
+		#categorytype = subset.dtype
+		#categorylevels = subset.unique()
+		#return {'type': categorytype , 'levels': categorylevels}
+		
+	#def describe(self):
+		#self.data.describe()
 
 
