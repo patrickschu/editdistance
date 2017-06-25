@@ -9,6 +9,7 @@ import json
 from collections import defaultdict
 from itertools import chain, combinations
 
+corpusdir = '/home/patrick/Downloads/editdistance/extracted_corpora_0420_small'
 header = "\n+++++\n"
 
 #some of these are taken from clustertools
@@ -363,7 +364,7 @@ class VariantItem(object):
 				print "".join(wordlist)
 				typedict[self.word].append(CorpusWord("".join(wordlist), self.variant_two, index_list))
 		print typedict
-		return typedict
+		return {k: set(v) for k,v in typedict.viewitems()}
 
 
 
@@ -384,10 +385,20 @@ def findvariants(input_vocab, variant_one, variant_two, threshold = 0):
 	will return but, bvt if threshold < 2, else nothing
 	"""
 	onedict = {VariantItem(k, variant_one, variant_two):v for k,v in input_vocab.viewitems() if variant_one in list(k)}
-	print {" ".join([i.word for i in VariantItem(k, variant_one, variant_two).typedict.values()[0]]):v for k,v in input_vocab.viewitems() if variant_one in list(k)}
+	#note that typedict.values[0] gives the list
+	#show variants
+	t=  {"+".join([i.word for i in VariantItem(k, variant_one, variant_two).typedict.values()[0]]):v for k,v in input_vocab.viewitems() if variant_one in list(k)}
+	print [[i.yeardict(corpusdir, lower_case = True) for i in k.typedict.values()[0]] for k in onedict.viewkeys()]
 	#print onedict
 
 
+class Corpus_2(object):
+	"""
+	The Corpus_2 object defines corpus-wide methods and attributes.
+	"""
+	def __init__(self, input_dir, name = "corpus"):
+		self.name = name
+		self.input_dir = input_dir
 
 
 
