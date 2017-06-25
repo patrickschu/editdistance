@@ -15,8 +15,9 @@ def main(search_term, input_dir):
 #test Dictbuilder
 @emod.timer
 def main(input_dir):
-	v = emod.dictbuilder(input_dir)
-	emod.findvariants(v, "u", "v")
+	emod.Corpus_2(corpusdir).vocabbuilder()
+	#v = emod.dictbuilder(input_dir)
+	#emod.findvariants(v, "u", "v")
 
 main(corpusdir)
 	
