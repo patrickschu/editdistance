@@ -409,7 +409,8 @@ class VariantItem(object):
 			indices.append((variant, index))
 			index = index + len(variant)
 		return indices
-			
+	
+		
 	def typegenerator(self, input_vocab):
 		# creates new types of the word by replacing characters at index with variant
 		# when more than one substitution spot, create all permutations
@@ -426,7 +427,7 @@ class VariantItem(object):
 				index_list = [position for variant, position in index_tuple]
 				for ind in index_list:
 					if wordlist[ind] != self.variant_one:
-						print "WARNING : ISSUE IN TYPEGENERATOR (tuples returned from indexer do not match variant_one"
+						print "WARNING : ISSUE IN TYPEGENERATOR (tuples returned from indexer do not match variant_one)"
 				#print "original", "".join(wordlist)
 				for ind in index_list:
 					#print "ind:", ind #, "ind[1]", ind[1]
