@@ -27,23 +27,23 @@ def main(input_dir, variant_one, variant_two, threshold = 0):
 	# this only returns items that are contained in the corpus vocab
 	# Resulting typedict looks like so: {CorpusWord : {position: CorpusWord, ..}}
 	onedict = {emod.VariantItem(k, variant_one, variant_two, input_vocab = vocab) : v for k,v in onedict.viewitems()}
-	#We work with a dictionary like this: {VariantItem:CorpusWord, VariantItem:CorpusWord...} where CorpusWord is a representation of the original variant_one word
+	# onedict looks like this: {VariantItem:CorpusWord, VariantItem:CorpusWord...} where CorpusWord is a representation of the original variant_one word
 	print "len onedict ", len(onedict)
-	#remove words with empty typedictionaries, i.e. that don't have any variant_2 tokens
+	# remove words with empty typedictionaries, i.e. that don't have any variant_2 tokens
 	onedict = {k:v for k,v in onedict.viewitems() if k.typedict.values()[0]}
 	print "len onedict ", len(onedict)
-	#this will give us the total tokens for each word with variant_one
+	# this will give us the total tokens for each word with variant_one
 	# {v.word:v.totaltokens() for k,v in onedict.viewitems()}
-	onedict = {k:v for k,v in onedict.viewitems() if 
-	#filter for the ones above threshold
-	
+	# filter for the ones above threshold
+	for key in onedict:
+		variant_one_count = onedict[key].totaltokens()
+		print "word one", onedict[key].word, variant_one_count
+		key.typedict = {k:[i.totaltokens() for i in v.values()] for k,v in key.typedict.viewitems()}
+	print "len onedict ", len(onedict)
+	print {k: k.typedict for k,v in onedict.viewitems()}
 	#extract word counts over the years for each word over threshold
 	#extract variation counts by year
 	
 
 	
 main(corpusdir, "u", "v")
-
-	
-
-		
