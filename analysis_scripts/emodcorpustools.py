@@ -357,18 +357,23 @@ class CorpusWord(CorpusText):
 			self.yeardict[pubdate] = count
 		else:
 			self.yeardict[pubdate] = self.yeardict[pubdate] + count	
-			print "updating ", self.word, "\n", self.yeardict		
+			#print "updating ", self.word, "\n", self.yeardict		
+	
+	def positionsetter(self, position):
+		#changes the position attribute
+		self.position = position
 
 class VariantItem(object):
 	"""
 	This compiles the potential variants of a word
 	The typedict returns {word : [potential variant 1, pot var 2, ...}
+	It extracts the CorpusWord objects from a dictionary give in input_vocab
 	"""
-	def __init__(self, word, variant_one, variant_two):
+	def __init__(self, word, variant_one, variant_two, input_vocab):
 		self.word = word
 		self.variant_one = variant_one
 		self.variant_two = variant_two
-		self.typedict = self.typegenerator()
+		self.typedict = self.typegenerator(input_vocab)
 
 	def indexer(self):
 		#finds instances of variant in self.word
@@ -387,13 +392,13 @@ class VariantItem(object):
 			index = index + len(variant)
 		return indices
 			
-	def typegenerator(self):
+	def typegenerator(self, input_vocab):
 		# creates new types of the word by replacing characters at index with variant
 		# when more than one substitution spot, create all permutations
-		typedict = {self.word : []}
 		indices = self.indexer()
 		print header, "runnin the typegenerator"
 		word = self.word
+		typedict = {word : {}}
 		#powerset combines the indices to unique combinations, e.g. [1,2] --> (1), (2), (1,2)
 		for index_tuple in powerset(indices):
 			#print "index_tuple", index_tuple
@@ -408,10 +413,15 @@ class VariantItem(object):
 				for ind in index_list:
 					#print "ind:", ind #, "ind[1]", ind[1]
 					wordlist[ind] = self.variant_two
-				print "".join(wordlist)
-				typedict[self.word].append(CorpusWord("".join(wordlist), self.variant_two, index_list))
-		print typedict
-		return {k: set(v) for k,v in typedict.viewitems()}
+				#print "".join(wordlist)
+				match = input_vocab.get("".join(wordlist), None)
+				if match != None:
+					print "match: ", match
+					match.positionsetter(ind)
+					#can there be more than one match per ind?
+					typedict[word][ind] = match				
+					#print typedict
+		return {k: v for k,v in typedict.viewitems()}
 
 
 
@@ -446,7 +456,7 @@ class Corpus_2(object):
 						vocabdict[word].yeardictsetter(text.meta['pubdate'], 1)
 		if output_json:
 			with codecs.open(output_json+".json", "w") as jsonout:
-				json.dump(dicti, jsonout, encoding= "utf-8")
+				json.dump({k:v.yeardict for k,v in vocabdict.viewitems()}, jsonout, encoding= "utf-8")
 			print "File written to", jsonout
 		print "\n++".join([":".join((i, "\n".join([":".join((k,str(v))) for k,v in vocabdict[i].yeardict.items()]))) for i in sorted(vocabdict, key= lambda x: sum(vocabdict[x].yeardict.values()), reverse=True)[:100]])
 		return vocabdict
