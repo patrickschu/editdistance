@@ -303,18 +303,20 @@ def pubdateconverter(pubdate):
 		print "Warning from pubdateconverter: {} is longer than 4 digits".format(pubdate)
 	return pubdate	
 
-def CorpusWordImporter(input_json):
+def CorpusVocabImporter(input_json):
 	"""
 	Read in json file created by Corpus_2 vocabbuilder to create dictionary of CorpusWord items.
 	Format of input_json is 
 	{word: {year:X, year2:Y}, word2:{}}
 	"""
+	print "Running the CorpusVocabImporter, getting data from ", input_json
 	with codecs.open(input_json, "r", "utf-8") as inputjson:
 		inputdict = json.load(inputjson)
 	vocabdict = {}
 	for word in inputdict:
-		print inputdict[word]
-	
+		vocabdict[word] = CorpusWord(word, "VARIANT", "POSITION")
+		vocabdict[word].yeardict = inputdict[word]
+	return vocabdict
 
 class CorpusWord(CorpusText):
 	"""
@@ -374,6 +376,10 @@ class CorpusWord(CorpusText):
 	def positionsetter(self, position):
 		#changes the position attribute
 		self.position = position
+		
+	def totaltokens(self):
+		#returns number of tokens of word contained in yeardict
+		return sum(self.yeardict.viewvalues())
 
 class VariantItem(object):
 	"""
@@ -408,7 +414,7 @@ class VariantItem(object):
 		# creates new types of the word by replacing characters at index with variant
 		# when more than one substitution spot, create all permutations
 		indices = self.indexer()
-		print header, "runnin the typegenerator"
+		#print header, "runnin the typegenerator"
 		word = self.word
 		typedict = {word : {}}
 		#powerset combines the indices to unique combinations, e.g. [1,2] --> (1), (2), (1,2)
@@ -428,7 +434,7 @@ class VariantItem(object):
 				#print "".join(wordlist)
 				match = input_vocab.get("".join(wordlist), None)
 				if match != None:
-					print "match: ", match
+					#print "match: ", match
 					match.positionsetter(ind)
 					#can there be more than one match per ind?
 					typedict[word][ind] = match				
