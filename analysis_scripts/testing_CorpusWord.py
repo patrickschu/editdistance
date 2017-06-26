@@ -14,12 +14,20 @@ def main(search_term, input_dir):
 
 #test Dictbuilder
 @emod.timer
-def main(input_dir):
-	emod.Corpus_2(corpusdir).vocabbuilder()
-	#v = emod.dictbuilder(input_dir)
+def main(input_dir, variant_one, variant_two):
+	vocab = emod.Corpus_2(corpusdir).vocabbuilder(output_json = "testvocab")
+	print "len vocab ", len(vocab)
+	onedict = {k:v for k,v in vocab.viewitems() if variant_one in list(k)}
+	print "len onedict ", len(onedict)
+	onedict = {emod.VariantItem(k, variant_one, variant_two, input_vocab = vocab) : v for k,v in onedict.viewitems()}
+	print {k.word : k.typedict for k,v in onedict.viewitems() if k.typedict.values() != [set([])]}
+	#check if set deletes non-ID CorpusWords -- apparently it does not
+	print {k.word : k.typedict.values() for k,v in onedict.viewitems() if k.typedict.values() != [set([])]}
+	
+	
 	#emod.findvariants(v, "u", "v")
 
-main(corpusdir)
+main(corpusdir, "u", "v")
 	
 
 		
