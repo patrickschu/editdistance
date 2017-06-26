@@ -303,6 +303,18 @@ def pubdateconverter(pubdate):
 		print "Warning from pubdateconverter: {} is longer than 4 digits".format(pubdate)
 	return pubdate	
 
+def CorpusWordImporter(input_json):
+	"""
+	Read in json file created by Corpus_2 vocabbuilder to create dictionary of CorpusWord items.
+	Format of input_json is 
+	{word: {year:X, year2:Y}, word2:{}}
+	"""
+	with codecs.open(input_json, "r", "utf-8") as inputjson:
+		inputdict = json.load(inputjson)
+	vocabdict = {}
+	for word in inputdict:
+		print inputdict[word]
+	
 
 class CorpusWord(CorpusText):
 	"""
