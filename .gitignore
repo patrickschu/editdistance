@@ -2,9 +2,11 @@
 *.zip
 *.pyc
 outputfiles/*
-/extracted_corpus*
+analysis_scripts/extracted_corpora_0420/*
+analysis_scripts/extracted_corpora_0420_small/*
+extracted_corpora_0420_small/*
+extracted_corpora_0420/*
 .Rhistory
-
 *.DS_Store
 .AppleDouble
 .LSOverride
