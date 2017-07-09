@@ -37,9 +37,9 @@ metaregex= "({|<).*?(>|})"
 def timer(func):
 	def wrapper(*args, **kwargs):
 		t = time.time()
-		print "Running {}".format(func.func_name)
+		print "timer :: Running {}".format(func.func_name)
 		res = func(*args, **kwargs)
-		print "{} took us {}".format(func.func_name, (time.time()-t)/60)
+		print "timer :: {} took us {}".format(func.func_name, (time.time()-t)/60)
 		return res
 	return wrapper
 
