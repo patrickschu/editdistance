@@ -70,18 +70,18 @@ def main(input_dir, variant_one, variant_two, threshold, output_word, output_agg
 		# typedict at this point looks like so: {type_1: [CorpusWord(type_2), ...]
 		
 		# make a key for the variant_one word first, which is stored in v
-		fulldict_words[onedict[type_two].word] = onedict[type_two].yeardict
+		fulldict_words[onedict[type_two].word + "baseform"] = onedict[type_two].yeardict
 		# make keys for all the type 2s associated with it
 		for typ in type_two.typedict[onedict[type_two].word]:
 			# we can call this with the onedict value since this is the same type_1
-			fulldict_words[typ.word] = typ.yeardict
-			
-			#print typ
-	print sorted(fulldict_words)
-		
-		
-		
-	onedict_dfwords = pandas.DataFrame.from_dict(onedict)
+			fulldict_words[onedict[type_two].word + "_" + str(typ.position)] = typ.yeardict
+	print [(i, fulldict_words[i]) for i in sorted(fulldict_words)]
+	df_fulldict_words = pandas.DataFrame.from_dict(fulldict_words)
+	print df_fulldict_words
+	newindex = pandas.Series(range (1410, 1422))
+	gg = df_fulldict_words.reindex([1410,1411,1420])
+	print gg
+	df_fulldict_words.to_csv("testout.csv", encoding = 'utf-8')
 	# our output is like so
 	# 		word1, word1_2, word2
 	# 1600  count  count
