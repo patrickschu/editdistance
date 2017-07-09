@@ -296,11 +296,15 @@ class CorpusText(object):
 # all words in the corpus constitute the VOCAB
 
 def pubdateconverter(pubdate):
-	#normalize pubdate to 4 digit format
+	# normalize pubdate to 4 digit format
+	# returns an int, 0 for empty string
 	pubdate = re.split(ur"(—|-|–)", pubdate)[0]
 	pubdate = "".join([i for i in list(pubdate) if i.isdigit()][:4])
 	if len(pubdate) > 4:
 		print "Warning from pubdateconverter: {} is longer than 4 digits".format(pubdate)
+	elif not pubdate:
+		#print "PUBDATE IS NOT"
+		pubdate = 0 
 	return pubdate	
 
 def CorpusVocabImporter(input_json):
@@ -315,7 +319,7 @@ def CorpusVocabImporter(input_json):
 	vocabdict = {}
 	for word in inputdict:
 		vocabdict[word] = CorpusWord(word, "VARIANT", "POSITION")
-		vocabdict[word].yeardict = inputdict[word]
+		vocabdict[word].yeardict = {int(k): int(v) for k,v in inputdict[word].viewitems()}
 	return vocabdict
 
 class CorpusWord(CorpusText):
@@ -344,6 +348,7 @@ class CorpusWord(CorpusText):
 		#yeardict compiles counts of self.word by year across all texts in input_dir
 		#if lower_case, texts in input_dir will be lower cased. 
 		#NOTE THAT THE DEFDICT WILL DEFAULT TO 0; I.E no EMPTY KEYS
+		print "Running the yeardictmaker"
 		tokensperyear = defaultdict(int)
 		for root, direct, filis in os.walk(input_dir):
 			print header, "working on", root, len(filis), "files"
@@ -357,8 +362,10 @@ class CorpusWord(CorpusText):
 					hits = [i for i in inputtokens if i == self.word]
 					#clean the pubdates
 					pubdate = pubdateconverter(inputtext.meta['pubdate'])
+					if not pubdate:
+						pubdate = 0
 					tokensperyear[pubdate] = tokensperyear[pubdate] + 1
-		return(tokensperyear)
+		return({k:v for k,v in tokensperyear.viewitems()})
 		# we can model other flexible word counts on this: just give attribute to sort by as argument. 
 		# smooth.
 	
@@ -459,7 +466,7 @@ class Corpus_2(object):
 		Builds a dictionary of all texts in input_dir, updating the yeardict {} of Corpusword.
 		Returns a dictionary like so : {word: CorpusWord(), ...}
 		"""
-		print "running the vocabbuilder"
+		print "running the vocabbuilder from corpus_2"
 		vocabdict = {}
 		for root, direct, filis in os.walk(self.input_dir):
 			print "working on folder", root 
@@ -477,7 +484,7 @@ class Corpus_2(object):
 			with codecs.open(output_json+".json", "w") as jsonout:
 				json.dump({k:v.yeardict for k,v in vocabdict.viewitems()}, jsonout, encoding= "utf-8")
 			print "File written to", jsonout
-		print "\n++".join([":".join((i, "\n".join([":".join((k,str(v))) for k,v in vocabdict[i].yeardict.items()]))) for i in sorted(vocabdict, key= lambda x: sum(vocabdict[x].yeardict.values()), reverse=True)[:100]])
+		print "\n++".join([":".join((i, "\n".join([":".join((str(k),str(v))) for k,v in vocabdict[i].yeardict.items()]))) for i in sorted(vocabdict, key= lambda x: sum(vocabdict[x].yeardict.values()), reverse=True)[:100]])
 		return vocabdict
 		
 #vocab is the collection of all words in the corpus, for example stored in a dictionary
