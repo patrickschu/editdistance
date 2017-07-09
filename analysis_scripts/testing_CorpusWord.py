@@ -64,18 +64,20 @@ def main(input_dir, variant_one, variant_two, threshold, output_word, output_agg
 		if len(type_two.typedict.values()) > 1:
 			print "more than 1 variant for", onedict[type_two].word, type_two.typedict
 			x=1
-	onedict_words = {}
+	fulldict_words = {}
 	for type_two in onedict:
 		# we iterate over VariantItems which are type_one: list of type 2s stored in typedict
-		print type_two.typedict
-		# make a key for the variant_one word first, which is stored in v
-		#onedict_words[onedict[type_two].word] = onedict[type_two].yeardict
-		for typ in type_two.typedict:
-			x = 1
-			#print typ
-			#onedict_words[typ] = type_two.typedict[typ].yeardict
-	print onedict_words	
+		# typedict at this point looks like so: {type_1: [CorpusWord(type_2), ...]
 		
+		# make a key for the variant_one word first, which is stored in v
+		fulldict_words[onedict[type_two].word] = onedict[type_two].yeardict
+		# make keys for all the type 2s associated with it
+		for typ in type_two.typedict[onedict[type_two].word]:
+			# we can call this with the onedict value since this is the same type_1
+			fulldict_words[typ.word] = typ.yeardict
+			
+			#print typ
+	print sorted(fulldict_words)
 		
 		
 		

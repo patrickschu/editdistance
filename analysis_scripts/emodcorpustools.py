@@ -266,7 +266,7 @@ class CorpusText(object):
 	
 	def tokenizer(self, cleantext=False):
 		if cleantext:
-			return [i for i in nltk.word_tokenize(self.cleantext) if not i in string.punctuation]
+			return [i.strip(string.punctuation) for i in nltk.word_tokenize(self.cleantext) if not i in string.punctuation]
 		else:
 			return nltk.word_tokenize(self.fulltext)
 	
