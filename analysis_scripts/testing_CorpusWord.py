@@ -24,7 +24,7 @@ def main(search_term, input_dir):
 
 def main(input_dir, variant_one, variant_two, threshold, output_word, output_aggregate):
 	# build vocab anew:
-	#vocab = emod.Corpus_2(corpusdir).vocabbuilder(output_json = "testvocab")
+	vocab = emod.Corpus_2(corpusdir).vocabbuilder(output_json = "/home/patrick/Downloads/editdistance/testvocab")
 	# read vocab from file:
 	vocab = emod.CorpusVocabImporter('/home/patrick/Downloads/editdistance/testvocab.json')
 	print "len vocab ", len(vocab)
@@ -78,10 +78,12 @@ def main(input_dir, variant_one, variant_two, threshold, output_word, output_agg
 	print [(i, fulldict_words[i]) for i in sorted(fulldict_words)]
 	df_fulldict_words = pandas.DataFrame.from_dict(fulldict_words)
 	print df_fulldict_words
-	newindex = pandas.Series(range (1410, 1422))
-	gg = df_fulldict_words.reindex([1410,1411,1420])
+	print df_fulldict_words.index
+	print type(df_fulldict_words.index)
+	newindex = range (0,20000)
+	gg = df_fulldict_words.reindex(newindex)
 	print gg
-	df_fulldict_words.to_csv("testout.csv", encoding = 'utf-8')
+	#df_fulldict_words.to_csv("testout.csv", encoding = 'utf-8')
 	# our output is like so
 	# 		word1, word1_2, word2
 	# 1600  count  count
