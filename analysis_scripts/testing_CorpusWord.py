@@ -42,9 +42,9 @@ def main(input_dir, variant_one, variant_two, threshold, output_words = "testout
 	# {v.word:v.totaltokens() for k,v in onedict.viewitems()}
 	# filter for the ones above threshold in for loop
 	for key in onedict:
-		print "key", type(key), key.typedict
+		#print "key", type(key), key.typedict
 		variant_one_count = onedict[key].totaltokens()
-		print "word one", onedict[key].word.encode("utf-8"), variant_one_count
+		#print "word one", onedict[key].word.encode("utf-8"), variant_one_count
 		# note that typedict is {position: CorpusWord}}
 		# we exclude all entries in typedict where type_one + type_two tokens don't exceed the threshold
 		# key.typedict = {k:[i for i in v.values() if i.totaltokens() + variant_one_count > threshold] for k,v in key.typedict.viewitems()}
@@ -71,8 +71,8 @@ def main(input_dir, variant_one, variant_two, threshold, output_words = "testout
 			# we iterate over VariantItems which are type_one: list of type 2s stored in typedict
 			# typedict at this point looks like so: {type_1: [CorpusWord(type_2), ...]
 			
-			# make a key for the variant_one word first, which is stored in v
-			fulldict_words[onedict[type_two].word + "baseform"] = onedict[type_two].yeardict
+			# make a key in fulldict_words for the variant_one word first, which is stored in v
+			fulldict_words[onedict[type_two].word + "_base"] = onedict[type_two].yeardict
 			# make keys for all the type 2s associated with it
 			for typ in type_two.typedict[onedict[type_two].word]:
 				# we can call this with the onedict value since this is the same type_1
@@ -80,10 +80,11 @@ def main(input_dir, variant_one, variant_two, threshold, output_words = "testout
 		print [(i, fulldict_words[i]) for i in sorted(fulldict_words)][:20]
 		df_fulldict_words = pandas.DataFrame.from_dict(fulldict_words)
 		# note that this should include 0 if you want to have values with missing data
+		# TODO: add start / end date input
 		outputindex = range (1500,1800)
 		df_fulldict_words = df_fulldict_words.reindex(outputindex)
-		df_fulldict_words.to_csv(output_word, na_rep = "NA", encoding = 'utf-8')
-		print "Written by word counts to", output_word 
+		df_fulldict_words.to_csv(output_words, na_rep = "NA", encoding = 'utf-8')
+		print "Written by word counts to", output_words 
 		# our output is like so
 		# 		word1, word1_2, word2
 		# 1600  count  count
@@ -99,7 +100,51 @@ def main(input_dir, variant_one, variant_two, threshold, output_words = "testout
 		#year
 		#extract variation counts by year
 		#"each variable is a column, each observation is a row
+	if output_aggregate:
+		fulldict_agg = {}
+		# output:
+		#	 u_0, v_0, u_1, etc
+		#1600	1	2	3
+		#1601	
+		#{1600: {var_one : {pos1: count, pos2: count, ...}, var_two : {pos1: count,...}}
+		for type_two in onedict:
+			# we iterate over VariantItems which are {type_one: list of type 2s} stored in `typedict`
+			# cause typedict at this point looks like so: {type_1: [CorpusWord(type_2), ...]
+			# make a key for the variant_one word first, which is stored in v
+			print "\n--\n"
+			print onedict[type_two].word
+			for year in onedict[type_two].yeardict:
+				if not year in fulldict_agg:
+					# setup the year for all variants
+					fulldict_agg[year] = {variant_one : onedict[type_two].yeardict[year], variant_two : 0}
+					print "set up", {variant_one : onedict[type_two].yeardict[year], variant_two : 0}
+				else:
+					#print "add to ", fulldict_agg[year]
+					fulldict_agg[year][variant_one] += onedict[type_two].yeardict[year]
+					#print "new entry", fulldict_agg[year]
+					#print "from", onedict[type_two].yeardict
+			for entry in type_two.typedict[onedict[type_two].word]:
+				# this will give us a list of lists
+				# why tf is this entry in typedict a list of lists?
+				# is this necessary?
+				# entry will be a list
+				for year in entry.yeardict:
+					print 'y', year
+					if not year in fulldict_agg:
+						# setup the year for all variants
+						fulldict_agg[year] = {variant_one : onedict[type_two].yeardict[year], variant_two : 0}
+						print "set up", {variant_one : onedict[type_two].yeardict[year], variant_two : 0}
+					else:
+						#print "add to ", fulldict_agg[year]
+						fulldict_agg[year][variant_one] += onedict[type_two].yeardict[year]
+						#print "new entry", fulldict_agg[year]
+						#print "from", onedict[type_two].yeardict
+					
+		# make keys for all the type 2s associated with it
+		for typ in type_two.typedict[onedict[type_two].word]:
+			# we can call this with the onedict value since this is the same type_1
+			fulldict_words[onedict[type_two].word + "_" + str(typ.position)] = typ.yeardict
 
 	
-main(corpusdir, "u", "v", threshold = 0, output_word = "testingcsvout_0711", output_aggregate = False)
+main(corpusdir, "u", "v", threshold = 0, output_words = False, output_aggregate = "aggout_0711")
 #TO DO : check if multiple variants in typedict are preserved or kicked out asp
