@@ -22,7 +22,7 @@ def main(search_term, input_dir):
 	
 #main(corpusdir, "u", "v")
 
-def main(input_dir, variant_one, variant_two, threshold, output_word, output_aggregate):
+def main(input_dir, variant_one, variant_two, threshold, output_words = "testout_0711.csv", output_aggregate = 1):
 	# build vocab anew:
 	vocab = emod.Corpus_2(corpusdir).vocabbuilder(output_json = "/home/patrick/Downloads/editdistance/testvocab")
 	# read vocab from file:
@@ -49,7 +49,7 @@ def main(input_dir, variant_one, variant_two, threshold, output_word, output_agg
 		# we exclude all entries in typedict where type_one + type_two tokens don't exceed the threshold
 		# key.typedict = {k:[i for i in v.values() if i.totaltokens() + variant_one_count > threshold] for k,v in key.typedict.viewitems()}
 		key.typedict = {k:[i for i in v.values() if i.totaltokens() + variant_one_count > threshold] for k,v in key.typedict.viewitems()}
-		print "keyi", key.typedict
+		#print "keyi", key.typedict
 	print "len onedict ", len(onedict)
 	# remove words with empty typedictionaries, i.e. that don't have any variant_2 tokens
 	onedict = {k:v for k,v in onedict.viewitems() if k.typedict.values()[0]}
@@ -64,42 +64,42 @@ def main(input_dir, variant_one, variant_two, threshold, output_word, output_agg
 		if len(type_two.typedict.values()) > 1:
 			print "more than 1 variant for", onedict[type_two].word, type_two.typedict
 			x=1
-	fulldict_words = {}
-	for type_two in onedict:
-		# we iterate over VariantItems which are type_one: list of type 2s stored in typedict
-		# typedict at this point looks like so: {type_1: [CorpusWord(type_2), ...]
-		
-		# make a key for the variant_one word first, which is stored in v
-		fulldict_words[onedict[type_two].word + "baseform"] = onedict[type_two].yeardict
-		# make keys for all the type 2s associated with it
-		for typ in type_two.typedict[onedict[type_two].word]:
-			# we can call this with the onedict value since this is the same type_1
-			fulldict_words[onedict[type_two].word + "_" + str(typ.position)] = typ.yeardict
-	print [(i, fulldict_words[i]) for i in sorted(fulldict_words)]
-	df_fulldict_words = pandas.DataFrame.from_dict(fulldict_words)
-	print df_fulldict_words
-	print df_fulldict_words.index
-	print type(df_fulldict_words.index)
-	newindex = range (0,20000)
-	gg = df_fulldict_words.reindex(newindex)
-	print gg
-	#df_fulldict_words.to_csv("testout.csv", encoding = 'utf-8')
-	# our output is like so
-	# 		word1, word1_2, word2
-	# 1600  count  count
-	# 1601  count
-	#if output_word:
-		#with codecs.open(output_word + ".csv", "w", "utf-8") as csvout:
-			#onedict.to_csv(csvout)
-	#if output_aggregate:
-		#2
-	#output csv
-	#\tword_pos_variant\tword\word
-	#year
-	#year
-	#extract variation counts by year
-	#"each variable is a column, each observation is a row
+	if output_words: 
+		# we might consider making this into a more generalizable func
+		fulldict_words = {}
+		for type_two in onedict:
+			# we iterate over VariantItems which are type_one: list of type 2s stored in typedict
+			# typedict at this point looks like so: {type_1: [CorpusWord(type_2), ...]
+			
+			# make a key for the variant_one word first, which is stored in v
+			fulldict_words[onedict[type_two].word + "baseform"] = onedict[type_two].yeardict
+			# make keys for all the type 2s associated with it
+			for typ in type_two.typedict[onedict[type_two].word]:
+				# we can call this with the onedict value since this is the same type_1
+				fulldict_words[onedict[type_two].word + "_" + str(typ.position)] = typ.yeardict
+		print [(i, fulldict_words[i]) for i in sorted(fulldict_words)][:20]
+		df_fulldict_words = pandas.DataFrame.from_dict(fulldict_words)
+		# note that this should include 0 if you want to have values with missing data
+		outputindex = range (1500,1800)
+		df_fulldict_words = df_fulldict_words.reindex(outputindex)
+		df_fulldict_words.to_csv(output_word, na_rep = "NA", encoding = 'utf-8')
+		print "Written by word counts to", output_word 
+		# our output is like so
+		# 		word1, word1_2, word2
+		# 1600  count  count
+		# 1601  count
+		#if output_word:
+			#with codecs.open(output_word + ".csv", "w", "utf-8") as csvout:
+				#onedict.to_csv(csvout)
+		#if output_aggregate:
+			#2
+		#output csv
+		#\tword_pos_variant\tword\word
+		#year
+		#year
+		#extract variation counts by year
+		#"each variable is a column, each observation is a row
 
 	
-main(corpusdir, "u", "v", threshold = 0, output_word = "testingcsvout", output_aggregate = False)
+main(corpusdir, "u", "v", threshold = 0, output_word = "testingcsvout_0711", output_aggregate = False)
 #TO DO : check if multiple variants in typedict are preserved or kicked out asp
