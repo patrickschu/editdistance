@@ -4,7 +4,7 @@ import pandas
 
 header = "\n\n+++\n\n"
 corpusdir = '/home/patrick/Downloads/editdistance/extracted_corpora_0420'
-#corpusdir = '/home/patrick/Downloads/editdistance/extracted_corpora_0420_small'
+corpusdir = '/home/patrick/Downloads/editdistance/extracted_corpora_0420_small'
 searchterm = "duke"
 
 
@@ -18,11 +18,17 @@ def main(search_term, input_dir):
 	print dicti.viewvalues()
 
 
-	#check if set deletes non-ID CorpusWords -- apparently it does not
 	
 #main(corpusdir, "u", "v")
 
-def main(input_dir, variant_one, variant_two, threshold, output_words = "testout_0711.csv", output_aggregate = 1, read_corpus_file = True):
+def main(input_dir, 
+variant_one, 
+variant_two,
+ threshold,
+  output_words = "testout_0711.csv",
+   output_aggregate = 1, 
+   sum_output = "True",
+   read_corpus_file = False):
 	if read_corpus_file:
 		vocab = emod.CorpusVocabImporter('/home/patrick/Downloads/editdistance/testvocab.json')
 	else:
@@ -108,6 +114,9 @@ def main(input_dir, variant_one, variant_two, threshold, output_words = "testout
 		#1601	
 		#{1600: {var_one : {pos1: count, pos2: count, ...}, var_two : {pos1: count,...}}
 		for type_two in onedict:
+			#print header, onedict[type_two].word, onedict[type_two].position
+			onedict[type_two].positionsetter(tuple([ind for ind, char in enumerate(list(onedict[type_two].word)) if char == variant_one]))
+			var_one_pos = "_".join(str(i) for i in onedict[type_two].position)
 			# we iterate over VariantItems which are {type_one: list of type 2s} stored in `typedict`
 			# cause typedict at this point looks like so: {type_1: [CorpusWord(type_2), ...]
 			# make a key for the variant_one word first, which is stored in v of onedict
@@ -117,35 +126,46 @@ def main(input_dir, variant_one, variant_two, threshold, output_words = "testout
 			for year in onedict[type_two].yeardict:
 				if not year in fulldict_agg:
 					# setup the year for all variants
-					fulldict_agg[year] = {variant_one : onedict[type_two].yeardict[year], variant_two : 0}
+					fulldict_agg[year] = {'base_' + var_one_pos : onedict[type_two].yeardict[year]}
 					#print "set up", {variant_one : onedict[type_two].yeardict[year], variant_two : 0}
+				elif not 'base_' + var_one_pos in fulldict_agg:
+					fulldict_agg[year]['base_' + var_one_pos] = onedict[type_two].yeardict[year]
 				else:
 					#print "add to ", fulldict_agg[year]
-					fulldict_agg[year][variant_one] += onedict[type_two].yeardict[year]
+					fulldict_agg[year]['base' + var_one_pos] += onedict[type_two].yeardict[year]
 					#print "new entry", fulldict_agg[year]
 					#print "from", onedict[type_two].yeardict
 			for entry in type_two.typedict[onedict[type_two].word]:
 				## this will give us a list of lists
 				## why tf is this entry in typedict a list of lists?
 				## is this necessary?
+				#print "pos 2", entry.position
+				var_two_pos = "_".join(str(i) for i in entry.position)
+				#print var_two_pos
 				for year in entry.yeardict:
 					#print entry.yeardict
 					if not year in fulldict_agg:
 						## setup the year for all variants
-						fulldict_agg[year] = {variant_one : 0, variant_two : entry.yeardict[year]}
+						fulldict_agg[year] = {var_two_pos: 0}
+						fulldict_agg[year][var_two_pos] = entry.yeardict[year]
 						#print "set up", {variant_one : 0, variant_two : entry.yeardict[year]}
+					elif not var_two_pos in fulldict_agg[year]:
+						fulldict_agg[year][var_two_pos] =  entry.yeardict[year]
 					else:
-						#print "add to ", fulldict_agg[year]
-						fulldict_agg[year][variant_two] += entry.yeardict[year]
-		#TODO add position to fulldict {year:position{}, 
-		df_fulldict_agg = pandas.DataFrame(fulldict_agg)
-		df_fulldict_agg = df_fulldict_agg.T
-		print df_fulldict_agg['u']
-		#print "result", fulldict_agg
-		outputindex = range (1400,1500)
-		df_fulldict_agg = df_fulldict_agg.reindex(outputindex)
-		print df_fulldict_agg
-		df_fulldict_agg.to_csv(output_aggregate + ".csv", na_rep = "NA", encoding = 'utf-8')
+						fulldict_agg[year][var_two_pos] += entry.yeardict[year]
+		print "result", fulldict_agg
+		if not sum_output: 
+			df_fulldict_agg = pandas.DataFrame(fulldict_agg)
+			df_fulldict_agg = df_fulldict_agg.T
+			#print "result", df_fulldict_agg
+			outputindex = range (1400,1500)
+			df_fulldict_agg = df_fulldict_agg.reindex(outputindex)
+			df_fulldict_agg.to_csv(output_aggregate + ".csv", na_rep = "NA", encoding = 'utf-8')
+		else:
+			fulldict_agg = {k:{variant_one: sum([val for key, val in v.viewitems() if key.startswith("base")])} for k,v in fulldict_agg.viewitems()}
+			df_fulldict_agg = pandas.DataFrame()
+			print fulldict_agg
+			
 	
 	
 main(corpusdir, "u", "v", threshold = 0, output_words = "output_words", output_aggregate = "aggout_0711")
