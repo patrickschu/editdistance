@@ -22,11 +22,11 @@ def main(search_term, input_dir):
 	
 #main(corpusdir, "u", "v")
 
-def main(input_dir, variant_one, variant_two, threshold, output_words = "testout_0711.csv", output_aggregate = 1):
-	# build vocab anew:
-	vocab = emod.Corpus_2(input_dir).vocabbuilder(output_json = "/home/patrick/Downloads/editdistance/testvocab")
-	# read vocab from file:
-	vocab = emod.CorpusVocabImporter('/home/patrick/Downloads/editdistance/testvocab.json')
+def main(input_dir, variant_one, variant_two, threshold, output_words = "testout_0711.csv", output_aggregate = 1, read_corpus_file = True):
+	if read_corpus_file:
+		vocab = emod.CorpusVocabImporter('/home/patrick/Downloads/editdistance/testvocab.json')
+	else:
+		vocab = emod.Corpus_2(input_dir).vocabbuilder(output_json = "/home/patrick/Downloads/editdistance/testvocab")
 	print "len vocab ", len(vocab)
 	# extract all items that contain variant one
 	# NOTE change from list to string to allow several chars--> will this still work? 
@@ -63,7 +63,6 @@ def main(input_dir, variant_one, variant_two, threshold, output_words = "testout
 	for type_two in onedict:
 		if len(type_two.typedict.values()) > 1:
 			print "more than 1 variant for", onedict[type_two].word, type_two.typedict
-			x=1
 	if output_words: 
 		# we might consider making this into a more generalizable func
 		fulldict_words = {}
@@ -77,15 +76,15 @@ def main(input_dir, variant_one, variant_two, threshold, output_words = "testout
 			for typ in type_two.typedict[onedict[type_two].word]:
 				# we can call this with the onedict value since this is the same type_1
 				fulldict_words[onedict[type_two].word + "_" + str(typ.position)] = typ.yeardict
-		print [(i, fulldict_words[i]) for i in sorted(fulldict_words)][:20]
+		#print [(i, fulldict_words[i]) for i in sorted(fulldict_words)][:20]
 		df_fulldict_words = pandas.DataFrame.from_dict(fulldict_words)
 		# note that this should include 0 if you want to have values with missing data
 		# TODO: add start / end date input
 		outputindex = range (1500,1800)
 		df_fulldict_words = df_fulldict_words.reindex(outputindex)
-		df_fulldict_words.to_csv(output_words, na_rep = "NA", encoding = 'utf-8')
+		df_fulldict_words.to_csv(output_words + ".csv", na_rep = "NA", encoding = 'utf-8')
 		print "Written by word counts to", output_words 
-		print "result words", fulldict_words
+		#print "result words", fulldict_words
 		# our output is like so
 		# 		word1, word1_2, word2
 		# 1600  count  count
@@ -139,13 +138,15 @@ def main(input_dir, variant_one, variant_two, threshold, output_words = "testout
 						#print "add to ", fulldict_agg[year]
 						fulldict_agg[year][variant_two] += entry.yeardict[year]
 		#TODO add position to fulldict {year:position{}, 
-		print "result", fulldict_agg
-		#IDK if the below is trash or just misplaced			
-		## make keys for all the type 2s associated with it
-		#for typ in type_two.typedict[onedict[type_two].word]:
-			## we can call this with the onedict value since this is the same type_1
-			#fulldict_words[onedict[type_two].word + "_" + str(typ.position)] = typ.yeardict
-		
+		df_fulldict_agg = pandas.DataFrame(fulldict_agg)
+		df_fulldict_agg = df_fulldict_agg.T
+		print df_fulldict_agg['u']
+		#print "result", fulldict_agg
+		outputindex = range (1400,1500)
+		df_fulldict_agg = df_fulldict_agg.reindex(outputindex)
+		print df_fulldict_agg
+		df_fulldict_agg.to_csv(output_aggregate + ".csv", na_rep = "NA", encoding = 'utf-8')
+	
 	
 main(corpusdir, "u", "v", threshold = 0, output_words = "output_words", output_aggregate = "aggout_0711")
 #TO DO : check if multiple variants in typedict are preserved or kicked out asp
