@@ -145,7 +145,6 @@ def variantfinder(input_dict, variant_one, variant_two):
 	return outputdict
 
 
-
 def contextfinder(input_word, variant, pre_window, post_window):
 	"""
 	The contextfinder finds all instances of variant in the input_word.
@@ -199,9 +198,6 @@ def variantfinder_2(input_dict, meta_data, variant_one, variant_two):
 		#format is {year1:{word1:{variant_one:X, variant_two:X}, word2:{}}, year2:{}}
 		outputdict[entry]={k:{variant_one:v, variant_two:metadict[entry].get(re.sub(variant_one, variant_two, k), 0)} for k,v in combineddict[entry].items()}
 	return outputdict, totaldict
-
-
-
 
 
 @timer	
@@ -298,8 +294,11 @@ class CorpusText(object):
 def pubdateconverter(pubdate):
 	# normalize pubdate to 4 digit format
 	# returns an int, 0 for empty string
+	#print "converter go"
 	pubdate = re.split(ur"(—|-|–)", pubdate)[0]
+	#print "pubdate", pubdate
 	pubdate = "".join([i for i in list(pubdate) if i.isdigit()][:4])
+	#print "merged pubdate"
 	if len(pubdate) > 4:
 		print "Warning from pubdateconverter: {} is longer than 4 digits".format(pubdate)
 	elif not pubdate:
@@ -333,7 +332,7 @@ class CorpusWord(CorpusText):
 	Example
 	word : but
 	variant : u  
-	position : 1
+	position : (1,3)
 	"""
 	def __init__(self, word, variant, position):
 		self.word = word
@@ -429,21 +428,25 @@ class VariantItem(object):
 		for index_tuple in powerset(indices):
 			#print "index_tuple", index_tuple
 			if index_tuple: 
+				print "indi tuple", index_tuple
 				wordlist = list(word)
 				#error catching
 				index_list = [position for variant, position in index_tuple]
+				#we could keep this as a tuple: `tuple(i[1] for i in index_tuple)`
 				for ind in index_list:
 					if wordlist[ind] != self.variant_one:
 						print "WARNING : ISSUE IN TYPEGENERATOR (tuples returned from indexer do not match variant_one)"
 				#print "original", "".join(wordlist)
+				print index_list
 				for ind in index_list:
-					#print "ind:", ind #, "ind[1]", ind[1]
+					#print "ind:", ind 
 					wordlist[ind] = self.variant_two
 				#print "".join(wordlist)
 				match = input_vocab.get("".join(wordlist), None)
 				if match != None:
+					#note that match is a CorpusWord object
 					#print "match: ", match
-					match.positionsetter(ind)
+					match.positionsetter(tuple(index_list))
 					#can there be more than one match per ind?
 					typedict[word][ind] = match				
 					#print typedict
@@ -461,7 +464,7 @@ class Corpus_2(object):
 		self.input_dir = input_dir
 	
 	@timer
-	def vocabbuilder(self, output_json=False):
+	def vocabbuilder(self, output_json=False, noisy = False):
 		"""
 		Builds a dictionary of all texts in input_dir, updating the yeardict {} of Corpusword.
 		Returns a dictionary like so : {word: CorpusWord(), ...}
@@ -482,9 +485,10 @@ class Corpus_2(object):
 						vocabdict[word].yeardictsetter(text.meta['pubdate'], 1)
 		if output_json:
 			with codecs.open(output_json+".json", "w") as jsonout:
-				json.dump({k:v.yeardict for k,v in vocabdict.viewitems()}, jsonout, encoding= "utf-8")
+				json.dump({k:{int(year):int(count) for year, count in v.yeardict.viewitems()} for k,v in vocabdict.viewitems()}, jsonout, encoding= "utf-8")
 			print "File written to", jsonout
-		print "\n++".join([":".join((i, "\n".join([":".join((str(k),str(v))) for k,v in vocabdict[i].yeardict.items()]))) for i in sorted(vocabdict, key= lambda x: sum(vocabdict[x].yeardict.values()), reverse=True)[:100]])
+		if noisy:
+			print "\n++".join([":".join((i, "\n".join([":".join((str(k),str(v))) for k,v in vocabdict[i].yeardict.items()]))) for i in sorted(vocabdict, key= lambda x: sum(vocabdict[x].yeardict.values()), reverse=True)[:100]])
 		return vocabdict
 		
 #vocab is the collection of all words in the corpus, for example stored in a dictionary
