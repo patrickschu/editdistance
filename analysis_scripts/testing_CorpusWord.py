@@ -7,7 +7,7 @@ corpusdir = '/home/patrick/Downloads/editdistance/extracted_corpora_0420'
 corpusdir = '/home/patrick/Downloads/editdistance/extracted_corpora_0420_small'
 searchterm = "duke"
 
-
+exclude_words = [] # ["u"]
 
 #test CorpusWord object
 @emod.timer
@@ -24,11 +24,13 @@ def main(search_term, input_dir):
 def main(input_dir, 
 variant_one, 
 variant_two,
- threshold,
-  output_words = "testout_0711.csv",
-   output_aggregate = 1, 
-   sum_output = "True",
-   read_corpus_file = False):
+threshold,
+output_words = "testout_0711.csv",
+output_aggregate = 1, 
+sum_output = "True",
+read_corpus_file = False):
+	print "var 1", variant_one
+	print "var 2", variant_two
 	if read_corpus_file:
 		vocab = emod.CorpusVocabImporter('/home/patrick/Downloads/editdistance/testvocab.json')
 	else:
@@ -59,7 +61,18 @@ variant_two,
 	print "len onedict ", len(onedict)
 	# remove words with empty typedictionaries, i.e. that don't have any variant_2 tokens
 	onedict = {k:v for k,v in onedict.viewitems() if k.typedict.values()[0]}
+	print "len onedict", len(onedict)
+	# apply exclusion criteria
+	onedict = {k:v for k,v in onedict.viewitems() if not any ([v.word in exclude_words])}
+	print "len onedict", len(onedict)
+	
+	
+	#print "oni", onedict
+	
 	print "len onedict ", len(onedict)
+	print "\n".join([":".join((onedict[i].word, str(onedict[i].totaltokens()))) for i in sorted(onedict, key = lambda x : onedict[x].totaltokens(), reverse = True)][:100])
+	print "\n".join([":".join((",".join([str(x) for x in i.typedict.keys()]), ",".join([",".join([",".join((y.word, str(vocab[y.word].yeardict))) for y in x]) for x in i.typedict.values()]))) for i in sorted(onedict, key = lambda x : onedict[x].totaltokens(), reverse = True)][:100])
+	
 	#print [i.word for i in onedict.values()]
 	#print {k: [(i.word.encode("utf-8"), i.totaltokens()) for i in k.typedict.values()[0]] for k,v in onedict.viewitems()}
 	#spread dict a.k.a. enter values for the words in the typedict
@@ -75,21 +88,22 @@ variant_two,
 		for type_two in onedict:
 			# we iterate over VariantItems which are type_one: list of type 2s stored in typedict
 			# typedict at this point looks like so: {type_1: [CorpusWord(type_2), ...]
-			
 			# make a key in fulldict_words for the variant_one word first, which is stored in v
 			fulldict_words[onedict[type_two].word + "_base"] = onedict[type_two].yeardict
 			# make keys for all the type 2s associated with it
 			for typ in type_two.typedict[onedict[type_two].word]:
 				# we can call this with the onedict value since this is the same type_1
-				fulldict_words[onedict[type_two].word + "_" + str(typ.position)] = typ.yeardict
+				fulldict_words[onedict[type_two].word + "_" + "_".join([str(i) for i in typ.position])] = typ.yeardict
 		#print [(i, fulldict_words[i]) for i in sorted(fulldict_words)][:20]
 		df_fulldict_words = pandas.DataFrame.from_dict(fulldict_words)
 		# note that this should include 0 if you want to have values with missing data
 		# TODO: add start / end date input
-		outputindex = range (1500,1800)
-		df_fulldict_words = df_fulldict_words.reindex(outputindex)
+		#outputindex = range (1500,1800)
+		#df_fulldict_words = df_fulldict_words.reindex(outputindex)
 		df_fulldict_words.to_csv(output_words + ".csv", na_rep = "NA", encoding = 'utf-8')
+		print "word dict", fulldict_words
 		print "Written by word counts to", output_words 
+		print "DOIT", sum(df_fulldict_words.sum())
 		#print "result words", fulldict_words
 		# our output is like so
 		# 		word1, word1_2, word2
@@ -153,20 +167,26 @@ variant_two,
 						fulldict_agg[year][var_two_pos] =  entry.yeardict[year]
 					else:
 						fulldict_agg[year][var_two_pos] += entry.yeardict[year]
-		print "result", fulldict_agg
+		#print "result", fulldict_agg
 		if not sum_output: 
 			df_fulldict_agg = pandas.DataFrame(fulldict_agg)
 			df_fulldict_agg = df_fulldict_agg.T
 			#print "result", df_fulldict_agg
-			outputindex = range (1400,1500)
-			df_fulldict_agg = df_fulldict_agg.reindex(outputindex)
+			#outputindex = range (1500,1700)
+			#df_fulldict_agg = df_fulldict_agg.reindex(outputindex)
 			df_fulldict_agg.to_csv(output_aggregate + ".csv", na_rep = "NA", encoding = 'utf-8')
+			#print df_fulldict_agg
 		else:
-			fulldict_agg = {k:{variant_one: sum([val for key, val in v.viewitems() if key.startswith("base")])} for k,v in fulldict_agg.viewitems()}
-			df_fulldict_agg = pandas.DataFrame()
-			print fulldict_agg
+			fulldict_agg = {k:{
+				variant_one: sum([val for key, val in v.viewitems() if key.startswith("base")]),
+				variant_two: sum([val for key, val in v.viewitems() if not key.startswith("base")])
+				} for k,v in fulldict_agg.viewitems()}
+			df_fulldict_agg = pandas.DataFrame(fulldict_agg).T
+			#print df_fulldict_agg
 			
+		
 	
 	
-main(corpusdir, "u", "v", threshold = 0, output_words = "output_words", output_aggregate = "aggout_0711")
+main(corpusdir, "v", "u", threshold = 0, output_words = "output_words_VU", sum_output = False, output_aggregate = "aggout_0711")
 #TO DO : check if multiple variants in typedict are preserved or kicked out asp
+#numbers don't match CSV output fails, too many NAs
