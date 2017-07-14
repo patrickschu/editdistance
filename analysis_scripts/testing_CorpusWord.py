@@ -1,6 +1,31 @@
 import emodcorpustools as emod
 import codecs
 import pandas
+import argparse
+
+def get_input():
+	parser = argparse.ArgumentParser()
+	#add args
+	parser.add_argument("variant_one", type=str, help="Enter character(s) representing the first variant")
+	parser.add_argument("variant_two", type=str, help="Enter character(s) representing the second variant")
+	
+	
+	parser.add_argument("--read_corpusfile", type=str, 
+		help="Enter name of json file containing a file with wordcounts created previously")
+	parser.add_argument("--input_dir", type=str, help="Enter the directory containing corpus files")
+	parser.add_argument("--threshold", type=int, 
+		help="OPTIONAL: Enter the minimum number of tokens varying between variant_one and variant_two that need to be present to be included in the output. Defaults to '0'")
+	parser.add_argument("--timespan", type=str, help="Enter a start and end year for the output, seperated by a comma. Format: 'beginning,end'")
+	#output options
+	parser.add_argument("--output_words", type=str, help="Enter file name to write csv of token counts per word and position")
+	parser.add_argument("--output_aggregate_position", type=str, help="Enter file name to write csv of token counts per position")
+	parser.add_argument("--output_aggregate_total", type=str, help="Enter file name to write csv of token counts per variant and year")
+	parser.add_argument("--write_wordcount_to_file", type=str, help="Enter name of file to write a file with word counts per year, create from input_directory")
+	#read input
+	args = parser.parse_args()
+	return args
+
+
 
 header = "\n\n+++\n\n"
 corpusdir = '/home/patrick/Downloads/editdistance/extracted_corpora_0420'
@@ -10,12 +35,6 @@ searchterm = "duke"
 exclude_words = [] # ["u"]
 
 #test CorpusWord object
-@emod.timer
-def main(search_term, input_dir):
-	t = emod.CorpusWord("terrible", "e")
-	dicti = t.yeardict(input_dir, lower_case = True)
-	print dicti
-	print dicti.viewvalues()
 
 def filti(x):
 	# returns hash, and attributes for groupby by word positions for output_agg
@@ -25,21 +44,40 @@ def filti(x):
 	#print "a", attr
 	print attr.__hash__(), attr
 	return attr.__hash__(), attr
+
+def csvwriter(data_frame, file_name):
+	# write DataFrame to csv
+	data_frame.to_csv(file_name + ".csv", na_rep = "NA", encoding = 'utf-8')
+	print "File written to {}".format(file_name)
+
 	
 #main(corpusdir, "u", "v")
 
-def main(input_dir, 
-variant_one, 
-variant_two,
-threshold,
-output_words = "testout_0711.csv",
-output_aggregate = 1, 
-sum_output = "True",
-read_corpus_file = False):
-	print "var 1", variant_one
-	print "var 2", variant_two
-	if read_corpus_file:
-		vocab = emod.CorpusVocabImporter('/home/patrick/Downloads/editdistance/testvocab.json')
+def main():
+#input_dir, 
+#variant_one, 
+#variant_two,
+#threshold,
+#timespan = False,
+#output_words = "testout_0711.csv",
+#output_aggregate = 1, 
+#sum_output = "True",
+#read_corpus_file = False):
+
+	args = get_input()
+	#checking input
+	if all([not args.read_corpusfile, not args.input_dir]):
+		raise IOError("No input data. You need to either specify a corpus directory as '--input_dir' or a file with word counts as '--read_file'")
+	if args.timespan:
+		# turns input into [str, str] list
+		timespan = args.timespan.split(",")
+	
+	variant_one = args.variant_one
+	variant_two = args.variant_two
+	
+	print "Working with variant_one: '{}', variant_two: '{}'".format(variant_one,variant_two)
+	if args.read_corpusfile:
+		vocab = emod.CorpusVocabImporter(args.read_corpusfile)
 	else:
 		vocab = emod.Corpus_2(input_dir).vocabbuilder(output_json = "/home/patrick/Downloads/editdistance/testvocab")
 	print "len vocab ", len(vocab)
@@ -110,7 +148,7 @@ read_corpus_file = False):
 	# 1601  count
 	#if output_word:
 	if output_words: 
-		df_fulldict_words.to_csv(output_words + ".csv", na_rep = "NA", encoding = 'utf-8')
+		csvwriter(df_fulldict_words, output_words)
 	#set up for indexing columns
 	splitcols = [(w, eval(m)) for w,m in [i.split("_") for i in df_fulldict_words.columns]]
 	df_fulldict_words.columns = splitcols
@@ -126,28 +164,24 @@ read_corpus_file = False):
 		df_agg_by_year_and_pos = df_fulldict_words.groupby(lambda x: filti(x), axis = 1).sum()
 		df_agg_by_year_and_pos.columns = [i[1] for i in df_agg_by_year_and_pos.columns]
 		print df_agg_by_year_and_pos
+		csvwriter(df_agg_by_year_and_pos, output_aggregate) 
 	
 	if sum_output:
+		# this outputs like so:
+		#         u      v
+		#	1641  20.0  113.0
+		#	1642  20.0   96.0
+		#	1643   8.0   48.0
+		#	1644  44.0  130.0
 		df_agg_by_year = df_fulldict_words.groupby(lambda x: isinstance(filti(x)[1][0], str), axis = 1).sum()
 		df_agg_by_year.columns = [variant_one if i else variant_two for i in df_agg_by_year.columns]
+		df_agg_by_year.to_csv(sum_output + ".csv", na_rep = "NA", encoding = 'utf-8')
 		print df_agg_by_year
-	#print "result words", fulldict_words
-
-		#with codecs.open(output_word + ".csv", "w", "utf-8") as csvout:
-			#onedict.to_csv(csvout)
-	#if output_aggregate:
-		#2
-	#output csv
-	#\tword_pos_variant\tword\word
-	#year
-	#year
-	#extract variation counts by year
-	#"each variable is a column, each observation is a row
-
-			
-		
+		csvwriter(df_agg_by_year, sum_output)
 	
 	
-main(corpusdir, "v", "u", read_corpus_file = False, threshold = 0, output_words = "output_words_VU", sum_output = True, output_aggregate = "aggout_0711")
+#main(corpusdir, "v", "u", read_corpus_file = False, threshold = 0, output_words = "output_words_VU", sum_output = "deppski", output_aggregate = "aggout_0711")
 #TO DO : check if multiple variants in typedict are preserved or kicked out asp
 #numbers don't match CSV output fails, too many NAs
+if __name__ == "__main__":
+    main()
