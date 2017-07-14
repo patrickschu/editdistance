@@ -23,6 +23,7 @@ def filti(x):
 	word, attr = x
 	#print "w", word
 	#print "a", attr
+	print attr.__hash__(), attr
 	return attr.__hash__(), attr
 	
 #main(corpusdir, "u", "v")
@@ -110,7 +111,9 @@ read_corpus_file = False):
 	#if output_word:
 	if output_words: 
 		df_fulldict_words.to_csv(output_words + ".csv", na_rep = "NA", encoding = 'utf-8')
-	
+	#set up for indexing columns
+	splitcols = [(w, eval(m)) for w,m in [i.split("_") for i in df_fulldict_words.columns]]
+	df_fulldict_words.columns = splitcols
 	#transform to other ends
 	if output_aggregate:
 		# this outputs like so:
@@ -119,13 +122,15 @@ read_corpus_file = False):
 		#1642     20.0   5.0   NaN   90.0   1.0   NaN
 		#1643      8.0  10.0  11.0   23.0   4.0   NaN
 		#1644     44.0  27.0   NaN   99.0   NaN   4.0
-		splitcols = [(w, eval(m)) for w,m in [i.split("_") for i in df_fulldict_words.columns]]
-		df_fulldict_words.columns = splitcols
+
 		df_agg_by_year_and_pos = df_fulldict_words.groupby(lambda x: filti(x), axis = 1).sum()
 		df_agg_by_year_and_pos.columns = [i[1] for i in df_agg_by_year_and_pos.columns]
 		print df_agg_by_year_and_pos
-		
-		
+	
+	if sum_output:
+		df_agg_by_year = df_fulldict_words.groupby(lambda x: isinstance(filti(x)[1][0], str), axis = 1).sum()
+		df_agg_by_year.columns = [variant_one if i else variant_two for i in df_agg_by_year.columns]
+		print df_agg_by_year
 	#print "result words", fulldict_words
 
 		#with codecs.open(output_word + ".csv", "w", "utf-8") as csvout:
@@ -143,6 +148,6 @@ read_corpus_file = False):
 		
 	
 	
-main(corpusdir, "v", "u", read_corpus_file = False, threshold = 0, output_words = "output_words_VU", sum_output = False, output_aggregate = "aggout_0711")
+main(corpusdir, "v", "u", read_corpus_file = False, threshold = 0, output_words = "output_words_VU", sum_output = True, output_aggregate = "aggout_0711")
 #TO DO : check if multiple variants in typedict are preserved or kicked out asp
 #numbers don't match CSV output fails, too many NAs
