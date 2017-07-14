@@ -17,7 +17,13 @@ def main(search_term, input_dir):
 	print dicti
 	print dicti.viewvalues()
 
-
+def filti(x):
+	# returns hash, and attributes for groupby by word positions for output_agg
+	#print "tt", type(x)
+	word, attr = x
+	#print "w", word
+	#print "a", attr
+	return attr.__hash__(), attr
 	
 #main(corpusdir, "u", "v")
 
@@ -65,10 +71,6 @@ read_corpus_file = False):
 	# apply exclusion criteria
 	onedict = {k:v for k,v in onedict.viewitems() if not any ([v.word in exclude_words])}
 	print "len onedict", len(onedict)
-	
-	
-	#print "oni", onedict
-	
 	print "len onedict ", len(onedict)
 	print "\n".join([":".join((onedict[i].word, str(onedict[i].totaltokens()))) for i in sorted(onedict, key = lambda x : onedict[x].totaltokens(), reverse = True)][:100])
 	print "\n".join([":".join((",".join([str(x) for x in i.typedict.keys()]), ",".join([",".join([",".join((y.word, str(vocab[y.word].yeardict))) for y in x]) for x in i.typedict.values()]))) for i in sorted(onedict, key = lambda x : onedict[x].totaltokens(), reverse = True)][:100])
@@ -82,111 +84,65 @@ read_corpus_file = False):
 	for type_two in onedict:
 		if len(type_two.typedict.values()) > 1:
 			print "more than 1 variant for", onedict[type_two].word, type_two.typedict
+	# we set up the entire shenanigan
+	fulldict_words = {}
+	for type_two in onedict:
+		# we iterate over VariantItems which are type_one: list of type 2s stored in typedict
+		# typedict at this point looks like so: {type_1: [CorpusWord(type_2), ...]
+		# make a key in fulldict_words for the variant_one word first, which is stored in v
+		fulldict_words[onedict[type_two].word + "_('base',)"] = onedict[type_two].yeardict
+		# make keys for all the type 2s associated with it
+		for typ in type_two.typedict[onedict[type_two].word]:
+			# we can call this with the onedict value since this is the same type_1
+			fulldict_words[onedict[type_two].word + "_" + str(typ.position)] = typ.yeardict
+	#print [(i, fulldict_words[i]) for i in sorted(fulldict_words)][:20]
+	df_fulldict_words = pandas.DataFrame.from_dict(fulldict_words)
+	df_fulldict_words.index = df_fulldict_words.index.map(int)
+	print df_fulldict_words.loc[1641]
+	# note that this should include 0 if you want to have values with missing data
+	# TODO: add start / end date input
+	#outputindex = range (1500,1800)
+	#df_fulldict_words = df_fulldict_words.reindex(outputindex)
+	# our output is like so
+	# 		word1, word1_2, word2
+	# 1600  count  count
+	# 1601  count
+	#if output_word:
 	if output_words: 
-		# we might consider making this into a more generalizable func
-		fulldict_words = {}
-		for type_two in onedict:
-			# we iterate over VariantItems which are type_one: list of type 2s stored in typedict
-			# typedict at this point looks like so: {type_1: [CorpusWord(type_2), ...]
-			# make a key in fulldict_words for the variant_one word first, which is stored in v
-			fulldict_words[onedict[type_two].word + "_base"] = onedict[type_two].yeardict
-			# make keys for all the type 2s associated with it
-			for typ in type_two.typedict[onedict[type_two].word]:
-				# we can call this with the onedict value since this is the same type_1
-				fulldict_words[onedict[type_two].word + "_" + "_".join([str(i) for i in typ.position])] = typ.yeardict
-		#print [(i, fulldict_words[i]) for i in sorted(fulldict_words)][:20]
-		df_fulldict_words = pandas.DataFrame.from_dict(fulldict_words)
-		# note that this should include 0 if you want to have values with missing data
-		# TODO: add start / end date input
-		#outputindex = range (1500,1800)
-		#df_fulldict_words = df_fulldict_words.reindex(outputindex)
 		df_fulldict_words.to_csv(output_words + ".csv", na_rep = "NA", encoding = 'utf-8')
-		print "word dict", fulldict_words
-		print "Written by word counts to", output_words 
-		print "DOIT", sum(df_fulldict_words.sum())
-		#print "result words", fulldict_words
-		# our output is like so
-		# 		word1, word1_2, word2
-		# 1600  count  count
-		# 1601  count
-		#if output_word:
-			#with codecs.open(output_word + ".csv", "w", "utf-8") as csvout:
-				#onedict.to_csv(csvout)
-		#if output_aggregate:
-			#2
-		#output csv
-		#\tword_pos_variant\tword\word
-		#year
-		#year
-		#extract variation counts by year
-		#"each variable is a column, each observation is a row
+	
+	#transform to other ends
 	if output_aggregate:
-		fulldict_agg = {}
-		# output:
-		#	 u_0, v_0, u_1, etc
-		#1600	1	2	3
-		#1601	
-		#{1600: {var_one : {pos1: count, pos2: count, ...}, var_two : {pos1: count,...}}
-		for type_two in onedict:
-			#print header, onedict[type_two].word, onedict[type_two].position
-			onedict[type_two].positionsetter(tuple([ind for ind, char in enumerate(list(onedict[type_two].word)) if char == variant_one]))
-			var_one_pos = "_".join(str(i) for i in onedict[type_two].position)
-			# we iterate over VariantItems which are {type_one: list of type 2s} stored in `typedict`
-			# cause typedict at this point looks like so: {type_1: [CorpusWord(type_2), ...]
-			# make a key for the variant_one word first, which is stored in v of onedict
-			#print "\n--\n"
-			#print onedict[type_two].word
-			#print onedict[type_two].yeardict
-			for year in onedict[type_two].yeardict:
-				if not year in fulldict_agg:
-					# setup the year for all variants
-					fulldict_agg[year] = {'base_' + var_one_pos : onedict[type_two].yeardict[year]}
-					#print "set up", {variant_one : onedict[type_two].yeardict[year], variant_two : 0}
-				elif not 'base_' + var_one_pos in fulldict_agg:
-					fulldict_agg[year]['base_' + var_one_pos] = onedict[type_two].yeardict[year]
-				else:
-					#print "add to ", fulldict_agg[year]
-					fulldict_agg[year]['base' + var_one_pos] += onedict[type_two].yeardict[year]
-					#print "new entry", fulldict_agg[year]
-					#print "from", onedict[type_two].yeardict
-			for entry in type_two.typedict[onedict[type_two].word]:
-				## this will give us a list of lists
-				## why tf is this entry in typedict a list of lists?
-				## is this necessary?
-				#print "pos 2", entry.position
-				var_two_pos = "_".join(str(i) for i in entry.position)
-				#print var_two_pos
-				for year in entry.yeardict:
-					#print entry.yeardict
-					if not year in fulldict_agg:
-						## setup the year for all variants
-						fulldict_agg[year] = {var_two_pos: 0}
-						fulldict_agg[year][var_two_pos] = entry.yeardict[year]
-						#print "set up", {variant_one : 0, variant_two : entry.yeardict[year]}
-					elif not var_two_pos in fulldict_agg[year]:
-						fulldict_agg[year][var_two_pos] =  entry.yeardict[year]
-					else:
-						fulldict_agg[year][var_two_pos] += entry.yeardict[year]
-		#print "result", fulldict_agg
-		if not sum_output: 
-			df_fulldict_agg = pandas.DataFrame(fulldict_agg)
-			df_fulldict_agg = df_fulldict_agg.T
-			#print "result", df_fulldict_agg
-			#outputindex = range (1500,1700)
-			#df_fulldict_agg = df_fulldict_agg.reindex(outputindex)
-			df_fulldict_agg.to_csv(output_aggregate + ".csv", na_rep = "NA", encoding = 'utf-8')
-			print df_fulldict_agg
-		else:
-			fulldict_agg = {k:{
-				variant_one: sum([val for key, val in v.viewitems() if key.startswith("base")]),
-				variant_two: sum([val for key, val in v.viewitems() if not key.startswith("base")])
-				} for k,v in fulldict_agg.viewitems()}
-			df_fulldict_agg = pandas.DataFrame(fulldict_agg).T
-			print df_fulldict_agg
+		# this outputs like so:
+		#       (base,)  (0,)  (1,)   (2,)  (3,)  (5,)
+		#1641     20.0  13.0   1.0   99.0   NaN   NaN
+		#1642     20.0   5.0   NaN   90.0   1.0   NaN
+		#1643      8.0  10.0  11.0   23.0   4.0   NaN
+		#1644     44.0  27.0   NaN   99.0   NaN   4.0
+		splitcols = [(w, eval(m)) for w,m in [i.split("_") for i in df_fulldict_words.columns]]
+		df_fulldict_words.columns = splitcols
+		df_agg_by_year_and_pos = df_fulldict_words.groupby(lambda x: filti(x), axis = 1).sum()
+		df_agg_by_year_and_pos.columns = [i[1] for i in df_agg_by_year_and_pos.columns]
+		print df_agg_by_year_and_pos
+		
+		
+	#print "result words", fulldict_words
+
+		#with codecs.open(output_word + ".csv", "w", "utf-8") as csvout:
+			#onedict.to_csv(csvout)
+	#if output_aggregate:
+		#2
+	#output csv
+	#\tword_pos_variant\tword\word
+	#year
+	#year
+	#extract variation counts by year
+	#"each variable is a column, each observation is a row
+
 			
 		
 	
 	
-main(corpusdir, "v", "u", threshold = 0, output_words = "output_words_VU", sum_output = False, output_aggregate = "aggout_0711")
+main(corpusdir, "v", "u", read_corpus_file = False, threshold = 0, output_words = "output_words_VU", sum_output = False, output_aggregate = "aggout_0711")
 #TO DO : check if multiple variants in typedict are preserved or kicked out asp
 #numbers don't match CSV output fails, too many NAs
