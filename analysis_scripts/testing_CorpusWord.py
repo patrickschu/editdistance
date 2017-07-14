@@ -175,14 +175,14 @@ read_corpus_file = False):
 			#outputindex = range (1500,1700)
 			#df_fulldict_agg = df_fulldict_agg.reindex(outputindex)
 			df_fulldict_agg.to_csv(output_aggregate + ".csv", na_rep = "NA", encoding = 'utf-8')
-			#print df_fulldict_agg
+			print df_fulldict_agg
 		else:
 			fulldict_agg = {k:{
 				variant_one: sum([val for key, val in v.viewitems() if key.startswith("base")]),
 				variant_two: sum([val for key, val in v.viewitems() if not key.startswith("base")])
 				} for k,v in fulldict_agg.viewitems()}
 			df_fulldict_agg = pandas.DataFrame(fulldict_agg).T
-			#print df_fulldict_agg
+			print df_fulldict_agg
 			
 		
 	
