@@ -13,14 +13,15 @@ def get_input():
 	parser.add_argument("--read_corpusfile", type=str, 
 		help="Enter name of json file containing a file with wordcounts created previously")
 	parser.add_argument("--input_dir", type=str, help="Enter the directory containing corpus files")
+	parser.add_argument("--write_corpusfile", type=str, help="Enter name of file to write a file with word counts per year, create from input_directory")
 	parser.add_argument("--threshold", type=int, 
 		help="OPTIONAL: Enter the minimum number of tokens varying between variant_one and variant_two that need to be present to be included in the output. Defaults to '0'")
-	parser.add_argument("--timespan", type=str, help="Enter a start and end year for the output, seperated by a comma. Format: 'beginning,end'")
+	parser.add_argument("--timespan", type=str, help="OPTIONAL: Enter a start and end year for the output, seperated by a comma. Format: 'beginning,end'")
+	parser.add_argument("--verbose", type=bool, help="OPTIONAL: Set to 'True' for complete printout")
 	#output options
 	parser.add_argument("--output_words", type=str, help="Enter file name to write csv of token counts per word and position")
-	parser.add_argument("--output_aggregate_position", type=str, help="Enter file name to write csv of token counts per position")
-	parser.add_argument("--output_aggregate_total", type=str, help="Enter file name to write csv of token counts per variant and year")
-	parser.add_argument("--write_wordcount_to_file", type=str, help="Enter name of file to write a file with word counts per year, create from input_directory")
+	parser.add_argument("--output_position", type=str, help="Enter file name to write csv of token counts per position")
+	parser.add_argument("--output_aggregate", type=str, help="Enter file name to write csv of token counts per variant and year")
 	#read input
 	args = parser.parse_args()
 	return args
@@ -71,26 +72,28 @@ def main():
 	if args.timespan:
 		# turns input into [str, str] list
 		timespan = args.timespan.split(",")
-	
+	#set up vars
 	variant_one = args.variant_one
 	variant_two = args.variant_two
+	threshold = args.threshold
+	verbose = args.verbose
 	
 	print "Working with variant_one: '{}', variant_two: '{}'".format(variant_one,variant_two)
 	if args.read_corpusfile:
 		vocab = emod.CorpusVocabImporter(args.read_corpusfile)
 	else:
-		vocab = emod.Corpus_2(input_dir).vocabbuilder(output_json = "/home/patrick/Downloads/editdistance/testvocab")
-	print "len vocab ", len(vocab)
+		vocab = emod.Corpus_2(input_dir).vocabbuilder(output_json = write_corpusfile)
+	print "Len corpusfile ", len(vocab)
 	# extract all items that contain variant one
 	# NOTE change from list to string to allow several chars--> will this still work? 
 	onedict = {k:v for k,v in vocab.viewitems() if variant_one in k}
-	print "number of items in vocab containing variant one ", len(onedict)
+	print "Number of items in vocab containing variant one ", len(onedict)
 	# for each word, construct a VariantItem containing all possible types with variant_two
 	# this only returns items that are contained in the corpus vocab
 	# Resulting typedict looks like so: {CorpusWord : {position: CorpusWord, ..}}
 	onedict = {emod.VariantItem(k, variant_one, variant_two, input_vocab = vocab) : v for k,v in onedict.viewitems()}
 	# onedict looks like this: {VariantItem:CorpusWord, VariantItem:CorpusWord...} where CorpusWord is a representation of the original variant_one word
-	print "len onedict ", len(onedict)
+	print "Length onedict ", len(onedict)
 	# this will give us the total tokens for each word with variant_one
 	# {v.word:v.totaltokens() for k,v in onedict.viewitems()}
 	# filter for the ones above threshold in for loop
@@ -137,7 +140,8 @@ def main():
 	#print [(i, fulldict_words[i]) for i in sorted(fulldict_words)][:20]
 	df_fulldict_words = pandas.DataFrame.from_dict(fulldict_words)
 	df_fulldict_words.index = df_fulldict_words.index.map(int)
-	print df_fulldict_words.loc[1641]
+	if verbose:
+		print df_fulldict_words.loc
 	# note that this should include 0 if you want to have values with missing data
 	# TODO: add start / end date input
 	#outputindex = range (1500,1800)
@@ -147,13 +151,13 @@ def main():
 	# 1600  count  count
 	# 1601  count
 	#if output_word:
-	if output_words: 
-		csvwriter(df_fulldict_words, output_words)
+	if args.output_words: 
+		csvwriter(df_fulldict_words, args.output_words)
 	#set up for indexing columns
 	splitcols = [(w, eval(m)) for w,m in [i.split("_") for i in df_fulldict_words.columns]]
 	df_fulldict_words.columns = splitcols
 	#transform to other ends
-	if output_aggregate:
+	if args.output_position:
 		# this outputs like so:
 		#       (base,)  (0,)  (1,)   (2,)  (3,)  (5,)
 		#1641     20.0  13.0   1.0   99.0   NaN   NaN
@@ -163,10 +167,11 @@ def main():
 
 		df_agg_by_year_and_pos = df_fulldict_words.groupby(lambda x: filti(x), axis = 1).sum()
 		df_agg_by_year_and_pos.columns = [i[1] for i in df_agg_by_year_and_pos.columns]
-		print df_agg_by_year_and_pos
-		csvwriter(df_agg_by_year_and_pos, output_aggregate) 
+		if verbose:
+			print df_agg_by_year_and_pos
+		csvwriter(df_agg_by_year_and_pos, args.output_position) 
 	
-	if sum_output:
+	if args.output_aggregate:
 		# this outputs like so:
 		#         u      v
 		#	1641  20.0  113.0
@@ -175,9 +180,9 @@ def main():
 		#	1644  44.0  130.0
 		df_agg_by_year = df_fulldict_words.groupby(lambda x: isinstance(filti(x)[1][0], str), axis = 1).sum()
 		df_agg_by_year.columns = [variant_one if i else variant_two for i in df_agg_by_year.columns]
-		df_agg_by_year.to_csv(sum_output + ".csv", na_rep = "NA", encoding = 'utf-8')
-		print df_agg_by_year
-		csvwriter(df_agg_by_year, sum_output)
+		if verbose:
+			print df_agg_by_year
+		csvwriter(df_agg_by_year, args.output_aggregate)
 	
 	
 #main(corpusdir, "v", "u", read_corpus_file = False, threshold = 0, output_words = "output_words_VU", sum_output = "deppski", output_aggregate = "aggout_0711")
