@@ -1,6 +1,6 @@
-##Variantfinder
+## Variantfinder
 
-###Description
+### Description
 The variantfinder identifies and counts words that differ in the use of spelling variants such as _u_ versus _v_ in _but_ and _bvt_. 
 
 It takes set of texts ( a _corpus_) and two _characters_ (or character groups) as input and identifies all words showing variation between the specified characters. 
@@ -17,9 +17,9 @@ See below for instructions on Parameters and Examples.
 
 ----
 
-###Parameters
+### Parameters
 
-###1. Required arguments, input
+### 1. Required arguments, input
 
 > variant_one           
 Enter character(s) representing the first variant
@@ -37,7 +37,7 @@ Enter name of json file containing wordcounts created
 Enter a directory containing a corpus of .txt files
                         to read
 
-###2. Required arguments, output
+### 2. Required arguments, output
 
 >  \--output_words            
 Enter file name to write csv of **token counts per word
@@ -51,7 +51,7 @@ Enter file name to write csv of token counts **per
 Enter file name to write csv of token counts per
                         **variant and year**
 
-###3. Optional arguments
+### 3. Optional arguments
                         
 >  \--write_corpusfile          
 OPTIONAL: Enter name of file to write a json file with word counts
@@ -73,7 +73,7 @@ OPTIONAL: Set to 'True' for complete printout
 show help message and exit
 
 ----
-###Notes and Conventions
+### Notes and Conventions
 
 - the following notation is used in output csvs: the form containing variant_one is labeled the *base* form; 
 all other forms are suffixed by an index indicating the character slot where they vary. E.g. when running it with *u* and *v*, *reputation_base* labels the tokens of *reputation*, 
@@ -85,9 +85,9 @@ reputation_3 labels tokens of *repvtation*.
 
 ----
 
-###Examples 
+### Examples 
 
-####Example 1
+#### Example 1
 The code below will identify variants with _u_ and _v_; 
 read word counts from a file called *vocab.json*; 
 and output token counts by position (i.e. initial, second character, etc.) to a csv file called *uv_output.csv*. 
@@ -109,7 +109,7 @@ Where *base* indicates that base form containing *u* and the numbers indicate th
 
 For instance, *v* replacing *u* in initial position is counted under position *0*; 27 instances of this were found for the year 1600. 
 
-####Example 2
+#### Example 2
 The code below will identify variants with _t_ and _r_; 
 compute word counts from the text files contained in *home/corpora*; 
 and output token counts by year (i.e. the sum of words with _t_ compared to _r_ per year) to a csv file called *tr_output.csv*. 
@@ -126,7 +126,7 @@ The resulting csv will look like this:
 | 950 | 9658      |    12411 |
 | etc ...|
 
-####Example 3
+#### Example 3
 The code below will identify variants with _u_ and _v_; 
 compute word counts from the text files contained in *home/x/corpora*; 
 write those word counts to a file called *vocab.json*, so they can be used in the future with --read_corpusfile;
@@ -147,13 +147,3 @@ The resulting csv will look like this:
 
 That is, for the year 1600, there are no instances of *aboue*, but 1 token of *above*, where *v* replaces *u* in the fourth character slot
 (note that an index of *3* refers to the 4th slot -- 0 indicates the first character). 
-
-
-
-
-
-
-
-
-
-
