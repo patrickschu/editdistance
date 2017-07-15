@@ -10,7 +10,7 @@ contains two _u_ s. It will then check the corpus for the presence of variants s
 
 For each of these types, a token count over the years is returned, and output as a csv file according to user criteria. 
 
-**Download** [here](https://raw.githubusercontent.com/patrickschu/editdistance/master/analysis_scripts/variantfinder.py) for Python 2. You also need to download the [Corpus tools](https://github.com/patrickschu/editdistance/blob/master/analysis_scripts/emodcorpustools.py). See [here](https://github.com/patrickschu/tgdp/blob/master/summer16/shell_basics.MD) for instructions on how to **run it in a shell**. 
+Download [here](https://raw.githubusercontent.com/patrickschu/editdistance/master/analysis_scripts/variantfinder.py) for Python 2. You also need to download the [Corpus tools](https://github.com/patrickschu/editdistance/blob/master/analysis_scripts/emodcorpustools.py). See [here](https://github.com/patrickschu/tgdp/blob/master/summer16/shell_basics.MD) for instructions on how to run it in a shell. 
 
 See below for instructions on Parameters and Examples. 
 
