@@ -76,6 +76,8 @@ show help message and exit
 
 ### Examples 
 
+These examples illustrate how the parameters listed above can be combined. 
+
 #### Example 1
 The code below will identify variants with _u_ and _v_; 
 read word counts from a file called *vocab.json*; 
