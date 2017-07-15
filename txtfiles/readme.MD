@@ -3,7 +3,7 @@
 ### Description
 The variantfinder identifies and counts words that differ in the use of spelling variants such as _u_ versus _v_ in _but_ and _bvt_. 
 
-It takes set of texts ( a _corpus_) and two _characters_ (or character groups) as input and identifies all words showing variation between the specified characters. 
+It takes set of texts (a _corpus_) and two _characters_ (or character groups) as input and identifies all words showing variation between the specified characters. 
 
 For instance, when _u_ and _v_ are entered, it will identify a word such as _turbulent_ as potentially relevant since it 
 contains two _u_ s. It will then check the corpus for the presence of variants such as _turbvlent_, _tvrbulent_, and _tvrbvlent_.
