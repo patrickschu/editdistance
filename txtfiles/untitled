@@ -1,0 +1,24 @@
+#Variantfinder
+
+
+
+
+
+
+##Output aggregate (total or by position) or by word or context window
+
+##Flags
+
+- read file (otherwise, build new corpus)
+
+- flag for output type
+
+- search individual words (list of words)
+
+- range (note 0 for NA)
+ 
+- threshold
+
+
+
+ls -ltr
