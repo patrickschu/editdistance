@@ -73,19 +73,6 @@ OPTIONAL: Set to 'True' for complete printout
 show help message and exit
 
 ----
-### Notes and Conventions
-
-- the script requires that [pandas](https://pandas.pydata.org/pandas-docs/stable/install.html) and [NLTK](http://www.nltk.org/install.html) are installed. 
-
-- the following notation is used in output csvs: the form containing variant_one is labeled the *base* form; 
-all other forms are suffixed by an index indicating the character slot where they vary. E.g. when running it with *u* and *v*, *reputation_base* labels the tokens of *reputation*, 
-reputation_3 labels tokens of *repvtation*. 
-
-- *NA* indicates that no tokens of the word were present in that year's data
-
-- documents that do not have a publication date are counted as publication year *0*. 
-
-----
 
 ### Examples 
 
@@ -99,8 +86,8 @@ and output token counts by position (i.e. initial, second character, etc.) to a 
 The resulting csv will look like this:
 
 
-|year     |base       |  0        |  1     | etc... |
-| --------- | ----------| ----------| ------ |
+| year     |base       |  0        |  1     | etc... |
+| --------- | ----------| ----------| ------ | ---- |
 | 1600  | 200 | 27 | 432 | 
 | 1601  | 435 | 112 | 65 | 
 | etc ...|
@@ -140,12 +127,31 @@ The `--threshold` setting limits the analysis to words that occur at least 100 t
 
 The resulting csv will look like this:
 
-| year | aboue_base | aboue_3 | abound_base | abound_3
-| --------- | ---------- | --------- | ------- |
+
+
+| year | aboue_base | aboue_3 | abound_base | abound_3 |
+| --------- | ---------- | --------- | ------- | ---- |
 | 1600 | NA | 1 | NA | NA |
 | 1601 | 6 | NA | 3 | NA |
 | 1602 | 9 | NA | 3 | NA |
 | etc...|
 
+
+
 That is, for the year 1600, there are no instances of *aboue*, but 1 token of *above*, where *v* replaces *u* in the fourth character slot
 (note that an index of *3* refers to the 4th slot -- 0 indicates the first character). 
+
+
+----
+### Notes and Conventions
+
+- the script requires that [pandas](https://pandas.pydata.org/pandas-docs/stable/install.html) and [NLTK](http://www.nltk.org/install.html) are installed. 
+
+- the following notation is used in output csvs: the form containing variant_one is labeled the *base* form; 
+all other forms are suffixed by an index indicating the character slot where they vary. E.g. when running it with *u* and *v*, *reputation_base* labels the tokens of *reputation*, 
+reputation_3 labels tokens of *repvtation*. 
+
+- *NA* indicates that no tokens of the word were present in that year's data
+
+- documents that do not have a publication date are counted as publication year *0*. 
+
