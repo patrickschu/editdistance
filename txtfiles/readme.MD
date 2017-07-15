@@ -10,7 +10,7 @@ contains two _u_ s. It will then check the corpus for the presence of variants s
 
 For each of these types, a token count over the years is returned, and output as a csv file according to user criteria. 
 
-**Download** [here](https://raw.githubusercontent.com/patrickschu/editdistance/master/analysis_scripts/variantfinder.py) for Python 2. See [here](https://github.com/patrickschu/tgdp/blob/master/summer16/shell_basics.MD) for instructions on how to **run it in a shell**. 
+**Download** [here](https://raw.githubusercontent.com/patrickschu/editdistance/master/analysis_scripts/variantfinder.py) for Python 2. You also need to download the [Corpus tools](https://github.com/patrickschu/editdistance/blob/master/analysis_scripts/emodcorpustools.py). See [here](https://github.com/patrickschu/tgdp/blob/master/summer16/shell_basics.MD) for instructions on how to **run it in a shell**. 
 
 See below for instructions on Parameters and Examples. 
 
@@ -74,6 +74,8 @@ show help message and exit
 
 ----
 ### Notes and Conventions
+
+- the script requires that [pandas](https://pandas.pydata.org/pandas-docs/stable/install.html) and [NLTK](http://www.nltk.org/install.html) are installed. 
 
 - the following notation is used in output csvs: the form containing variant_one is labeled the *base* form; 
 all other forms are suffixed by an index indicating the character slot where they vary. E.g. when running it with *u* and *v*, *reputation_base* labels the tokens of *reputation*, 
