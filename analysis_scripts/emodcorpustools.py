@@ -13,7 +13,8 @@ from itertools import chain, combinations
 
 corpusdir = '/home/patrick/Downloads/editdistance/extracted_corpora_0420_small'
 header = "\n+++++\n"
-affixes = ('s')
+# note that apostrophes are taken care of by the NLTK tokenizer
+affixes = ("s")
 
 
 #some of these are taken from clustertools
@@ -468,13 +469,59 @@ class Corpus_2(object):
 		self.name = name
 		self.input_dir = input_dir
 	
+
+	
 	@timer
-	def vocabbuilder(self, lemmatize = False, output_json = False, noisy = False):
+	def vocabbuilder(self, lemmatize = False, output_json = False, use_word_list = False, noisy = False):
 		"""
 		Builds a dictionary of all texts in input_dir, updating the yeardict {} of Corpusword.
 		Returns a dictionary like so : {word: CorpusWord(), ...}
 		"""
+		#TO DO: make this take a pre-defined vocabulary
 		print "running the vocabbuilder from corpus_2"
+		if not use_word_list:
+			vocabdict = self._vocabbuilder_pure(lemmatize = lemmatize)
+		else:
+			print use_word_list
+			vocabdict = self._vocabbuilder_from_list(word_list = use_word_list, lemmatize = lemmatize)
+		if output_json:
+			with codecs.open(output_json+".json", "w") as jsonout:
+				json.dump({k:{int(year):int(count) for year, count in v.yeardict.viewitems()} for k,v in vocabdict.viewitems()}, jsonout, encoding= "utf-8")
+			print "File written to", jsonout
+		if noisy:
+			print "\n++".join([":".join((i, "\n".join([":".join((str(k),str(v))) for k,v in vocabdict[i].yeardict.items()]))) for i in sorted(vocabdict, key= lambda x: sum(vocabdict[x].yeardict.values()), reverse=True)[:100]])
+		return vocabdict
+
+	def _vocabbuilder_from_list(self, word_list, lemmatize):
+		# builds vocab from word_list; called from vocabbuilder
+		# note that the word_list needs to be a superset of words in corpus
+		vocabdict = {}
+		print "word list is", word_list
+		for root, direct, filis in os.walk(self.input_dir):
+			print "working on folder", root 
+			for fili in [i for i in filis if i.endswith(".txt")]:
+				text= CorpusText(os.path.join(self.input_dir, root, fili))
+				#print os.path.join(self.input_dir, root, fili), text.meta['pubdate']
+				for word in text.tokenizer(lemmatize = lemmatize, cleantext=True):
+					word = word.lower()
+					#print "wordiword", word
+					if word in vocabdict:
+						vocabdict[word].yeardictsetter(text.meta['pubdate'], 1)
+					else:
+						if word in word_list: 
+							print "adding", word
+							vocabdict[word] = CorpusWord(word, "VARIANT", "POSITION")
+							vocabdict[word].yeardictsetter(text.meta['pubdate'], 1)
+						else:
+							raise ValueError("Word '{}'from corpus not contained in the word_list supplied; make sure the list was built including the present corpus and lemmatization was identical".format(word))
+		return vocabdict
+
+
+
+
+		
+	def _vocabbuilder_pure(self, lemmatize):
+		# builds vocab from scratch; called from vocabbuilder
 		vocabdict = {}
 		for root, direct, filis in os.walk(self.input_dir):
 			print "working on folder", root 
@@ -483,17 +530,14 @@ class Corpus_2(object):
 				#print os.path.join(self.input_dir, root, fili), text.meta['pubdate']
 				for word in text.tokenizer(lemmatize = lemmatize, cleantext=True):
 					word = word.lower()
-					if not word in vocabdict:
-						vocabdict[word] = CorpusWord(word, "VARIANT", "POSITION")
+					if word in vocabdict:
 						vocabdict[word].yeardictsetter(text.meta['pubdate'], 1)
 					else:
+						vocabdict[word] = CorpusWord(word, "VARIANT", "POSITION")
 						vocabdict[word].yeardictsetter(text.meta['pubdate'], 1)
-		if output_json:
-			with codecs.open(output_json+".json", "w") as jsonout:
-				json.dump({k:{int(year):int(count) for year, count in v.yeardict.viewitems()} for k,v in vocabdict.viewitems()}, jsonout, encoding= "utf-8")
-			print "File written to", jsonout
-		if noisy:
-			print "\n++".join([":".join((i, "\n".join([":".join((str(k),str(v))) for k,v in vocabdict[i].yeardict.items()]))) for i in sorted(vocabdict, key= lambda x: sum(vocabdict[x].yeardict.values()), reverse=True)[:100]])
 		return vocabdict
+		
+
+
 		
 #vocab is the collection of all words in the corpus, for example stored in a dictionary
