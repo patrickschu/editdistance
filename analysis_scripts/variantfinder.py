@@ -4,6 +4,7 @@ import emodcorpustools as emod
 import codecs
 import pandas
 import argparse
+import json
 
 
 def get_input():
@@ -13,8 +14,10 @@ def get_input():
 	parser.add_argument("variant_two", type=str, help="Enter character(s) representing the second variant")
 	parser.add_argument("--read_corpusfile", type=str, 
 		help="Enter name of json file containing wordcounts created previously")
+	parser.add_argument("--read_wordlist", type=str, 
+		help="Enter name of JSON file containing a dictionary of words to check for, i.e. a pre-defined vocabulary")
 	parser.add_argument("--input_dir", type=str, help="Enter the directory containing a corpus of .txt files to read")
-	parser.add_argument("--write_corpusfile", type=str, help="Enter name of file to write a file with word counts per year, create from input_directory")
+	parser.add_argument("--write_corpusfile", type=str, help="Enter name of file to write word counts per year to (in JSON), created from input_directory")
 	#OPTIONAL ARGS
 	#note that we can do the file input options as actions in one variable
 	parser.add_argument("--lemmatize", action="store_true", dest = 'lemmatize', help = "OPTIONAL: Remove suffixes from words. Right now, word-final 's' is removed")
@@ -63,14 +66,17 @@ def main():
 
 	args = get_input()
 	# checking input
-	if all([not args.read_corpusfile, not args.input_dir]):
-		raise IOError("No input data. You need to either specify a corpus directory as '--input_dir' or a file with word counts as '--read_file'")
+	if not args.input_dir:
+		raise IOError("No corpus provided. You need specify a directory of text files with --input_dir")
+	if all([not args.read_corpusfile, not args.read_wordlist]):
+		raise IOError("No input data. You need to either specify a word list '--read_wordlist' or a file with word counts as '--read_file'")
 	# note that timespan should include 0 if you want to have values with missing data
 	if args.timespan:
 		# turns input into [str, str] list
 		timespan = [int(i) for i in args.timespan.split(",")]
 	elif not args.timespan:
 		timespan = args.timespan
+	
 	# set up vars
 	variant_one = args.variant_one
 	variant_two = args.variant_two
@@ -80,12 +86,19 @@ def main():
 	lemmatize = args.lemmatize
 	print "Working with variant_one: '{}', variant_two: '{}'".format(variant_one,variant_two)
 	print "Lemmatize is set to", lemmatize
+	
+	# pick data input method
 	if args.read_corpusfile:
 		vocab = emod.CorpusVocabImporter(args.read_corpusfile)
+	if args.read_wordlist:
+		with codecs.open(args.read_wordlist, "r", "utf-8") as wordlist_in:
+			wordlist = json.load(wordlist_in)
+			wordlist = [k for k,v in wordlist.viewitems()]
+		vocab = emod.Corpus_2(input_dir).vocabbuilder(use_word_list = wordlist, lemmatize = lemmatize, output_json = args.write_corpusfile)
+		print "Reading data from wordlist {}, length: {}".format(args.read_wordlist, len(vocab))
 	else:
 		vocab = emod.Corpus_2(input_dir).vocabbuilder(lemmatize = lemmatize, output_json = args.write_corpusfile)
 	print "Length corpusfile ", len(vocab)
-
 	# extract all items that contain variant one
 	# NOTE change from list to string to allow several chars--> will this still work? 
 	onedict = {k:v for k,v in vocab.viewitems() if variant_one in k}
@@ -111,7 +124,7 @@ def main():
 	print "len onedict ", len(onedict)
 	# remove words with empty typedictionaries, i.e. that don't have any variant_2 tokens
 	onedict = {k:v for k,v in onedict.viewitems() if k.typedict.values()[0]}
-	print "len onedict", len(onedict)
+	print "len onedict after removing zero counts", len(onedict)
 	# apply exclusion criteria
 	onedict = {k:v for k,v in onedict.viewitems() if not any ([v.word in exclude_words])}
 	print "len onedict", len(onedict)
