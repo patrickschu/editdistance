@@ -73,10 +73,10 @@ def main(variant_one, variant_two, input_dict, pre_window, post_window, differen
 		var2= variant_two.encode('utf-8')) 
 
 
-if __name__ == '__main__':
-    main(*sys.argv[1:])
+#if __name__ == '__main__':
+    #main(*sys.argv[1:])
     
     
     
-#main("u", "v", 'dictbuilder_output.json')
+main("u", "v", 'dictbuilder_output.json', 1,2)
 
