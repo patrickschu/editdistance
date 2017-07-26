@@ -1,7 +1,10 @@
+#!/usr/bin/env python
+
 import emodcorpustools as emod
 import codecs
 import pandas
 import argparse
+
 
 def get_input():
 	parser = argparse.ArgumentParser()
@@ -77,6 +80,8 @@ def main():
 	if args.timespan:
 		# turns input into [str, str] list
 		timespan = [int(i) for i in args.timespan.split(",")]
+	elif not args.timespan:
+		timespan = args.timespan
 	#set up vars
 	variant_one = args.variant_one
 	variant_two = args.variant_two
@@ -149,7 +154,7 @@ def main():
 	if args.output_words: 
 		df_fulldict_words_out = df_fulldict_words.copy()
 		print "cols", df_fulldict_words.columns
-		newcols = ["_".join((unicode(w) + "_" + variant_two, "_".join(str(pos) for pos in eval(m)))) for w,m in [i.rsplit("_", 1) for i in df_fulldict_words_out.columns]]
+		newcols = ["_".join((unicode(w), "_".join(str(pos) for pos in eval(m)))) for w,m in [i.rsplit("_", 1) for i in df_fulldict_words_out.columns]]
 		print newcols
 		df_fulldict_words_out.columns = newcols
 		csvwriter(df_fulldict_words_out, args.output_words, new_index = timespan)
