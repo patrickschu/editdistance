@@ -20,5 +20,5 @@ for var in vars:
 	  "_", 
 	  var[1],
 	  "_0715_spreadsheet"])])
-	print "\n\n", cmd
+	print cmd
 
