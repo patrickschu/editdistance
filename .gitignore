@@ -1,4 +1,5 @@
 #my things
+output_*.txt
 *.zip
 *.pyc
 outputfiles/*
