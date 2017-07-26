@@ -13,7 +13,7 @@ from itertools import chain, combinations
 
 corpusdir = '/home/patrick/Downloads/editdistance/extracted_corpora_0420_small'
 header = "\n+++++\n"
-
+affixes = ('s')
 #some of these are taken from clustertools
 def tagextractor(text, tag, fili):
     regexstring="<"+tag+"=(.*?)>"
@@ -260,12 +260,16 @@ class CorpusText(object):
 		print "charcount", self.charcount
 		print self.meta
 	
-	def tokenizer(self, cleantext=False):
+	def tokenizer(self, cleantext=False, lemmatize=False):
+		tokens = nltk.word_tokenize(self.cleantext)
 		if cleantext:
-			return [i.strip(string.punctuation) for i in nltk.word_tokenize(self.cleantext) if not i in string.punctuation]
-		else:
-			return nltk.word_tokenize(self.fulltext)
-	
+			tokens = [i.strip(string.punctuation) for i in  if not i in string.punctuation]
+		if lemmmatize:
+			#note that affixes are hardcoded above
+			for a in affixes:
+				tokens = [i.rstrip(a) for i in tokens]
+		return tokens	
+			
 	def gettag(self, tag):
 		#flexible tag extractor; returns what _tagextractor finds for relevant tag
 		result=self._tagextractor(self.fullfile, tag)
@@ -428,7 +432,6 @@ class VariantItem(object):
 		for index_tuple in powerset(indices):
 			#print "index_tuple", index_tuple
 			if index_tuple: 
-				print "indi tuple", index_tuple
 				wordlist = list(word)
 				#error catching
 				index_list = [position for variant, position in index_tuple]
@@ -437,7 +440,7 @@ class VariantItem(object):
 					if wordlist[ind] != self.variant_one:
 						print "WARNING : ISSUE IN TYPEGENERATOR (tuples returned from indexer do not match variant_one)"
 				#print "original", "".join(wordlist)
-				print index_list
+				#print index_list
 				for ind in index_list:
 					#print "ind:", ind 
 					wordlist[ind] = self.variant_two
