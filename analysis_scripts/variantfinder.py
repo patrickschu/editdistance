@@ -11,12 +11,14 @@ def get_input():
 	#add args
 	parser.add_argument("variant_one", type=str, help="Enter character(s) representing the first variant")
 	parser.add_argument("variant_two", type=str, help="Enter character(s) representing the second variant")
-	
-	
 	parser.add_argument("--read_corpusfile", type=str, 
 		help="Enter name of json file containing wordcounts created previously")
 	parser.add_argument("--input_dir", type=str, help="Enter the directory containing a corpus of .txt files to read")
 	parser.add_argument("--write_corpusfile", type=str, help="Enter name of file to write a file with word counts per year, create from input_directory")
+	#OPTIONAL ARGS
+	#note that we can do the file input options as actions in one variable
+	parser.add_argument("--lemmatize", action="store_true", dest = 'lemmatize', help = "OPTIONAL: Remove suffixes from words. Right now, word-final 's' is removed")
+	#parser.add_argument('-w', action='store_true')
 	parser.add_argument("--threshold", type=int, 
 		help="OPTIONAL: Enter the minimum number of tokens varying between variant_one and variant_two that need to be present to be included in the output. Defaults to '0'")
 	parser.add_argument("--timespan", type=str, help="OPTIONAL: Enter a start and end year for the output, seperated by a comma. Format: 'beginning,end'")
@@ -42,11 +44,7 @@ exclude_words = [] # ["u"]
 
 def filti(x):
 	# returns hash, and attributes for groupby by word positions for output_agg
-	#print "tt", type(x)
 	word, attr = x
-	#print "w", word
-	#print "a", attr
-	#print attr.__hash__(), attr
 	return attr.__hash__(), attr
 
 def csvwriter(data_frame, file_name, new_index = False):
@@ -62,18 +60,9 @@ def csvwriter(data_frame, file_name, new_index = False):
 #main(corpusdir, "u", "v")
 
 def main():
-#input_dir, 
-#variant_one, 
-#variant_two,
-#threshold,
-#timespan = False,
-#output_words = "testout_0711.csv",
-#output_aggregate = 1, 
-#sum_output = "True",
-#read_corpus_file = False):
 
 	args = get_input()
-	#checking input
+	# checking input
 	if all([not args.read_corpusfile, not args.input_dir]):
 		raise IOError("No input data. You need to either specify a corpus directory as '--input_dir' or a file with word counts as '--read_file'")
 	# note that timespan should include 0 if you want to have values with missing data
@@ -82,18 +71,21 @@ def main():
 		timespan = [int(i) for i in args.timespan.split(",")]
 	elif not args.timespan:
 		timespan = args.timespan
-	#set up vars
+	# set up vars
 	variant_one = args.variant_one
 	variant_two = args.variant_two
 	threshold = args.threshold
 	verbose = args.verbose
 	input_dir = args.input_dir
+	lemmatize = args.lemmatize
 	print "Working with variant_one: '{}', variant_two: '{}'".format(variant_one,variant_two)
+	print "Lemmatize is set to", lemmatize
 	if args.read_corpusfile:
 		vocab = emod.CorpusVocabImporter(args.read_corpusfile)
 	else:
-		vocab = emod.Corpus_2(input_dir).vocabbuilder(output_json = args.write_corpusfile)
+		vocab = emod.Corpus_2(input_dir).vocabbuilder(lemmatize = lemmatize, output_json = args.write_corpusfile)
 	print "Length corpusfile ", len(vocab)
+
 	# extract all items that contain variant one
 	# NOTE change from list to string to allow several chars--> will this still work? 
 	onedict = {k:v for k,v in vocab.viewitems() if variant_one in k}
@@ -128,7 +120,7 @@ def main():
 		print "Summary dictionary"
 		print "\n".join([":".join((onedict[i].word, str(onedict[i].totaltokens()))) for i in sorted(onedict, key = lambda x : onedict[x].totaltokens(), reverse = True)][:20])
 		print "\n".join([":".join((",".join([str(x) for x in i.typedict.keys()]), ",".join([",".join([",".join((y.word, str(vocab[y.word].yeardict))) for y in x]) for x in i.typedict.values()]))) for i in sorted(onedict, key = lambda x : onedict[x].totaltokens(), reverse = True)][:20])
-	#catch oddities
+	# catch oddities
 	for type_two in onedict:
 		if len(type_two.typedict.values()) > 1:
 			print "more than 1 variant for", onedict[type_two].word, type_two.typedict
@@ -143,7 +135,7 @@ def main():
 		for typ in type_two.typedict[onedict[type_two].word]:
 			# we can call this with the onedict value since this is the same type_1
 			fulldict_words[onedict[type_two].word + "_" + str(typ.position)] = typ.yeardict
-	#print [(i, fulldict_words[i]) for i in sorted(fulldict_words)][:20]
+	# print [(i, fulldict_words[i]) for i in sorted(fulldict_words)][:20]
 	df_fulldict_words = pandas.DataFrame.from_dict(fulldict_words)
 	df_fulldict_words.index = df_fulldict_words.index.map(int)
 
@@ -159,11 +151,11 @@ def main():
 		df_fulldict_words_out.columns = newcols
 		csvwriter(df_fulldict_words_out, args.output_words, new_index = timespan)
 
-	#set up for indexing columns
+	# set up for indexing columns
 	splitcols = [(w, eval(m)) for w,m in [i.rsplit("_", 1) for i in df_fulldict_words.columns]]
 	df_fulldict_words.columns = splitcols
 	
-	#transform to other ends
+	# transform to other ends
 	if args.output_position:
 		# this outputs like so:
 		#       (base,)  (0,)  (1,)   (2,)  (3,)  (5,)
@@ -194,7 +186,6 @@ def main():
 	
 	
 #main(corpusdir, "v", "u", read_corpus_file = False, threshold = 0, output_words = "output_words_VU", sum_output = "deppski", output_aggregate = "aggout_0711")
-#TO DO : check if multiple variants in typedict are preserved or kicked out asp
-#numbers don't match CSV output fails, too many NAs
+
 if __name__ == "__main__":
     main()
