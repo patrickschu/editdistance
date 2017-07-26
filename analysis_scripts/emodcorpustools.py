@@ -14,6 +14,8 @@ from itertools import chain, combinations
 corpusdir = '/home/patrick/Downloads/editdistance/extracted_corpora_0420_small'
 header = "\n+++++\n"
 affixes = ('s')
+
+
 #some of these are taken from clustertools
 def tagextractor(text, tag, fili):
     regexstring="<"+tag+"=(.*?)>"
@@ -232,7 +234,7 @@ class CorpusText(object):
 	"""
 	def __init__(self, file_name):
 		self.filename = file_name
-		self.fullfile = codecs.open(file_name, "r", 'utf-8').read()
+		self.fullfile = codecs.open(file_name, "r", "utf-8").read()
 		self.fulltext = self._adtextextractor(self.fullfile)
 		self.cleantext= re.sub(metaregex, " ", self.fulltext)
 		self.charcount = float(len(self.fulltext))
@@ -263,8 +265,8 @@ class CorpusText(object):
 	def tokenizer(self, cleantext=False, lemmatize=False):
 		tokens = nltk.word_tokenize(self.cleantext)
 		if cleantext:
-			tokens = [i.strip(string.punctuation) for i in  if not i in string.punctuation]
-		if lemmmatize:
+			tokens = [i.strip(string.punctuation) for i in tokens if not i in string.punctuation]
+		if lemmatize:
 			#note that affixes are hardcoded above
 			for a in affixes:
 				tokens = [i.rstrip(a) for i in tokens]
@@ -467,7 +469,7 @@ class Corpus_2(object):
 		self.input_dir = input_dir
 	
 	@timer
-	def vocabbuilder(self, output_json=False, noisy = False):
+	def vocabbuilder(self, lemmatize = False, output_json = False, noisy = False):
 		"""
 		Builds a dictionary of all texts in input_dir, updating the yeardict {} of Corpusword.
 		Returns a dictionary like so : {word: CorpusWord(), ...}
@@ -479,7 +481,7 @@ class Corpus_2(object):
 			for fili in [i for i in filis if i.endswith(".txt")]:
 				text= CorpusText(os.path.join(self.input_dir, root, fili))
 				#print os.path.join(self.input_dir, root, fili), text.meta['pubdate']
-				for word in text.tokenizer(cleantext=True):
+				for word in text.tokenizer(lemmatize = lemmatize, cleantext=True):
 					word = word.lower()
 					if not word in vocabdict:
 						vocabdict[word] = CorpusWord(word, "VARIANT", "POSITION")
