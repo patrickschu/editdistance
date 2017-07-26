@@ -153,7 +153,7 @@ def main():
 	# 1601  count
 	if args.output_words: 
 		df_fulldict_words_out = df_fulldict_words.copy()
-		print "cols", df_fulldict_words.columns
+		#print "cols", df_fulldict_words.columns
 		newcols = ["_".join((unicode(w), "_".join(str(pos) for pos in eval(m)))) for w,m in [i.rsplit("_", 1) for i in df_fulldict_words_out.columns]]
 		print newcols
 		df_fulldict_words_out.columns = newcols
