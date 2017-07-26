@@ -469,8 +469,6 @@ class Corpus_2(object):
 		self.name = name
 		self.input_dir = input_dir
 	
-
-	
 	@timer
 	def vocabbuilder(self, lemmatize = False, output_json = False, use_word_list = False, noisy = False):
 		"""
@@ -482,7 +480,6 @@ class Corpus_2(object):
 		if not use_word_list:
 			vocabdict = self._vocabbuilder_pure(lemmatize = lemmatize)
 		else:
-			print use_word_list
 			vocabdict = self._vocabbuilder_from_list(word_list = use_word_list, lemmatize = lemmatize)
 		if output_json:
 			with codecs.open(output_json+".json", "w") as jsonout:
@@ -496,7 +493,7 @@ class Corpus_2(object):
 		# builds vocab from word_list; called from vocabbuilder
 		# note that the word_list needs to be a superset of words in corpus
 		vocabdict = {}
-		print "word list is", word_list
+		print "running _vocabbuilder_from_list"
 		for root, direct, filis in os.walk(self.input_dir):
 			print "working on folder", root 
 			for fili in [i for i in filis if i.endswith(".txt")]:
@@ -509,19 +506,16 @@ class Corpus_2(object):
 						vocabdict[word].yeardictsetter(text.meta['pubdate'], 1)
 					else:
 						if word in word_list: 
-							print "adding", word
+							#print "adding", word
 							vocabdict[word] = CorpusWord(word, "VARIANT", "POSITION")
 							vocabdict[word].yeardictsetter(text.meta['pubdate'], 1)
 						else:
 							raise ValueError("Word '{}'from corpus not contained in the word_list supplied; make sure the list was built including the present corpus and lemmatization was identical".format(word))
 		return vocabdict
-
-
-
-
 		
 	def _vocabbuilder_pure(self, lemmatize):
 		# builds vocab from scratch; called from vocabbuilder
+		print "running _vocabbuilder_pure"
 		vocabdict = {}
 		for root, direct, filis in os.walk(self.input_dir):
 			print "working on folder", root 
@@ -536,8 +530,5 @@ class Corpus_2(object):
 						vocabdict[word] = CorpusWord(word, "VARIANT", "POSITION")
 						vocabdict[word].yeardictsetter(text.meta['pubdate'], 1)
 		return vocabdict
-		
-
-
-		
+	
 #vocab is the collection of all words in the corpus, for example stored in a dictionary
