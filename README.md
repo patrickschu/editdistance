@@ -1,4 +1,4 @@
-# The Contextfinder
+# The Contextfinder ---OUTDATED --- check in analysis_scripts
 Takes a dictionary (as [JSON](http://www.json.org/)-file) and identifies contexts in which spelling variation between two characters occurs. 
 
 
