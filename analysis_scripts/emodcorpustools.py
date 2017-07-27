@@ -453,7 +453,7 @@ class VariantItem(object):
 				match = input_vocab.get("".join(wordlist), None)
 				#match = True if "".join(wordlist) in input_vocab else None
 				if not word_list: 
-					if match != None:
+					if match:
 						#note that match is a CorpusWord object
 						#print "match: ", match
 						match.positionsetter(tuple(index_list))
@@ -461,21 +461,27 @@ class VariantItem(object):
 						typedict[word][ind] = match
 				else:
 					#here be the word_list functionality
-					if match != None:
+					if match:
 						#note that match is a CorpusWord object
 						#print "match: ", match
 						match.positionsetter(tuple(index_list))
 						#can there be more than one match per ind?
-						typedict[word][ind] = match					
-					elif match == None and "".join(wordlist) in word_list:
-						print "this is not in our vocab but the supplied word_list. Who knew", "".join(wordlist)
-						entry = CorpusWord("DUMMY", self.variant_two, "POSITION")
-						print "set position"
-						entry.positionsetter(tuple(index_list))
-						print "add to dict"
-						typedict[word][ind] = entry
+						typedict[word][ind] = match
+					else:
+						if "".join(wordlist) in word_list:
+							print "this is not in our vocab but the supplied word_list. Who knew", "".join(wordlist)
+							entry = CorpusWord("DUMMY", self.variant_two, "POSITION")
+							print "set position"
+							entry.positionsetter(tuple(index_list))
+							print "add to dict"
+							typedict[word][ind] = entry
+						else:
+							print "nothing happening here"					
+
 		print "VariantItems returning"						
 		return {k: v for k,v in typedict.viewitems()}
+
+
 
 
 class Corpus_2(object):
