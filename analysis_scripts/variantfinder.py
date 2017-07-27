@@ -111,14 +111,10 @@ def main():
 	# for each word, construct a VariantItem containing all possible types with variant_two
 	# this only returns items that are contained in the corpus vocab
 	# Resulting typedict looks like so: {CorpusWord : {position: CorpusWord, ..}}
-	
-	
-	###
 	if args.read_wordlist:
 		#we run the variants against wordlist, setting input to the wordlist
 		onedict = {emod.VariantItem(k, variant_one, variant_two, input_vocab = vocab, word_list = wordlist) : v for k,v in onedict.viewitems()}
-	###
-	
+
 	else:
 		# we run the variants against the corpus vocab, setting input the vocab previously constructed
 		onedict = {emod.VariantItem(k, variant_one, variant_two, input_vocab = vocab) : v for k,v in onedict.viewitems()}
