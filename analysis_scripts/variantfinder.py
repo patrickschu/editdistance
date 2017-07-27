@@ -78,6 +78,7 @@ def main():
 		timespan = args.timespan
 	
 	# set up vars
+	# maybe improve to: var1, var2, output_method, ... = args.x,args.y
 	variant_one = args.variant_one
 	variant_two = args.variant_two
 	threshold = args.threshold
@@ -93,10 +94,10 @@ def main():
 	if args.read_wordlist:
 		with codecs.open(args.read_wordlist, "r", "utf-8") as wordlist_in:
 			#use the CorpusVocabImporter here instead
-			@word:
-			wordlist = json.load(wordlist_in)
-			wordlist = set([k for k,v in wordlist.viewitems()])
-		vocab = emod.Corpus_2(input_dir).vocabbuilder(use_word_list = wordlist, lemmatize = lemmatize, output_json = args.write_corpusfile)
+			wordlist = emod.CorpusVocabImporter(args.read_wordlist)
+			#Importer returns {word:CorpusWord(word), ...}
+		# do we really need the extra list setting if we just import it as a VocabImporter
+		vocab = emod.Corpus_2(input_dir).vocabbuilder(use_word_list = set(wordlist.keys()), lemmatize = lemmatize, output_json = args.write_corpusfile)
 		print "Reading data from wordlist {}, length: {}".format(args.read_wordlist, len(vocab))
 	else:
 		print "Building vocab from", input_dir
@@ -110,10 +111,16 @@ def main():
 	# for each word, construct a VariantItem containing all possible types with variant_two
 	# this only returns items that are contained in the corpus vocab
 	# Resulting typedict looks like so: {CorpusWord : {position: CorpusWord, ..}}
+	
+	
+	###
 	if args.read_wordlist:
 		#we run the variants against wordlist, setting input to the wordlist
 		print "asissis"
-		onedict = {emod.VariantItem(k, variant_one, variant_two, input_vocab = wordlist) : v for k,v in onedict.viewitems()}
+		onedict = {emod.VariantItem(k, variant_one, variant_two, input_vocab = vocab, word_list = set(wordlist.keys())) : v for k,v in onedict.viewitems()}
+	###
+	
+	
 	else:
 		# we run the variants against the corpus vocab, setting input the vocab previously constructed
 		onedict = {emod.VariantItem(k, variant_one, variant_two, input_vocab = vocab) : v for k,v in onedict.viewitems()}
@@ -133,13 +140,13 @@ def main():
 		#print "keyi", key.typedict
 	print "len onedict ", len(onedict)
 	# remove words with empty typedictionaries, i.e. that don't have any variant_2 tokens
-	if not args.read_wordlist:
-		for k in onedict:
-			print "typicidt", k.typedict.values()
-		onedict = {k:v for k,v in onedict.viewitems() if k.typedict.values()[0]}
+	#if not args.read_wordlist:
+		#for k in onedict:
+			#print "typicidt", k.typedict.values()
+	#	onedict = {k:v for k,v in onedict.viewitems() if k.typedict.values()[0]}
 
-	else:
-		onedict = {k:v for k,v in onedict.viewitems() if not any([i for i in k.typedict.viewkeys() if i in wordlist])}
+	#else:
+	#	onedict = {k:v for k,v in onedict.viewitems() if not any([i for i in k.typedict.viewkeys() if i in wordlist])}
 	print "len onedict after removing zero counts", len(onedict)
 	print "Number of items in corpusfile containing variant one and variant two", len(onedict)
 	# apply exclusion criteria
