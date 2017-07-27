@@ -68,8 +68,8 @@ def main():
 	# checking input
 	if not args.input_dir:
 		raise IOError("No corpus provided. You need specify a directory of text files with --input_dir")
-	if all([not args.read_corpusfile, not args.read_wordlist]):
-		raise IOError("No input data. You need to either specify a word list '--read_wordlist' or a file with word counts as '--read_file'")
+	#if all([not args.read_corpusfile, not args.read_wordlist]):
+		#raise IOError("No input data. You need to either specify a word list '--read_wordlist' or a file with word counts as '--read_file'")
 	# note that timespan should include 0 if you want to have values with missing data
 	if args.timespan:
 		# turns input into [str, str] list
@@ -92,23 +92,33 @@ def main():
 		vocab = emod.CorpusVocabImporter(args.read_corpusfile)
 	if args.read_wordlist:
 		with codecs.open(args.read_wordlist, "r", "utf-8") as wordlist_in:
+			#use the CorpusVocabImporter here instead
+			@word:
 			wordlist = json.load(wordlist_in)
-			wordlist = [k for k,v in wordlist.viewitems()]
+			wordlist = set([k for k,v in wordlist.viewitems()])
 		vocab = emod.Corpus_2(input_dir).vocabbuilder(use_word_list = wordlist, lemmatize = lemmatize, output_json = args.write_corpusfile)
 		print "Reading data from wordlist {}, length: {}".format(args.read_wordlist, len(vocab))
 	else:
+		print "Building vocab from", input_dir
 		vocab = emod.Corpus_2(input_dir).vocabbuilder(lemmatize = lemmatize, output_json = args.write_corpusfile)
+		
 	print "Length corpusfile ", len(vocab)
 	# extract all items that contain variant one
-	# NOTE change from list to string to allow several chars--> will this still work? 
+	# note that we could do this during extraction if we had been smart; but vocab output would break
 	onedict = {k:v for k,v in vocab.viewitems() if variant_one in k}
 	print "Number of items in corpusfile containing variant one ", len(onedict)
 	# for each word, construct a VariantItem containing all possible types with variant_two
 	# this only returns items that are contained in the corpus vocab
 	# Resulting typedict looks like so: {CorpusWord : {position: CorpusWord, ..}}
-	onedict = {emod.VariantItem(k, variant_one, variant_two, input_vocab = vocab) : v for k,v in onedict.viewitems()}
+	if args.read_wordlist:
+		#we run the variants against wordlist, setting input to the wordlist
+		print "asissis"
+		onedict = {emod.VariantItem(k, variant_one, variant_two, input_vocab = wordlist) : v for k,v in onedict.viewitems()}
+	else:
+		# we run the variants against the corpus vocab, setting input the vocab previously constructed
+		onedict = {emod.VariantItem(k, variant_one, variant_two, input_vocab = vocab) : v for k,v in onedict.viewitems()}
 	# onedict looks like this: {VariantItem:CorpusWord, VariantItem:CorpusWord...} where CorpusWord is a representation of the original variant_one word
-	print "Number of items in corpusfile containing variant one and variant two", len(onedict)
+	
 	# this will give us the total tokens for each word with variant_one
 	# {v.word:v.totaltokens() for k,v in onedict.viewitems()}
 	# filter for the ones above threshold in for loop
@@ -123,8 +133,15 @@ def main():
 		#print "keyi", key.typedict
 	print "len onedict ", len(onedict)
 	# remove words with empty typedictionaries, i.e. that don't have any variant_2 tokens
-	onedict = {k:v for k,v in onedict.viewitems() if k.typedict.values()[0]}
+	if not args.read_wordlist:
+		for k in onedict:
+			print "typicidt", k.typedict.values()
+		onedict = {k:v for k,v in onedict.viewitems() if k.typedict.values()[0]}
+
+	else:
+		onedict = {k:v for k,v in onedict.viewitems() if not any([i for i in k.typedict.viewkeys() if i in wordlist])}
 	print "len onedict after removing zero counts", len(onedict)
+	print "Number of items in corpusfile containing variant one and variant two", len(onedict)
 	# apply exclusion criteria
 	onedict = {k:v for k,v in onedict.viewitems() if not any ([v.word in exclude_words])}
 	print "len onedict", len(onedict)
