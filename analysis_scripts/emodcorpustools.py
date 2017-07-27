@@ -318,6 +318,7 @@ def CorpusVocabImporter(input_json):
 	Read in json file created by Corpus_2 vocabbuilder to create dictionary of CorpusWord items.
 	Format of input_json is 
 	{word: {year:X, year2:Y}, word2:{}}
+	Returns {word:CorpusWord(word), word2:Corpusword(word2), }
 	"""
 	print "Running the CorpusVocabImporter, getting data from ", input_json
 	with codecs.open(input_json, "r", "utf-8") as inputjson:
@@ -398,7 +399,7 @@ class VariantItem(object):
 	"""
 	This compiles the potential variants of a word
 	The typedict returns {word : [potential variant 1, pot var 2, ...}
-	It extracts the CorpusWord objects from a dictionary give in input_vocab
+	It extracts the CorpusWord objects from a dictionary given in input_vocab
 	"""
 	def __init__(self, word, variant_one, variant_two, input_vocab):
 		self.word = word
@@ -449,6 +450,7 @@ class VariantItem(object):
 					wordlist[ind] = self.variant_two
 				#print "".join(wordlist)
 				match = input_vocab.get("".join(wordlist), None)
+				#match = True if "".join(wordlist) in input_vocab else None
 				if match != None:
 					#note that match is a CorpusWord object
 					#print "match: ", match
@@ -494,6 +496,7 @@ class Corpus_2(object):
 		# note that the word_list needs to be a superset of words in corpus
 		vocabdict = {}
 		print "running _vocabbuilder_from_list"
+		print "List is {} items long".format(len(word_list))
 		for root, direct, filis in os.walk(self.input_dir):
 			print "working on folder", root 
 			for fili in [i for i in filis if i.endswith(".txt")]:
