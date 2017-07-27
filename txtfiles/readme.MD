@@ -37,6 +37,11 @@ Enter name of json file containing wordcounts created
 Enter a directory containing a corpus of .txt files
                         to read
 
+
+> \--read_wordlist
+Enter name of a json file containing wordcounts created previously; these will be used to establish varying types. 
+
+
 ### 2. Required arguments, output
 
 >  \--output_words            
@@ -52,6 +57,9 @@ Enter file name to write csv of token counts per
                         **variant and year**
 
 ### 3. Optional arguments
+
+> \--lemmatize
+OPTIONAL: Removes word-final 's' to normalize plural forms
                         
 >  \--write_corpusfile          
 OPTIONAL: Enter name of file to write a json file with word counts
