@@ -47,7 +47,6 @@ def timer(func):
 	return wrapper
 
 
-
 def authornameconverter(name_string, corpus_name):
 	"""
 	Converts all author names from different corpora to lastname_firstname according to rules associated with corpus_name. 
@@ -401,11 +400,12 @@ class VariantItem(object):
 	The typedict returns {word : [potential variant 1, pot var 2, ...}
 	It extracts the CorpusWord objects from a dictionary given in input_vocab
 	"""
-	def __init__(self, word, variant_one, variant_two, input_vocab):
+	def __init__(self, word, variant_one, variant_two, input_vocab, word_list= False):
 		self.word = word
 		self.variant_one = variant_one
 		self.variant_two = variant_two
-		self.typedict = self.typegenerator(input_vocab)
+		self.word_list = word_list
+		self.typedict = self.typegenerator(input_vocab, word_list = self.word_list)
 
 	def indexer(self):
 		#finds instances of variant in self.word
@@ -425,7 +425,7 @@ class VariantItem(object):
 		return indices
 	
 		
-	def typegenerator(self, input_vocab):
+	def typegenerator(self, input_vocab, word_list):
 		# creates new types of the word by replacing characters at index with variant
 		# when more than one substitution spot, create all permutations
 		indices = self.indexer()
@@ -436,6 +436,7 @@ class VariantItem(object):
 		for index_tuple in powerset(indices):
 			#print "index_tuple", index_tuple
 			if index_tuple: 
+				#dang we used the same var name in the main script for a different concept
 				wordlist = list(word)
 				#error catching
 				index_list = [position for variant, position in index_tuple]
@@ -451,16 +452,30 @@ class VariantItem(object):
 				#print "".join(wordlist)
 				match = input_vocab.get("".join(wordlist), None)
 				#match = True if "".join(wordlist) in input_vocab else None
-				if match != None:
-					#note that match is a CorpusWord object
-					#print "match: ", match
-					match.positionsetter(tuple(index_list))
-					#can there be more than one match per ind?
-					typedict[word][ind] = match				
-					#print typedict
+				if not word_list: 
+					if match != None:
+						#note that match is a CorpusWord object
+						#print "match: ", match
+						match.positionsetter(tuple(index_list))
+						#can there be more than one match per ind?
+						typedict[word][ind] = match
+				else:
+					#here be the word_list functionality
+					if match != None:
+						#note that match is a CorpusWord object
+						#print "match: ", match
+						match.positionsetter(tuple(index_list))
+						#can there be more than one match per ind?
+						typedict[word][ind] = match					
+					elif match == None and "".join(wordlist) in word_list:
+						print "this is not in our vocab but the supplied word_list. Who knew", "".join(wordlist)
+						entry = CorpusWord("DUMMY", self.variant_two, "POSITION")
+						print "set position"
+						entry.positionsetter(tuple(index_list))
+						print "add to dict"
+						typedict[word][ind] = entry
+		print "VariantItems returning"						
 		return {k: v for k,v in typedict.viewitems()}
-
-
 
 
 class Corpus_2(object):
@@ -492,9 +507,11 @@ class Corpus_2(object):
 		return vocabdict
 
 	def _vocabbuilder_from_list(self, word_list, lemmatize):
-		# builds vocab from word_list; called from vocabbuilder
+		# builds vocab based on word_list, some set-type thing to iterate over
+		# called from vocabbuilder
 		# note that the word_list needs to be a superset of words in corpus
 		vocabdict = {}
+		#word_list = set([k for k,v in word_list.viewitems()])
 		print "running _vocabbuilder_from_list"
 		print "List is {} items long".format(len(word_list))
 		for root, direct, filis in os.walk(self.input_dir):
@@ -507,13 +524,12 @@ class Corpus_2(object):
 					#print "wordiword", word
 					if word in vocabdict:
 						vocabdict[word].yeardictsetter(text.meta['pubdate'], 1)
+					elif word in word_list: 
+						print "adding", word
+						vocabdict[word] = CorpusWord(word, "VARIANT", "POSITION")
+						vocabdict[word].yeardictsetter(text.meta['pubdate'], 1)
 					else:
-						if word in word_list: 
-							#print "adding", word
-							vocabdict[word] = CorpusWord(word, "VARIANT", "POSITION")
-							vocabdict[word].yeardictsetter(text.meta['pubdate'], 1)
-						else:
-							raise ValueError("Word '{}'from corpus not contained in the word_list supplied; make sure the list was built including the present corpus and lemmatization was identical".format(word))
+						raise ValueError("Word '{}'from corpus not contained in the word_list supplied; make sure the list was built including the present corpus and lemmatization was identical".format(word))
 		return vocabdict
 		
 	def _vocabbuilder_pure(self, lemmatize):
