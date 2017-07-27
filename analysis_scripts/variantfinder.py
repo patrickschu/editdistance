@@ -25,7 +25,7 @@ def get_input():
 	parser.add_argument("--threshold", type=int, 
 		help="OPTIONAL: Enter the minimum number of tokens varying between variant_one and variant_two that need to be present to be included in the output. Defaults to '0'")
 	parser.add_argument("--timespan", type=str, help="OPTIONAL: Enter a start and end year for the output, seperated by a comma. Format: 'beginning,end'")
-	parser.add_argument("--verbose", action="store_true", type=bool, help="OPTIONAL: Set to 'True' for complete printout")
+	parser.add_argument("--verbose", action="store_true", help="OPTIONAL: Set to 'True' for complete printout")
 	#output options
 	parser.add_argument("--output_words", type=str, help="Enter file name to write csv of token counts per word and position")
 	parser.add_argument("--output_position", type=str, help="Enter file name to write csv of token counts per position in the word")
@@ -116,7 +116,6 @@ def main():
 	###
 	if args.read_wordlist:
 		#we run the variants against wordlist, setting input to the wordlist
-		print "asissis"
 		onedict = {emod.VariantItem(k, variant_one, variant_two, input_vocab = vocab, word_list = wordlist) : v for k,v in onedict.viewitems()}
 	###
 	
@@ -124,12 +123,10 @@ def main():
 		# we run the variants against the corpus vocab, setting input the vocab previously constructed
 		onedict = {emod.VariantItem(k, variant_one, variant_two, input_vocab = vocab) : v for k,v in onedict.viewitems()}
 	# onedict looks like this: {VariantItem:CorpusWord, VariantItem:CorpusWord...} where CorpusWord is a representation of the original variant_one word
-	print "we done making variantitems"
 
 	# this will give us the total tokens for each word with variant_one
 	# {v.word:v.totaltokens() for k,v in onedict.viewitems()}
 	# filter for the ones above threshold in for loop
-	print "run key loop"
 	for key in onedict:
 		#print "key", type(key), key.typedict
 		variant_one_count = onedict[key].totaltokens()
