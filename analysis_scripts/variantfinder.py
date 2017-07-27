@@ -25,7 +25,7 @@ def get_input():
 	parser.add_argument("--threshold", type=int, 
 		help="OPTIONAL: Enter the minimum number of tokens varying between variant_one and variant_two that need to be present to be included in the output. Defaults to '0'")
 	parser.add_argument("--timespan", type=str, help="OPTIONAL: Enter a start and end year for the output, seperated by a comma. Format: 'beginning,end'")
-	parser.add_argument("--verbose", type=bool, help="OPTIONAL: Set to 'True' for complete printout")
+	parser.add_argument("--verbose", action="store_true", type=bool, help="OPTIONAL: Set to 'True' for complete printout")
 	#output options
 	parser.add_argument("--output_words", type=str, help="Enter file name to write csv of token counts per word and position")
 	parser.add_argument("--output_position", type=str, help="Enter file name to write csv of token counts per position in the word")
@@ -97,7 +97,7 @@ def main():
 			wordlist = emod.CorpusVocabImporter(args.read_wordlist)
 			#Importer returns {word:CorpusWord(word), ...}
 		# do we really need the extra list setting if we just import it as a VocabImporter
-		vocab = emod.Corpus_2(input_dir).vocabbuilder(use_word_list = set(wordlist.keys()), lemmatize = lemmatize, output_json = args.write_corpusfile)
+		vocab = emod.Corpus_2(input_dir).vocabbuilder(use_word_list = wordlist, lemmatize = lemmatize, output_json = args.write_corpusfile)
 		print "Reading data from wordlist {}, length: {}".format(args.read_wordlist, len(vocab))
 	else:
 		print "Building vocab from", input_dir
@@ -117,18 +117,19 @@ def main():
 	if args.read_wordlist:
 		#we run the variants against wordlist, setting input to the wordlist
 		print "asissis"
-		onedict = {emod.VariantItem(k, variant_one, variant_two, input_vocab = vocab, word_list = set(wordlist.keys())) : v for k,v in onedict.viewitems()}
+		onedict = {emod.VariantItem(k, variant_one, variant_two, input_vocab = vocab, word_list = wordlist) : v for k,v in onedict.viewitems()}
 	###
-	
 	
 	else:
 		# we run the variants against the corpus vocab, setting input the vocab previously constructed
 		onedict = {emod.VariantItem(k, variant_one, variant_two, input_vocab = vocab) : v for k,v in onedict.viewitems()}
 	# onedict looks like this: {VariantItem:CorpusWord, VariantItem:CorpusWord...} where CorpusWord is a representation of the original variant_one word
-	
+	print "we done making variantitems"
+
 	# this will give us the total tokens for each word with variant_one
 	# {v.word:v.totaltokens() for k,v in onedict.viewitems()}
 	# filter for the ones above threshold in for loop
+	print "run key loop"
 	for key in onedict:
 		#print "key", type(key), key.typedict
 		variant_one_count = onedict[key].totaltokens()
@@ -140,13 +141,10 @@ def main():
 		#print "keyi", key.typedict
 	print "len onedict ", len(onedict)
 	# remove words with empty typedictionaries, i.e. that don't have any variant_2 tokens
-	#if not args.read_wordlist:
-		#for k in onedict:
-			#print "typicidt", k.typedict.values()
-	#	onedict = {k:v for k,v in onedict.viewitems() if k.typedict.values()[0]}
-
-	#else:
-	#	onedict = {k:v for k,v in onedict.viewitems() if not any([i for i in k.typedict.viewkeys() if i in wordlist])}
+	if not args.read_wordlist:
+		onedict = {k:v for k,v in onedict.viewitems() if k.typedict.values()[0]}
+	else:
+		onedict = {k:v for k,v in onedict.viewitems() if k.typedict.values()[0]}
 	print "len onedict after removing zero counts", len(onedict)
 	print "Number of items in corpusfile containing variant one and variant two", len(onedict)
 	# apply exclusion criteria
