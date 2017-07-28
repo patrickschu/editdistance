@@ -116,15 +116,12 @@ def main():
 		#finds all variant_one words that have equivalents in the corpus or the wordlist
 		onedict = {emod.VariantItem(k, variant_one, variant_two, input_vocab = vocab, word_list = wordlist) : v for k,v in onedict.viewitems()}
 		#print {k.word: v for k,v in onedict.viewitems()}
+		onedict = {k:v for k,v in onedict.viewitems() if k.typedict.values()[0]}
 		print "\n".join([k.word for k,v in onedict.viewitems()])
-	#for i in onedict:
-			#print i, i.typedict, i.word, i.typedict.values(), [x.values() for x in  i.typedict.values()]
-			#for listi in  [x.values() for x in  i.typedict.values()]:
-				#if len(listi) > 0:
-					#print [i.word for i in listi]
-					#print [i.position for i in listi]
+		print "len onedict after removing zero counts", len(onedict)
 		variant_two_excludelist = []
 		for i in onedict:
+			print onedict[i].position
 			#print i, i.typedict, i.word, i.typedict.values(), [x.values() for x in  i.typedict.values()]
 			for listi in  [x.values() for x in  i.typedict.values()]:
 				if len(listi) > 0:
@@ -146,30 +143,35 @@ def main():
 		# we are only changing the key here, i.e. the VariantItem object
 		for i in twodict:
 			# extract word from the CorpusWord item
-			dummyword = twodict[i].word + "_DUMMY_"
+			dummyword = twodict[i].word + "*DUMMY_"
 			# get the position from the VariantItem typedict; note that position does not matter much here as there is no real variation
-			position = i.typedict.values()[0].keys()[0]
-			
+			position = (i.typedict.values()[0].keys()[0],)
 			print dummyword
 			print position
 			print i.typedict
 			typedict = {dummyword: {position : twodict[i]}}
 			i.typedictsetter(typedict)
+			# set position in the CorpusWord object
+			# maybe not even necessary
+			twodict[i].positionsetter(position)
 			print i.typedict
 			print twodict[i].word
 			print twodict[i].yeardict
-			
-		
-		
-		
-		
-		
-		
-		print {v.word:k.typedict for k,v in twodict.items()}		
+		# change the values to DummySetting ; could happen in the loop above, but maybe clearer here
+		finaltwo = {}
+		for i in twodict:
+			#print twodict[i].position
+			#the empty yeardict should not be a problem, but here is a note
+			finaltwo[i] = emod.CorpusWord(twodict[i].word + "*DUMMY_", twodict[i].position, variant_one)
+			print "YESSSSS", finaltwo[i].word
+			print finaltwo[i].yeardict
+	
+		print "len finaltwo", len(finaltwo), "len two", len(twodict)
 		print "testing 'arriues' in one", 'arriues' in onedict.values()
-		#print len([i.word for i in twodict.values()]), len(set([i.word for i in twodict.values()]))
 		print "onedic", len(onedict)
 		print "twodic after", len(twodict)
+		onedict.update(finaltwo)
+		print "merging, len", len(onedict)
 
 	else:
 		# we run the variants against the corpus vocab, setting input the vocab previously constructed
@@ -191,8 +193,6 @@ def main():
 	print "len onedict ", len(onedict)
 	# remove words with empty typedictionaries, i.e. that don't have any variant_2 tokens
 	if not args.read_wordlist:
-		onedict = {k:v for k,v in onedict.viewitems() if k.typedict.values()[0]}
-	else:
 		onedict = {k:v for k,v in onedict.viewitems() if k.typedict.values()[0]}
 	print "len onedict after removing zero counts", len(onedict)
 	print "Number of items in corpusfile containing variant one and variant two", len(onedict)
@@ -221,7 +221,6 @@ def main():
 	# print [(i, fulldict_words[i]) for i in sorted(fulldict_words)][:20]
 	df_fulldict_words = pandas.DataFrame.from_dict(fulldict_words)
 	df_fulldict_words.index = df_fulldict_words.index.map(int)
-
 	# our output is like so
 	# 		word_(1,) word_(1,2), word2
 	# 1600  count  count
@@ -261,7 +260,7 @@ def main():
 		#	1643   8.0   48.0
 		#	1644  44.0  130.0
 		df_agg_by_year_out = df_fulldict_words.copy()
-		df_agg_by_year = df_agg_by_year_out .groupby(lambda x: isinstance(filti(x)[1][0], str), axis = 1).sum()
+		df_agg_by_year = df_agg_by_year_out.groupby(lambda x: isinstance(filti(x)[1][0], str), axis = 1).sum()
 		df_agg_by_year.columns = [variant_one if i else variant_two for i in df_agg_by_year.columns]
 		if verbose:
 			print df_agg_by_year
