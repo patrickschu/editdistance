@@ -131,24 +131,45 @@ def main():
 					print [i.word for i in listi]
 					variant_two_excludelist = variant_two_excludelist + [i.word for i in listi]
 		print set(variant_two_excludelist)
-		print "excluding {} items".format(len(variant_two_excludelist))
+		print "excluding {} items".format(len(set(variant_two_excludelist)))
 		variant_two_excludelist = set(variant_two_excludelist)
 		#finds all variant_two words that have equivalents in the wordlist only, thus not included in the above onedict
 		twodict = {k:v for k,v in vocab.viewitems() if (variant_two in k) and (k not in variant_two_excludelist)}
-		print [i for i in twodict]
+		#create VariantItems to see which ones vary in the word_list; then drop the ones with no variant_one equivalent
+		twodict = {emod.VariantItem(k, variant_two, variant_one, input_vocab = vocab, word_list = wordlist) : v for k,v in twodict.viewitems()}
+		print "twodic original", len(twodict)
 		
+		# kill items with no variant_one type
+		twodict = {k:v for k,v in twodict.viewitems() if k.typedict.values()[0]}
+		# {VariantItem.typeDict = twodict[key], val = CorpusWord(twodict[val].word+dummy, yeardict = {}}
+		# essentially we are inverting the dictionary to get variant_one and variant_two in their place
+		# we are only changing the key here, i.e. the VariantItem object
+		for i in twodict:
+			# extract word from the CorpusWord item
+			dummyword = twodict[i].word + "_DUMMY_"
+			# get the position from the VariantItem typedict; note that position does not matter much here as there is no real variation
+			position = i.typedict.values()[0].keys()[0]
+			
+			print dummyword
+			print position
+			print i.typedict
+			typedict = {dummyword: {position : twodict[i]}}
+			i.typedictsetter(typedict)
+			print i.typedict
+			print twodict[i].word
+			print twodict[i].yeardict
+			
+		
+		
+		
+		
+		
+		
+		print {v.word:k.typedict for k,v in twodict.items()}		
+		print "testing 'arriues' in one", 'arriues' in onedict.values()
 		#print len([i.word for i in twodict.values()]), len(set([i.word for i in twodict.values()]))
-		#print "onedic", len(onedict)
-		#print "twodic", len(twodict)
-	
-		
-		
-		
-		
-		# this finds all variants with u
-		# we want only what is not contained in onedict typedicts
-		# i.e variant_one not contained in the vocab
-		twodict = {emod.VariantItem(k, variant_one, variant_two, input_vocab = vocab, word_list = wordlist) : v for k,v in twodict.viewitems()}
+		print "onedic", len(onedict)
+		print "twodic after", len(twodict)
 
 	else:
 		# we run the variants against the corpus vocab, setting input the vocab previously constructed
@@ -178,7 +199,6 @@ def main():
 	# apply exclusion criteria
 	onedict = {k:v for k,v in onedict.viewitems() if not any ([v.word in exclude_words])}
 	print "len onedict", len(onedict)
-	print "len onedict ", len(onedict)
 	if verbose:
 		print "Summary dictionary"
 		print "\n".join([":".join((onedict[i].word, str(onedict[i].totaltokens()))) for i in sorted(onedict, key = lambda x : onedict[x].totaltokens(), reverse = True)][:20])
