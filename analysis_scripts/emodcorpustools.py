@@ -397,7 +397,7 @@ class CorpusWord(CorpusText):
 class VariantItem(object):
 	"""
 	This compiles the potential variants of a word
-	The typedict returns {word : [potential variant 1, pot var 2, ...}
+	The typedict returns {word : [variant 1, var 2, ...}  <- this is no longer accurate ; its typedict[word][position] = CorpusWord
 	It extracts the CorpusWord objects from a dictionary given in input_vocab
 	"""
 	def __init__(self, word, variant_one, variant_two, input_vocab, word_list= False):
@@ -425,6 +425,7 @@ class VariantItem(object):
 		return indices
 	
 	def typedictsetter(self, input_dict):
+		print "setting dict"
 		self.typedict = input_dict
 		
 	def typegenerator(self, input_vocab, word_list):
