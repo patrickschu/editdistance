@@ -152,6 +152,13 @@ That is, for the year 1600, there are no instances of *aboue*, but 1 token of *a
 (note that an index of *3* refers to the 4th slot -- 0 indicates the first character). 
 
 
+#### Example 4
+
+The code below will replicate Example 3, except that the setting --lemmatize will remove suffixes such as plural *-s* from the words. The items included as affixes are given in Notes and Conventions below. 
+
+    python variantfinder.py u v  --input_dir /home/x/corpora --lemmatize --write_corpusfile vocab --output_words words_spreadsheet --threshold 100 --timespan 1600,1700 
+
+
 ----
 ### Notes and Conventions
 
@@ -165,3 +172,4 @@ reputation_3 labels tokens of *repvtation*.
 
 - documents that do not have a publication date are counted as publication year *0*. 
 
+- the list called on to remove affixes when using `--lemmatize` currently contains: [suffix *-s*].
