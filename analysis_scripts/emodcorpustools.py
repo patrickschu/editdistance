@@ -388,6 +388,7 @@ class CorpusWord(CorpusText):
 	
 	def positionsetter(self, position):
 		#changes the position attribute
+		#what is the input here - a tuple?
 		self.position = position
 		
 	def totaltokens(self):
