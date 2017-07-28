@@ -5,7 +5,7 @@ import codecs
 import pandas
 import argparse
 import json
-
+import sys
 
 def get_input():
 	parser = argparse.ArgumentParser()
@@ -117,24 +117,43 @@ def main():
 		onedict = {emod.VariantItem(k, variant_one, variant_two, input_vocab = vocab, word_list = wordlist) : v for k,v in onedict.viewitems()}
 		#print {k.word: v for k,v in onedict.viewitems()}
 		print "\n".join([k.word for k,v in onedict.viewitems()])
+	for i in onedict:
+			print i, i.typedict, i.word, i.typedict.values(), [x.values() for x in  i.typedict.values()]
+			for listi in  [x.values() for x in  i.typedict.values()]:
+				if len(listi) > 0:
+					print [i.word for i in listi]
+					print [i.position for i in listi]
+		variant_two_excludelist = []
+		for i in onedict:
+			#print i, i.typedict, i.word, i.typedict.values(), [x.values() for x in  i.typedict.values()]
+			for listi in  [x.values() for x in  i.typedict.values()]:
+				if len(listi) > 0:
+					print [i.word for i in listi]
+					variant_two_excludelist = variant_two_excludelist + [i.word for i in listi]
+		print set(variant_two_excludelist)
+		print "excluding {} items".format(len(variant_two_excludelist))
+		variant_two_excludelist = set(variant_two_excludelist)
 		#finds all variant_two words that have equivalents in the wordlist only, thus not included in the above onedict
-		twodict = {k:v for k,v in vocab.viewitems() if variant_two in k}# and k not in onedict.typedicts}
-		# this finds all variants with u
-		# we want only what is not contained in onedict typedicts
-		# i.e variant_one not contained in the vocab
-		twodict = {emod.VariantItem(k, variant_one, variant_two, input_vocab = vocab, word_list = wordlist) : v for k,v in twodict.viewitems()}
+		twodict = {k:v for k,v in vocab.viewitems() if (variant_two in k) and (k not in variant_two_excludelist)}
 		#print {k.word: v for k,v in twodict.viewitems()}
 		print header, "\n".join([k.word for k,v in twodict.viewitems()])
 		print "onedic", len(onedict)
 		print "twodic", len(twodict)
-		for g in [[[o.word for o in x.values()] for x in k.typedict.values()] for k in onedict.keys()]:
-			if g[0]:
-				print g
+	
+		
+		
+		
+		
+		# this finds all variants with u
+		# we want only what is not contained in onedict typedicts
+		# i.e variant_one not contained in the vocab
+		twodict = {emod.VariantItem(k, variant_one, variant_two, input_vocab = vocab, word_list = wordlist) : v for k,v in twodict.viewitems()}
+
 	else:
 		# we run the variants against the corpus vocab, setting input the vocab previously constructed
 		onedict = {emod.VariantItem(k, variant_one, variant_two, input_vocab = vocab) : v for k,v in onedict.viewitems()}
 	# onedict looks like this: {VariantItem:CorpusWord, VariantItem:CorpusWord...} where CorpusWord is a representation of the original variant_one word
-
+	# e.g. {u'undergoes': {0: <emodcorpustools.CorpusWord object at 0x7fcad5a7f890>}}
 	# this will give us the total tokens for each word with variant_one
 	# {v.word:v.totaltokens() for k,v in onedict.viewitems()}
 	# filter for the ones above threshold in for loop
