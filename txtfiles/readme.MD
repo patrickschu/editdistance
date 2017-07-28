@@ -154,7 +154,7 @@ That is, for the year 1600, there are no instances of *aboue*, but 1 token of *a
 
 #### Example 4
 
-The code below will replicate Example 3, except that the setting --lemmatize will remove suffixes such as plural *-s* from the words. The items included as affixes are given in Notes and Conventions below. 
+The code below will replicate Example 3, except that the setting --lemmatize will remove suffixes such as plural *-s* from the words. The items included as affixes are given in [Notes and Conventions](https://github.com/patrickschu/editdistance/tree/master/txtfiles#notes-and-conventions) below. 
 
     python variantfinder.py u v  --input_dir /home/x/corpora --lemmatize --write_corpusfile vocab --output_words words_spreadsheet --threshold 100 --timespan 1600,1700 
 
