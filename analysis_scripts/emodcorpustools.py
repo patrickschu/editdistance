@@ -11,7 +11,7 @@ import json
 from collections import defaultdict
 from itertools import chain, combinations
 
-corpusdir = '/home/patrick/Downloads/editdistance/extracted_corpora_0420_small'
+#corpusdir = '/home/patrick/Downloads/editdistance/extracted_corpora_0420_small'
 header = "\n+++++\n"
 # note that apostrophes are taken care of by the NLTK tokenizer
 affixes = ("s")
@@ -446,39 +446,46 @@ class VariantItem(object):
 						print "WARNING : ISSUE IN TYPEGENERATOR (tuples returned from indexer do not match variant_one)"
 				#print "original", "".join(wordlist)
 				#print index_list
-				for ind in index_list:
 					#print "ind:", ind 
 					wordlist[ind] = self.variant_two
-				#print "".join(wordlist)
-				match = input_vocab.get("".join(wordlist), None)
-				#match = True if "".join(wordlist) in input_vocab else None
-				if not word_list: 
-					if match:
-						#note that match is a CorpusWord object
-						#print "match: ", match
-						match.positionsetter(tuple(index_list))
-						#can there be more than one match per ind?
-						typedict[word][ind] = match
-				else:
-					#here be the word_list functionality
-					if match:
-						#note that match is a CorpusWord object
-						#print "match: ", match
-						match.positionsetter(tuple(index_list))
-						#can there be more than one match per ind?
-						typedict[word][ind] = match
+					#print "".join(wordlist)
+					match = input_vocab.get("".join(wordlist), None)
+					#match = True if "".join(wordlist) in input_vocab else None
+					if not word_list: 
+						if match:
+							#note that match is a CorpusWord object
+							#print "match: ", match
+							match.positionsetter(tuple(index_list))
+							#can there be more than one match per ind?
+							typedict[word][ind] = match
 					else:
-						if "".join(wordlist) in word_list:
-							print "this is not in our vocab but the supplied word_list. Who knew", "".join(wordlist)
-							entry = CorpusWord("DUMMY", self.variant_two, "POSITION")
-							print "set position"
-							entry.positionsetter(tuple(index_list))
-							print "add to dict"
-							typedict[word][ind] = entry
+						#here be the word_list functionality
+						#Standard
+						if match:
+							#note that match is a CorpusWord object
+							#print "match: ", match
+							match.positionsetter(tuple(index_list))
+							#can there be more than one match per ind?
+							typedict[word][ind] = match
+						#get variant_ones that don't have a variant_two in the corpus
 						else:
-							print "nothing happening here"					
+							if "".join(wordlist) in word_list:
+								#print "this is not in our vocab but the supplied word_list. Who knew", "".join(wordlist)
+								entry = CorpusWord("DUMMY", self.variant_two, "POSITION")
+								#print "set position"
+								entry.positionsetter(tuple(index_list))
+								#print "add to dict"
+								typedict[word][ind] = entry
+								#checking for variant_two happens in the variantfinder script
 
-		print "VariantItems returning"						
+									
+							else:
+								pass
+						#get variant_twos that don't have a variant_one in the corpus
+					
+
+		#print "VariantItems returning"	
+		#TO DO this should not be a list as value. Right?					
 		return {k: v for k,v in typedict.viewitems()}
 
 
@@ -531,7 +538,7 @@ class Corpus_2(object):
 					if word in vocabdict:
 						vocabdict[word].yeardictsetter(text.meta['pubdate'], 1)
 					elif word in word_list: 
-						print "adding", word
+						#print "adding", word
 						vocabdict[word] = CorpusWord(word, "VARIANT", "POSITION")
 						vocabdict[word].yeardictsetter(text.meta['pubdate'], 1)
 					else:
