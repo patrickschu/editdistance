@@ -135,7 +135,7 @@ def main():
 		variant_two_excludelist = set(variant_two_excludelist)
 		#finds all variant_two words that have equivalents in the wordlist only, thus not included in the above onedict
 		twodict = {k:v for k,v in vocab.viewitems() if (variant_two in k) and (k not in variant_two_excludelist)}
-		#print [i.yeardict for i in twodict]
+		print [i for i in twodict]
 		
 		#print len([i.word for i in twodict.values()]), len(set([i.word for i in twodict.values()]))
 		#print "onedic", len(onedict)
