@@ -424,8 +424,8 @@ class VariantItem(object):
 			index = index + len(variant)
 		return indices
 	
-	def typedictsetter(self):
-		return 1
+	def typedictsetter(self, input_dict):
+		self.typedict = input_dict
 		
 	def typegenerator(self, input_vocab, word_list):
 		# creates new types of the word by replacing characters at index with variant
