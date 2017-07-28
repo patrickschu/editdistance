@@ -424,6 +424,8 @@ class VariantItem(object):
 			index = index + len(variant)
 		return indices
 	
+	def typedictsetter(self):
+		return 1
 		
 	def typegenerator(self, input_vocab, word_list):
 		# creates new types of the word by replacing characters at index with variant
@@ -477,8 +479,7 @@ class VariantItem(object):
 								#print "add to dict"
 								typedict[word][ind] = entry
 								#checking for variant_two happens in the variantfinder script
-
-									
+	
 							else:
 								pass
 						#get variant_twos that don't have a variant_one in the corpus
@@ -486,6 +487,7 @@ class VariantItem(object):
 
 		#print "VariantItems returning"	
 		#TO DO this should not be a list as value. Right?					
+		#self.typedict = {k: v for k,v in typedict.viewitems()}
 		return {k: v for k,v in typedict.viewitems()}
 
 

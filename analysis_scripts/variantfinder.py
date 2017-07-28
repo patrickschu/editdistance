@@ -117,12 +117,12 @@ def main():
 		onedict = {emod.VariantItem(k, variant_one, variant_two, input_vocab = vocab, word_list = wordlist) : v for k,v in onedict.viewitems()}
 		#print {k.word: v for k,v in onedict.viewitems()}
 		print "\n".join([k.word for k,v in onedict.viewitems()])
-	for i in onedict:
-			print i, i.typedict, i.word, i.typedict.values(), [x.values() for x in  i.typedict.values()]
-			for listi in  [x.values() for x in  i.typedict.values()]:
-				if len(listi) > 0:
-					print [i.word for i in listi]
-					print [i.position for i in listi]
+	#for i in onedict:
+			#print i, i.typedict, i.word, i.typedict.values(), [x.values() for x in  i.typedict.values()]
+			#for listi in  [x.values() for x in  i.typedict.values()]:
+				#if len(listi) > 0:
+					#print [i.word for i in listi]
+					#print [i.position for i in listi]
 		variant_two_excludelist = []
 		for i in onedict:
 			#print i, i.typedict, i.word, i.typedict.values(), [x.values() for x in  i.typedict.values()]
@@ -135,10 +135,11 @@ def main():
 		variant_two_excludelist = set(variant_two_excludelist)
 		#finds all variant_two words that have equivalents in the wordlist only, thus not included in the above onedict
 		twodict = {k:v for k,v in vocab.viewitems() if (variant_two in k) and (k not in variant_two_excludelist)}
-		#print {k.word: v for k,v in twodict.viewitems()}
-		print header, "\n".join([k.word for k,v in twodict.viewitems()])
-		print "onedic", len(onedict)
-		print "twodic", len(twodict)
+		#print [i.yeardict for i in twodict]
+		
+		#print len([i.word for i in twodict.values()]), len(set([i.word for i in twodict.values()]))
+		#print "onedic", len(onedict)
+		#print "twodic", len(twodict)
 	
 		
 		
