@@ -9,7 +9,7 @@ step1sr = '/home/patrick/Downloads/editdistance/analysis_scripts/step1srwords.cs
 
 sinki = FALSE
 spread = read.csv(
-  step1sr, 
+  supercorpus_vu, 
   header = TRUE,
   encoding = "UTF-8")
 
@@ -34,7 +34,7 @@ cat(colSums(spread[ordered][1:5], na.rm = TRUE))
 cat("Values per year", rowSums(spread[1:10,], na.rm = TRUE))
 if (sinki == TRUE) {sink(file = NULL); print("stopped the sinking")}
 
-#THIS IS RS
-#sink('sr_1571.txt')
-spread[, !is.na(spread['1571',])]['1571',]
-#sink()
+#THIS IS UV
+sink('supercorpus_vu_1759.txt')
+spread[, !is.na(spread['1759',])]['1759',]
+sink()
