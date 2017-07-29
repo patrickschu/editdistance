@@ -1,16 +1,21 @@
 lampeter_wordlist = '/home/patrick/Downloads/editdistance/analysis_scripts/wordlist_words.csv'
 lampeter_inputdir =   '/home/patrick/Downloads/editdistance/analysis_scripts/input_words.csv' 
 
+supercorpus_uv = '/home/patrick/Downloads/editdistance/analysis_scripts/uvwords.csv'
+supercorpus_vu = '/home/patrick/Downloads/editdistance/analysis_scripts/vuwords.csv'
 
+
+
+sinki = TRUE
 spread = read.csv(
-  '/home/patrick/Downloads/editdistance/analysis_scripts/input_words.csv', 
+  supercorpus_vu, 
   header = TRUE,
   encoding = "UTF-8")
 
 # Lampeter Numbers
 # Types in Vocab  43067
 # Tokens in Vocab 1057348
-
+if (sinki == TRUE) {sink(file = 'vu_words.txt'); print ('start the sinking')}
 #get the format right, with index etc
 rownames(spread) = spread[['X']]
 spread[['X']] = NULL
@@ -19,8 +24,9 @@ cat ("Rows in here:", nrow(spread), "; Columns in here:", ncol(spread))
 cat("Total sum of counts is :", sum(colSums(spread, na.rm = TRUE)), "; mean is:", mean(colSums(spread, na.rm = TRUE)))
 
 # Check top performers; note that "X" is the years
-ordered = order(colSums(spread), decreasing = TRUE)
+ordered = order(colSums(spread, na.rm = TRUE), decreasing = TRUE)
 cat(names(spread[ordered][1:5]))
 cat(colSums(spread[ordered][1:5], na.rm = TRUE))
 #print (colnames(spread))
-cat("Values per year", rowSums(spread, na.rm = TRUE))
+cat("Values per year", rowSums(spread[1:10,], na.rm = TRUE))
+if (sinki == TRUE) {sink(file = NULL); print("stopped the sinking")}
