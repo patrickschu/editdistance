@@ -103,7 +103,8 @@ def main():
 		print "Building vocab from", input_dir
 		vocab = emod.Corpus_2(input_dir).vocabbuilder(lemmatize = lemmatize, output_json = args.write_corpusfile)
 		
-	print "Length corpusfile ", len(vocab)
+	print "Types in Vocab ", len(vocab)
+	print "Tokens in Vocab", sum([i.totaltokens() for i in vocab.viewvalues()])
 	# extract all items that contain variant one
 	# note that we could do this during extraction if we had been smart; but vocab output would break
 	onedict = {k:v for k,v in vocab.viewitems() if variant_one in k}
