@@ -1,3 +1,5 @@
+lampeter_wordlist = '/home/patrick/Downloads/editdistance/analysis_scripts/wordlist_words.csv'
+lampeter_inputdir =   '/home/patrick/Downloads/editdistance/analysis_scripts/input_words.csv' 
 
 
 spread = read.csv(
@@ -21,3 +23,4 @@ ordered = order(colSums(spread), decreasing = TRUE)
 cat(names(spread[ordered][1:5]))
 cat(colSums(spread[ordered][1:5], na.rm = TRUE))
 #print (colnames(spread))
+cat("Values per year", rowSums(spread, na.rm = TRUE))
