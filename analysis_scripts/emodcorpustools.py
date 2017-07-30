@@ -222,7 +222,6 @@ def findvariants(input_vocab, variant_one, variant_two, threshold = 0):
 	#show variants
 	t=  {"+".join([i.word for i in VariantItem(k, variant_one, variant_two).typedict.values()[0]]):v for k,v in input_vocab.viewitems() if variant_one in list(k)}
 	print [[i.yeardict(corpusdir, lower_case = True) for i in k.typedict.values()[0]] for k in onedict.viewkeys()]
-	#print onedict
 
 
 ##classes
@@ -492,9 +491,6 @@ class VariantItem(object):
 		#self.typedict = {k: v for k,v in typedict.viewitems()}
 		return {k: v for k,v in typedict.viewitems()}
 
-
-
-
 class Corpus_2(object):
 	"""
 	The Corpus_2 object defines corpus-wide methods and attributes.
@@ -509,7 +505,6 @@ class Corpus_2(object):
 		Builds a dictionary of all texts in input_dir, updating the yeardict {} of Corpusword.
 		Returns a dictionary like so : {word: CorpusWord(), ...}
 		"""
-		#TO DO: make this take a pre-defined vocabulary
 		print "running the vocabbuilder from corpus_2"
 		if not use_word_list:
 			vocabdict = self._vocabbuilder_pure(lemmatize = lemmatize)
