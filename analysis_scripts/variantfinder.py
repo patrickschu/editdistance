@@ -66,8 +66,8 @@ def main():
 
 	args = get_input()
 	# checking input
-	if not args.input_dir:
-		raise IOError("No corpus provided. You need specify a directory of text files with --input_dir")
+	#if not args.input_dir:
+	#	raise IOError("No corpus provided. You need specify a directory of text files with --input_dir")
 	#if all([not args.read_corpusfile, not args.read_wordlist]):
 		#raise IOError("No input data. You need to either specify a word list '--read_wordlist' or a file with word counts as '--read_file'")
 	# note that timespan should include 0 if you want to have values with missing data
